@@ -1,0 +1,12 @@
+D:\Навчання\Diploma\SavageOrcs.DbContext\bin\Debug\net6.0\SavageOrcs.DbContext.deps.json
+D:\Навчання\Diploma\SavageOrcs.DbContext\bin\Debug\net6.0\SavageOrcs.DbContext.dll
+D:\Навчання\Diploma\SavageOrcs.DbContext\bin\Debug\net6.0\SavageOrcs.DbContext.pdb
+D:\Навчання\Diploma\SavageOrcs.DbContext\obj\Debug\net6.0\SavageOrcs.DbContext.csproj.AssemblyReference.cache
+D:\Навчання\Diploma\SavageOrcs.DbContext\obj\Debug\net6.0\SavageOrcs.DbContext.GeneratedMSBuildEditorConfig.editorconfig
+D:\Навчання\Diploma\SavageOrcs.DbContext\obj\Debug\net6.0\SavageOrcs.DbContext.AssemblyInfoInputs.cache
+D:\Навчання\Diploma\SavageOrcs.DbContext\obj\Debug\net6.0\SavageOrcs.DbContext.AssemblyInfo.cs
+D:\Навчання\Diploma\SavageOrcs.DbContext\obj\Debug\net6.0\SavageOrcs.DbContext.csproj.CoreCompileInputs.cache
+D:\Навчання\Diploma\SavageOrcs.DbContext\obj\Debug\net6.0\SavageOrcs.DbContext.dll
+D:\Навчання\Diploma\SavageOrcs.DbContext\obj\Debug\net6.0\refint\SavageOrcs.DbContext.dll
+D:\Навчання\Diploma\SavageOrcs.DbContext\obj\Debug\net6.0\SavageOrcs.DbContext.pdb
+D:\Навчання\Diploma\SavageOrcs.DbContext\obj\Debug\net6.0\ref\SavageOrcs.DbContext.dll
