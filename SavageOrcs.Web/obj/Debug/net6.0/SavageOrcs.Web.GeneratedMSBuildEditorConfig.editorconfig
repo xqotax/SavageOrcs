@@ -179,6 +179,10 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
+[D:/Навчання/Diploma/SavageOrcs.Web/Views/Curator/Catalogue.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ3VyYXRvclxDYXRhbG9ndWUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [D:/Навчання/Diploma/SavageOrcs.Web/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
@@ -191,6 +195,22 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxUZXN0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
+[D:/Навчання/Diploma/SavageOrcs.Web/Views/Map/Main.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWFwXE1haW4uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Навчання/Diploma/SavageOrcs.Web/Views/Mark/Add.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWFya1xBZGQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Навчання/Diploma/SavageOrcs.Web/Views/Mark/Catalogue.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWFya1xDYXRhbG9ndWUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Навчання/Diploma/SavageOrcs.Web/Views/Mark/_AddImage.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWFya1xfQWRkSW1hZ2UuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [D:/Навчання/Diploma/SavageOrcs.Web/Views/Shared/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
@@ -201,6 +221,10 @@ build_metadata.AdditionalFiles.CssScope =
 
 [D:/Навчання/Diploma/SavageOrcs.Web/Views/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Навчання/Diploma/SavageOrcs.Web/Views/Text/Catalogue.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGV4dFxDYXRhbG9ndWUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [D:/Навчання/Diploma/SavageOrcs.Web/Views/_ViewImports.cshtml]

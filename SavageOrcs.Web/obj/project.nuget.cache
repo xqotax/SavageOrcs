@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "bXWj6O1XRCRZckxAm6/kQlJXTL4BVgNVjtWKO1vrJU9WO6Ue4XEn/p2z0RvQCxbVEFv15Nn/dTY3raR6BMBqzw==",
+  "dgSpecHash": "LsY15GawTNobFa8vqTNF7rjVwMVMFK5GSKVv+EDfnGuoQA25RubyaohmjoDRzlM9DBobfHYKelec03NNQ/eMUA==",
   "success": true,
   "projectFilePath": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\SavageOrcs.Web.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\skrip\\.nuget\\packages\\buildbundlerminifier\\3.2.449\\buildbundlerminifier.3.2.449.nupkg.sha512",
     "C:\\Users\\skrip\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\skrip\\.nuget\\packages\\messagepack\\2.1.152\\messagepack.2.1.152.nupkg.sha512",
     "C:\\Users\\skrip\\.nuget\\packages\\messagepack.annotations\\2.1.152\\messagepack.annotations.2.1.152.nupkg.sha512",

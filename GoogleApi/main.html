@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Title</title>
+    <style>
+        html,
+        body {
+          height: 100%;
+          margin: 0;
+          padding: 0;
+        }
+        #map {
+            height: 100%; 
+            width: 100%
+        }
+    </style>
+</head>
+<body>
+    <script
+      src="https://code.jquery.com/jquery-3.6.0.js"
+      integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+      crossorigin="anonymous"></script>
+    
+
+    <div id="map">
+        
+    </div>
+
+
+
+    <script>
+        function initMap() {
+            let map = new google.maps.Map(document.getElementById("map"), {
+                center: {
+                    lat: 48.6682428, 
+                    lng: 25.4833265
+                },
+                zoom: 17
+            });
+
+            let marker = new google.maps.Marker({
+                position: {
+                    lat: 48.6683328, 
+                    lng: 25.4827080
+                },
+                map: map,
+                title: "My Home",
+                icon: {
+                  url: "photo/1.jpg",
+                  scaledSize:  new google.maps.Size(15, 15),
+                  origin: new google.maps.Point(0,0), 
+                  anchor: new google.maps.Point(0, 0) 
+                }
+            });
+        }
+    </script>
+    <script async
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDuw7bPRLxL2yVBd9YArtpb47myhmUePGY&callback=initMap">
+    </script>
+</body>
+</html>
+

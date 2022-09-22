@@ -1,0 +1,126 @@
+﻿@using SavageOrcs.Web.ViewModels.Mark
+@model AddMarkViewModel
+
+<div id="addImagePlaceholder"></div>
+<div class="row">
+    <div class="col-md-5">
+        @Html.HiddenFor(m => m.Zoom)
+        <div class="row pb-2">
+            <div class="col-md-4 d-flex align-items-center">
+                <label class="text-white-custom display-8-custom">
+                    Ширина:
+                </label>
+            </div>
+            <div class="col-md-7">
+                @Html.TextBoxFor(m => m.Lng, new { @class = "text-box-custom form-control display-8-custom"})
+            </div>
+        </div>
+        <div class="row pb-2">
+            <div class="col-md-4 d-flex align-items-center">
+                <label class="text-white-custom  display-8-custom">
+                    Висота:
+                </label>
+            </div>
+            <div class="col-md-7">
+                @Html.TextBoxFor(m => m.Lat, new { @class = "text-box-custom form-control display-8-custom"})
+            </div>
+        </div>
+        <div class="row pb-2">
+            <div class="col-md-4 d-flex align-items-center">
+                <label class="text-white-custom display-8-custom">
+                    Назва:
+                </label>
+            </div>
+            <div class="col-md-7">
+                @Html.TextBoxFor(m => m.Name, new { @class = "text-box-custom form-control display-8-custom"})
+            </div>
+        </div>
+        <div class="row pb-2">
+            <div class="col-md-4 d-flex align-items-center">
+                <label class="text-white-custom display-8-custom">
+                    Опис:
+                </label>
+            </div>
+            <div class="col-md-7">
+                @Html.TextAreaFor(m => m.Description, new { @class = "text-box-custom form-control display-8-custom area-for-custom"})
+            </div>
+        </div>
+        <div class="row pb-2">
+            <div class="col-md-4 d-flex align-items-center">
+                <label class="text-white-custom display-8-custom">
+                    Опис для іноземних користувачів:
+                </label>
+            </div>
+            <div class="col-md-7">
+                @Html.TextAreaFor(m => m.DescriptionEng, new { @class = "text-box-custom form-control display-8-custom area-for-custom"})
+            </div>
+        </div>
+        <div class="row pb-2">
+            <div class="col-md-4 d-flex align-items-center">
+                <label class="text-white-custom display-8-custom">
+                    Місце:
+                </label>
+            </div>
+            <div class="col-md-7">
+                @Html.DropDownListFor(m => m.AreaId, new SelectList(Model.Areas, "Value", "Text"), new { @class = "text-box-custom form-control display-8-custom" })
+            </div>
+        </div>
+        <div class="row pb-2">
+            <div class="col-md-4 d-flex align-items-center">
+                <label class="text-white-custom display-8-custom">
+                    Посилання на ресурс:
+                </label>
+            </div>
+            <div class="col-md-7">
+                @Html.TextBoxFor(m => m.ResourceUrl , new { @class = "text-box-custom form-control display-8-custom"})
+            </div>
+        </div>
+    </div>
+    <div class="col-md-7">
+        <div class="row">
+            <div id="mapMarkAdd">
+            </div>
+        </div>
+        <div class="row justify-content-end">
+            <button id="setCoordinates" class="btn btn-dark-custom display-8-custom mt-3">Задати координати</button>
+        </div>
+        <div class="row justify-content-end">
+            <button id="saveMark" class="btn btn-dark-custom display-8-custom mt-3">Зберегти</button>
+        </div>
+    </div>
+</div>
+
+<div class="row" style="margin-top: 100px; margin-bottom: 30px">
+    <div class="col-md-4 display-6 text-white-custom text-bold-custom">Фотографії</div>
+    <div class="col-md-2 offset-md-4">
+        <button id="addImage" style="width: 90%;" class="btn btn-dark-custom display-8-custom">Добавити</button>
+    </div>
+    <div class="col-md-2">
+        <button id="removeImages" style="width: 100%;" class="btn btn-dark-custom display-8-custom">Видалити</button>
+    </div>
+</div>
+<div class="row" id="imageContainer">
+    <div class="row justify-content-md-around">
+       
+    </div>
+</div>
+
+
+@section Scripts{
+    <script>
+        var markAddView = new MarkAddView();
+        markAddView.Lat = '@Html.Raw(Model.Lat)';
+        markAddView.Lng = '@Html.Raw(Model.Lng)';
+        markAddView.Zoom = '@Html.Raw(Model.Zoom)';
+
+        $(document).ready(function () {
+            markAddView.InitializeControls();
+        });
+        function initMap() {
+            markAddView.InitMap();
+        }
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDuw7bPRLxL2yVBd9YArtpb47myhmUePGY&callback=initMap"></script>
+}
+
+

@@ -8,17 +8,24 @@
     ".NETCoreApp,Version=v6.0": {
       "SavageOrcs.Web/1.0.0": {
         "dependencies": {
+          "BuildBundlerMinifier": "3.2.449",
           "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "6.0.9",
           "Microsoft.AspNetCore.Identity.UI": "6.0.9",
           "Microsoft.EntityFrameworkCore.SqlServer": "6.0.9",
           "Microsoft.EntityFrameworkCore.Tools": "6.0.9",
           "Microsoft.VisualStudio.Web.CodeGeneration.Design": "6.0.9",
-          "SavageOrcs.DbContext": "1.0.0"
+          "SavageOrcs.DbContext": "1.0.0",
+          "SavageOrcs.Repositories": "1.0.0",
+          "SavageOrcs.Repositories.Interfaces": "1.0.0",
+          "SavageOrcs.Services": "1.0.0",
+          "SavageOrcs.Services.Interfaces": "1.0.0",
+          "SavageOrcs.UnitOfWork": "1.0.0"
         },
         "runtime": {
           "SavageOrcs.Web.dll": {}
         }
       },
+      "BuildBundlerMinifier/3.2.449": {},
       "Humanizer.Core/2.8.26": {
         "runtime": {
           "lib/netstandard2.0/Humanizer.dll": {
@@ -2313,6 +2320,42 @@
         "runtime": {
           "SavageOrcs.DbContext.dll": {}
         }
+      },
+      "SavageOrcs.Repositories/1.0.0": {
+        "dependencies": {
+          "SavageOrcs.DbContext": "1.0.0",
+          "SavageOrcs.Repositories.Interfaces": "1.0.0"
+        },
+        "runtime": {
+          "SavageOrcs.Repositories.dll": {}
+        }
+      },
+      "SavageOrcs.Repositories.Interfaces/1.0.0": {
+        "runtime": {
+          "SavageOrcs.Repositories.Interfaces.dll": {}
+        }
+      },
+      "SavageOrcs.Services/1.0.0": {
+        "dependencies": {
+          "SavageOrcs.Services.Interfaces": "1.0.0",
+          "SavageOrcs.UnitOfWork": "1.0.0"
+        },
+        "runtime": {
+          "SavageOrcs.Services.dll": {}
+        }
+      },
+      "SavageOrcs.Services.Interfaces/1.0.0": {
+        "runtime": {
+          "SavageOrcs.Services.Interfaces.dll": {}
+        }
+      },
+      "SavageOrcs.UnitOfWork/1.0.0": {
+        "dependencies": {
+          "SavageOrcs.DbContext": "1.0.0"
+        },
+        "runtime": {
+          "SavageOrcs.UnitOfWork.dll": {}
+        }
       }
     }
   },
@@ -2321,6 +2364,13 @@
       "type": "project",
       "serviceable": false,
       "sha512": ""
+    },
+    "BuildBundlerMinifier/3.2.449": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-uA9sYDy4VepL3xwzBTLcP2LyuVYMt0ZIT3gaSiXvGoX15Ob+rOP+hGydhevlSVd+rFo+Y+VQFEHDuWU8HBW+XA==",
+      "path": "buildbundlerminifier/3.2.449",
+      "hashPath": "buildbundlerminifier.3.2.449.nupkg.sha512"
     },
     "Humanizer.Core/2.8.26": {
       "type": "package",
@@ -3569,6 +3619,31 @@
       "hashPath": "system.xml.xdocument.4.3.0.nupkg.sha512"
     },
     "SavageOrcs.DbContext/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "SavageOrcs.Repositories/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "SavageOrcs.Repositories.Interfaces/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "SavageOrcs.Services/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "SavageOrcs.Services.Interfaces/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "SavageOrcs.UnitOfWork/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

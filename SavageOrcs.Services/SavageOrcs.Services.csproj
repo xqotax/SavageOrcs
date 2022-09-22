@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\SavageOrcs.Services.Interfaces\SavageOrcs.Services.Interfaces.csproj" />
+    <ProjectReference Include="..\SavageOrcs.UnitOfWork\SavageOrcs.UnitOfWork.csproj" />
+  </ItemGroup>
+
+</Project>

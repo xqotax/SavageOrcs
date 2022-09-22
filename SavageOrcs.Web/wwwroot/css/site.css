@@ -14,7 +14,12 @@ html {
 }
 
 body {
-  margin-bottom: 60px;
+    margin-bottom: 60px;
+    background-image: url("../images/bodyBackground.jpg")
+}
+
+.bg-black-custom {
+    background-color: rgb(16, 17, 16);
 }
 
 .top-buffer {
@@ -29,4 +34,123 @@ input[type="checkbox"]:checked {
     background: rgb(4 107 28);
 }
 
+#map {
+    height: 650px;
+    width: 100%
+}
 
+#mapMarkAdd {
+    z-index: 1;
+    height: 600px;
+    width: 100%;
+}
+
+#logout:hover, #logout:focus, .nav-item:hover, .nav-item:focus {
+    background-color: rgb(16, 17, 16);
+}
+
+.dropdown-item, .dropdown-toggle, .nav-link {
+    text-decoration: none;
+    font-weight: 800;
+}
+
+.logo-image-custom{
+    height: 45px;
+    width: 300px;
+}
+
+.text-white-custom{
+    color: white;
+}
+
+.text-bold-custom {
+    font-weight: 800;
+}
+
+.font-weight-bold-custom{
+    font-weight: 600;
+}
+
+.text-box-custom {
+    color: white;
+    background-color: rgb(16, 17, 16);
+}
+.container {
+    width: 90%;
+    max-width: 90%;
+    margin-right: 2%;
+    margin-left: 2%;
+}
+
+.wraper-custom {
+    width: 100%;
+    margin-right: 2%;
+    margin-left: 2%;
+}
+
+.display-7-custom{
+    font-size: 22px;
+}
+
+.display-8-custom {
+    font-size: 20px;
+}
+
+.area-for-custom{
+    height:225px;
+}
+
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #888;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+.btn-dark-custom {
+    background-color: rgb(16, 17, 16);
+    color: white;
+}
+
+.btn-dark-custom:hover {
+    background-color: white;
+    color: rgb(16, 17, 16);
+}
+
+
+.popup-custom {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(16, 17, 16, 0.8);
+    top: 0;
+    left: 0;
+    z-index: 100;
+
+}
+.popup-body-custom{
+    min-height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 30px 10px;
+}
+.popup-content-custom {
+    background-color: white;
+    color: rgb(16, 17, 16);
+    max-width: 800px;
+    min-width:500px;
+    padding: 30px;
+}

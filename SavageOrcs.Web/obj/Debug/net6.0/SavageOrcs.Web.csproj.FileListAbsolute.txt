@@ -271,3 +271,13 @@ D:\Навчання\Diploma\SavageOrcs.Web\bin\Debug\net6.0\runtimes\win\lib\net
 D:\Навчання\Diploma\SavageOrcs.Web\obj\Debug\net6.0\SavageOrcs.Web.MvcApplicationPartsAssemblyInfo.cs
 D:\Навчання\Diploma\SavageOrcs.Web\bin\Debug\net6.0\SavageOrcs.DbContext.dll
 D:\Навчання\Diploma\SavageOrcs.Web\bin\Debug\net6.0\SavageOrcs.DbContext.pdb
+D:\Навчання\Diploma\SavageOrcs.Web\bin\Debug\net6.0\SavageOrcs.Repositories.dll
+D:\Навчання\Diploma\SavageOrcs.Web\bin\Debug\net6.0\SavageOrcs.Repositories.Interfaces.dll
+D:\Навчання\Diploma\SavageOrcs.Web\bin\Debug\net6.0\SavageOrcs.Services.dll
+D:\Навчання\Diploma\SavageOrcs.Web\bin\Debug\net6.0\SavageOrcs.Services.Interfaces.dll
+D:\Навчання\Diploma\SavageOrcs.Web\bin\Debug\net6.0\SavageOrcs.UnitOfWork.dll
+D:\Навчання\Diploma\SavageOrcs.Web\bin\Debug\net6.0\SavageOrcs.Repositories.Interfaces.pdb
+D:\Навчання\Diploma\SavageOrcs.Web\bin\Debug\net6.0\SavageOrcs.Repositories.pdb
+D:\Навчання\Diploma\SavageOrcs.Web\bin\Debug\net6.0\SavageOrcs.Services.Interfaces.pdb
+D:\Навчання\Diploma\SavageOrcs.Web\bin\Debug\net6.0\SavageOrcs.Services.pdb
+D:\Навчання\Diploma\SavageOrcs.Web\bin\Debug\net6.0\SavageOrcs.UnitOfWork.pdb

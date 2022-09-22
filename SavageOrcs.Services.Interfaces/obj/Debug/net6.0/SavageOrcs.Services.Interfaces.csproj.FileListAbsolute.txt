@@ -1,0 +1,12 @@
+D:\Навчання\Diploma\SavageOrcs.Services.Interfaces\bin\Debug\net6.0\SavageOrcs.Services.Interfaces.deps.json
+D:\Навчання\Diploma\SavageOrcs.Services.Interfaces\bin\Debug\net6.0\SavageOrcs.Services.Interfaces.dll
+D:\Навчання\Diploma\SavageOrcs.Services.Interfaces\bin\Debug\net6.0\SavageOrcs.Services.Interfaces.pdb
+D:\Навчання\Diploma\SavageOrcs.Services.Interfaces\obj\Debug\net6.0\SavageOrcs.Services.Interfaces.csproj.AssemblyReference.cache
+D:\Навчання\Diploma\SavageOrcs.Services.Interfaces\obj\Debug\net6.0\SavageOrcs.Services.Interfaces.GeneratedMSBuildEditorConfig.editorconfig
+D:\Навчання\Diploma\SavageOrcs.Services.Interfaces\obj\Debug\net6.0\SavageOrcs.Services.Interfaces.AssemblyInfoInputs.cache
+D:\Навчання\Diploma\SavageOrcs.Services.Interfaces\obj\Debug\net6.0\SavageOrcs.Services.Interfaces.AssemblyInfo.cs
+D:\Навчання\Diploma\SavageOrcs.Services.Interfaces\obj\Debug\net6.0\SavageOrcs.Services.Interfaces.csproj.CoreCompileInputs.cache
+D:\Навчання\Diploma\SavageOrcs.Services.Interfaces\obj\Debug\net6.0\SavageOrcs.Services.Interfaces.dll
+D:\Навчання\Diploma\SavageOrcs.Services.Interfaces\obj\Debug\net6.0\refint\SavageOrcs.Services.Interfaces.dll
+D:\Навчання\Diploma\SavageOrcs.Services.Interfaces\obj\Debug\net6.0\SavageOrcs.Services.Interfaces.pdb
+D:\Навчання\Diploma\SavageOrcs.Services.Interfaces\obj\Debug\net6.0\ref\SavageOrcs.Services.Interfaces.dll

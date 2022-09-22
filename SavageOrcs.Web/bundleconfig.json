@@ -1,0 +1,15 @@
+﻿[
+    {
+        "outputFileName": "wwwroot/js/site.js",
+      "inputFiles": [
+        "Scripts/Proto/Proto.js",
+        "Scripts/Map/Main.js",
+        "Scripts/Mark/Add.js",
+        "Scripts/Mark/AddImage.js"
+      ],
+      "minify": {
+        "enabled": true,
+        "renameLocals": false
+      }
+    }
+]

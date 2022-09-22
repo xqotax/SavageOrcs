@@ -73,14 +73,248 @@
         }
       }
     },
-    "D:\\Навчання\\Diploma\\SavageOrcs.Web\\SavageOrcs.Web.csproj": {
+    "D:\\Навчання\\Diploma\\SavageOrcs.Repositories.Interfaces\\SavageOrcs.Repositories.Interfaces.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\SavageOrcs.Web.csproj",
-        "projectName": "SavageOrcs.Web",
-        "projectPath": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\SavageOrcs.Web.csproj",
+        "projectUniqueName": "D:\\Навчання\\Diploma\\SavageOrcs.Repositories.Interfaces\\SavageOrcs.Repositories.Interfaces.csproj",
+        "projectName": "SavageOrcs.Repositories.Interfaces",
+        "projectPath": "D:\\Навчання\\Diploma\\SavageOrcs.Repositories.Interfaces\\SavageOrcs.Repositories.Interfaces.csproj",
         "packagesPath": "C:\\Users\\skrip\\.nuget\\packages\\",
-        "outputPath": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\obj\\",
+        "outputPath": "D:\\Навчання\\Diploma\\SavageOrcs.Repositories.Interfaces\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\skrip\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.400\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "D:\\Навчання\\Diploma\\SavageOrcs.Repositories\\SavageOrcs.Repositories.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\Навчання\\Diploma\\SavageOrcs.Repositories\\SavageOrcs.Repositories.csproj",
+        "projectName": "SavageOrcs.Repositories",
+        "projectPath": "D:\\Навчання\\Diploma\\SavageOrcs.Repositories\\SavageOrcs.Repositories.csproj",
+        "packagesPath": "C:\\Users\\skrip\\.nuget\\packages\\",
+        "outputPath": "D:\\Навчання\\Diploma\\SavageOrcs.Repositories\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\skrip\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {
+              "D:\\Навчання\\Diploma\\SavageOrcs.DbContext\\SavageOrcs.DbContext.csproj": {
+                "projectPath": "D:\\Навчання\\Diploma\\SavageOrcs.DbContext\\SavageOrcs.DbContext.csproj"
+              },
+              "D:\\Навчання\\Diploma\\SavageOrcs.Repositories.Interfaces\\SavageOrcs.Repositories.Interfaces.csproj": {
+                "projectPath": "D:\\Навчання\\Diploma\\SavageOrcs.Repositories.Interfaces\\SavageOrcs.Repositories.Interfaces.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.400\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "D:\\Навчання\\Diploma\\SavageOrcs.Services.Interfaces\\SavageOrcs.Services.Interfaces.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\Навчання\\Diploma\\SavageOrcs.Services.Interfaces\\SavageOrcs.Services.Interfaces.csproj",
+        "projectName": "SavageOrcs.Services.Interfaces",
+        "projectPath": "D:\\Навчання\\Diploma\\SavageOrcs.Services.Interfaces\\SavageOrcs.Services.Interfaces.csproj",
+        "packagesPath": "C:\\Users\\skrip\\.nuget\\packages\\",
+        "outputPath": "D:\\Навчання\\Diploma\\SavageOrcs.Services.Interfaces\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\skrip\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.400\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "D:\\Навчання\\Diploma\\SavageOrcs.Services\\SavageOrcs.Services.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\Навчання\\Diploma\\SavageOrcs.Services\\SavageOrcs.Services.csproj",
+        "projectName": "SavageOrcs.Services",
+        "projectPath": "D:\\Навчання\\Diploma\\SavageOrcs.Services\\SavageOrcs.Services.csproj",
+        "packagesPath": "C:\\Users\\skrip\\.nuget\\packages\\",
+        "outputPath": "D:\\Навчання\\Diploma\\SavageOrcs.Services\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\skrip\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {
+              "D:\\Навчання\\Diploma\\SavageOrcs.Services.Interfaces\\SavageOrcs.Services.Interfaces.csproj": {
+                "projectPath": "D:\\Навчання\\Diploma\\SavageOrcs.Services.Interfaces\\SavageOrcs.Services.Interfaces.csproj"
+              },
+              "D:\\Навчання\\Diploma\\SavageOrcs.UnitOfWork\\SavageOrcs.UnitOfWork.csproj": {
+                "projectPath": "D:\\Навчання\\Diploma\\SavageOrcs.UnitOfWork\\SavageOrcs.UnitOfWork.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.400\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "D:\\Навчання\\Diploma\\SavageOrcs.UnitOfWork\\SavageOrcs.UnitOfWork.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\Навчання\\Diploma\\SavageOrcs.UnitOfWork\\SavageOrcs.UnitOfWork.csproj",
+        "projectName": "SavageOrcs.UnitOfWork",
+        "projectPath": "D:\\Навчання\\Diploma\\SavageOrcs.UnitOfWork\\SavageOrcs.UnitOfWork.csproj",
+        "packagesPath": "C:\\Users\\skrip\\.nuget\\packages\\",
+        "outputPath": "D:\\Навчання\\Diploma\\SavageOrcs.UnitOfWork\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\skrip\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -112,7 +346,85 @@
       "frameworks": {
         "net6.0": {
           "targetAlias": "net6.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.400\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "D:\\Навчання\\Diploma\\SavageOrcs.Web\\SavageOrcs.Web.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\SavageOrcs.Web.csproj",
+        "projectName": "SavageOrcs.Web",
+        "projectPath": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\SavageOrcs.Web.csproj",
+        "packagesPath": "C:\\Users\\skrip\\.nuget\\packages\\",
+        "outputPath": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\skrip\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {
+              "D:\\Навчання\\Diploma\\SavageOrcs.DbContext\\SavageOrcs.DbContext.csproj": {
+                "projectPath": "D:\\Навчання\\Diploma\\SavageOrcs.DbContext\\SavageOrcs.DbContext.csproj"
+              },
+              "D:\\Навчання\\Diploma\\SavageOrcs.Repositories.Interfaces\\SavageOrcs.Repositories.Interfaces.csproj": {
+                "projectPath": "D:\\Навчання\\Diploma\\SavageOrcs.Repositories.Interfaces\\SavageOrcs.Repositories.Interfaces.csproj"
+              },
+              "D:\\Навчання\\Diploma\\SavageOrcs.Repositories\\SavageOrcs.Repositories.csproj": {
+                "projectPath": "D:\\Навчання\\Diploma\\SavageOrcs.Repositories\\SavageOrcs.Repositories.csproj"
+              },
+              "D:\\Навчання\\Diploma\\SavageOrcs.Services.Interfaces\\SavageOrcs.Services.Interfaces.csproj": {
+                "projectPath": "D:\\Навчання\\Diploma\\SavageOrcs.Services.Interfaces\\SavageOrcs.Services.Interfaces.csproj"
+              },
+              "D:\\Навчання\\Diploma\\SavageOrcs.Services\\SavageOrcs.Services.csproj": {
+                "projectPath": "D:\\Навчання\\Diploma\\SavageOrcs.Services\\SavageOrcs.Services.csproj"
+              },
+              "D:\\Навчання\\Diploma\\SavageOrcs.UnitOfWork\\SavageOrcs.UnitOfWork.csproj": {
+                "projectPath": "D:\\Навчання\\Diploma\\SavageOrcs.UnitOfWork\\SavageOrcs.UnitOfWork.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
           "dependencies": {
+            "BuildBundlerMinifier": {
+              "target": "Package",
+              "version": "[3.2.449, )"
+            },
             "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
               "target": "Package",
               "version": "[6.0.9, )"
