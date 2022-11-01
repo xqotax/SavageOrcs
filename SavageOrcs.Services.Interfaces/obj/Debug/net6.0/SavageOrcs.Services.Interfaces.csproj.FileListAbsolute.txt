@@ -10,3 +10,6 @@ D:\Навчання\Diploma\SavageOrcs.Services.Interfaces\obj\Debug\net6.0\Sava
 D:\Навчання\Diploma\SavageOrcs.Services.Interfaces\obj\Debug\net6.0\refint\SavageOrcs.Services.Interfaces.dll
 D:\Навчання\Diploma\SavageOrcs.Services.Interfaces\obj\Debug\net6.0\SavageOrcs.Services.Interfaces.pdb
 D:\Навчання\Diploma\SavageOrcs.Services.Interfaces\obj\Debug\net6.0\ref\SavageOrcs.Services.Interfaces.dll
+D:\Навчання\Diploma\SavageOrcs.Services.Interfaces\bin\Debug\net6.0\SavageOrcs.DataTransferObjects.dll
+D:\Навчання\Diploma\SavageOrcs.Services.Interfaces\bin\Debug\net6.0\SavageOrcs.DataTransferObjects.pdb
+D:\Навчання\Diploma\SavageOrcs.Services.Interfaces\obj\Debug\net6.0\SavageOrcs.Services.Interfaces.csproj.CopyComplete

@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "Gn2xq6ZCu98EbxImniSbaYDkdg8GW7v4VUraL6c0fP8=",
+  "Hash": "TgAcVNYm6kvyRiDy5cPMvDXjyQzYlbu2MXQP4jYPRdU=",
   "Source": "SavageOrcs.Web",
   "BasePath": "_content/SavageOrcs.Web",
   "Mode": "Default",
@@ -1156,6 +1156,40 @@
       "OriginalItemSpec": "wwwroot\\images\\bodyBackground.jpg"
     },
     {
+      "Identity": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\wwwroot\\images\\flags\\GB.png",
+      "SourceId": "SavageOrcs.Web",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\wwwroot\\",
+      "BasePath": "_content/SavageOrcs.Web",
+      "RelativePath": "images/flags/GB.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\flags\\GB.png"
+    },
+    {
+      "Identity": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\wwwroot\\images\\flags\\UA.png",
+      "SourceId": "SavageOrcs.Web",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\wwwroot\\",
+      "BasePath": "_content/SavageOrcs.Web",
+      "RelativePath": "images/flags/UA.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\flags\\UA.png"
+    },
+    {
       "Identity": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\wwwroot\\images\\logo.png",
       "SourceId": "SavageOrcs.Web",
       "SourceType": "Discovered",
@@ -1171,6 +1205,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\images\\logo.png"
+    },
+    {
+      "Identity": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\wwwroot\\images\\markIcon.png",
+      "SourceId": "SavageOrcs.Web",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\wwwroot\\",
+      "BasePath": "_content/SavageOrcs.Web",
+      "RelativePath": "images/markIcon.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\markIcon.png"
     },
     {
       "Identity": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\wwwroot\\js\\site.js",
@@ -2174,6 +2225,40 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\lib\\jquery-validation-unobtrusive\\LICENSE.txt"
+    },
+    {
+      "Identity": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\wwwroot\\lib\\search-select\\search-select.css",
+      "SourceId": "SavageOrcs.Web",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\wwwroot\\",
+      "BasePath": "_content/SavageOrcs.Web",
+      "RelativePath": "lib/search-select/search-select.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\lib\\search-select\\search-select.css"
+    },
+    {
+      "Identity": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\wwwroot\\lib\\search-select\\search-select.js",
+      "SourceId": "SavageOrcs.Web",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\wwwroot\\",
+      "BasePath": "_content/SavageOrcs.Web",
+      "RelativePath": "lib/search-select/search-select.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\lib\\search-select\\search-select.js"
     }
   ]
 }

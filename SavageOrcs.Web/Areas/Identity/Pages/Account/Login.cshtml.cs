@@ -16,6 +16,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
 using SavageOrcs.DbContext;
 using System.Security.Claims;
+using SavageOrcs.BusinessObjects;
 
 namespace SavageOrcs.Web.Areas.Identity.Pages.Account
 {

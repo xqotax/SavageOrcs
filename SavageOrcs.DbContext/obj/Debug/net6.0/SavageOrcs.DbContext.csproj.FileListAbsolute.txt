@@ -10,3 +10,6 @@ D:\Навчання\Diploma\SavageOrcs.DbContext\obj\Debug\net6.0\SavageOrcs.DbC
 D:\Навчання\Diploma\SavageOrcs.DbContext\obj\Debug\net6.0\refint\SavageOrcs.DbContext.dll
 D:\Навчання\Diploma\SavageOrcs.DbContext\obj\Debug\net6.0\SavageOrcs.DbContext.pdb
 D:\Навчання\Diploma\SavageOrcs.DbContext\obj\Debug\net6.0\ref\SavageOrcs.DbContext.dll
+D:\Навчання\Diploma\SavageOrcs.DbContext\bin\Debug\net6.0\SavageOrcs.BusinessObjects.dll
+D:\Навчання\Diploma\SavageOrcs.DbContext\bin\Debug\net6.0\SavageOrcs.BusinessObjects.pdb
+D:\Навчання\Diploma\SavageOrcs.DbContext\obj\Debug\net6.0\SavageOrcs.DbContext.csproj.CopyComplete

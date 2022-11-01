@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using SavageOrcs.BusinessObjects;
 using SavageOrcs.DbContext;
 using SavageOrcs.Repositories;
 using SavageOrcs.Repositories.Interfaces;
@@ -14,7 +15,7 @@ var connectionString = builder.Configuration.GetConnectionString("SavageOrcsDbCo
 
 
 builder.Services.AddDbContext<SavageOrcsDbContext>(options =>
-    options.UseSqlServer(connectionString));
+    options.UseLazyLoadingProxies().UseSqlServer(connectionString));
 
 builder.Services.AddDefaultIdentity<User>(options => options.SignIn.RequireConfirmedAccount = true)
     .AddRoles<IdentityRole>()
@@ -24,6 +25,11 @@ builder.Services.AddDefaultIdentity<User>(options => options.SignIn.RequireConfi
 builder.Services.AddTransient<IUnitOfWork, UnitOfWork>();
 builder.Services.AddTransient(typeof(IRepository<>), typeof(Repository<>));
 builder.Services.AddTransient<IEmailService, EmailService>();
+builder.Services.AddTransient<IAreaService, AreaService>();
+builder.Services.AddTransient<IMapService, MapService>();
+builder.Services.AddTransient<IMarkService, MarkService>();
+
+
 
 
 builder.Services.AddControllersWithViews();

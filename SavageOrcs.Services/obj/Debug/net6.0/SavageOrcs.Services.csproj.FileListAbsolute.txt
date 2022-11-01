@@ -17,3 +17,9 @@ D:\Навчання\Diploma\SavageOrcs.Services\obj\Debug\net6.0\SavageOrcs.Serv
 D:\Навчання\Diploma\SavageOrcs.Services\obj\Debug\net6.0\refint\SavageOrcs.Services.dll
 D:\Навчання\Diploma\SavageOrcs.Services\obj\Debug\net6.0\SavageOrcs.Services.pdb
 D:\Навчання\Diploma\SavageOrcs.Services\obj\Debug\net6.0\ref\SavageOrcs.Services.dll
+D:\Навчання\Diploma\SavageOrcs.Services\bin\Debug\net6.0\SavageOrcs.BusinessObjects.dll
+D:\Навчання\Diploma\SavageOrcs.Services\bin\Debug\net6.0\SavageOrcs.BusinessObjects.pdb
+D:\Навчання\Diploma\SavageOrcs.Services\bin\Debug\net6.0\SavageOrcs.DataTransferObjects.dll
+D:\Навчання\Diploma\SavageOrcs.Services\bin\Debug\net6.0\SavageOrcs.Repositories.Interfaces.dll
+D:\Навчання\Diploma\SavageOrcs.Services\bin\Debug\net6.0\SavageOrcs.DataTransferObjects.pdb
+D:\Навчання\Diploma\SavageOrcs.Services\bin\Debug\net6.0\SavageOrcs.Repositories.Interfaces.pdb

@@ -13,8 +13,6 @@ namespace SavageOrcs.Web.ViewModels.Mark
 
         public Guid? AreaId { get; set; }
 
-        public List<SelectListItem> Areas { get; set; }
-
         public string Name { get; set; }
 
         public string Description { get; set; }
@@ -23,7 +21,7 @@ namespace SavageOrcs.Web.ViewModels.Mark
 
         public string ResourceUrl { get; set; }
 
-        public ImageMarkSaveViewModel[] ImageMarkSaveViewModels { get; set; }
+        public string[] Images { get; set; }
 
         public Guid UserId { get; set; }
 

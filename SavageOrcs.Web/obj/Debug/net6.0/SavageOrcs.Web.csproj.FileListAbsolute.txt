@@ -281,3 +281,9 @@ D:\Навчання\Diploma\SavageOrcs.Web\bin\Debug\net6.0\SavageOrcs.Repositor
 D:\Навчання\Diploma\SavageOrcs.Web\bin\Debug\net6.0\SavageOrcs.Services.Interfaces.pdb
 D:\Навчання\Diploma\SavageOrcs.Web\bin\Debug\net6.0\SavageOrcs.Services.pdb
 D:\Навчання\Diploma\SavageOrcs.Web\bin\Debug\net6.0\SavageOrcs.UnitOfWork.pdb
+D:\Навчання\Diploma\SavageOrcs.Web\bin\Debug\net6.0\SavageOrcs.BusinessObjects.dll
+D:\Навчання\Diploma\SavageOrcs.Web\bin\Debug\net6.0\SavageOrcs.BusinessObjects.pdb
+D:\Навчання\Diploma\SavageOrcs.Web\bin\Debug\net6.0\SavageOrcs.DataTransferObjects.dll
+D:\Навчання\Diploma\SavageOrcs.Web\bin\Debug\net6.0\SavageOrcs.DataTransferObjects.pdb
+D:\Навчання\Diploma\SavageOrcs.Web\bin\Debug\net6.0\Castle.Core.dll
+D:\Навчання\Diploma\SavageOrcs.Web\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Proxies.dll

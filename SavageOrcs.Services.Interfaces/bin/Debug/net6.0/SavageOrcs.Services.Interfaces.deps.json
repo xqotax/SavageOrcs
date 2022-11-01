@@ -7,14 +7,27 @@
   "targets": {
     ".NETCoreApp,Version=v6.0": {
       "SavageOrcs.Services.Interfaces/1.0.0": {
+        "dependencies": {
+          "SavageOrcs.DataTransferObjects": "1.0.0"
+        },
         "runtime": {
           "SavageOrcs.Services.Interfaces.dll": {}
+        }
+      },
+      "SavageOrcs.DataTransferObjects/1.0.0": {
+        "runtime": {
+          "SavageOrcs.DataTransferObjects.dll": {}
         }
       }
     }
   },
   "libraries": {
     "SavageOrcs.Services.Interfaces/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "SavageOrcs.DataTransferObjects/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

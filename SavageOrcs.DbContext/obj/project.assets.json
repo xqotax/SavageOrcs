@@ -819,6 +819,20 @@
             "rid": "win"
           }
         }
+      },
+      "SavageOrcs.BusinessObjects/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "dependencies": {
+          "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "6.0.9",
+          "Microsoft.Extensions.Identity.Core": "6.0.9"
+        },
+        "compile": {
+          "bin/placeholder/SavageOrcs.BusinessObjects.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/SavageOrcs.BusinessObjects.dll": {}
+        }
       }
     }
   },
@@ -2075,13 +2089,19 @@
         "useSharedDesignerContext.txt",
         "version.txt"
       ]
+    },
+    "SavageOrcs.BusinessObjects/1.0.0": {
+      "type": "project",
+      "path": "../SavageOrcs.BusinessObjects/SavageOrcs.BusinessObjects.csproj",
+      "msbuildProject": "../SavageOrcs.BusinessObjects/SavageOrcs.BusinessObjects.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net6.0": [
       "Microsoft.AspNetCore.Identity.EntityFrameworkCore >= 6.0.9",
       "Microsoft.EntityFrameworkCore >= 6.0.9",
-      "Microsoft.EntityFrameworkCore.SqlServer >= 6.0.9"
+      "Microsoft.EntityFrameworkCore.SqlServer >= 6.0.9",
+      "SavageOrcs.BusinessObjects >= 1.0.0"
     ]
   },
   "packageFolders": {
@@ -2110,7 +2130,11 @@
       "frameworks": {
         "net6.0": {
           "targetAlias": "net6.0",
-          "projectReferences": {}
+          "projectReferences": {
+            "D:\\Навчання\\Diploma\\SavageOrcs.BusinessObjects\\SavageOrcs.BusinessObjects.csproj": {
+              "projectPath": "D:\\Навчання\\Diploma\\SavageOrcs.BusinessObjects\\SavageOrcs.BusinessObjects.csproj"
+            }
+          }
         }
       },
       "warningProperties": {

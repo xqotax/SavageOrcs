@@ -1,0 +1,84 @@
+﻿@using SavageOrcs.Web.ViewModels.Mark
+@model RevisionMarkViewModel
+
+
+
+<div class="row">
+    @if (this.User.IsInRole("Admin"))
+    {
+        <div class="row d-flex justify-content-start mt-1 mb-1">
+            <div class="col-md-6">
+                <div class="row">
+                    <div class="col-md-3">
+                        <a class="btn btn-dark-custom" href="/Mark/Edit">Редагувати</a>
+                    </div>
+                    <div class="col-md-3">
+                        <a class="btn btn-dark-custom" href="/Mark/Delete">Видалити</a>
+                    </div>
+                    <div class="col-md-3">
+                        <a class="btn btn-dark-custom" href="/Mark/Delete">Додати ще одну</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr style="border-top: 3px solid #3c6624">
+    }
+    <div class="col-md-6  mt-3">
+        @Html.HiddenFor(m => m.Id)
+        <div class="row mb-4">
+            <div class="col-md-12 text-white-custom display-6">
+                @Model.Name
+            </div>
+        </div>
+        <div class="row mb-2">
+            <div class="col-md-1" >
+                <img class="flag-select-custom" id="flagUA" class="box-shadow-grey-custom" src="~/images/flags/UA.png" />
+            </div>
+            <div class="col-md-1">
+                <img class="flag-select-custom" id="flagGB" src="~/images/flags/GB.png" />
+            </div>
+        </div>
+        <div class="row mb-4">
+            <div class="col-md-12 text-white-custom display-8-custom" id="textUA">
+                @Model.Description
+            </div>
+            <div class="col-md-12 text-white-custom display-8-custom display-none-custom" id="textGB">
+                @Model.DescriptionEng
+            </div>
+        </div>
+        <div class="row mb-4">
+            <div class="col-md-12 text-white-custom display-8-custom">
+                @Model.Area
+            </div>
+        </div>
+        <div class="row mb-4">
+            <div class="col-md-12 text-white-custom display-8-custom">
+                <a class="btn btn-dark-custom" href="@Model.ResourceUrl">Посилання на ресурс</a>
+            </div>
+        </div>
+        
+    </div>
+    <div class="col-md-6 d-flex justify-content-space-around flex-column">
+        @{
+            foreach (var image in Model.Images)
+            {
+                <div class="row mb-4">
+                    <div class="col-md-12 text-white-custom display-8-custom">
+                        <img class="image-revision-mark-custom" src="@image" />
+                    </div>
+                </div>
+            }
+        }
+    </div>
+</div>
+
+@section Scripts{
+    <script>
+        var revisionMarkView = new RevisionMarkView();
+
+        $(document).ready(function () {
+            revisionMarkView.InitializeControls();
+        });
+        
+    </script>
+}

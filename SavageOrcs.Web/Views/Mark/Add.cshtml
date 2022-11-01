@@ -1,6 +1,9 @@
 ﻿@using SavageOrcs.Web.ViewModels.Mark
 @model AddMarkViewModel
 
+
+
+
 <div id="addImagePlaceholder"></div>
 <div class="row">
     <div class="col-md-5">
@@ -61,8 +64,14 @@
                     Місце:
                 </label>
             </div>
+            
             <div class="col-md-7">
-                @Html.DropDownListFor(m => m.AreaId, new SelectList(Model.Areas, "Value", "Text"), new { @class = "text-box-custom form-control display-8-custom" })
+                    <input id="dropdown-input"
+                           name="dropdown-input"
+                           class="Search-Select--Hidden-Input"
+                           placeholder=""
+                           data-search-placeholder="Знайдіть необхідне місто"
+                           hidden />
             </div>
         </div>
         <div class="row pb-2">
@@ -89,6 +98,7 @@
         </div>
     </div>
 </div>
+
 
 <div class="row" style="margin-top: 100px; margin-bottom: 30px">
     <div class="col-md-4 display-6 text-white-custom text-bold-custom">Фотографії</div>

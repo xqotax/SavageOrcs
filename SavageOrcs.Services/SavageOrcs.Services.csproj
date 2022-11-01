@@ -7,6 +7,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="System.Drawing.Common" Version="6.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\SavageOrcs.DataTransferObjects\SavageOrcs.DataTransferObjects.csproj" />
+    <ProjectReference Include="..\SavageOrcs.Repositories.Interfaces\SavageOrcs.Repositories.Interfaces.csproj" />
     <ProjectReference Include="..\SavageOrcs.Services.Interfaces\SavageOrcs.Services.Interfaces.csproj" />
     <ProjectReference Include="..\SavageOrcs.UnitOfWork\SavageOrcs.UnitOfWork.csproj" />
   </ItemGroup>

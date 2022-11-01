@@ -1,0 +1,17 @@
+D:\Навчання\Diploma\Additional Files\HelpProject\bin\Debug\net6.0\HelpProject.exe
+D:\Навчання\Diploma\Additional Files\HelpProject\bin\Debug\net6.0\HelpProject.deps.json
+D:\Навчання\Diploma\Additional Files\HelpProject\bin\Debug\net6.0\HelpProject.runtimeconfig.json
+D:\Навчання\Diploma\Additional Files\HelpProject\bin\Debug\net6.0\HelpProject.dll
+D:\Навчання\Diploma\Additional Files\HelpProject\bin\Debug\net6.0\HelpProject.pdb
+D:\Навчання\Diploma\Additional Files\HelpProject\obj\Debug\net6.0\HelpProject.csproj.AssemblyReference.cache
+D:\Навчання\Diploma\Additional Files\HelpProject\obj\Debug\net6.0\HelpProject.GeneratedMSBuildEditorConfig.editorconfig
+D:\Навчання\Diploma\Additional Files\HelpProject\obj\Debug\net6.0\HelpProject.AssemblyInfoInputs.cache
+D:\Навчання\Diploma\Additional Files\HelpProject\obj\Debug\net6.0\HelpProject.AssemblyInfo.cs
+D:\Навчання\Diploma\Additional Files\HelpProject\obj\Debug\net6.0\HelpProject.csproj.CoreCompileInputs.cache
+D:\Навчання\Diploma\Additional Files\HelpProject\obj\Debug\net6.0\HelpProject.dll
+D:\Навчання\Diploma\Additional Files\HelpProject\obj\Debug\net6.0\refint\HelpProject.dll
+D:\Навчання\Diploma\Additional Files\HelpProject\obj\Debug\net6.0\HelpProject.pdb
+D:\Навчання\Diploma\Additional Files\HelpProject\obj\Debug\net6.0\HelpProject.genruntimeconfig.cache
+D:\Навчання\Diploma\Additional Files\HelpProject\obj\Debug\net6.0\ref\HelpProject.dll
+D:\Навчання\Diploma\Additional Files\HelpProject\bin\Debug\net6.0\Newtonsoft.Json.dll
+D:\Навчання\Diploma\Additional Files\HelpProject\obj\Debug\net6.0\HelpProject.csproj.CopyComplete

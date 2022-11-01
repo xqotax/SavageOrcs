@@ -820,13 +820,28 @@
           }
         }
       },
+      "SavageOrcs.BusinessObjects/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "dependencies": {
+          "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "6.0.9",
+          "Microsoft.Extensions.Identity.Core": "6.0.9"
+        },
+        "compile": {
+          "bin/placeholder/SavageOrcs.BusinessObjects.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/SavageOrcs.BusinessObjects.dll": {}
+        }
+      },
       "SavageOrcs.DbContext/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v6.0",
         "dependencies": {
           "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "6.0.9",
           "Microsoft.EntityFrameworkCore": "6.0.9",
-          "Microsoft.EntityFrameworkCore.SqlServer": "6.0.9"
+          "Microsoft.EntityFrameworkCore.SqlServer": "6.0.9",
+          "SavageOrcs.BusinessObjects": "1.0.0"
         },
         "compile": {
           "bin/placeholder/SavageOrcs.DbContext.dll": {}
@@ -2090,6 +2105,11 @@
         "useSharedDesignerContext.txt",
         "version.txt"
       ]
+    },
+    "SavageOrcs.BusinessObjects/1.0.0": {
+      "type": "project",
+      "path": "../SavageOrcs.BusinessObjects/SavageOrcs.BusinessObjects.csproj",
+      "msbuildProject": "../SavageOrcs.BusinessObjects/SavageOrcs.BusinessObjects.csproj"
     },
     "SavageOrcs.DbContext/1.0.0": {
       "type": "project",

@@ -19,14 +19,57 @@ Class.extend = function (def) {
     classDef.extend = this.extend;
     return classDef;
 };
+
+function ResultPopUp(success, text, url, id) {
+    debugger;
+    var mainText = "Успіх";
+    if (!success)
+        mainText = "Помилка";
+    var resultUrl = url;
+
+    if (resultUrl.endsWith("{id}"))
+        resultUrl = resultUrl.replace("/{id}", "?id=" + id.toString());
+
+    var stringToAppend = "<div id=\"alert-custom\"><div class=\"row display-8-custom\">";
+    stringToAppend += mainText;
+    stringToAppend += "</div><div class=\"row\">";
+    stringToAppend += text;
+    stringToAppend += "</div><div class=\"row\"><a id=\"customPopUpGoTo\" href=\"";
+    stringToAppend += resultUrl;
+    stringToAppend += "\" class=\"btn btn-dark-custom\">Перейти</a></div></div>";
+
+    $("body").append(stringToAppend);
+
+    if (success)
+        $("#alert-custom").addClass("alert-custom-success");
+    else
+        $("#alert-custom").addClass("alert-custom-error");
+    setTimeout(function () {
+        $("#alert-custom").remove();
+    }, 4000);
+};
 var MapMainView = Class.extend({
     Lat: null,
     Lng: null,
+    Map: null,
     Zoom: null,
+    Marks: null,
+    MapMarks: null,
+    MapId: null,
+    MapName: null,
+    InfoWindow: null,
     InitializeControls: function () {
+        var self = this;
+        const myLatlng = { lat: 50.5077456, lng: 31.018623 };
+
+        self.InfoWindow = new google.maps.InfoWindow({
+            content: "�������",
+            position: myLatlng,
+        });
     },
     SubscribeEvents: function () { },
     InitMap: function () {
+        var self = this;
         let map = new google.maps.Map(document.getElementById("map"), {
             center: {
                 lat: parseFloat(this.Lat),
@@ -34,24 +77,54 @@ var MapMainView = Class.extend({
             },
             zoom: 6
         });
-        let marker = new google.maps.Marker({
-            position: {
-                lat: 48.6683328,
-                lng: 25.4827080
-            },
-            map: map,
-            title: "My Home",
-            //icon: {
-            //    url: "~/Media/Photos/1.jpg",
-            //    scaledSize: new google.maps.Size(15, 15),
-            //    origin: new google.maps.Point(0, 0),
-            //    anchor: new google.maps.Point(0, 0)
-            //}
+        self.Map = map;
+
+        self.MapMarks = [];
+        $.each(self.Marks, function (index, element) {
+
+            let marker = new google.maps.Marker({
+                position: {
+                    lat: parseFloat(element.lat),
+                    lng: parseFloat(element.lng)
+                },
+                map: map,
+                title: element.name,
+                icon: {
+                    url: "images/markIcon.png",
+                    scaledSize: new google.maps.Size(25, 25),
+                    origin: new google.maps.Point(0, 0),
+                    anchor: new google.maps.Point(0, 0)
+                }
+            });
+
+            marker.addListener("click", () => {
+                self.MarkOnClick(marker, element);
+            });
+
+            self.MapMarks.push({ id: element.id, marker: marker });
         });
+        
+    },
+    MarkOnClick: function (marker, element) {
+        var self = this;
+        self.Map.setZoom(8);
+        self.Map.setCenter(marker.getPosition());
+
+        self.InfoWindow.close();
+
+        self.InfoWindow = new google.maps.InfoWindow({
+            position: marker.getPosition(),
+        });
+
+        var link = "<a href=\"";
+        link += "/Mark/Revision?id=" + element.id.toString();
+        link += "\" class=\"btn btn-dark-custom\">" + element.name + "</a>";
+        self.InfoWindow.setContent(link);
+        self.InfoWindow.open(self.Map);
     }
 
 });
-
+//parseFloat(self.Lat),
 //function initMap() {
 //    let map = new google.maps.Map(document.getElementById("map"), {
 //        center: {
@@ -80,12 +153,17 @@ var MapMainView = Class.extend({
 
 var MarkAddView = Class.extend({
     Map: null,
-    InitWindow: null,
+    InfoWindow: null,
     LastLat: null,
     LastLng: null,
     Lat: null,
     Lng: null,
     Zoom: null,
+    AreaIds: null,
+    AreaNames: null,
+    SearchSelectDropdown: null,
+    IsInitializate: null,
+    //InputText: true,
     InitializeControls: function () {
         const myLatlng = { lat: 50.5077456, lng: 31.018623 };
 
@@ -96,6 +174,7 @@ var MarkAddView = Class.extend({
 
         var self = this;
 
+        self.IsInitializate = true;
         //self.InfoWindow.open(self.Map);
 
         self.SubscribeEvents();
@@ -106,6 +185,40 @@ var MarkAddView = Class.extend({
         $("#setCoordinates").click(function () {
             $("#Lng").val(self.LastLng);
             $("#Lat").val(self.LastLat);
+        });
+
+
+        $('#dropdown-input').keyup(function (event) { console.log(event.key); });
+
+        
+        //$('#AreaText').keyup(function () {
+        //    var areaId = self.LastAreaId;
+        //    self.GetAreas();
+        //    setTimeout(() => {
+        //        $.each(self.Areas, function (index, element) {
+        //            if (element.id == areaId) {
+        //                $("#AreaId").val(areaId);
+        //                return false;
+        //            }
+        //        })
+        //    }, 1000);
+           
+        //});
+
+        //$('#AreaId').change(function () {
+        //    self.LastAreaId = $("#AreaId").val();
+        //});
+
+
+        self.SearchSelectDropdown = new SearchSelect('#dropdown-input', {
+            data: ["2" , "3"],
+            filter: SearchSelect.FILTER_CONTAINS,
+            sort: undefined,
+            inputClass: 'form-control-Select mobile-field',
+            maxOpenEntries: 9,
+            searchPosition: 'top',
+            onInputClickCallback: null,
+            onInputKeyDownCallback: function (ev) { self.GetAreas() },
         });
 
 
@@ -138,7 +251,6 @@ var MarkAddView = Class.extend({
         });
     },
     InitMap: function () {
-        debugger;
         var self = this;
         this.Map = new google.maps.Map(document.getElementById("mapMarkAdd"), {
             center: {
@@ -163,19 +275,21 @@ var MarkAddView = Class.extend({
         $("#imageContainer .row").empty();
     },
     Save: function () {
+        var self = this;
+
         var saveMarkViewModel = {
             Lng: $("#Lng").val(),
             Lat: $("#Lat").val(),
-            AreaId: $("#AreaId").val(),
+            AreaId: self.AreaIds[self.AreaNames.indexOf($("#dropdown-input").val())],
             Name: $("#Name").val(),
             Description: $("#Description").val(),
-            DescriptionEng: $("#DescriptionEnd").val(),
+            DescriptionEng: $("#DescriptionEng").val(),
             ResourceUrl: $("#ResourceUrl").val(),
-            ImageMarkSaveViewModels: []
+            Images: []
         };
-        debugger;
+
         $("#imageContainer img").each(function (index, element) {
-            saveMarkViewModel.ImageMarkSaveViewModels.push(element.src);
+            saveMarkViewModel.Images.push(element.src);
         });
 
         $.ajax({
@@ -183,14 +297,52 @@ var MarkAddView = Class.extend({
             url: "/Mark/SaveMark",
             data: JSON.stringify(saveMarkViewModel),
             contentType: 'application/json; charset=utf-8',
-            success: function (src) {
-                alert("fads");
+            success: function (result) {
+                if (!result.success) {
+                    //error
+                }
+                else {
+                    ResultPopUp(result.success, result.text, result.url, result.id);
+                }
             }
         });
         
+    },
+    GetAreas: function () {
+        var self = this;
+        debugger;
+
+        if (self.IsInitializate) {
+            self.IsInitializate = false;
+            return;
+        }
+        var searchAreasViewModel = { Text: $(".form-control-Select-Bar").val() };
+        if (searchAreasViewModel.Text.length < 3)
+            return;
+        else {
+            alert(searchAreasViewModel.Text);
+            $.ajax({
+                type: 'POST',
+                url: "/Mark/GetAreas",
+                data: JSON.stringify(searchAreasViewModel),
+                contentType: "application/json; charset=utf-8",
+                success: function (data) {
+                    alert("fd");
+                    debugger;
+                    self.AreaNames = [];
+                    self.AreaIds = [];
+
+                    $.each(data, function (index, element) {
+                        self.AreaNames.push(element.name);
+                        self.AreaIds.push(element.id);
+                    });
+
+                    self.SearchSelectDropdown.setData(self.AreaNames);
+                }
+            });
+        }
     }
 });
-
 
 var AddImageView = Class.extend({
     Image: null,
@@ -247,3 +399,89 @@ var AddImageView = Class.extend({
     },
 });
 
+
+var RevisionMarkView = Class.extend({
+    InitializeControls: function () {
+        var self = this;
+
+       
+        self.SubscribeEvents();
+    },
+    SubscribeEvents: function () {
+        var self = this;
+
+        $('#flagGB').on('click', function () {
+            $('#flagUA').removeClass("box-shadow-grey-custom");
+            $("#flagGB").addClass("box-shadow-grey-custom");
+
+            $("#textGB").removeClass("display-none-custom");
+            $("#textUA").addClass("display-none-custom");
+           
+        });
+
+        $('#flagUA').on('click', function () {
+            $('#flagGB').removeClass("box-shadow-grey-custom");
+            $("#flagUA").addClass("box-shadow-grey-custom");
+
+            $("#textUA").removeClass("display-none-custom");
+            $("#textGB").addClass("display-none-custom");
+        });
+    }
+})
+var CatalogueMarkView = Class.extend({
+    Marks: null,
+    FullData: false,
+    RowAddConstString: "<div class=\"row justify-content-md-around\">",
+    ColAddConstString: "<div class=\"col-md-3\">",
+    DivAddConstString: "</div>",
+    InitializeControls: function () {
+        var self = this;
+       
+
+        self.SubscribeEvents();
+    },
+    SubscribeEvents: function () {
+        var self = this;
+        $("#search").click(function () {
+            self.Search();
+        });
+
+        $("#fullData").click(function () {
+            debugger;
+            if (self.FullData) {
+                self.FullData = false;
+                $("#fullData").text("Ввімкнути детальний перегляд");
+            }
+            else {
+                self.FullData = true;
+                $("#fullData").text("Ввімкнути спрощений перегляд");
+            }
+
+            if (!$("#table").is(':empty')) {
+                self.Search();
+            }
+        });
+    },
+    Search: function () {
+        var self = this;
+        $("#table").empty();
+
+        var filters = {
+            Area: $("#Area").val(),
+            KeyWord: $("#KeyWord").val(),
+            FullData: self.FullData
+        };
+
+        $.ajax({
+            type: 'POST',
+            url: "/Mark/GetMarks",
+            data: JSON.stringify(filters),
+            contentType: 'application/json; charset=utf-8',
+            success: function (data) {
+                debugger;
+            }
+        });
+
+        debugger;
+    }
+});

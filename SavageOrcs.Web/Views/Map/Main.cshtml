@@ -34,6 +34,10 @@
         var mapMainView = new MapMainView();
         mapMainView.Lat = '@Html.Raw(Model.Lat)';
         mapMainView.Lng = '@Html.Raw(Model.Lng)';
+        mapMainView.Marks = JSON.parse('@Html.Raw(Json.Serialize(Model.MapMarkViewModels))');
+        mapMainView.MapId = '@Html.Raw(Model.Id)';
+        mapMainView.MapName = '@Html.Raw(Model.Name)';
+        
 
         $(document).ready(function () {
             mapMainView.InitializeControls();
