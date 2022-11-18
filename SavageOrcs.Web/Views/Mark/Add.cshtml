@@ -1,8 +1,7 @@
 ﻿@using SavageOrcs.Web.ViewModels.Mark
 @model AddMarkViewModel
 
-
-
+<link itemprop="url" rel="stylesheet" href="~/lib/search-select/search-select.css" />
 
 <div id="addImagePlaceholder"></div>
 <div class="row">
@@ -101,7 +100,7 @@
 
 
 <div class="row" style="margin-top: 100px; margin-bottom: 30px">
-    <div class="col-md-4 display-6 text-white-custom text-bold-custom">Фотографії</div>
+    <div class="col-md-4 display-6 text-white-custom font-weight-super-bold-custom">Фотографії</div>
     <div class="col-md-2 offset-md-4">
         <button id="addImage" style="width: 90%;" class="btn btn-dark-custom display-8-custom">Добавити</button>
     </div>
@@ -117,6 +116,8 @@
 
 
 @section Scripts{
+    <script src="~/lib/search-select/search-select.js"></script>
+
     <script>
         var markAddView = new MarkAddView();
         markAddView.Lat = '@Html.Raw(Model.Lat)';

@@ -38,25 +38,6 @@ var MarkAddView = Class.extend({
         $('#dropdown-input').keyup(function (event) { console.log(event.key); });
 
         
-        //$('#AreaText').keyup(function () {
-        //    var areaId = self.LastAreaId;
-        //    self.GetAreas();
-        //    setTimeout(() => {
-        //        $.each(self.Areas, function (index, element) {
-        //            if (element.id == areaId) {
-        //                $("#AreaId").val(areaId);
-        //                return false;
-        //            }
-        //        })
-        //    }, 1000);
-           
-        //});
-
-        //$('#AreaId').change(function () {
-        //    self.LastAreaId = $("#AreaId").val();
-        //});
-
-
         self.SearchSelectDropdown = new SearchSelect('#dropdown-input', {
             data: ["2" , "3"],
             filter: SearchSelect.FILTER_CONTAINS,

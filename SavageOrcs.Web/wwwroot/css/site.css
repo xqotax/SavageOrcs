@@ -1,16 +1,13 @@
 html {
-  font-size: 14px;
+    font-size: 14px;
+    position: relative;
+    min-height: 100%;
 }
 
 @media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
-}
-
-html {
-  position: relative;
-  min-height: 100%;
+    html {
+        font-size: 16px;
+    }
 }
 
 body {
@@ -18,16 +15,29 @@ body {
     background-image: url("../images/bodyBackground.jpg")
 }
 
+
+.container {
+    width: 90%;
+    max-width: 90%;
+    margin-right: 2%;
+    margin-left: 2%;
+}
+
+.wraper-custom {
+    width: 100%;
+    margin-right: 2%;
+    margin-left: 2%;
+}
+
+.flex-container-center-custom {
+    justify-content: center;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
 .bg-black-custom {
     background-color: rgb(16, 17, 16);
-}
-
-.top-buffer {
-    margin-top: 20px;
-}
-
-.bottom-buffer {
-    margin-bottom: 20px;
 }
 
 input[type="checkbox"]:checked {
@@ -59,74 +69,8 @@ input[type="checkbox"]:checked {
     width: 300px;
 }
 
-.text-white-custom{
-    color: white;
-}
-
-.text-bold-custom {
-    font-weight: 800;
-}
-
-.font-weight-bold-custom{
-    font-weight: 600;
-}
-
-.text-box-custom {
-    color: white;
-    background-color: rgb(16, 17, 16);
-}
-.container {
-    width: 90%;
-    max-width: 90%;
-    margin-right: 2%;
-    margin-left: 2%;
-}
-
-.wraper-custom {
-    width: 100%;
-    margin-right: 2%;
-    margin-left: 2%;
-}
-
-.display-7-custom{
-    font-size: 22px;
-}
-
-.display-8-custom {
-    font-size: 20px;
-}
-
 .area-for-custom{
     height:225px;
-}
-
-::-webkit-scrollbar {
-    width: 10px;
-}
-
-/* Track */
-::-webkit-scrollbar-track {
-    background: #f1f1f1;
-}
-
-/* Handle */
-::-webkit-scrollbar-thumb {
-    background: #888;
-}
-
-/* Handle on hover */
-::-webkit-scrollbar-thumb:hover {
-    background: #555;
-}
-
-.btn-dark-custom {
-    background-color: rgb(16, 17, 16);
-    color: white;
-}
-
-.btn-dark-custom:hover {
-    background-color: white;
-    color: rgb(16, 17, 16);
 }
 
 
@@ -154,7 +98,6 @@ input[type="checkbox"]:checked {
     min-width:500px;
     padding: 30px;
 }
-
 
 #alert-custom {
     position: fixed;
@@ -189,11 +132,9 @@ input[type="checkbox"]:checked {
 }
 
 .flag-select-custom{
+    cursor: pointer;
     height: 20px;
     width: 30px;
-}
-.box-shadow-grey-custom {
-    box-shadow: 0px 4px #1d1111
 }
 
 .image-revision-mark-custom{

@@ -141,15 +141,10 @@ namespace SavageOrcs.Web.Controllers
         private byte[] GetBytes(string data)
         {
             return Encoding.ASCII.GetBytes(data);
-        //Base64StringToByteArray
-        //var base64Data = Regex.Match(data, @"data:image/(?<type>.+?),(?<data>.+)").Groups["data"].Value;
-        //return Convert.FromBase64String(base64Data);
         }
         private string GetImage(byte[] data)
         {
             return Encoding.ASCII.GetString(data);
-            //ByteArrayToBase64String
-            //return Convert.ToBase64String(data);
         }
 
         [AllowAnonymous]
@@ -187,7 +182,7 @@ namespace SavageOrcs.Web.Controllers
             }
             else
             {
-                return Json(markDtos.Select(x => new MarkCatalogueViewModel
+                var markCatalogueViewModels = markDtos.OrderByDescending(x => x.CreatedDate).Select(x => new MarkCatalogueViewModel
                 {
                     Area = x.Area is null ? new GuidIdAndStringName { Id = null, Name = "" } : new GuidIdAndStringName
                     {
@@ -200,7 +195,32 @@ namespace SavageOrcs.Web.Controllers
                     DescriptionEng = x.DescriptionEng,
                     ResourceUrl = x.ResourceUrl,
                     Images = x.Images.Select(y => GetImage(y)).ToArray()
-                }).ToArray());
+                }).ToArray();
+
+                if (filter.From.HasValue)
+                {
+                    markCatalogueViewModels = markCatalogueViewModels.Skip(filter.From.Value).ToArray();
+                }
+
+                if (filter.Count.HasValue)
+                {
+                    switch (filter.From.HasValue)
+                    {
+                        case true:
+                            if (markCatalogueViewModels.Length >= filter.From.Value + filter.Count.Value)
+                            {
+                                markCatalogueViewModels = markCatalogueViewModels.Take(filter.Count.Value).ToArray();
+                            }
+                            break;
+                        case false:
+                            if (markCatalogueViewModels.Length >= filter.Count.Value)
+                            {
+                                markCatalogueViewModels = markCatalogueViewModels.Take(filter.Count.Value).ToArray();
+                            }
+                            break;
+                    }
+                }
+                return Json(markCatalogueViewModels);
             }
         }
 

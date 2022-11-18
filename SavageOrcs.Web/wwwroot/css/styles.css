@@ -1,0 +1,46 @@
+﻿.text-white-custom {
+    color: white;
+}
+
+.font-weight-super-bold-custom {
+    font-weight: 800;
+}
+
+.font-weight-bold-custom {
+    font-weight: 600;
+}
+
+.text-box-custom {
+    color: white;
+    background-color: rgb(16, 17, 16);
+}
+
+.display-7-custom {
+    font-size: 22px;
+}
+
+.display-8-custom {
+    font-size: 20px;
+}
+
+.btn-dark-custom {
+    background-color: rgb(16, 17, 16);
+    color: white;
+}
+
+.btn-dark-custom:hover {
+    background-color: white;
+    color: rgb(16, 17, 16);
+}
+
+.box-shadow-grey-custom {
+    box-shadow: 0px 4px #1d1111
+}
+
+.top-buffer {
+    margin-top: 20px;
+}
+
+.bottom-buffer {
+    margin-bottom: 20px;
+}

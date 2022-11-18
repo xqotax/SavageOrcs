@@ -26,5 +26,7 @@ namespace SavageOrcs.DataTransferObjects.Marks
         public AreaShortDto? Area { get; set; }
 
         public byte[][]? Images { get; set; }
+
+        public DateTime CreatedDate { get; set; }
     }
 }

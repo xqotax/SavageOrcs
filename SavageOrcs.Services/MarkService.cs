@@ -38,17 +38,17 @@ namespace SavageOrcs.Services
 
         public async Task<MarkDto[]> GetMarksByNameAndArea(string area, string keyWord)
         {
+            
             var marks = await _markRepository.GetAllAsync();
 
             if (!string.IsNullOrEmpty(keyWord))
             {
-                
                 marks = marks.Where(x => x.Name.Contains(keyWord, StringComparison.OrdinalIgnoreCase));
             }
 
             if (!string.IsNullOrEmpty(area))
             {
-                marks = marks.Where(x => x.Area.Name.Contains(area, StringComparison.OrdinalIgnoreCase));
+                marks = marks.Where(x => x.Area is not null && (x.Area.Name + ", " + x.Area.Community + ", " + x.Area.Region).Contains(area, StringComparison.OrdinalIgnoreCase));
             }
 
             return marks.Select(x => CreateMarkDto(x)).ToArray();
@@ -80,7 +80,8 @@ namespace SavageOrcs.Services
                     Community = mark.Area.Community
                 },
                 ResourceUrl = mark.ResourceUrl,
-                Images = mark.Images.Select(x => x.Content).ToArray()
+                Images = mark.Images.Select(x => x.Content).ToArray(),
+                CreatedDate = mark.CreatedDate
             };
         }
 
