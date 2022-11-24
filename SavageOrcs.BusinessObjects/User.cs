@@ -23,5 +23,8 @@ namespace SavageOrcs.BusinessObjects {
         public virtual ICollection<Mark> Marks { get; set; } = new HashSet<Mark>();
 
         public virtual ICollection<Map> Maps { get; set; } = new HashSet<Map>();
+
+        public virtual ICollection<Curator> Curators { get; set; } = new HashSet<Curator>();
+
     } 
 }

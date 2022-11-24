@@ -4,8 +4,10 @@
 <link itemprop="url" rel="stylesheet" href="~/lib/search-select/search-select.css" />
 
 <div id="addImagePlaceholder"></div>
+<div id="deleteMarkPlaceholder"></div>
 <div class="row">
     <div class="col-md-5">
+        @Html.HiddenFor(m => m.Id)
         @Html.HiddenFor(m => m.Zoom)
         <div class="row pb-2">
             <div class="col-md-4 d-flex align-items-center">
@@ -123,6 +125,12 @@
         markAddView.Lat = '@Html.Raw(Model.Lat)';
         markAddView.Lng = '@Html.Raw(Model.Lng)';
         markAddView.Zoom = '@Html.Raw(Model.Zoom)';
+        markAddView.IsNew = '@Html.Raw(Model.IsNew)' === '@true';
+        markAddView.ToDelete = '@Html.Raw(Model.ToDelete)' === '@true';
+        markAddView.Images = JSON.parse('@Html.Raw(Json.Serialize(Model.Images))');
+        markAddView.Areas = JSON.parse('@Html.Raw(Json.Serialize(Model.Areas))');
+        markAddView.AreaName = '@Html.Raw(Model.AreaName)';
+        markAddView.AreaId = '@Html.Raw(Model.AreaId)';
 
         $(document).ready(function () {
             markAddView.InitializeControls();

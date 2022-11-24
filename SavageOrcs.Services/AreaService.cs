@@ -19,6 +19,21 @@ namespace SavageOrcs.Services
             _areaRepository = areaRepository;
         }
 
+        public async Task<AreaShortDto[]> GetAreasByNameAsync(string name)
+        {
+            var areas = await _areaRepository.GetAllAsync(x => x.Name.StartsWith(name));
+            if ((areas == null) || (!areas.Any()))
+                throw new NotImplementedException();
+
+            return areas.Select(x => new AreaShortDto
+            {
+                Community = x.Community,
+                Id = x.Id,
+                Region = x.Region,
+                Name = x.Name
+            }).ToArray();
+        }
+
         public async Task<AreaShortDto[]> GetAreasAsync()
         {
             var areas = await _areaRepository.GetAllAsync();

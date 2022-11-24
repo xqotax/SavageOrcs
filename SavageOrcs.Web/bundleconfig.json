@@ -7,7 +7,11 @@
         "Scripts/Mark/Add.js",
         "Scripts/Mark/AddImage.js",
         "Scripts/Mark/Revision.js",
-        "Scripts/Mark/Catalogue.js"
+        "Scripts/Mark/Catalogue.js",
+        "Scripts/User/Catalogue.js",
+        "Scripts/User/Revision.js",
+        "Scripts/Mark/Delete.js",
+        "Scripts/User/AddCuratorImage.js"
       ],
       "minify": {
         "enabled": true,

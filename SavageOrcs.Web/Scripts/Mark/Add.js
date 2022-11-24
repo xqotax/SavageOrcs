@@ -1,45 +1,53 @@
 var MarkAddView = Class.extend({
+    IsNew: null,
+    Images: null,
+    Areas: null,
+    AreaName: null,
+    Lat: null,
+    Lng: null,
+    Zoom: null,
+    AreaId: null,
+
     Map: null,
     InfoWindow: null,
     LastLat: null,
     LastLng: null,
-    Lat: null,
-    Lng: null,
-    Zoom: null,
     AreaIds: null,
     AreaNames: null,
     SearchSelectDropdown: null,
     IsInitializate: null,
-    //InputText: true,
+    
+    OldDataInput: null,
+    SearchAreasViewModel: null,
+
+
+    RowAddConstString: "<div class=\"row justify-content-md-around\">",
+    ColAddConstString: "<div class=\"col-md-3\">",
+    DivAddConstString: "</div>",
+
+
     InitializeControls: function () {
-        const myLatlng = { lat: 50.5077456, lng: 31.018623 };
+        var self = this;
+        const myLatlng = { lat: parseFloat(self.Lat), lng: parseFloat(self.Lng) };
 
         this.InfoWindow = new google.maps.InfoWindow({
             content: "Нажми, щоб отримати координати",
             position: myLatlng,
         });
 
-        var self = this;
-
         self.IsInitializate = true;
         //self.InfoWindow.open(self.Map);
 
-        self.SubscribeEvents();
-    },
-    SubscribeEvents: function () {
-        var self = this;
+        if (self.Images !== null) {
+            self.AddImages();
+        }
 
-        $("#setCoordinates").click(function () {
-            $("#Lng").val(self.LastLng);
-            $("#Lat").val(self.LastLat);
-        });
+        if (!self.IsNew) {
+            self.SetMark();
+        }
 
-
-        $('#dropdown-input').keyup(function (event) { console.log(event.key); });
-
-        
         self.SearchSelectDropdown = new SearchSelect('#dropdown-input', {
-            data: ["2" , "3"],
+            data: [],
             filter: SearchSelect.FILTER_CONTAINS,
             sort: undefined,
             inputClass: 'form-control-Select mobile-field',
@@ -49,6 +57,35 @@ var MarkAddView = Class.extend({
             onInputKeyDownCallback: function (ev) { self.GetAreas() },
         });
 
+        self.InitializeAreas(self.Areas);
+
+        if (self.AreaName !== '') {
+            var selected = $($(".searchSelect--Result")[0]);
+            selected.removeClass("searchSelect--Placeholder");
+            selected.html(self.AreaName);
+
+            $.each($(".searchSelect--Option"), function (index, element) {
+                debugger;
+                if ($(element).text() === self.AreaName) {
+                    $(element).addClass("searchSelect--Option--selected")
+                }
+            });
+            
+        }
+
+        self.SubscribeEvents();
+
+        if (self.ToDelete) {
+            self.DeleteMark();
+        }
+    },
+    SubscribeEvents: function () {
+        var self = this;
+
+        $("#setCoordinates").click(function () {
+            $("#Lng").val(self.LastLng);
+            $("#Lat").val(self.LastLat);
+        });
 
         $('#addImage').on('click', function () {
             self.AddImage();
@@ -61,6 +98,8 @@ var MarkAddView = Class.extend({
         $('#removeImages').on('click', function () {
             self.RemoveImages();
         });
+
+        $('#dropdown-input').addClass("display-8-custom");
         
 
         self.Map.addListener("click", (mapsMouseEvent) => {
@@ -78,14 +117,50 @@ var MarkAddView = Class.extend({
             self.InfoWindow.open(self.Map);
         });
     },
+    InitializeAreas: function (data)
+    {
+        var self = this;
+        self.AreaNames = [];
+        self.AreaIds = [];
+
+        $.each(data, function (index, element) {
+            self.AreaNames.push(element.name);
+            self.AreaIds.push(element.id);
+        });
+
+        self.SearchSelectDropdown.setData(self.AreaNames);
+    },
+    SetMark: function () {
+        var self = this;
+
+        let marker = new google.maps.Marker({
+            position: {
+                lat: parseFloat(self.Lat),
+                lng: parseFloat(self.Lng)
+            },
+            map: self.Map,
+            title: self.AreaName,
+            icon: {
+                url: "../images/markIcon.png",
+                scaledSize: new google.maps.Size(25, 25),
+                origin: new google.maps.Point(0, 0),
+                anchor: new google.maps.Point(0, 0)
+            }
+        });
+    },
     InitMap: function () {
         var self = this;
-        this.Map = new google.maps.Map(document.getElementById("mapMarkAdd"), {
+
+        self.Map = new google.maps.Map(document.getElementById("mapMarkAdd"), {
             center: {
                 lat: parseFloat(self.Lat),
                 lng: parseFloat(self.Lng)
             },
-            zoom: parseFloat(self.Zoom)
+            zoom: parseFloat(self.Zoom),
+            options: {
+                gestureHandling: 'greedy'
+            },
+            disableDefaultUI: true
         });
     },
     AddImage: function () {
@@ -99,6 +174,24 @@ var MarkAddView = Class.extend({
             }
         });
     },
+    AddImages: function () {
+        var self = this;
+
+        $.each(self.Images, function (index, element) {
+            var rowCount = $("#imageContainer .row").length;
+            var colCount = $("#imageContainer .col-md-3").length;
+
+            $(".popup-content-custom .row #imagePlaceholder").removeAttr('id');
+
+            if ((rowCount === 0) || (colCount !== 0 && Math.floor(colCount / rowCount) === 3)) {
+                $("#imageContainer").append(self.RowAddConstString + self.ColAddConstString + "<img src=\"" + element + "\" height=\"200\">" + self.DivAddConstString + self.DivAddConstString);
+            }
+            else {
+                $("#imageContainer .row").last().append(self.ColAddConstString + "<img src=\"" + element + "\" height=\"200\">" + self.DivAddConstString);
+            }
+        });
+        
+    },
     RemoveImages: function () {
         $("#imageContainer .row").empty();
     },
@@ -106,6 +199,7 @@ var MarkAddView = Class.extend({
         var self = this;
 
         var saveMarkViewModel = {
+            Id: $("#Id").val(),
             Lng: $("#Lng").val(),
             Lat: $("#Lat").val(),
             AreaId: self.AreaIds[self.AreaNames.indexOf($("#dropdown-input").val())],
@@ -126,12 +220,7 @@ var MarkAddView = Class.extend({
             data: JSON.stringify(saveMarkViewModel),
             contentType: 'application/json; charset=utf-8',
             success: function (result) {
-                if (!result.success) {
-                    //error
-                }
-                else {
-                    ResultPopUp(result.success, result.text, result.url, result.id);
-                }
+                ResultPopUp(result.success, result.text, result.url, result.id);
             }
         });
         
@@ -143,28 +232,42 @@ var MarkAddView = Class.extend({
             self.IsInitializate = false;
             return;
         }
-        var searchAreasViewModel = { Text: $(".form-control-Select-Bar").val() };
 
-        if (searchAreasViewModel.Text.length < 3)
+        self.SearchAreasViewModel = { Text: $(".form-control-Select-Bar").val() };
+
+        self.OldDataInput = Date.now();
+
+
+        if (self.SearchAreasViewModel.Text.length < 3)
             return;
         else {
-            $.ajax({
-                type: 'POST',
-                url: "/Mark/GetAreas",
-                data: JSON.stringify(searchAreasViewModel),
-                contentType: "application/json; charset=utf-8",
-                success: function (data) {
-                    self.AreaNames = [];
-                    self.AreaIds = [];
-
-                    $.each(data, function (index, element) {
-                        self.AreaNames.push(element.name);
-                        self.AreaIds.push(element.id);
+            setTimeout(function () {
+                var newDataInput = Date.now();
+                if (newDataInput - self.OldDataInput < 2000)
+                    return;
+                else {
+                    $.ajax({
+                        type: 'POST',
+                        url: "/Mark/GetAreas",
+                        data: JSON.stringify(self.SearchAreasViewModel),
+                        contentType: "application/json; charset=utf-8",
+                        async: false,
+                        success: function (data) {
+                            self.InitializeAreas(data);
+                        }
                     });
-
-                    self.SearchSelectDropdown.setData(self.AreaNames);
                 }
-            });
+            }, 2000);
         }
+    },
+    DeleteMark: function () {
+        $.ajax({
+            type: 'POST',
+            url: "/Mark/DeleteMark",
+            contentType: 'application/json; charset=utf-8',
+            success: function (src) {
+                $('#deleteMarkPlaceholder').html(src);
+            }
+        });
     }
 });

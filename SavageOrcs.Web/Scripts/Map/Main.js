@@ -25,7 +25,11 @@ var MapMainView = Class.extend({
                 lat: parseFloat(this.Lat),
                 lng: parseFloat(this.Lng)
             },
-            zoom: 6
+            zoom: 6,
+            options: {
+                gestureHandling: 'greedy'
+            },
+            disableDefaultUI: true
         });
         self.Map = map;
 
@@ -57,7 +61,7 @@ var MapMainView = Class.extend({
     },
     MarkOnClick: function (marker, element) {
         var self = this;
-        self.Map.setZoom(8);
+        self.Map.setZoom(12);
         self.Map.setCenter(marker.getPosition());
 
         self.InfoWindow.close();

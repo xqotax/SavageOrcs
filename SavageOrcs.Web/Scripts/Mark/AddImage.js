@@ -2,9 +2,6 @@ var AddImageView = Class.extend({
     Image: null,
     ImageInput: null,
     Reader: null,
-    RowAddConstString: "<div class=\"row justify-content-md-around\">",
-    ColAddConstString: "<div class=\"col-md-3\">",
-    DivAddConstString: "</div>",
     InitializeControls: function () {
         var self = this;
         self.ImageInput = $('#imageInput');
@@ -44,10 +41,10 @@ var AddImageView = Class.extend({
         var imageToMove = $(".popup-content-custom .add-image-placeholder-custom").html();
 
         if ((rowCount === 0) || (colCount !== 0 && Math.floor(colCount / rowCount) === 3 )) {
-            $("#imageContainer").append(self.RowAddConstString + self.ColAddConstString + imageToMove + self.DivAddConstString + self.DivAddConstString);
+            $("#imageContainer").append(markAddView.RowAddConstString + markAddView.ColAddConstString + imageToMove + markAddView.DivAddConstString + markAddView.DivAddConstString);
         }
         else {
-            $("#imageContainer .row").last().append(self.ColAddConstString + imageToMove + self.DivAddConstString);
+            $("#imageContainer .row").last().append(markAddView.ColAddConstString + imageToMove + markAddView.DivAddConstString);
         }
         $("#addImagePlaceholder").empty();
     },

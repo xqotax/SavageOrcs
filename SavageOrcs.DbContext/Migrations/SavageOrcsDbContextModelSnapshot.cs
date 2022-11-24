@@ -219,6 +219,32 @@ namespace SavageOrcs.DbContext.Migrations
                     b.ToTable("AreaTypes");
                 });
 
+            modelBuilder.Entity("SavageOrcs.BusinessObjects.Curator", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<byte[]>("Image")
+                        .HasColumnType("varbinary(max)");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Curator");
+                });
+
             modelBuilder.Entity("SavageOrcs.BusinessObjects.Image", b =>
                 {
                     b.Property<Guid>("Id")
@@ -451,6 +477,17 @@ namespace SavageOrcs.DbContext.Migrations
                     b.Navigation("AreaType");
                 });
 
+            modelBuilder.Entity("SavageOrcs.BusinessObjects.Curator", b =>
+                {
+                    b.HasOne("SavageOrcs.BusinessObjects.User", "User")
+                        .WithMany("Curators")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("SavageOrcs.BusinessObjects.Image", b =>
                 {
                     b.HasOne("SavageOrcs.BusinessObjects.Mark", "Mark")
@@ -520,6 +557,8 @@ namespace SavageOrcs.DbContext.Migrations
 
             modelBuilder.Entity("SavageOrcs.BusinessObjects.User", b =>
                 {
+                    b.Navigation("Curators");
+
                     b.Navigation("Maps");
 
                     b.Navigation("Marks");

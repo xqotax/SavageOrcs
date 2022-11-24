@@ -16,5 +16,7 @@ namespace SavageOrcs.Services.Interfaces
         Task<MarkSaveResultDto> SaveMark(MarkSaveDto markSaveDto);
 
         Task<MarkDto> GetMarkById(Guid id);
+
+        Task<bool> DeleteMark(Guid id);
     }
 }

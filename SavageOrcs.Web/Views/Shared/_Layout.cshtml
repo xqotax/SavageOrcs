@@ -35,6 +35,9 @@
                             <div class="nav-item rounded px-2">
                                 <a class="nav-link display-7-custom" style="color: white" asp-area="" asp-controller="Mark" asp-action="Add">Добавити матеріали</a>
                             </div>
+                            <div class="nav-item rounded px-2">
+                                <a class="nav-link display-7-custom" style="color: white" asp-area="" asp-controller="User" asp-action="Catalogue">Користувачі</a>
+                            </div>
                         }
                         <div class="nav-item rounded px-2">
                             <a class="nav-link display-7-custom" style="color: white" asp-area="" asp-controller="Curator" asp-action="Catalogue">Куратори</a>
@@ -53,13 +56,12 @@
 
     <footer class="border-top footer text-muted">
         <div class="container">
-            &copy; 2022 - SavageOrcs.Web - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            &copy; 2022 - SavageOrcs.Web - <a href="//localhost:7093">Посилання на сайт</a>
         </div>
     </footer>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.18/dist/js/bootstrap-select.min.js"></script>
     @await RenderSectionAsync("Scripts", required: false)
-    
 </body>
 </html>

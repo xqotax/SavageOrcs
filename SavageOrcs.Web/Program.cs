@@ -28,6 +28,9 @@ builder.Services.AddTransient<IEmailService, EmailService>();
 builder.Services.AddTransient<IAreaService, AreaService>();
 builder.Services.AddTransient<IMapService, MapService>();
 builder.Services.AddTransient<IMarkService, MarkService>();
+builder.Services.AddTransient<IUserService, UserService>();
+builder.Services.AddTransient<IRoleService, RoleService>();
+builder.Services.AddTransient<ICuratorService, CuratorService>();
 
 
 

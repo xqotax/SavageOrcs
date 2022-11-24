@@ -1,6 +1,6 @@
 ﻿namespace SavageOrcs.Web.ViewModels.Mark
 {
-    public class MarkCatalogueFilters
+    public class MarkCatalogueFilter
     {
         public bool FullData { get; set; }
 

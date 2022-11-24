@@ -29,7 +29,8 @@ namespace SavageOrcs.Services
         public async Task<MarkDto> GetMarkById(Guid id)
         {
             var mark = await _markRepository.GetTAsync(x => x.Id == id);
-            if (mark is null) { 
+            if (mark is null) {
+                mark = new Mark();
                 //error
             }
 
@@ -43,7 +44,7 @@ namespace SavageOrcs.Services
 
             if (!string.IsNullOrEmpty(keyWord))
             {
-                marks = marks.Where(x => x.Name.Contains(keyWord, StringComparison.OrdinalIgnoreCase));
+                marks = marks.Where(x => x.Name is not null && x.Name.Contains(keyWord, StringComparison.OrdinalIgnoreCase));
             }
 
             if (!string.IsNullOrEmpty(area))
@@ -62,7 +63,7 @@ namespace SavageOrcs.Services
             return marks.Select(x => CreateMarkDto(x)).ToArray();
         }
 
-        private static MarkDto CreateMarkDto(Mark? mark)
+        private static MarkDto CreateMarkDto(Mark mark)
         {
             return new MarkDto
             {
@@ -90,7 +91,10 @@ namespace SavageOrcs.Services
             var mark = new Mark();
             
             if (markSaveDto.Id is not null)
+            {
                 mark = await _markRepository.GetTAsync(x => x.Id == markSaveDto.Id);
+                mark ??= new Mark();
+            }
             else
             {
                 mark.Id = Guid.NewGuid();
@@ -109,22 +113,26 @@ namespace SavageOrcs.Services
             mark.Lat = markSaveDto.Lat;
             mark.Lng = markSaveDto.Lng;
 
-            foreach (var image in mark.Images)
-            {
-                if (markSaveDto.Images.All(x => x.SequenceEqual(image.Content)))
-                {
-                    _imageRepository.Delete(image);
-                }
-            }
 
-            foreach (var imageDto in markSaveDto.Images)
+            if (markSaveDto.Images is not null)
             {
-                var image = new Image();
-                if (mark.Images.All(x => x.Content.SequenceEqual(imageDto)))
+                foreach (var image in mark.Images)
                 {
-                    image.Mark = mark;
-                    image.Content = imageDto;
-                    await _imageRepository.AddAsync(image);
+                    if (markSaveDto.Images is not null && markSaveDto.Images.All(x => !x.SequenceEqual(image.Content)))
+                    {
+                        _imageRepository.Delete(image);
+                    }
+                }
+
+                foreach (var imageDto in markSaveDto.Images)
+                {
+                    var image = new Image();
+                    if (mark.Images.All(x => !x.Content.SequenceEqual(imageDto)))
+                    {
+                        image.Mark = mark;
+                        image.Content = imageDto;
+                        await _imageRepository.AddAsync(image);
+                    }
                 }
             }
 
@@ -134,6 +142,27 @@ namespace SavageOrcs.Services
                 Success = true,
                 Id = mark.Id
             };
+        }
+
+        public async Task<bool> DeleteMark (Guid id)
+        {
+            try
+            {
+                var mark = await _markRepository.GetTAsync(x => x.Id == id);
+
+                if (mark is null) return false;
+
+                _imageRepository.DeleteRange(mark.Images);
+                _markRepository.Delete(mark);
+
+                await UnitOfWork.SaveChangesAsync();
+            }
+            catch
+            {
+                return false;
+            }
+
+            return true;
         }
     }
 }

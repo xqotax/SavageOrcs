@@ -16,6 +16,7 @@ using System.Text;
 using NuGet.Versioning;
 using SavageOrcs.DataTransferObjects._Constants;
 using SavageOrcs.DataTransferObjects.Maps;
+using SavageOrcs.DataTransferObjects.Areas;
 
 namespace SavageOrcs.Web.Controllers
 {
@@ -40,46 +41,76 @@ namespace SavageOrcs.Web.Controllers
             var markDto = await _markService.GetMarkById(id);
             if (markDto is null)
             {
-                //error
+                return NotFound();
             }
-
-            var descriptionEng = "";
-            if ((markDto.DescriptionEng is null) || (markDto.DescriptionEng == ""))
-                descriptionEng = "This mark has no english description";
             else
             {
-                descriptionEng = markDto.DescriptionEng;
+                var descriptionEng = "";
+                if ((markDto.DescriptionEng is null) || (markDto.DescriptionEng == ""))
+                    descriptionEng = "This mark has no english description";
+                else
+                {
+                    descriptionEng = markDto.DescriptionEng;
+                }
+
+                var revisionMarkViewModel = new RevisionMarkViewModel
+                {
+                    Id = markDto.Id,
+                    Lat = markDto.Lat,
+                    Lng = markDto.Lng,
+                    Name = markDto.Name,
+                    Description = markDto.Description,
+                    DescriptionEng = descriptionEng,
+                    ResourceUrl = markDto.ResourceUrl,
+                    Area = markDto.Area is null ? "" : markDto.Area.Name + ", " + markDto.Area.Community + ", " + markDto.Area.Region,
+                    Images = markDto.Images?.Select(x => GetImage(x)).ToArray()
+                };
+
+                return View(revisionMarkViewModel);
+
             }
-
-
-            var revisionMarkViewModel = new RevisionMarkViewModel
-            {
-                Id = markDto.Id,
-                Lat = markDto.Lat,
-                Lng = markDto.Lng,
-                Name = markDto.Name,
-                Description = markDto.Description,
-                DescriptionEng = descriptionEng,
-                ResourceUrl = markDto.ResourceUrl,
-                Area = markDto.Area is null ? "" : markDto.Area.Name + ", " + markDto.Area.Community + ", " + markDto.Area.Region,
-                Images = markDto.Images.Select(x => GetImage(x)).ToArray()
-            };
-
-            return View(revisionMarkViewModel);
         }
 
 
         [Authorize(Roles = "Admin")]
-        public async Task<IActionResult> Add()
+        public async Task<IActionResult> Add(Guid? id)
         {
-            var areaDtos = await _areaService.GetAreasAsync();
+            MarkDto? markDto = null;
 
+            if (id is not null)
+            {
+                markDto = await _markService.GetMarkById(id.Value);
+            }
+
+            var areaDtos = Array.Empty<AreaShortDto>();
+
+            if (markDto is null)
+            {
+                areaDtos = await _areaService.GetAreasByNameAsync("Херсон");
+            }
+            else
+            {
+                areaDtos = await _areaService.GetAreasByNameAsync(markDto.Area is null ? "Херсон" : markDto.Area.Name);
+            }
+                
             var addMarkViewModel = new AddMarkViewModel()
             {
-                Lat = "48.6125528",
-                Lng = "31.0275809",
-                Zoom = "6",
-                AreaId = null,
+                Lat = markDto is null ? "48.6125528" : markDto.Lat.ToString(CultureInfo.InvariantCulture),
+                Lng = markDto is null ? "31.0275809" : markDto.Lng.ToString(CultureInfo.InvariantCulture),
+                Zoom = markDto is null ? "6" : "9",
+                AreaId = markDto?.Area?.Id,
+                AreaName = markDto?.Area is null ? null : markDto.Area.Name + ", " + markDto.Area.Community + ", " + markDto.Area.Region,
+                Description = markDto?.Description,
+                DescriptionEng = markDto?.DescriptionEng,
+                ResourceUrl = markDto?.ResourceUrl,
+                Name = markDto?.Name,
+                Images = markDto?.Images?.Select(x => GetImage(x)).ToArray(),
+                IsNew = markDto is null,
+                Areas = areaDtos.Select(x => new GuidIdAndNameViewModel
+                {
+                    Name = x.Name + ", " + x.Community + ", " + x.Region,
+                    Id = x.Id
+                }).OrderBy(x => x.Name).ToArray()
             };
 
             return View(addMarkViewModel);
@@ -89,9 +120,8 @@ namespace SavageOrcs.Web.Controllers
         [Authorize(Roles = "Admin")]
         public async Task<JsonResult> GetAreas([FromBody] SearchAreasViewModel searcAreasViewModel)
         {
-            var areaDtos = await _areaService.GetAreasAsync();
-            var areaDropDownList = areaDtos.Where(x => x.Name.StartsWith(searcAreasViewModel.Text.ToUpper()))
-                .Select(x => new GuidIdAndNameViewModel
+            var areaDtos = await _areaService.GetAreasByNameAsync(searcAreasViewModel.Text.ToUpper());
+            var areaDropDownList = areaDtos.Select(x => new GuidIdAndNameViewModel
                 {
                     Name = x.Name + ", " + x.Community + ", " + x.Region,
                     Id = x.Id
@@ -108,7 +138,7 @@ namespace SavageOrcs.Web.Controllers
             var markSaveDto = new MarkSaveDto();
             try
             {
-
+                markSaveDto.Id = saveMarkViewModel.Id;
                 markSaveDto.UserId = _userManager.GetUserId(User);
                 markSaveDto.AreaId = saveMarkViewModel.AreaId;
                 markSaveDto.Lng = double.Parse(saveMarkViewModel.Lng, CultureInfo.InvariantCulture);
@@ -138,11 +168,11 @@ namespace SavageOrcs.Web.Controllers
             });
         }
 
-        private byte[] GetBytes(string data)
+        private static byte[] GetBytes(string data)
         {
             return Encoding.ASCII.GetBytes(data);
         }
-        private string GetImage(byte[] data)
+        private static string GetImage(byte[] data)
         {
             return Encoding.ASCII.GetString(data);
         }
@@ -150,7 +180,7 @@ namespace SavageOrcs.Web.Controllers
         [AllowAnonymous]
         public IActionResult Catalogue()
         {
-            var markCatalogueFilterViewModel = new MarkCatalogueFilters()
+            var markCatalogueFilterViewModel = new MarkCatalogueFilter()
             {
                 Area = "",
                 KeyWord = ""
@@ -161,7 +191,7 @@ namespace SavageOrcs.Web.Controllers
 
         [HttpPost]
         [AllowAnonymous]
-        public async Task<JsonResult> GetMarks([FromBody] MarkCatalogueFilters filter)
+        public async Task<JsonResult> GetMarks([FromBody] MarkCatalogueFilter filter)
         {
             var markDtos = await _markService.GetMarksByNameAndArea(filter.Area, filter.KeyWord);
 
@@ -228,6 +258,67 @@ namespace SavageOrcs.Web.Controllers
         public IActionResult AddImage()
         {
             return PartialView("_AddImage");
+        }
+
+        [Authorize(Roles = "Admin")]
+        public async Task<IActionResult> Delete(Guid? id)
+        {
+            MarkDto? markDto = null;
+
+            if (id is not null)
+            {
+                markDto = await _markService.GetMarkById(id.Value);
+            }
+
+            if (markDto is null)
+                return NotFound();
+
+            var areaDtos = await _areaService.GetAreasByNameAsync(markDto.Area is null ? "Херсон" : markDto.Area.Name);
+
+            var addMarkViewModel = new AddMarkViewModel()
+            {
+                Lat = markDto.Lat.ToString(CultureInfo.InvariantCulture),
+                Lng = markDto.Lng.ToString(CultureInfo.InvariantCulture),
+                Zoom = "9",
+                AreaId = markDto.Area?.Id,
+                AreaName = markDto.Area is null ? null : markDto.Area.Name + ", " + markDto.Area.Community + ", " + markDto.Area.Region,
+                Description = markDto.Description,
+                DescriptionEng = markDto.DescriptionEng,
+                ResourceUrl = markDto.ResourceUrl,
+                Name = markDto.Name,
+                Images = markDto.Images?.Select(x => GetImage(x)).ToArray(),
+                IsNew = false,
+                Areas = areaDtos.Select(x => new GuidIdAndNameViewModel
+                {
+                    Name = x.Name + ", " + x.Community + ", " + x.Region,
+                    Id = x.Id
+                }).OrderBy(x => x.Name).ToArray(),
+                ToDelete = true
+            };
+
+            return View("Add", addMarkViewModel);
+        }
+
+        [Authorize(Roles = "Admin")]
+        public IActionResult DeleteMark()
+        {
+            return PartialView("_Delete");
+        }
+
+        [HttpPost]
+        [Authorize(Roles = "Admin")]
+        public async Task<JsonResult> DeleteConfirm(Guid id)
+        {
+            var result = await _markService.DeleteMark(id);
+
+
+            return Json(new ResultViewModel
+            {
+                Id = id,
+                Success = result,
+                Url = "/Mark/Catalogue",
+                Text = result ? "Мітка успішно видалена" : "Помилка, зверніться до адміністратора"
+            });
         }
     }
 }

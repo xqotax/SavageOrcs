@@ -1,0 +1,145 @@
+﻿@using SavageOrcs.Web.ViewModels.User
+@model UserRevisionViewModel
+<link itemprop="url" rel="stylesheet" href="~/css/checkBox.css" asp-append-version="true" />
+<link itemprop="url" rel="stylesheet" href="~/css/user/tableCurator.css" asp-append-version="true" />
+<div id="addImagePlaceholder"></div>
+<div class="row pb-2">
+    <div class="col-md-2">
+        <button id="saveMark" class="btn btn-dark-custom display-8-custom">Зберегти</button>
+    </div>
+    <div class="col-md-5">
+        
+    </div>
+    <div class="col-md-5">
+        <label class="text-white-custom display-7-custom">
+            Активні ролі
+        </label>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-7">
+        <div class="row pb-2">
+            <div class="col-md-5 d-flex align-items-center">
+                <label class="text-white-custom display-8-custom">
+                    Ім'я:
+                </label>
+            </div>
+            <div class="col-md-6">
+                @Html.TextBoxFor(m => m.FirstName, new { @class = "text-box-custom form-control display-8-custom"})
+            </div>
+        </div>
+        <div class="row pb-2">
+            <div class="col-md-5 d-flex align-items-center">
+                <label class="text-white-custom  display-8-custom">
+                    Прізвище:
+                </label>
+            </div>
+            <div class="col-md-6">
+                @Html.TextBoxFor(m => m.LastName, new { @class = "text-box-custom form-control display-8-custom"})
+            </div>
+        </div>
+        <div class="row pb-2">
+            <div class="col-md-5 d-flex align-items-center">
+                <label class="text-white-custom display-8-custom">
+                    Пошта:
+                </label>
+            </div>
+            <div class="col-md-6">
+                @Html.TextBoxFor(m => m.Email, new { @class = "text-box-custom form-control display-8-custom"})
+            </div>
+        </div>
+        <div class="row pb-2">
+            <div class="col-md-5 d-flex align-items-center">
+                <label class="text-white-custom display-8-custom" for="IsCurator">
+                    Можливості куратора:
+                </label>
+            </div>
+            <div class="col-md-6">
+                @Html.CheckBoxFor(m => m.IsCurator)
+            </div>
+        </div>
+        @Html.HiddenFor(m => m.CuratorInfo.Id)
+
+        <div class="row pb-2 curatorRow" style="visibility: @{ if (Model.IsCurator) { @("visible");} else { @("hidden");}}">
+            <div class="col-md-5 d-flex align-items-center">
+                <label class="text-white-custom display-8-custom">
+                    Ім'я для показу:
+                </label>
+            </div>
+            <div class="col-md-6 curatorRow">
+                @Html.TextBoxFor(m => m.CuratorInfo.DisplayName, new { @class = "text-box-custom form-control display-8-custom"})
+            </div>
+        </div>
+        <div class="row pb-2 curatorRow" style="visibility: @{if (Model.IsCurator) {@("visible");} else {@("hidden");}}">
+            <div class="col-md-5 d-flex align-items-center">
+                <label class="text-white-custom display-8-custom">
+                    Опис для показу:
+                </label>
+            </div>
+            <div class="col-md-6">
+                @Html.TextAreaFor(m => m.CuratorInfo.Description, new { @class = "text-box-custom form-control display-8-custom area-for-custom"})
+            </div>
+        </div>
+        <div class="row pb-2 curatorRow" style="visibility: @{if (Model.IsCurator) {@("visible");} else {@("hidden");}}">
+            <div class="col-md-5 d-flex align-items-center">
+                <button id="addCuratorImage" style="width: 90%;" class="btn btn-dark-custom display-8-custom">Добавити фото</button>
+            </div>
+            <div class="col-md-6" id="imageContainer">
+                @{
+                    if ((Model.IsCurator) && (Model.CuratorInfo is not null) && (!string.IsNullOrEmpty(Model.CuratorInfo.Image)))
+                    {
+                        <img src = "@Model.CuratorInfo.Image" height = "200" id = "imagePlaceholder">
+                        }
+                }
+            </div>
+        </div>
+    </div>
+    <div class="col-md-5" id="table">
+        <div class="d-flex text-white-custom display-7-custom table-header-curator justify-content-center pb-2">
+            <div class="table-header-number-curator">
+                №
+            </div>
+            <div class="table-header-role-name">
+                Назва
+            </div>
+            <div class="table-header-role-status">
+                Активна
+            </div>
+        </div>
+        <div class="table-body-curator display-8-custom text-white-custom">
+            @for(int i = 1; i < Model.AllRoles.Length + 1; i++)
+            {
+                <div class="table-body-row justify-content-center d-flex">
+                    <div class="table-body-number-curator">
+                        @i.ToString()
+                    </div>
+                    <div class="table-body-role-name">
+                        @Model.AllRoles[i-1].Name
+                    </div>
+                    <div class="table-body-role-status">
+                        <input @{
+                            if (Model.RoleIds.Contains(Model.AllRoles[i-1].Id)) {
+                                           @("checked=\"checked");
+                            }
+                           }
+                           class="check-box-row"
+                           type="checkbox"
+                           value=@Model.AllRoles[i-1].Id />
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+@section Scripts{
+    <script>
+        var revisionUserView = new RevisionUserView();
+        revisionUserView.UserId = '@Html.Raw(Model.Id)';
+        revisionUserView.CuratorId = '@Html.Raw(Model.CuratorInfo?.Id)';
+        revisionUserView.IsCurator = '@Html.Raw(Model.IsCurator)' === '@true'
+        $(document).ready(function () {
+            revisionUserView.InitializeControls();
+        });
+
+    </script>
+}
