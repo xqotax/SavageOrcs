@@ -17,6 +17,10 @@ namespace SavageOrcs.Web.ViewModels.Mark
 
         public string? AreaName { get; set; }
 
+        public Guid? ClusterId { get; set; }
+
+        public string? ClusterName { get; set; }
+
         public string? Name { get; set; }
 
         public string? Description { get; set; }
@@ -24,6 +28,8 @@ namespace SavageOrcs.Web.ViewModels.Mark
         public string? DescriptionEng { get; set; }
 
         public string? ResourceUrl { get; set; }
+
+        public bool IsApproximate { get; set; }
 
         public string[]? Images { get; set; }
 
@@ -34,6 +40,8 @@ namespace SavageOrcs.Web.ViewModels.Mark
         public bool? ToDelete { get; set; }
 
         public GuidIdAndNameViewModel[]? Areas { get; set; }
+
+        public GuidIdAndNameViewModel[]? Clusters { get; set; }
 
     }
 }

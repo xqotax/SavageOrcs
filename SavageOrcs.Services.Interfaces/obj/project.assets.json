@@ -5,11 +5,24 @@
       "SavageOrcs.DataTransferObjects/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v6.0",
+        "dependencies": {
+          "SavageOrcs.Enums": "1.0.0"
+        },
         "compile": {
           "bin/placeholder/SavageOrcs.DataTransferObjects.dll": {}
         },
         "runtime": {
           "bin/placeholder/SavageOrcs.DataTransferObjects.dll": {}
+        }
+      },
+      "SavageOrcs.Enums/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "compile": {
+          "bin/placeholder/SavageOrcs.Enums.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/SavageOrcs.Enums.dll": {}
         }
       }
     }
@@ -19,6 +32,11 @@
       "type": "project",
       "path": "../SavageOrcs.DataTransferObjects/SavageOrcs.DataTransferObjects.csproj",
       "msbuildProject": "../SavageOrcs.DataTransferObjects/SavageOrcs.DataTransferObjects.csproj"
+    },
+    "SavageOrcs.Enums/1.0.0": {
+      "type": "project",
+      "path": "../SavageOrcs.Enums/SavageOrcs.Enums.csproj",
+      "msbuildProject": "../SavageOrcs.Enums/SavageOrcs.Enums.csproj"
     }
   },
   "projectFileDependencyGroups": {

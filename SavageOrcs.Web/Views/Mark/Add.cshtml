@@ -2,7 +2,7 @@
 @model AddMarkViewModel
 
 <link itemprop="url" rel="stylesheet" href="~/lib/search-select/search-select.css" />
-
+<link itemprop="url" rel="stylesheet" href="~/css/checkBox.css" asp-append-version="true" />
 <div id="addImagePlaceholder"></div>
 <div id="deleteMarkPlaceholder"></div>
 <div class="row">
@@ -66,13 +66,30 @@
                 </label>
             </div>
             
-            <div class="col-md-7">
-                    <input id="dropdown-input"
-                           name="dropdown-input"
+            <div class="col-md-7"  id="Area">
+                    <input id="dropdown-input-for-mark"
+                       name="dropdown-input-for-mark"
                            class="Search-Select--Hidden-Input"
                            placeholder=""
                            data-search-placeholder="Знайдіть необхідне місто"
                            hidden />
+            </div>
+        </div>
+
+        <div class="row pb-2">
+            <div class="col-md-4 d-flex align-items-center">
+                <label class="text-white-custom display-8-custom">
+                    Скупчення:
+                </label>
+            </div>
+
+            <div class="col-md-7" id="Cluster">
+                <input id="dropdown-input-for-cluster"
+                       name="dropdown-input-for-cluster"
+                       class="Search-Select--Hidden-Input"
+                       placeholder=""
+                       data-search-placeholder="Знайдіть необхідне скупчення"
+                       hidden />
             </div>
         </div>
         <div class="row pb-2">
@@ -83,6 +100,16 @@
             </div>
             <div class="col-md-7">
                 @Html.TextBoxFor(m => m.ResourceUrl , new { @class = "text-box-custom form-control display-8-custom"})
+            </div>
+        </div>
+        <div class="row pb-2">
+            <div class="col-md-4 d-flex align-items-center">
+                <label class="text-white-custom display-8-custom" for="IsApproximate">
+                    Точні координати:
+                </label>
+            </div>
+            <div class="col-md-6">
+                @Html.CheckBoxFor(m => m.IsApproximate)
             </div>
         </div>
     </div>
@@ -129,8 +156,12 @@
         markAddView.ToDelete = '@Html.Raw(Model.ToDelete)' === '@true';
         markAddView.Images = JSON.parse('@Html.Raw(Json.Serialize(Model.Images))');
         markAddView.Areas = JSON.parse('@Html.Raw(Json.Serialize(Model.Areas))');
+        markAddView.Clusters = JSON.parse('@Html.Raw(Json.Serialize(Model.Clusters))');
         markAddView.AreaName = '@Html.Raw(Model.AreaName)';
         markAddView.AreaId = '@Html.Raw(Model.AreaId)';
+        markAddView.ClusterName = '@Html.Raw(Model.ClusterName)';
+        markAddView.ClusterId = '@Html.Raw(Model.ClusterId)';
+        markAddView.IsApproximate = '@Html.Raw(Model.IsApproximate)';
 
         $(document).ready(function () {
             markAddView.InitializeControls();

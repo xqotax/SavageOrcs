@@ -4,9 +4,12 @@ var MapMainView = Class.extend({
     Map: null,
     Zoom: null,
     Marks: null,
-    MapMarks: null,
+    Clusters: null,
     MapId: null,
     MapName: null,
+
+    MapMarks: null,
+    MapClusters: null,
     InfoWindow: null,
     InitializeControls: function () {
         var self = this;
@@ -34,6 +37,7 @@ var MapMainView = Class.extend({
         self.Map = map;
 
         self.MapMarks = [];
+        self.MapClusters = [];
         $.each(self.Marks, function (index, element) {
 
             let marker = new google.maps.Marker({
@@ -44,10 +48,10 @@ var MapMainView = Class.extend({
                 map: map,
                 title: element.name,
                 icon: {
-                    url: "images/markIcon.png",
-                    scaledSize: new google.maps.Size(25, 25),
+                    url: element.isApproximate ? "images/markIconApproximate.png" : "images/markIcon.png",
+                    scaledSize: new google.maps.Size(20, 20),
                     origin: new google.maps.Point(0, 0),
-                    anchor: new google.maps.Point(0, 0)
+                    anchor: new google.maps.Point(10, 10)
                 }
             });
 
@@ -57,9 +61,33 @@ var MapMainView = Class.extend({
 
             self.MapMarks.push({ id: element.id, marker: marker });
         });
+
+        $.each(self.Clusters, function (index, element) {
+
+            let marker = new google.maps.Marker({
+                position: {
+                    lat: parseFloat(element.lat),
+                    lng: parseFloat(element.lng)
+                },
+                map: map,
+                title: element.name,
+                icon: {
+                    url: "images/clusterIcon.png",
+                    scaledSize: new google.maps.Size(30, 30),
+                    origin: new google.maps.Point(0, 0),
+                    anchor: new google.maps.Point(15, 15)
+                }
+            });
+
+            marker.addListener("click", () => {
+                self.MarkOnClick(marker, element, true);
+            });
+
+            self.MapClusters.push({ id: element.id, marker: marker });
+        });
         
     },
-    MarkOnClick: function (marker, element) {
+    MarkOnClick: function (marker, element, isCluster = false) {
         var self = this;
         self.Map.setZoom(12);
         self.Map.setCenter(marker.getPosition());
@@ -71,7 +99,10 @@ var MapMainView = Class.extend({
         });
 
         var link = "<a href=\"";
-        link += "/Mark/Revision?id=" + element.id.toString();
+        if (isCluster)
+            link += "/Cluster/Revision?id=" + element.id.toString();
+        else
+            link += "/Mark/Revision?id=" + element.id.toString();
         link += "\" class=\"btn btn-dark-custom\">" + element.name + "</a>";
         self.InfoWindow.setContent(link);
         self.InfoWindow.open(self.Map);

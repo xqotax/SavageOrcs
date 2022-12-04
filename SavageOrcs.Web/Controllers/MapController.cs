@@ -32,11 +32,19 @@ namespace SavageOrcs.Web.Controllers
                 Id = 1,
                 MapMarkViewModels = mapDto.MapMarkDtos.Select(x => new MapMarkViewModel { 
                     Id = x.Id,
-                    Lat = x.Lat.ToString().Replace(',', '.'),
-                    Lng = x.Lng.ToString().Replace(',', '.'),
+                    Lat = x.Lat?.ToString().Replace(',', '.'),
+                    Lng = x.Lng?.ToString().Replace(',', '.'),
+                    Name = x.Name,
+                    IsApproximate = x.IsApproximate is not null && x.IsApproximate.Value
+                }).ToArray(),
+                MapClusterViewModels = mapDto.MapClusterDtos.Select(x => new MapClusterViewModel
+                {
+                    Id = x.Id,
+                    Lat = x.Lat?.ToString().Replace(',', '.'),
+                    Lng = x.Lng?.ToString().Replace(',', '.'),
                     Name = x.Name
                 }).ToArray()
-                
+
             };
 
             return View(mapCoordinatesViewModel);

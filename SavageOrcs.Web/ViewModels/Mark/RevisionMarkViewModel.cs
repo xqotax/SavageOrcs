@@ -8,15 +8,19 @@ namespace SavageOrcs.Web.ViewModels.Mark
 
         public string? Name { get; set; }
 
-        public double Lng { get; set; }
+        public double? Lng { get; set; }
 
-        public double Lat { get; set; }
+        public double? Lat { get; set; }
 
         public string? Description { get; set; }
 
         public string? DescriptionEng { get; set; }
 
         public string? ResourceUrl { get; set; }
+
+        public Guid? ClusterId { get; set; }
+
+        public bool? IsApproximate { get; set; }
 
         public string? Area { get; set; }
 

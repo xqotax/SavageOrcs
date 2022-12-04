@@ -519,10 +519,16 @@
       "SavageOrcs.BusinessObjects/1.0.0": {
         "dependencies": {
           "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "6.0.9",
-          "Microsoft.Extensions.Identity.Core": "6.0.9"
+          "Microsoft.Extensions.Identity.Core": "6.0.9",
+          "SavageOrcs.Enums": "1.0.0"
         },
         "runtime": {
           "SavageOrcs.BusinessObjects.dll": {}
+        }
+      },
+      "SavageOrcs.Enums/1.0.0": {
+        "runtime": {
+          "SavageOrcs.Enums.dll": {}
         }
       }
     }
@@ -849,6 +855,11 @@
       "hashPath": "system.windows.extensions.4.7.0.nupkg.sha512"
     },
     "SavageOrcs.BusinessObjects/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "SavageOrcs.Enums/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

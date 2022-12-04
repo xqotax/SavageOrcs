@@ -12,7 +12,7 @@
     }
 
 
-            <div class="curator-box">
+            <div class="curator-box" value="@Model.Curators[i].Id">
                 <div class="curator-box-image">
                     <img class="curator-image" src="@Model.Curators[i].Image">
                 </div>
@@ -31,4 +31,15 @@
     {
         @:</div>
     }
+}
+
+@section Scripts{
+    <script>
+        var catalogueCuratorView = new CatalogueCuratorView();
+
+        $(document).ready(function () {
+            catalogueCuratorView.InitializeControls();
+        });
+        
+    </script>
 }

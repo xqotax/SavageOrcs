@@ -1,0 +1,12 @@
+﻿@using SavageOrcs.Web.ViewModels.Curator
+@model RevisionCuratorViewModel
+@section Scripts{
+    <script>
+        var revisionTextView = new RevisionTextView();
+
+        $(document).ready(function () {
+            revisionTextView.InitializeControls();
+        });
+
+    </script>
+}

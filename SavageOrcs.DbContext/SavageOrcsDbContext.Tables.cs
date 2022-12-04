@@ -11,6 +11,9 @@ namespace SavageOrcs.DbContext
         public virtual DbSet<Map> Maps { get; set; }
         public virtual DbSet<Image> Images { get; set; }
         public virtual DbSet<AreaType> AreaTypes { get; set; }
-
+        public virtual DbSet<Curator> Curators { get; set; }
+        public virtual DbSet<Cluster> Clusters { get; set; }
+        public virtual DbSet<Text> Texts { get; set; }
+        public virtual DbSet<Block> Blocks { get; set; }
     }
 }

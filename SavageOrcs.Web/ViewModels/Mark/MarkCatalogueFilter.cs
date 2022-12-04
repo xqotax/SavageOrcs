@@ -6,7 +6,13 @@
 
         public string? KeyWord { get; set; }
 
-        public string? Area { get; set; }
+        public string? AreaName { get; set; }
+
+        public string? MarkName { get; set; }
+
+        public string? MarkDescription { get; set; }
+
+        public bool NotIncludeCluster { get; set; }
 
         public int? From { get; set; }
 

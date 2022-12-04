@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using SavageOrcs.DataTransferObjects.Texts;
 
 namespace SavageOrcs.DataTransferObjects.Curators
 {
@@ -17,5 +18,7 @@ namespace SavageOrcs.DataTransferObjects.Curators
         public byte[]? Image { get; set; }
 
         public string UserId { get; set; }
+
+        public TextShortDto[]? TextDtos { get; set; }
     }
 }

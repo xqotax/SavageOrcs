@@ -10,5 +10,7 @@ namespace SavageOrcs.Services.Interfaces
     public interface ICuratorService
     {
         Task<CuratorDto[]> GetCurators();
+
+        Task<CuratorDto> GetCuratorById(Guid id);
     }
 }

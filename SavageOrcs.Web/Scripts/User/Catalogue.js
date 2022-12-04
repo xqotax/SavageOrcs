@@ -1,11 +1,11 @@
 ﻿var CatalogueUserView = Class.extend({
     IsGlobalAdmin: null,
 
-    TableRowStartConstString: "<div class=\"table-body-row justify-content-center d-flex\"><div class=\"table-body-column-number\">",
-    TableRowFullNameConstString: "</div><div class=\"table-body-column-name\">",
-    TableRowLinkConstString: "<a class=\"table-body-column-name-link\" href=\"/User/Revision?id=",
-    TableRowCuratorStatusConstString: "</div><div class=\"table-body-column-curator-status\">",
-    TableRowEmailConstString: "</div><div class=\"table-body-column-email\">",
+    TableRowStartConstString: "<div class=\"table-body-catalogue-user-row justify-content-center d-flex\"><div class=\"table-body-catalogue-user-column-number\">",
+    TableRowFullNameConstString: "</div><div class=\"table-body-catalogue-user-column-name\">",
+    TableRowLinkConstString: "<a class=\"table-body-catalogue-user-column-name-link\" href=\"/User/Revision?id=",
+    TableRowCuratorStatusConstString: "</div><div class=\"table-body-catalogue-user-column-curator-status\">",
+    TableRowEmailConstString: "</div><div class=\"table-body-catalogue-user-column-email\">",
     TableRowEndConstString: "</div></div>",
     
     InitializeControls: function () {
@@ -40,7 +40,7 @@
             data: JSON.stringify(filters),
             contentType: 'application/json; charset=utf-8',
             success: function (data) {
-                $(".table-body").empty();
+                $(".table-body-catalogue-user").empty();
 
                 toAdd = "";
                 $.each(data, function (index, element) {
@@ -65,7 +65,7 @@
                     toAdd += self.TableRowEndConstString;
                 });
 
-                $(".table-body").append(toAdd);
+                $(".table-body-catalogue-user").append(toAdd);
             }
         });
     }

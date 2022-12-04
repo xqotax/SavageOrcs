@@ -6,9 +6,9 @@
 
         public string? Name { get; set; }
 
-        public double Lng { get; set; }
+        public double? Lng { get; set; }
 
-        public double Lat { get; set; }
+        public double? Lat { get; set; }
 
         public string? Description { get; set; }
 
@@ -20,9 +20,15 @@
 
         public DateTime UpdatedDate { get; set; }
 
+        public bool? IsApproximate { get; set; }
+
+        public Guid? ClusterId { get; set; }
+
+        public virtual Cluster? Cluster { get; set; }
+
         public Guid? AreaId { get; set; }
 
-        public virtual Area Area { get; set; }
+        public virtual Area? Area { get; set; }
 
         public string UserId { get; set; }
 

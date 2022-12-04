@@ -99,6 +99,14 @@ namespace SavageOrcs.Services
 
                     if (curators.Any())
                     {
+                        foreach (var curator in curators)
+                        {
+                            foreach (var text in curator.Texts)
+                            {
+                                text.UpdatedDate = DateTime.Now;
+                                text.CuratorId = null;
+                            }
+                        }
                         _curatorRepository.DeleteRange(curators);
                     }
                 }

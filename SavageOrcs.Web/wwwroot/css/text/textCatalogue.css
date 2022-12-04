@@ -1,0 +1,23 @@
+﻿
+.table-header-catalogue-text-number, .table-body-catalogue-text-column-number {
+    width: 10%;
+}
+
+.table-header-catalogue-text-name, .table-body-catalogue-text-column-name {
+    width: 20%;
+}
+
+.table-header-catalogue-text-subject, .table-body-catalogue-text-column-subject {
+    width: 45%;
+}
+
+.table-header-catalogue-text-curator, .table-body-catalogue-text-column-curator {
+    width: 25%;
+}
+
+.table-body-catalogue-text-column-name, .table-header-catalogue-text-curator {
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+

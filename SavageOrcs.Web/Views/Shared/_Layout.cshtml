@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/css/styles.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/tables.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/css/rightScroll.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/SavageOrcs.Web.styles.css" asp-append-version="true" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.18/dist/css/bootstrap-select.min.css">
@@ -25,19 +26,25 @@
                                 <a href="#" class="dropdown-toggle display-7-custom" style="color: white" data-bs-toggle="dropdown">Пошук</a>
                                 <div class="dropdown-menu">
                                     <a class="dropdown-item display-7-custom" style="color: rgb(4 107 28)" href="/Mark/Catalogue">Міток</a>
-                                    @*<a class="dropdown-item display-7-custom" style="color: rgb(4 107 28)" href="/Mark/Catalogue/?searchFilter=keywords">За ключовими словами</a>*@
+                                    <a class="dropdown-item display-7-custom" style="color: rgb(4 107 28)" href="/Cluster/Catalogue">Скупчень</a>
                                     <a class="dropdown-item display-7-custom" style="color: rgb(4 107 28)" href="/Text/Catalogue">Текстів</a>
                                 </div>
                             </div>
                         </div>
                         @if (this.User.IsInRole("Admin"))
                         {
-                            <div class="nav-item rounded px-2">
-                                <a class="nav-link display-7-custom" style="color: white" asp-area="" asp-controller="Mark" asp-action="Add">Добавити матеріали</a>
+                            <div class="nav-item rounded pt-2 px-2">
+                                <div class="dropdown">
+                                    <a href="#" class="dropdown-toggle display-7-custom" style="color: white" data-bs-toggle="dropdown">Адмінка</a>
+                                    <div class="dropdown-menu">
+                                        <a class="dropdown-item display-7-custom" style="color: rgb(4 107 28)" href="/Mark/Add">Добавити мітки</a>
+                                        <a class="dropdown-item display-7-custom" style="color: rgb(4 107 28)" href="/Cluster/Add">Добавити скупчення</a>
+                                        <a class="dropdown-item display-7-custom" style="color: rgb(4 107 28)" href="/Text/Add">Добавити тексти</a>
+                                        <a class="dropdown-item display-7-custom" style="color: rgb(4 107 28)" href="/User/Catalogue">Користувачі</a>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="nav-item rounded px-2">
-                                <a class="nav-link display-7-custom" style="color: white" asp-area="" asp-controller="User" asp-action="Catalogue">Користувачі</a>
-                            </div>
+                            
                         }
                         <div class="nav-item rounded px-2">
                             <a class="nav-link display-7-custom" style="color: white" asp-area="" asp-controller="Curator" asp-action="Catalogue">Куратори</a>

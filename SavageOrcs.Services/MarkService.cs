@@ -1,4 +1,5 @@
 ﻿using SavageOrcs.BusinessObjects;
+using SavageOrcs.DataTransferObjects._Constants;
 using SavageOrcs.DataTransferObjects.Areas;
 using SavageOrcs.DataTransferObjects.Marks;
 using SavageOrcs.Repositories.Interfaces;
@@ -37,19 +38,33 @@ namespace SavageOrcs.Services
             return CreateMarkDto(mark);
         }
 
-        public async Task<MarkDto[]> GetMarksByNameAndArea(string area, string keyWord)
+        public async Task<MarkDto[]> GetMarksByFilters(string? areaName, string? keyWord, string? markName, string? markDescription, bool NotIncludeCluster = false)
         {
             
             var marks = await _markRepository.GetAllAsync();
+
+            if (NotIncludeCluster)
+                marks = marks.Where(x => x.ClusterId is null);
 
             if (!string.IsNullOrEmpty(keyWord))
             {
                 marks = marks.Where(x => x.Name is not null && x.Name.Contains(keyWord, StringComparison.OrdinalIgnoreCase));
             }
 
-            if (!string.IsNullOrEmpty(area))
+            if (!string.IsNullOrEmpty(markName))
             {
-                marks = marks.Where(x => x.Area is not null && (x.Area.Name + ", " + x.Area.Community + ", " + x.Area.Region).Contains(area, StringComparison.OrdinalIgnoreCase));
+                marks = marks.Where(x => x.Name is not null && x.Name.Contains(markName, StringComparison.OrdinalIgnoreCase));
+            }
+
+            if (!string.IsNullOrEmpty(markDescription))
+            {
+                marks = marks.Where(x => (x.Description is not null && x.Description.Contains(markDescription, StringComparison.OrdinalIgnoreCase)) ||
+                (x.DescriptionEng is not null && x.DescriptionEng.Contains(markDescription, StringComparison.OrdinalIgnoreCase)));
+            }
+
+            if (!string.IsNullOrEmpty(areaName))
+            {
+                marks = marks.Where(x => x.Area is not null && (x.Area.Name + ", " + x.Area.Community + ", " + x.Area.Region).Contains(areaName, StringComparison.OrdinalIgnoreCase));
             }
 
             return marks.Select(x => CreateMarkDto(x)).ToArray();
@@ -71,6 +86,7 @@ namespace SavageOrcs.Services
                 Name = mark.Name,
                 Description = mark.Description,
                 DescriptionEng = mark.DescriptionEng,
+                IsApproximate = mark.IsApproximate,
                 Lat = mark.Lat,
                 Lng = mark.Lng,
                 Area = mark.Area is null? null: new AreaShortDto
@@ -82,7 +98,12 @@ namespace SavageOrcs.Services
                 },
                 ResourceUrl = mark.ResourceUrl,
                 Images = mark.Images.Select(x => x.Content).ToArray(),
-                CreatedDate = mark.CreatedDate
+                CreatedDate = mark.CreatedDate,
+                Cluster = mark.Cluster is null ? null: new GuidIdAndStringName
+                {
+                    Id = mark.Cluster.Id,
+                    Name = mark.Cluster.Name is null ? "" : mark.Cluster.Name
+                }
             };
         }
 
@@ -106,10 +127,12 @@ namespace SavageOrcs.Services
             mark.Name = markSaveDto.Name;
             mark.Description = markSaveDto.Description;
             mark.AreaId = markSaveDto.AreaId;
+            mark.ClusterId = markSaveDto.ClusterId;
             mark.DescriptionEng = markSaveDto.DescriptionEng;
             mark.ResourceUrl = markSaveDto.ResourceUrl;
+            mark.IsApproximate = markSaveDto.IsApproximate;
             mark.UserId = markSaveDto.UserId;
-            mark.MapId = markSaveDto.MapId.Value;
+            mark.MapId = markSaveDto.MapId;
             mark.Lat = markSaveDto.Lat;
             mark.Lng = markSaveDto.Lng;
 

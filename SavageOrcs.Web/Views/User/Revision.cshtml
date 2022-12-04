@@ -1,13 +1,11 @@
 ﻿@using SavageOrcs.Web.ViewModels.User
 @model UserRevisionViewModel
 <link itemprop="url" rel="stylesheet" href="~/css/checkBox.css" asp-append-version="true" />
-<link itemprop="url" rel="stylesheet" href="~/css/user/tableCurator.css" asp-append-version="true" />
+<link itemprop="url" rel="stylesheet" href="~/css/user/userRevision.css" asp-append-version="true" />
 <div id="addImagePlaceholder"></div>
 <div class="row pb-2">
-    <div class="col-md-2">
-        <button id="saveMark" class="btn btn-dark-custom display-8-custom">Зберегти</button>
-    </div>
-    <div class="col-md-5">
+    
+    <div class="col-md-7">
         
     </div>
     <div class="col-md-5">
@@ -94,29 +92,29 @@
             </div>
         </div>
     </div>
-    <div class="col-md-5" id="table">
-        <div class="d-flex text-white-custom display-7-custom table-header-curator justify-content-center pb-2">
-            <div class="table-header-number-curator">
+    <div class="col-md-5" id="revisionUserTable">
+        <div class="d-flex text-white-custom display-7-custom table-header-revision-user justify-content-center pb-2">
+            <div class="table-header-revision-user-number">
                 №
             </div>
-            <div class="table-header-role-name">
+            <div class="table-header-revision-user-role-name">
                 Назва
             </div>
-            <div class="table-header-role-status">
+            <div class="table-header-revision-user-role-status">
                 Активна
             </div>
         </div>
-        <div class="table-body-curator display-8-custom text-white-custom">
+        <div class="table-body-revision-user display-8-custom text-white-custom">
             @for(int i = 1; i < Model.AllRoles.Length + 1; i++)
             {
                 <div class="table-body-row justify-content-center d-flex">
-                    <div class="table-body-number-curator">
+                    <div class="table-body-revision-user-number">
                         @i.ToString()
                     </div>
-                    <div class="table-body-role-name">
+                    <div class="table-body-revision-user-role-name">
                         @Model.AllRoles[i-1].Name
                     </div>
-                    <div class="table-body-role-status">
+                    <div class="table-body-revision-user-role-status">
                         <input @{
                             if (Model.RoleIds.Contains(Model.AllRoles[i-1].Id)) {
                                            @("checked=\"checked");
@@ -128,6 +126,11 @@
                     </div>
                 </div>
             }
+        </div>
+        <div class="row pt-2">
+            <div class="col-md-12">
+                <button id="saveMark" class="btn btn-dark-custom display-8-custom" style="width: 100%">Зберегти</button>
+            </div>
         </div>
     </div>
 </div>

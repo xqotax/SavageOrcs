@@ -1,0 +1,35 @@
+﻿.table-header-catalogue-cluster-number, .table-body-catalogue-cluster-column-number {
+    width: 10%;
+}
+
+.table-header-catalogue-cluster-name, .table-body-catalogue-cluster-column-name {
+    width: 15%;
+}
+
+.table-header-catalogue-cluster-description, .table-body-catalogue-cluster-column-description {
+    width: 40%;
+}
+
+.table-header-catalogue-cluster-markCount, .table-body-catalogue-cluster-column-markCount {
+    width: 10%;
+}
+
+.table-header-catalogue-cluster-area, .table-body-catalogue-cluster-column-area {
+    width: 25%;
+}
+
+.table-body-catalogue-cluster-column-name {
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.button-catalogue-cluster-column-area {
+    cursor: pointer;
+    background-color: rgb(16, 17, 16);
+    text-decoration: underline;
+    border: 0px;
+    color: white;
+    width: 100%;
+    height: 50px;
+    position: relative;
+}

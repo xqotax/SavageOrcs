@@ -1,0 +1,73 @@
+﻿@using SavageOrcs.Web.ViewModels.Text
+@model AddTextViewModel
+
+<link itemprop="url" rel="stylesheet" href="~/lib/search-select/search-select.css" />
+<link itemprop="url" rel="stylesheet" href="~/css/checkBox.css" asp-append-version="true" />
+<div id="deleteTextPlaceholder"></div>
+<div class="row">
+    <div class="col-md-5">
+        @Html.HiddenFor(m => m.Id)
+        <div class="row pb-2">
+            <div class="col-md-4 d-flex align-items-center">
+                <label class="text-white-custom display-8-custom">
+                    Назва:
+                </label>
+            </div>
+            <div class="col-md-7">
+                @Html.TextBoxFor(m => m.Name, new { @class = "text-box-custom form-control display-8-custom"})
+            </div>
+        </div>
+        <div class="row pb-2">
+            <div class="col-md-4 d-flex align-items-center">
+                <label class="text-white-custom display-8-custom">
+                    Тема:
+                </label>
+            </div>
+            <div class="col-md-7">
+                @Html.TextAreaFor(m => m.Subject, new { @class = "text-box-custom form-control display-8-custom area-for-custom"})
+            </div>
+        </div>
+        <div class="row pb-2">
+            <div class="col-md-4 d-flex align-items-center">
+                <label class="text-white-custom display-8-custom">
+                    Куратор:
+                </label>
+            </div>
+
+            <div class="col-md-7" id="Curator">
+                <input id="dropdown-input-for-curator"
+                       name="dropdown-input-for-curator"
+                       class="Search-Select--Hidden-Input"
+                       placeholder=""
+                       data-search-placeholder="Виберіть куратора"
+                       hidden />
+            </div>
+        </div>
+        <div class="row pb-2">
+            <div class="col-md-12">
+                <div class="row justify-content-end">
+                    <button id="saveText" class="btn btn-dark-custom display-8-custom mt-3">Зберегти</button>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    <script src="~/lib/search-select/search-select.js"></script>
+    <script>
+        var addTextView = new AddTextView();
+
+        addTextView.IsNew = '@Html.Raw(Model.IsNew)' === '@true';
+        addTextView.ToDelete = '@Html.Raw(Model.ToDelete)' === '@true';
+        addTextView.Curators = JSON.parse('@Html.Raw(Json.Serialize(Model.Curators))');
+        addTextView.CuratorName = '@Html.Raw(Model.CuratorName)';
+        addTextView.CuratorId = '@Html.Raw(Model.CuratorId)';
+
+        $(document).ready(function () {
+            addTextView.InitializeControls();
+        });
+
+    </script>
+}

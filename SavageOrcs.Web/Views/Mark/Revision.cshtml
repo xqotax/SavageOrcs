@@ -2,23 +2,19 @@
 @model RevisionMarkViewModel
 
 
-
+<div id="imageFullScreenPlaceholder"></div>
 <div class="row">
     @if (this.User.IsInRole("Admin"))
     {
-        <div class="row d-flex justify-content-start mt-1 mb-1">
-            <div class="col-md-6">
-                <div class="row">
-                    <div class="col-md-3">
-                        <a class="btn btn-dark-custom" href="/Mark/Add?id=@Model.Id">Редагувати</a>
-                    </div>
-                    <div class="col-md-3">
-                        <a class="btn btn-dark-custom" href="/Mark/Delete?id=@Model.Id">Видалити</a>
-                    </div>
-                    <div class="col-md-3">
-                        <a class="btn btn-dark-custom" href="/Mark/Add">Додати ще одну</a>
-                    </div>
-                </div>
+        <div class="row mt-1 mb-1 display-8-custom">
+            <div class="col-md-auto pr-2">
+                <a class="btn btn-dark-custom" href="/Mark/Add?id=@Model.Id">Редагувати</a>
+            </div>
+            <div class="col-md-auto pr-2">
+                <a class="btn btn-dark-custom" href="/Mark/Delete?id=@Model.Id">Видалити</a>
+            </div>
+            <div class="col-md-auto pr-2">
+                <a class="btn btn-dark-custom" href="/Mark/Add">Додати ще одну</a>
             </div>
         </div>
         <hr style="border-top: 3px solid #3c6624">
@@ -52,21 +48,30 @@
             </div>
         </div>
         <div class="row mb-4">
-            <div class="col-md-12 text-white-custom display-8-custom">
+            <div class="col-md-auto text-white-custom display-8-custom">
                 <a class="btn btn-dark-custom" href="@Model.ResourceUrl">Посилання на ресурс</a>
             </div>
+            @if (Model.ClusterId is not null)
+            {
+                <div class="col-md-auto text-white-custom display-8-custom">
+                    <a class="btn btn-dark-custom" href="/Cluster/Revision?id=@Model.ClusterId">Перейти до скупчення</a>
+                </div>
+            }
         </div>
+
         
     </div>
     <div class="col-md-6 d-flex justify-content-space-around flex-column">
         @{
-            foreach (var image in Model.Images)
-            {
-                <div class="row mb-4">
-                    <div class="col-md-12 text-white-custom display-8-custom">
-                        <img class="image-revision-mark-custom" src="@image" />
+            if (Model.Images is not null){
+                foreach (var image in Model.Images)
+                {
+                    <div class="row mb-4">
+                        <div class="col-md-12 text-white-custom display-8-custom">
+                            <img class="image-revision-mark-custom" src="@image" />
+                        </div>
                     </div>
-                </div>
+                }
             }
         }
     </div>

@@ -1,20 +1,28 @@
 var MarkAddView = Class.extend({
     IsNew: null,
     Images: null,
-    Areas: null,
     AreaName: null,
+    ClusterName: null,
     Lat: null,
     Lng: null,
     Zoom: null,
     AreaId: null,
+    IsApproximate: null,
 
     Map: null,
     InfoWindow: null,
     LastLat: null,
     LastLng: null,
+
+    Areas: null,
     AreaIds: null,
     AreaNames: null,
-    SearchSelectDropdown: null,
+    SearchSelectDropdownAreas: null,
+
+    Clusters: null,
+    ClusterIds: null,
+    ClusterNames: null,
+    SearchSelectDropdownClusters: null,
     IsInitializate: null,
     
     OldDataInput: null,
@@ -46,7 +54,7 @@ var MarkAddView = Class.extend({
             self.SetMark();
         }
 
-        self.SearchSelectDropdown = new SearchSelect('#dropdown-input', {
+        self.SearchSelectDropdownAreas = new SearchSelect('#dropdown-input-for-mark', {
             data: [],
             filter: SearchSelect.FILTER_CONTAINS,
             sort: undefined,
@@ -59,18 +67,47 @@ var MarkAddView = Class.extend({
 
         self.InitializeAreas(self.Areas);
 
+        self.SearchSelectDropdownClusters = new SearchSelect('#dropdown-input-for-cluster', {
+            data: [],
+            filter: SearchSelect.FILTER_CONTAINS,
+            sort: undefined,
+            inputClass: 'form-control-Select mobile-field',
+            maxOpenEntries: 9,
+            searchPosition: 'top',
+            onInputClickCallback: null,
+            onInputKeyDownCallback: null,
+        });
+
+        self.InitializeClusters(self.Clusters);
+
         if (self.AreaName !== '') {
-            var selected = $($(".searchSelect--Result")[0]);
-            selected.removeClass("searchSelect--Placeholder");
+            var selected = $($("#Area .searchSelect--Result")[0]);
+            selected.removeClass("#Area searchSelect--Placeholder");
             selected.html(self.AreaName);
 
-            $.each($(".searchSelect--Option"), function (index, element) {
-                debugger;
+
+            $.each($("#Area .searchSelect--Option"), function (index, element) {
                 if ($(element).text() === self.AreaName) {
-                    $(element).addClass("searchSelect--Option--selected")
+                    $(element).addClass("#Area searchSelect--Option--selected")
                 }
             });
-            
+
+            $("#dropdown-input-for-mark").val(self.AreaName);
+
+        }
+
+        if (self.ClusterName !== '') {
+            var selected = $($("#Cluster .searchSelect--Result")[0]);
+            selected.removeClass("#Cluster searchSelect--Placeholder");
+            selected.html(self.ClusterName);
+
+            $.each($("#Cluster .searchSelect--Option"), function (index, element) {
+                if ($(element).text() === self.ClusterName) {
+                    $(element).addClass("#Cluster searchSelect--Option--selected")
+                }
+            });
+
+            $("#dropdown-input-for-cluster").val(self.ClusterName);
         }
 
         self.SubscribeEvents();
@@ -99,7 +136,8 @@ var MarkAddView = Class.extend({
             self.RemoveImages();
         });
 
-        $('#dropdown-input').addClass("display-8-custom");
+        $('#dropdown-input-for-mark').addClass("display-8-custom");
+        $('#dropdown-input-for-cluster').addClass("display-8-custom");
         
 
         self.Map.addListener("click", (mapsMouseEvent) => {
@@ -128,7 +166,20 @@ var MarkAddView = Class.extend({
             self.AreaIds.push(element.id);
         });
 
-        self.SearchSelectDropdown.setData(self.AreaNames);
+        self.SearchSelectDropdownAreas.setData(self.AreaNames);
+    },
+
+    InitializeClusters: function (data) {
+        var self = this;
+        self.ClusterNames = [];
+        self.ClusterIds = [];
+
+        $.each(data, function (index, element) {
+            self.ClusterNames.push(element.name);
+            self.ClusterIds.push(element.id);
+        });
+
+        self.SearchSelectDropdownClusters.setData(self.ClusterNames);
     },
     SetMark: function () {
         var self = this;
@@ -142,9 +193,9 @@ var MarkAddView = Class.extend({
             title: self.AreaName,
             icon: {
                 url: "../images/markIcon.png",
-                scaledSize: new google.maps.Size(25, 25),
+                scaledSize: new google.maps.Size(24, 24),
                 origin: new google.maps.Point(0, 0),
-                anchor: new google.maps.Point(0, 0)
+                anchor: new google.maps.Point(12, 12)
             }
         });
     },
@@ -163,46 +214,23 @@ var MarkAddView = Class.extend({
             disableDefaultUI: true
         });
     },
-    AddImage: function () {
-        var self = this;
-        $.ajax({
-            type: 'POST',
-            url: "/Mark/AddImage",
-            contentType: 'application/json; charset=utf-8',
-            success: function (src) {
-                $('#addImagePlaceholder').html(src);
-            }
-        });
-    },
-    AddImages: function () {
-        var self = this;
-
-        $.each(self.Images, function (index, element) {
-            var rowCount = $("#imageContainer .row").length;
-            var colCount = $("#imageContainer .col-md-3").length;
-
-            $(".popup-content-custom .row #imagePlaceholder").removeAttr('id');
-
-            if ((rowCount === 0) || (colCount !== 0 && Math.floor(colCount / rowCount) === 3)) {
-                $("#imageContainer").append(self.RowAddConstString + self.ColAddConstString + "<img src=\"" + element + "\" height=\"200\">" + self.DivAddConstString + self.DivAddConstString);
-            }
-            else {
-                $("#imageContainer .row").last().append(self.ColAddConstString + "<img src=\"" + element + "\" height=\"200\">" + self.DivAddConstString);
-            }
-        });
-        
-    },
-    RemoveImages: function () {
-        $("#imageContainer .row").empty();
-    },
+    
     Save: function () {
         var self = this;
 
+        debugger;
+        var areaId = self.AreaIds[self.AreaNames.indexOf($("#dropdown-input-for-mark").val())];
+        var clusterId = self.ClusterIds[self.ClusterNames.indexOf($("#dropdown-input-for-cluster").val())];
+        areaId = areaId === "" ? null : areaId;
+        clusterId = clusterId === "" ? null : clusterId;
+
         var saveMarkViewModel = {
-            Id: $("#Id").val(),
+            Id: $("#Id").val() === "" ? null : $("#Id").val(),
             Lng: $("#Lng").val(),
             Lat: $("#Lat").val(),
-            AreaId: self.AreaIds[self.AreaNames.indexOf($("#dropdown-input").val())],
+            AreaId: areaId,
+            ClusterId: clusterId,
+            IsApproximate: $("#IsApproximate").is(":checked"),
             Name: $("#Name").val(),
             Description: $("#Description").val(),
             DescriptionEng: $("#DescriptionEng").val(),
@@ -269,5 +297,41 @@ var MarkAddView = Class.extend({
                 $('#deleteMarkPlaceholder').html(src);
             }
         });
+    },
+
+
+
+    //for image
+    AddImage: function () {
+        var self = this;
+        $.ajax({
+            type: 'POST',
+            url: "/Mark/AddImage",
+            contentType: 'application/json; charset=utf-8',
+            success: function (src) {
+                $('#addImagePlaceholder').html(src);
+            }
+        });
+    },
+    AddImages: function () {
+        var self = this;
+
+        $.each(self.Images, function (index, element) {
+            var rowCount = $("#imageContainer .row").length;
+            var colCount = $("#imageContainer .col-md-3").length;
+
+            $(".popup-content-custom .row #imagePlaceholder").removeAttr('id');
+
+            if ((rowCount === 0) || (colCount !== 0 && Math.floor(colCount / rowCount) === 3)) {
+                $("#imageContainer").append(self.RowAddConstString + self.ColAddConstString + "<img src=\"" + element + "\" height=\"200\">" + self.DivAddConstString + self.DivAddConstString);
+            }
+            else {
+                $("#imageContainer .row").last().append(self.ColAddConstString + "<img src=\"" + element + "\" height=\"200\">" + self.DivAddConstString);
+            }
+        });
+
+    },
+    RemoveImages: function () {
+        $("#imageContainer .row").empty();
     }
 });

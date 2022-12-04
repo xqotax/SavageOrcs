@@ -3844,7 +3844,8 @@
         "framework": ".NETCoreApp,Version=v6.0",
         "dependencies": {
           "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "6.0.9",
-          "Microsoft.Extensions.Identity.Core": "6.0.9"
+          "Microsoft.Extensions.Identity.Core": "6.0.9",
+          "SavageOrcs.Enums": "1.0.0"
         },
         "compile": {
           "bin/placeholder/SavageOrcs.BusinessObjects.dll": {}
@@ -3856,6 +3857,9 @@
       "SavageOrcs.DataTransferObjects/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v6.0",
+        "dependencies": {
+          "SavageOrcs.Enums": "1.0.0"
+        },
         "compile": {
           "bin/placeholder/SavageOrcs.DataTransferObjects.dll": {}
         },
@@ -3877,6 +3881,16 @@
         },
         "runtime": {
           "bin/placeholder/SavageOrcs.DbContext.dll": {}
+        }
+      },
+      "SavageOrcs.Enums/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "compile": {
+          "bin/placeholder/SavageOrcs.Enums.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/SavageOrcs.Enums.dll": {}
         }
       },
       "SavageOrcs.Repositories/1.0.0": {
@@ -11037,6 +11051,11 @@
       "type": "project",
       "path": "../SavageOrcs.DbContext/SavageOrcs.DbContext.csproj",
       "msbuildProject": "../SavageOrcs.DbContext/SavageOrcs.DbContext.csproj"
+    },
+    "SavageOrcs.Enums/1.0.0": {
+      "type": "project",
+      "path": "../SavageOrcs.Enums/SavageOrcs.Enums.csproj",
+      "msbuildProject": "../SavageOrcs.Enums/SavageOrcs.Enums.csproj"
     },
     "SavageOrcs.Repositories/1.0.0": {
       "type": "project",

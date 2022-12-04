@@ -1,5 +1,6 @@
 ﻿using SavageOrcs.BusinessObjects;
 using SavageOrcs.DataTransferObjects.Curators;
+using SavageOrcs.DataTransferObjects.Texts;
 using SavageOrcs.Repositories.Interfaces;
 using SavageOrcs.Services.Interfaces;
 using SavageOrcs.UnitOfWork;
@@ -26,6 +27,16 @@ namespace SavageOrcs.Services
             return curators.Select(x => CreateCuratorDto(x)).ToArray();
         }
 
+        public async Task<CuratorDto> GetCuratorById(Guid id)
+        {
+            var curator = await _curatorRepository.GetTAsync(x => x.Id == id);
+
+            curator ??= new Curator();
+
+            return CreateCuratorDto(curator);
+        }
+
+
         private static CuratorDto CreateCuratorDto(Curator curator)
         {
             return new CuratorDto
@@ -34,7 +45,13 @@ namespace SavageOrcs.Services
                 DisplayName = curator.Name,
                 Description = curator.Description,
                 Image = curator.Image,
-                UserId = curator.UserId
+                UserId = curator.UserId,
+                TextDtos = curator.Texts.Select(x => new TextShortDto { 
+                    Id = x.Id,
+                    Name = x.Name,
+                    Subject = x.Subject
+                }).ToArray()
+
             };
         }
     }

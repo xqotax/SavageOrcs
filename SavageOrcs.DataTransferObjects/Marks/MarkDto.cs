@@ -1,4 +1,5 @@
-﻿using SavageOrcs.DataTransferObjects.Areas;
+﻿using SavageOrcs.DataTransferObjects._Constants;
+using SavageOrcs.DataTransferObjects.Areas;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,9 +14,9 @@ namespace SavageOrcs.DataTransferObjects.Marks
 
         public string? Name { get; set; }
 
-        public double Lng { get; set; }
+        public double? Lng { get; set; }
 
-        public double Lat { get; set; }
+        public double? Lat { get; set; }
 
         public string? Description { get; set; }
 
@@ -23,7 +24,11 @@ namespace SavageOrcs.DataTransferObjects.Marks
 
         public string? ResourceUrl { get; set; }
 
+        public bool? IsApproximate { get; set; }
+
         public AreaShortDto? Area { get; set; }
+
+        public GuidIdAndStringName? Cluster { get; set; }
 
         public byte[][]? Images { get; set; }
 

@@ -14,8 +14,10 @@ namespace SavageOrcs.DataTransferObjects.Maps
 
         public string Zoom { get; set; }
 
-        public string Name { get; set; }
+        public string? Name { get; set; }
 
         public MapMarkDto[] MapMarkDtos { get; set; }
+
+        public MapClusterDto[]  MapClusterDtos { get; set; }
     }
 }

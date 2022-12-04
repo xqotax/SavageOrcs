@@ -55,6 +55,18 @@ input[type="checkbox"]:checked {
     width: 100%;
 }
 
+#mapClusterAdd {
+    z-index: 1;
+    height: 600px;
+    width: 100%;
+}
+
+#mapClusterRevision {
+    z-index: 1;
+    height: 600px;
+    width: 100%;
+}
+
 #logout:hover, #logout:focus, .nav-item:hover, .nav-item:focus {
     background-color: rgb(16, 17, 16);
 }
@@ -74,7 +86,7 @@ input[type="checkbox"]:checked {
 }
 
 
-.popup-custom {
+.popup-custom, .popup-custom-image-fullScreen {
     position: fixed;
     width: 100%;
     height: 100%;
@@ -82,9 +94,23 @@ input[type="checkbox"]:checked {
     top: 0;
     left: 0;
     z-index: 100;
-
 }
-.popup-body-custom{
+.popup-custom-image-fullScreen {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+#revisionImage{
+    position: relative;
+    max-height: 100%;
+    max-width: 100%;
+    height: 100%;
+}
+
+.popup-body-custom {
     min-height: 100%;
     display: flex;
     align-items: center;
@@ -137,7 +163,16 @@ input[type="checkbox"]:checked {
     width: 30px;
 }
 
-.image-revision-mark-custom{
+.image-revision-curator-custom {
+    max-height: 500px;
+    max-width: 90%;
+}
+
+.image-revision-mark-custom {
     max-height: 400px;
     max-width: 90%;
+    cursor: pointer;
+}
+.curator-box {
+    cursor: pointer;
 }

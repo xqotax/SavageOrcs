@@ -1,0 +1,11 @@
+﻿@model string
+
+<div id="revisionImageView" class="popup-custom-image-fullScreen">
+    <img src="@Model" id="revisionImage" />
+</div>
+<script>
+    var revisionImageView = new RevisionImageView();
+    $(document).ready(function () {
+        revisionImageView.InitializeControls();
+    });
+</script>

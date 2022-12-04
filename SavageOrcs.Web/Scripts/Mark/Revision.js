@@ -8,6 +8,10 @@ var RevisionMarkView = Class.extend({
     SubscribeEvents: function () {
         var self = this;
 
+        $(".image-revision-mark-custom").click(function () {
+            self.ToFullScreen($(this).attr("src"));
+        });
+
         $('#flagGB').on('click', function () {
             $('#flagUA').removeClass("box-shadow-grey-custom");
             $("#flagGB").addClass("box-shadow-grey-custom");
@@ -23,6 +27,18 @@ var RevisionMarkView = Class.extend({
 
             $("#textUA").removeClass("display-none-custom");
             $("#textGB").addClass("display-none-custom");
+        });
+    },
+    ToFullScreen: function (data) {
+        var self = this;
+        $.ajax({
+            type: 'POST',
+            url: "/Mark/RevisionImage",
+            data: JSON.stringify(data),
+            contentType: 'application/json; charset=utf-8',
+            success: function (html) {
+                $("#imageFullScreenPlaceholder").html(html);
+            }
         });
     }
 })

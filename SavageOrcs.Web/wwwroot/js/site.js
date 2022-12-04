@@ -54,9 +54,12 @@ var MapMainView = Class.extend({
     Map: null,
     Zoom: null,
     Marks: null,
-    MapMarks: null,
+    Clusters: null,
     MapId: null,
     MapName: null,
+
+    MapMarks: null,
+    MapClusters: null,
     InfoWindow: null,
     InitializeControls: function () {
         var self = this;
@@ -84,6 +87,7 @@ var MapMainView = Class.extend({
         self.Map = map;
 
         self.MapMarks = [];
+        self.MapClusters = [];
         $.each(self.Marks, function (index, element) {
 
             let marker = new google.maps.Marker({
@@ -94,10 +98,10 @@ var MapMainView = Class.extend({
                 map: map,
                 title: element.name,
                 icon: {
-                    url: "images/markIcon.png",
-                    scaledSize: new google.maps.Size(25, 25),
+                    url: element.isApproximate ? "images/markIconApproximate.png" : "images/markIcon.png",
+                    scaledSize: new google.maps.Size(20, 20),
                     origin: new google.maps.Point(0, 0),
-                    anchor: new google.maps.Point(0, 0)
+                    anchor: new google.maps.Point(10, 10)
                 }
             });
 
@@ -107,9 +111,33 @@ var MapMainView = Class.extend({
 
             self.MapMarks.push({ id: element.id, marker: marker });
         });
+
+        $.each(self.Clusters, function (index, element) {
+
+            let marker = new google.maps.Marker({
+                position: {
+                    lat: parseFloat(element.lat),
+                    lng: parseFloat(element.lng)
+                },
+                map: map,
+                title: element.name,
+                icon: {
+                    url: "images/clusterIcon.png",
+                    scaledSize: new google.maps.Size(30, 30),
+                    origin: new google.maps.Point(0, 0),
+                    anchor: new google.maps.Point(15, 15)
+                }
+            });
+
+            marker.addListener("click", () => {
+                self.MarkOnClick(marker, element, true);
+            });
+
+            self.MapClusters.push({ id: element.id, marker: marker });
+        });
         
     },
-    MarkOnClick: function (marker, element) {
+    MarkOnClick: function (marker, element, isCluster = false) {
         var self = this;
         self.Map.setZoom(12);
         self.Map.setCenter(marker.getPosition());
@@ -121,7 +149,10 @@ var MapMainView = Class.extend({
         });
 
         var link = "<a href=\"";
-        link += "/Mark/Revision?id=" + element.id.toString();
+        if (isCluster)
+            link += "/Cluster/Revision?id=" + element.id.toString();
+        else
+            link += "/Mark/Revision?id=" + element.id.toString();
         link += "\" class=\"btn btn-dark-custom\">" + element.name + "</a>";
         self.InfoWindow.setContent(link);
         self.InfoWindow.open(self.Map);
@@ -158,20 +189,28 @@ var MapMainView = Class.extend({
 var MarkAddView = Class.extend({
     IsNew: null,
     Images: null,
-    Areas: null,
     AreaName: null,
+    ClusterName: null,
     Lat: null,
     Lng: null,
     Zoom: null,
     AreaId: null,
+    IsApproximate: null,
 
     Map: null,
     InfoWindow: null,
     LastLat: null,
     LastLng: null,
+
+    Areas: null,
     AreaIds: null,
     AreaNames: null,
-    SearchSelectDropdown: null,
+    SearchSelectDropdownAreas: null,
+
+    Clusters: null,
+    ClusterIds: null,
+    ClusterNames: null,
+    SearchSelectDropdownClusters: null,
     IsInitializate: null,
     
     OldDataInput: null,
@@ -203,7 +242,7 @@ var MarkAddView = Class.extend({
             self.SetMark();
         }
 
-        self.SearchSelectDropdown = new SearchSelect('#dropdown-input', {
+        self.SearchSelectDropdownAreas = new SearchSelect('#dropdown-input-for-mark', {
             data: [],
             filter: SearchSelect.FILTER_CONTAINS,
             sort: undefined,
@@ -216,18 +255,47 @@ var MarkAddView = Class.extend({
 
         self.InitializeAreas(self.Areas);
 
+        self.SearchSelectDropdownClusters = new SearchSelect('#dropdown-input-for-cluster', {
+            data: [],
+            filter: SearchSelect.FILTER_CONTAINS,
+            sort: undefined,
+            inputClass: 'form-control-Select mobile-field',
+            maxOpenEntries: 9,
+            searchPosition: 'top',
+            onInputClickCallback: null,
+            onInputKeyDownCallback: null,
+        });
+
+        self.InitializeClusters(self.Clusters);
+
         if (self.AreaName !== '') {
-            var selected = $($(".searchSelect--Result")[0]);
-            selected.removeClass("searchSelect--Placeholder");
+            var selected = $($("#Area .searchSelect--Result")[0]);
+            selected.removeClass("#Area searchSelect--Placeholder");
             selected.html(self.AreaName);
 
-            $.each($(".searchSelect--Option"), function (index, element) {
-                debugger;
+
+            $.each($("#Area .searchSelect--Option"), function (index, element) {
                 if ($(element).text() === self.AreaName) {
-                    $(element).addClass("searchSelect--Option--selected")
+                    $(element).addClass("#Area searchSelect--Option--selected")
                 }
             });
-            
+
+            $("#dropdown-input-for-mark").val(self.AreaName);
+
+        }
+
+        if (self.ClusterName !== '') {
+            var selected = $($("#Cluster .searchSelect--Result")[0]);
+            selected.removeClass("#Cluster searchSelect--Placeholder");
+            selected.html(self.ClusterName);
+
+            $.each($("#Cluster .searchSelect--Option"), function (index, element) {
+                if ($(element).text() === self.ClusterName) {
+                    $(element).addClass("#Cluster searchSelect--Option--selected")
+                }
+            });
+
+            $("#dropdown-input-for-cluster").val(self.ClusterName);
         }
 
         self.SubscribeEvents();
@@ -256,7 +324,8 @@ var MarkAddView = Class.extend({
             self.RemoveImages();
         });
 
-        $('#dropdown-input').addClass("display-8-custom");
+        $('#dropdown-input-for-mark').addClass("display-8-custom");
+        $('#dropdown-input-for-cluster').addClass("display-8-custom");
         
 
         self.Map.addListener("click", (mapsMouseEvent) => {
@@ -285,7 +354,20 @@ var MarkAddView = Class.extend({
             self.AreaIds.push(element.id);
         });
 
-        self.SearchSelectDropdown.setData(self.AreaNames);
+        self.SearchSelectDropdownAreas.setData(self.AreaNames);
+    },
+
+    InitializeClusters: function (data) {
+        var self = this;
+        self.ClusterNames = [];
+        self.ClusterIds = [];
+
+        $.each(data, function (index, element) {
+            self.ClusterNames.push(element.name);
+            self.ClusterIds.push(element.id);
+        });
+
+        self.SearchSelectDropdownClusters.setData(self.ClusterNames);
     },
     SetMark: function () {
         var self = this;
@@ -299,9 +381,9 @@ var MarkAddView = Class.extend({
             title: self.AreaName,
             icon: {
                 url: "../images/markIcon.png",
-                scaledSize: new google.maps.Size(25, 25),
+                scaledSize: new google.maps.Size(24, 24),
                 origin: new google.maps.Point(0, 0),
-                anchor: new google.maps.Point(0, 0)
+                anchor: new google.maps.Point(12, 12)
             }
         });
     },
@@ -320,46 +402,23 @@ var MarkAddView = Class.extend({
             disableDefaultUI: true
         });
     },
-    AddImage: function () {
-        var self = this;
-        $.ajax({
-            type: 'POST',
-            url: "/Mark/AddImage",
-            contentType: 'application/json; charset=utf-8',
-            success: function (src) {
-                $('#addImagePlaceholder').html(src);
-            }
-        });
-    },
-    AddImages: function () {
-        var self = this;
-
-        $.each(self.Images, function (index, element) {
-            var rowCount = $("#imageContainer .row").length;
-            var colCount = $("#imageContainer .col-md-3").length;
-
-            $(".popup-content-custom .row #imagePlaceholder").removeAttr('id');
-
-            if ((rowCount === 0) || (colCount !== 0 && Math.floor(colCount / rowCount) === 3)) {
-                $("#imageContainer").append(self.RowAddConstString + self.ColAddConstString + "<img src=\"" + element + "\" height=\"200\">" + self.DivAddConstString + self.DivAddConstString);
-            }
-            else {
-                $("#imageContainer .row").last().append(self.ColAddConstString + "<img src=\"" + element + "\" height=\"200\">" + self.DivAddConstString);
-            }
-        });
-        
-    },
-    RemoveImages: function () {
-        $("#imageContainer .row").empty();
-    },
+    
     Save: function () {
         var self = this;
 
+        debugger;
+        var areaId = self.AreaIds[self.AreaNames.indexOf($("#dropdown-input-for-mark").val())];
+        var clusterId = self.ClusterIds[self.ClusterNames.indexOf($("#dropdown-input-for-cluster").val())];
+        areaId = areaId === "" ? null : areaId;
+        clusterId = clusterId === "" ? null : clusterId;
+
         var saveMarkViewModel = {
-            Id: $("#Id").val(),
+            Id: $("#Id").val() === "" ? null : $("#Id").val(),
             Lng: $("#Lng").val(),
             Lat: $("#Lat").val(),
-            AreaId: self.AreaIds[self.AreaNames.indexOf($("#dropdown-input").val())],
+            AreaId: areaId,
+            ClusterId: clusterId,
+            IsApproximate: $("#IsApproximate").is(":checked"),
             Name: $("#Name").val(),
             Description: $("#Description").val(),
             DescriptionEng: $("#DescriptionEng").val(),
@@ -426,6 +485,42 @@ var MarkAddView = Class.extend({
                 $('#deleteMarkPlaceholder').html(src);
             }
         });
+    },
+
+
+
+    //for image
+    AddImage: function () {
+        var self = this;
+        $.ajax({
+            type: 'POST',
+            url: "/Mark/AddImage",
+            contentType: 'application/json; charset=utf-8',
+            success: function (src) {
+                $('#addImagePlaceholder').html(src);
+            }
+        });
+    },
+    AddImages: function () {
+        var self = this;
+
+        $.each(self.Images, function (index, element) {
+            var rowCount = $("#imageContainer .row").length;
+            var colCount = $("#imageContainer .col-md-3").length;
+
+            $(".popup-content-custom .row #imagePlaceholder").removeAttr('id');
+
+            if ((rowCount === 0) || (colCount !== 0 && Math.floor(colCount / rowCount) === 3)) {
+                $("#imageContainer").append(self.RowAddConstString + self.ColAddConstString + "<img src=\"" + element + "\" height=\"200\">" + self.DivAddConstString + self.DivAddConstString);
+            }
+            else {
+                $("#imageContainer .row").last().append(self.ColAddConstString + "<img src=\"" + element + "\" height=\"200\">" + self.DivAddConstString);
+            }
+        });
+
+    },
+    RemoveImages: function () {
+        $("#imageContainer .row").empty();
     }
 });
 
@@ -492,6 +587,10 @@ var RevisionMarkView = Class.extend({
     SubscribeEvents: function () {
         var self = this;
 
+        $(".image-revision-mark-custom").click(function () {
+            self.ToFullScreen($(this).attr("src"));
+        });
+
         $('#flagGB').on('click', function () {
             $('#flagUA').removeClass("box-shadow-grey-custom");
             $("#flagGB").addClass("box-shadow-grey-custom");
@@ -508,6 +607,18 @@ var RevisionMarkView = Class.extend({
             $("#textUA").removeClass("display-none-custom");
             $("#textGB").addClass("display-none-custom");
         });
+    },
+    ToFullScreen: function (data) {
+        var self = this;
+        $.ajax({
+            type: 'POST',
+            url: "/Mark/RevisionImage",
+            data: JSON.stringify(data),
+            contentType: 'application/json; charset=utf-8',
+            success: function (html) {
+                $("#imageFullScreenPlaceholder").html(html);
+            }
+        });
     }
 })
 var CatalogueMarkView = Class.extend({
@@ -517,17 +628,20 @@ var CatalogueMarkView = Class.extend({
     CountConst: 4,
     WereDataInDetailedTable: null,
     WereDataInShortTable: null,
+    OnEnglish: false,
     
     TableShortRowStartConstString: "<div class=\"table-body-short-row justify-content-center d-flex\"><div class=\"table-body-short-column-number\">",
     TableShortRowNameConstString: "</div><div class=\"table-body-short-column-name\"><a href=\"/Mark/Revision?id=",
-    TableShortRowDescriptionConstString: "</a></div><div class=\"table-body-short-column-description\">",
+    TableShortRowDescriptionConstString: "</a></div><div class=\"table-body-short-column-description ukr-description\">",
+    TableShortRowDescriptionEngConstString: "</div><div class=\"table-body-short-column-description eng-description\">",
     TableShortRowAreaConstString: "</div><div class=\"table-body-short-column-area\">",
     TableShortRowAreaButtonConstString: "<button class=\"button-short-column-area\" value=\"",
     TableShortRowEndConstString: "</div></div>",
 
     TableDetailRowStartConstString: "<div class=\"table-body-detail-row justify-content-center d-flex\"><div class=\"table-body-detail-column-number flex-container-center-custom\">",
     TableDetailRowNameConstString: "</div><div class=\"table-body-detail-column-name flex-container-center-custom\"><a href=\"/Mark/Revision?id=",
-    TableDetailRowDescriptionConstString: "</a></div><div class=\"table-body-detail-column-description flex-container-center-custom\">",
+    TableDetailRowDescriptionConstString: "</a></div><div class=\"table-body-detail-column-description flex-container-center-custom ukr-description\">",
+    TableDetailRowDescriptionEngConstString: "</div><div class=\"table-body-detail-column-description flex-container-center-custom eng-description\">",
     TableDetailRowAreaConstString: "</div><div class=\"table-body-detail-column-area flex-container-center-custom\">",
     TableDetailRowAreaButtonConstString: "<button class=\"button-detail-column-area\" value=\"",
     TableDetailRowLinkConstString: "</div><div class=\"table-body-detail-column-photo flex-container-center-custom\"><a href=\"",
@@ -554,7 +668,9 @@ var CatalogueMarkView = Class.extend({
 
         $("#clearFilters").click(function () {
             $("#KeyWord").val('');
-            $("#Area").val(''); 
+            $("#AreaName").val(''); 
+            $("#MarkName").val(''); 
+            $("#MarkDescription").val('');
         });
 
         $("#showMore").click(function () {
@@ -594,13 +710,36 @@ var CatalogueMarkView = Class.extend({
             //    self.Search();
             //}
         });
+
+        $('#flagGB').on('click', function () {
+            self.OnEnglish = true;
+            $('#flagUA').removeClass("box-shadow-grey-custom");
+            $("#flagGB").addClass("box-shadow-grey-custom");
+
+
+            $(".ukr-description").addClass("display-none-custom");
+            $(".eng-description").removeClass("display-none-custom");
+
+        });
+
+        $('#flagUA').on('click', function () {
+            self.OnEnglish = false;
+            $('#flagGB').removeClass("box-shadow-grey-custom");
+            $("#flagUA").addClass("box-shadow-grey-custom");
+
+            $(".eng-description").addClass("display-none-custom");
+            $(".ukr-description").removeClass("display-none-custom");
+        });
     },
     Search: function () {
         var self = this;
 
         var filters = {
-            Area: $("#Area").val(),
+            AreaName: $("#AreaName").val(),
+            MarkName: $("#MarkName").val(),
+            MarkDescription: $("#MarkDescription").val(),
             KeyWord: $("#KeyWord").val(),
+            NotIncludeCluster: $("#NotIncludeCluster").is(":checked"),
             FullData: self.DetailedView,
             From: self.From,
             Count: self.CountConst
@@ -612,7 +751,6 @@ var CatalogueMarkView = Class.extend({
             data: JSON.stringify(filters),
             contentType: 'application/json; charset=utf-8',
             success: function (data) {
-                debugger;
                 if (self.DetailedView) {
                     self.WereDataInShortTable = false;
                     self.WereDataInDetailedTable = true;
@@ -624,9 +762,13 @@ var CatalogueMarkView = Class.extend({
                         toAdd += self.TableDetailRowStartConstString + (self.From + index + 1);
                         toAdd += self.TableDetailRowNameConstString + element.id + "\">" + element.name;
                         toAdd += self.TableDetailRowDescriptionConstString + element.description;
-                        if (element.area.id !== null) {
-                            toAdd += self.TableDetailRowAreaConstString + self.TableDetailRowAreaButtonConstString;
-                            toAdd += element.area.id + "\">" + element.area.name + "</button>";
+                        toAdd += self.TableDetailRowDescriptionEngConstString + element.descriptionEng;
+                        
+                        if (element.area !== null) {
+                            if (element.area.id !== null) {
+                                toAdd += self.TableDetailRowAreaConstString + self.TableDetailRowAreaButtonConstString;
+                                toAdd += element.area.id + "\">" + element.area.name + "</button>";
+                            }
                         }
                         else {
                             toAdd += self.TableDetailRowAreaConstString;
@@ -643,10 +785,14 @@ var CatalogueMarkView = Class.extend({
 
                     $(".button-detail-column-area").click(function () {
                         $("#KeyWord").val("");
-                        $("#Area").val(this.innerText);
+                        $("#AreaName").val(this.innerText);
                         self.Search();
                     });
 
+                    if (self.OnEnglish)
+                        $(".ukr-description").addClass("display-none-custom");
+                    else
+                        $(".eng-description").addClass("display-none-custom");
                 }
                 else {
                     self.WereDataInShortTable = true;
@@ -660,9 +806,14 @@ var CatalogueMarkView = Class.extend({
                         toAdd += self.TableShortRowStartConstString + (index + 1);
                         toAdd += self.TableShortRowNameConstString + element.id + "\">" + element.name;
                         toAdd += self.TableShortRowDescriptionConstString + element.description;
-                        if (element.area.id !== null) {
-                            toAdd += self.TableShortRowAreaConstString + self.TableShortRowAreaButtonConstString;
-                            toAdd += element.area.id + "\">" + element.area.name + "</button>";
+                        toAdd += self.TableShortRowDescriptionEngConstString + element.descriptionEng;
+                        
+
+                        if (element.area !== null) {
+                            if (element.area.id !== null) {
+                                toAdd += self.TableShortRowAreaConstString + self.TableShortRowAreaButtonConstString;
+                                toAdd += element.area.id + "\">" + element.area.name + "</button>";
+                            }
                         }
                         else {
                             toAdd += self.TableShortRowAreaConstString;
@@ -674,22 +825,76 @@ var CatalogueMarkView = Class.extend({
 
                     $(".button-short-column-area").click(function () {
                         $("#KeyWord").val("");
-                        $("#Area").val(this.innerText);
+                        $("#AreaName").val(this.innerText);
                         self.Search();
                     });
+
+                    if (self.OnEnglish)
+                        $(".ukr-description").addClass("display-none-custom");
+                    else
+                        $(".eng-description").addClass("display-none-custom");
                 }
             }
         });
     }
 });
+var DeleteMarkView = Class.extend({
+    
+    InitializeControls: function () {
+        var self = this;
+        self.SubscribeEvents();
+    },
+    SubscribeEvents: function () {
+        var self = this;
+        $('#deleteMarkCancelButton').on('click', function () {
+            self.Close();
+        });
+        $('#deleteMarkConfirmButton').on('click', function () {
+            self.Save();
+        });
+    },
+    Save: function () {
+        var self = this;
+        $.ajax({
+            type: 'POST',
+            url: "/Mark/DeleteConfirm?id=" + $("#Id").val(),
+            contentType: 'application/json; charset=utf-8',
+            success: function (result) {
+                ResultPopUp(result.success, result.text, result.url, result.id);
+
+                self.Close();
+            }
+        });
+    },
+    Close: function () {
+        $("#deleteMarkPlaceholder").empty();
+    },
+});
+
+
+var RevisionImageView = Class.extend({
+    InitializeControls: function () {
+        var self = this;
+
+
+        self.SubscribeEvents();
+    },
+    SubscribeEvents: function () {
+        var self = this;
+
+        $(".popup-custom-image-fullScreen").click(function () {
+            $("#imageFullScreenPlaceholder").empty();
+        });
+    }
+})
 var CatalogueUserView = Class.extend({
     IsGlobalAdmin: null,
 
-    TableRowStartConstString: "<div class=\"table-body-row justify-content-center d-flex\"><div class=\"table-body-column-number\">",
-    TableRowFullNameConstString: "</div><div class=\"table-body-column-name\">",
-    TableRowLinkConstString: "<a class=\"table-body-column-name-link\" href=\"/User/Revision?id=",
-    TableRowCuratorStatusConstString: "</div><div class=\"table-body-column-curator-status\">",
-    TableRowEmailConstString: "</div><div class=\"table-body-column-email\">",
+    TableRowStartConstString: "<div class=\"table-body-catalogue-user-row justify-content-center d-flex\"><div class=\"table-body-catalogue-user-column-number\">",
+    TableRowFullNameConstString: "</div><div class=\"table-body-catalogue-user-column-name\">",
+    TableRowLinkConstString: "<a class=\"table-body-catalogue-user-column-name-link\" href=\"/User/Revision?id=",
+    TableRowCuratorStatusConstString: "</div><div class=\"table-body-catalogue-user-column-curator-status\">",
+    TableRowEmailConstString: "</div><div class=\"table-body-catalogue-user-column-email\">",
     TableRowEndConstString: "</div></div>",
     
     InitializeControls: function () {
@@ -724,7 +929,7 @@ var CatalogueUserView = Class.extend({
             data: JSON.stringify(filters),
             contentType: 'application/json; charset=utf-8',
             success: function (data) {
-                $(".table-body").empty();
+                $(".table-body-catalogue-user").empty();
 
                 toAdd = "";
                 $.each(data, function (index, element) {
@@ -749,7 +954,7 @@ var CatalogueUserView = Class.extend({
                     toAdd += self.TableRowEndConstString;
                 });
 
-                $(".table-body").append(toAdd);
+                $(".table-body-catalogue-user").append(toAdd);
             }
         });
     }
@@ -836,40 +1041,6 @@ var RevisionUserView = Class.extend({
         });
     }
 })
-var DeleteMarkView = Class.extend({
-    
-    InitializeControls: function () {
-        var self = this;
-        self.SubscribeEvents();
-    },
-    SubscribeEvents: function () {
-        var self = this;
-        $('#deleteMarkCancelButton').on('click', function () {
-            self.Close();
-        });
-        $('#deleteMarkConfirmButton').on('click', function () {
-            self.Save();
-        });
-    },
-    Save: function () {
-        var self = this;
-        $.ajax({
-            type: 'POST',
-            url: "/Mark/DeleteConfirm?id=" + $("#Id").val(),
-            contentType: 'application/json; charset=utf-8',
-            success: function (result) {
-                ResultPopUp(result.success, result.text, result.url, result.id);
-
-                self.Close();
-            }
-        });
-    },
-    Close: function () {
-        $("#deleteMarkPlaceholder").empty();
-    },
-});
-
-
 var AddCuratorImageView = Class.extend({
     Image: null,
     ImageInput: null,
@@ -914,3 +1085,710 @@ var AddCuratorImageView = Class.extend({
         $("#addImagePlaceholder").empty();
     },
 });
+var ClusterAddView = Class.extend({
+    ToDelete: null,
+    IsNew: null,
+    //Images: null,
+    Areas: null,
+    AreaName: null,
+    Lat: null,
+    Lng: null,
+    Zoom: null,
+    AreaId: null,
+    //IsApproximate: null,
+
+    Map: null,
+    InfoWindow: null,
+    LastLat: null,
+    LastLng: null,
+    AreaIds: null,
+    AreaNames: null,
+    SearchSelectDropdown: null,
+    IsInitializate: null,
+    
+    OldDataInput: null,
+    SearchAreasViewModel: null,
+
+    InitializeControls: function () {
+        var self = this;
+        const myLatlng = { lat: parseFloat(self.Lat), lng: parseFloat(self.Lng) };
+
+        this.InfoWindow = new google.maps.InfoWindow({
+            content: "�����, ��� �������� ����������",
+            position: myLatlng,
+        });
+
+        self.IsInitializate = true;
+        //self.InfoWindow.open(self.Map);
+
+        if (!self.IsNew) {
+            self.SetMark();
+        }
+
+        self.SearchSelectDropdown = new SearchSelect('#dropdown-input', {
+            data: [],
+            filter: SearchSelect.FILTER_CONTAINS,
+            sort: undefined,
+            inputClass: 'form-control-Select mobile-field',
+            maxOpenEntries: 9,
+            searchPosition: 'top',
+            onInputClickCallback: null,
+            onInputKeyDownCallback: function (ev) { self.GetAreas() },
+        });
+
+        self.InitializeAreas(self.Areas);
+
+        if (self.AreaName !== '') {
+            var selected = $($(".searchSelect--Result")[0]);
+            selected.removeClass("searchSelect--Placeholder");
+            selected.html(self.AreaName);
+
+            $.each($(".searchSelect--Option"), function (index, element) {
+                if ($(element).text() === self.AreaName) {
+                    $(element).addClass("searchSelect--Option--selected")
+                }
+            });
+
+            $("#dropdown-input").val(self.AreaName);
+            
+        }
+
+        self.SubscribeEvents();
+
+        if (self.ToDelete) {
+            self.DeleteCluster();
+        }
+    },
+    SubscribeEvents: function () {
+        var self = this;
+
+        $("#setCoordinates").click(function () {
+            $("#Lng").val(self.LastLng);
+            $("#Lat").val(self.LastLat);
+        });
+
+        $('#saveCluster').on('click', function () {
+            self.Save();
+        });
+
+        $('#dropdown-input').addClass("display-8-custom");
+        
+        self.Map.addListener("click", (mapsMouseEvent) => {
+            self.InfoWindow.close();
+
+            self.InfoWindow = new google.maps.InfoWindow({
+                position: mapsMouseEvent.latLng,
+            });
+            var latLng = mapsMouseEvent.latLng.toJSON();
+            self.LastLat = latLng.lat.toFixed(9).toString();
+            self.LastLng = latLng.lng.toFixed(9).toString();
+            self.InfoWindow.setContent(
+                "&#8645;: " + self.LastLat + ",   &#8644;: " + self.LastLng
+            );
+            self.InfoWindow.open(self.Map);
+        });
+    },
+    InitializeAreas: function (data)
+    {
+        var self = this;
+        self.AreaNames = [];
+        self.AreaIds = [];
+
+        $.each(data, function (index, element) {
+            self.AreaNames.push(element.name);
+            self.AreaIds.push(element.id);
+        });
+
+        self.SearchSelectDropdown.setData(self.AreaNames);
+    },
+    SetMark: function () {
+        var self = this;
+
+        let cluster = new google.maps.Marker({
+            position: {
+                lat: parseFloat(self.Lat),
+                lng: parseFloat(self.Lng)
+            },
+            map: self.Map,
+            title: self.AreaName,
+            icon: {
+                url: "../images/clusterIcon.png",
+                scaledSize: new google.maps.Size(24, 24),
+                origin: new google.maps.Point(0, 0),
+                anchor: new google.maps.Point(12, 12)
+            }
+        });
+    },
+    InitMap: function () {
+        var self = this;
+
+        self.Map = new google.maps.Map(document.getElementById("mapClusterAdd"), {
+            center: {
+                lat: parseFloat(self.Lat),
+                lng: parseFloat(self.Lng)
+            },
+            zoom: parseFloat(self.Zoom),
+            options: {
+                gestureHandling: 'greedy'
+            },
+            disableDefaultUI: true
+        });
+    },
+    Save: function () {
+        var self = this;
+
+        var areaId = self.AreaIds[self.AreaNames.indexOf($("#dropdown-input").val())];
+        areaId = areaId === "" ? null : areaId;
+
+        var saveClusterViewModel = {
+            Id: $("#Id").val() === "" ? null : $("#Id").val(),
+            Lng: $("#Lng").val(),
+            Lat: $("#Lat").val(),
+            AreaId: areaId,
+            Name: $("#Name").val(),
+            Description: $("#Description").val(),
+        };
+
+        debugger;
+        $.ajax({
+            type: 'POST',
+            url: "/Cluster/Save",
+            data: JSON.stringify(saveClusterViewModel),
+            contentType: 'application/json; charset=utf-8',
+            success: function (result) {
+                ResultPopUp(result.success, result.text, result.url, result.id);
+            }
+        });
+        
+    },
+    GetAreas: function () {
+        var self = this;
+
+        if (self.IsInitializate) {
+            self.IsInitializate = false;
+            return;
+        }
+
+        self.SearchAreasViewModel = { Text: $(".form-control-Select-Bar").val() };
+
+        self.OldDataInput = Date.now();
+
+
+        if (self.SearchAreasViewModel.Text.length < 3)
+            return;
+        else {
+            setTimeout(function () {
+                var newDataInput = Date.now();
+                if (newDataInput - self.OldDataInput < 2000)
+                    return;
+                else {
+                    $.ajax({
+                        type: 'POST',
+                        url: "/Mark/GetAreas",
+                        data: JSON.stringify(self.SearchAreasViewModel),
+                        contentType: "application/json; charset=utf-8",
+                        async: false,
+                        success: function (data) {
+                            self.InitializeAreas(data);
+                        }
+                    });
+                }
+            }, 2000);
+        }
+    },
+    DeleteCluster: function () {
+        $.ajax({
+            type: 'POST',
+            url: "/Cluster/DeleteCluster",
+            contentType: 'application/json; charset=utf-8',
+            success: function (src) {
+                $('#deleteClusterPlaceholder').html(src);
+            }
+        });
+    }
+});
+
+var RevisionClusterView = Class.extend({
+    Lat: null,
+    Lng: null,
+    Marks: null,
+
+    Map: null,
+    OnEnglish: false,
+
+    TableClusterMarksRowStartConstString: "<div class=\"table-body-revision-cluster-marks-row justify-content-center d-flex\"><div class=\"table-body-revision-cluster-marks-column-number flex-container-center-custom\">",
+    TableClusterMarksRowNameConstString: "</div><div class=\"table-body-revision-cluster-marks-column-name flex-container-center-custom\"><a href=\"/Mark/Revision?id=",
+    TableClusterMarksRowDescriptionConstString: "</a></div><div class=\"table-body-revision-cluster-marks-column-description flex-container-center-custom ukr-description\">",
+    TableClusterMarksRowDescriptionEngConstString: "</div><div class=\"table-body-revision-cluster-marks-column-description flex-container-center-custom eng-description\">",
+    TableClusterMarksRowLinkConstString: "</div><div class=\"table-body-revision-cluster-marks-column-photo flex-container-center-custom\"><a href=\"",
+    TableClusterMarksRowPhotoConstString: "\"><img class=\"table-body-revision-cluster-marks-column-photo-item\" src=\"",
+    TableClusterMarksRowEndConstString: "\"></a></div></div>",
+    InitializeControls: function () {
+        var self = this;
+
+        self.InitTable();
+
+        self.SubscribeEvents();
+    },
+    SubscribeEvents: function () {
+        var self = this;
+
+        $('#flagGB').on('click', function () {
+            self.OnEnglish = true;
+            $('#flagUA').removeClass("box-shadow-grey-custom");
+            $("#flagGB").addClass("box-shadow-grey-custom");
+
+
+            $(".ukr-description").addClass("display-none-custom");
+            $(".eng-description").removeClass("display-none-custom");
+
+        });
+
+        $('#flagUA').on('click', function () {
+            self.OnEnglish = false;
+            $('#flagGB').removeClass("box-shadow-grey-custom");
+            $("#flagUA").addClass("box-shadow-grey-custom");
+
+            $(".eng-description").addClass("display-none-custom");
+            $(".ukr-description").removeClass("display-none-custom");
+        });
+    },
+    InitMap: function () {
+        var self = this;
+
+        self.Map = new google.maps.Map(document.getElementById("mapClusterRevision"), {
+            center: {
+                lat: parseFloat(self.Lat),
+                lng: parseFloat(self.Lng)
+            },
+            zoom: 8,
+            options: {
+                gestureHandling: 'greedy'
+            },
+            disableDefaultUI: true
+        });
+
+        self.SetMark();
+    },
+    SetMark: function () {
+        var self = this;
+
+        let cluster = new google.maps.Marker({
+            position: {
+                lat: parseFloat(self.Lat),
+                lng: parseFloat(self.Lng)
+            },
+            map: self.Map,
+            title: self.AreaName,
+            icon: {
+                url: "../images/clusterIcon.png",
+                scaledSize: new google.maps.Size(24, 24),
+                origin: new google.maps.Point(0, 0),
+                anchor: new google.maps.Point(12, 12)
+            }
+        });
+    },
+    InitTable: function () {
+        var self = this;
+
+        if (self.Marks.length === 0) {
+            $("#revisionClusterTable").addClass("display-none-custom");
+            return;
+        }
+        var toAdd = "";
+
+        $.each(self.Marks, function (index, element) {
+
+            toAdd += self.TableClusterMarksRowStartConstString + (index + 1);
+            toAdd += self.TableClusterMarksRowNameConstString + element.id + "\">" + element.name;
+            toAdd += self.TableClusterMarksRowDescriptionConstString + element.description;
+            toAdd += self.TableClusterMarksRowDescriptionEngConstString + element.descriptionEng;
+
+            toAdd += self.TableClusterMarksRowLinkConstString + element.resourceUrl;
+            toAdd += self.TableClusterMarksRowPhotoConstString;
+            if (element.image !== null)
+                toAdd += element.image;
+            toAdd += self.TableClusterMarksRowEndConstString;
+        });
+        $(".table-body-revision-cluster-marks").append(toAdd);
+        
+        if (self.OnEnglish)
+            $(".ukr-description").addClass("display-none-custom");
+        else
+            $(".eng-description").addClass("display-none-custom");
+    }
+})
+var CatalogueClusterView = Class.extend({
+    TableClusterRowStartConstString: "<div class=\"table-body-catalogue-cluster-row justify-content-center d-flex\"><div class=\"table-body-catalogue-cluster-column-number\">",
+    TableClusterRowNameConstString: "</div><div class=\"table-body-catalogue-cluster-column-name\"><a href=\"/Cluster/Revision?id=",
+    TableClusterRowDescriptionConstString: "</a></div><div class=\"table-body-catalogue-cluster-column-description\">",
+    TableClusterRowMarksCountConstString: "</div><div class=\"table-body-catalogue-cluster-column-markCount\">",
+    TableClusterRowAreaConstString: "</div><div class=\"table-body-catalogue-cluster-column-area\">",
+    TableClusterRowAreaButtonConstString: "<button class=\"button-catalogue-cluster-column-area\" value=\"",
+    TableClusterRowEndConstString: "</div></div>",
+    InitializeControls: function () {
+        var self = this;
+
+        self.SubscribeEvents();
+    },
+    SubscribeEvents: function () {
+        var self = this;
+
+        $("#search").click(function () {
+            self.Search();
+        });
+
+        $("#clearFilters").click(function () {
+            $("#KeyWord").val('');
+            $("#AreaName").val('');
+            $("#ClusterName").val('');
+            $("#ClusterDescription").val('');
+        });
+    },
+    Search: function () {
+        $(".table-body-catalogue-cluster").empty();
+
+        var self = this;
+
+        var filters = {
+            AreaName: $("#AreaName").val(),
+            ClusterName: $("#ClusterName").val(),
+            ClusterDescription: $("#ClusterDescription").val(),
+            KeyWord: $("#KeyWord").val(),
+            MinCountOfMarks: $("#MinCountOfMarks").val() === '' ? 0 : parseInt($("#MinCountOfMarks").val())
+        };
+
+        $.ajax({
+            type: 'POST',
+            url: "/Cluster/GetClusters",
+            data: JSON.stringify(filters),
+            contentType: 'application/json; charset=utf-8',
+            success: function (data) {
+
+                var toAdd = "";
+
+                $.each(data, function (index, element) {
+                    toAdd += self.TableClusterRowStartConstString + (index + 1);
+                    toAdd += self.TableClusterRowNameConstString + element.id + "\">" + element.name;
+                    toAdd += self.TableClusterRowDescriptionConstString + element.description;
+                    toAdd += self.TableClusterRowMarksCountConstString + element.markCount;
+
+
+                    if (element.area.id !== null) {
+                        toAdd += self.TableClusterRowAreaConstString + self.TableClusterRowAreaButtonConstString;
+                        toAdd += element.area.id + "\">" + element.area.name + "</button>";
+                    }
+                    else {
+                        toAdd += self.TableClusterRowAreaConstString;
+                    }
+                    toAdd += self.TableClusterRowEndConstString;
+                });
+
+                $(".table-body-catalogue-cluster").append(toAdd);
+
+                $(".button-catalogue-cluster-column-area").click(function () {
+                    $("#KeyWord").val("");
+                    $("#AreaName").val(this.innerText);
+                    $("#ClusterName").val('');
+                    $("#ClusterDescription").val('');
+                    self.Search();
+                });
+            }
+        });
+    }
+});
+var DeleteClusterView = Class.extend({
+    
+    InitializeControls: function () {
+        var self = this;
+        self.SubscribeEvents();
+    },
+    SubscribeEvents: function () {
+        var self = this;
+        $('#deleteClusterCancelButton').on('click', function () {
+            self.Close();
+        });
+        $('#deleteClusterConfirmButton').on('click', function () {
+            self.Save();
+        });
+    },
+    Save: function () {
+        var self = this;
+        $.ajax({
+            type: 'POST',
+            url: "/Cluster/DeleteConfirm?id=" + $("#Id").val() + "&withMarks=" + $("#IncludeMarks").is(":checked"),
+            contentType: 'application/json; charset=utf-8',
+            success: function (result) {
+                ResultPopUp(result.success, result.text, result.url, result.id);
+
+                self.Close();
+            }
+        });
+    },
+    Close: function () {
+        $("#deleteClusterPlaceholder").empty();
+    }
+});
+
+
+var RevisionTextView = Class.extend({
+    InitializeControls: function () {
+        var self = this;
+
+        self.SubscribeEvents();
+    },
+    SubscribeEvents: function () {
+        var self = this;
+    }
+})
+var CatalogueTextView = Class.extend({
+    Curators: null,
+    SearchSelectDropdown: null,
+
+    TableTextStartConstString: "<div class=\"table-body-catalogue-text-row justify-content-center d-flex\"><div class=\"table-body-catalogue-text-column-number\">",
+    TableTextNameConstString: "</div><div class=\"table-body-catalogue-text-column-name\"><a href=\"/Text/Revision?id=",
+    TableTextSubjectConstString: "</a></div><div class=\"table-body-catalogue-text-column-subject\">",
+    TableTextCuratorConstString: "</div><div class=\"table-body-catalogue-text-column-curator\"><a href=\"/Curator/Revision?id=",
+    TableTextEndConstString: "</a></div></div>",
+
+    InitializeControls: function () {
+        var self = this;
+
+        self.SearchSelectDropdown = new SearchSelect('#dropdown-input', {
+            data: [],
+            filter: SearchSelect.FILTER_CONTAINS,
+            sort: undefined,
+            inputClass: 'form-control-Select mobile-field',
+            maxOpenEntries: 9,
+            searchPosition: 'top',
+            onInputClickCallback: null,
+            onInputKeyDownCallback: null,
+        });
+
+        self.InitializeCurators(self.Curators);
+
+        self.SubscribeEvents();
+    },
+    SubscribeEvents: function () {
+        var self = this;
+
+        $('#search').on('click', function () {
+            self.Search();
+        });
+
+        $('#dropdown-input').addClass("display-8-custom");
+
+        $("#clearFilters").click(function () {
+            //$("#KeyWord").val('');
+            $("#dropdown-input").val('');
+            $("#TextName").val('');
+            $("#TextSubject").val('');
+        });
+        
+    },
+    InitializeCurators: function (data) {
+        var self = this;
+        var curatorNames = [];
+
+        $.each(data, function (index, element) {
+            curatorNames.push(element);
+        });
+
+        self.SearchSelectDropdown.setData(curatorNames);
+    },
+    Search: function () {
+        $(".table-body-catalogue-text").empty();
+
+        var self = this;
+
+        var filters = {
+            CuratorName: $("#dropdown-input").val(),
+            TextName: $("#TextName").val(),
+            TextSubject: $("#TextSubject").val()
+            //KeyWord: $("#KeyWord").val(),
+        };
+
+        $.ajax({
+            type: 'POST',
+            url: "/Text/GetTexts",
+            data: JSON.stringify(filters),
+            contentType: 'application/json; charset=utf-8',
+            success: function (data) {
+
+                var toAdd = "";
+
+                $.each(data, function (index, element) {
+                    toAdd += self.TableTextStartConstString + (index + 1);
+                    toAdd += self.TableTextNameConstString + element.id + "\">" + element.name;
+                    toAdd += self.TableTextSubjectConstString + element.subject;
+                    toAdd += self.TableTextCuratorConstString + element.curator.id + "\">" + element.curator.name;
+                    toAdd += self.TableTextEndConstString;
+                });
+
+                $(".table-body-catalogue-text").append(toAdd);
+            }
+        });
+    }
+})
+var AddTextView = Class.extend({
+    IsNew: null,
+    CuratorName: null,
+    CuratorId: null,
+
+    Curators: null,
+    CuratorIds: null,
+    CuratorNames: null,
+    SearchSelectDropdownCurators: null,
+
+    InitializeControls: function () {
+        var self = this;
+
+        self.SearchSelectDropdownCurators = new SearchSelect('#dropdown-input-for-curator', {
+            data: [],
+            filter: SearchSelect.FILTER_CONTAINS,
+            sort: undefined,
+            inputClass: 'form-control-Select mobile-field',
+            maxOpenEntries: 9,
+            searchPosition: 'top',
+            onInputClickCallback: null,
+            onInputKeyDownCallback: null,
+        });
+
+        self.InitializeCurators(self.Curators);
+
+       
+
+        if (self.CuratorName !== '') {
+            var selected = $($("#Curator .searchSelect--Result")[0]);
+            selected.removeClass("#Curator searchSelect--Placeholder");
+            selected.html(self.CuratorName);
+
+            $.each($("#Curator .searchSelect--Option"), function (index, element) {
+                if ($(element).text() === self.CuratorName) {
+                    $(element).addClass("#Curator searchSelect--Option--selected")
+                }
+            });
+
+            $("#dropdown-input-for-curator").val(self.CuratorName);
+        }
+
+        self.SubscribeEvents();
+
+        if (self.ToDelete) {
+            self.DeleteText();
+        }
+    },
+    SubscribeEvents: function () {
+        var self = this;
+
+        $('#saveText').on('click', function () {
+            self.Save();
+        });
+
+        $('#dropdown-input-for-curator').addClass("display-8-custom");
+    },
+
+    InitializeCurators: function (data) {
+        var self = this;
+        self.CuratorNames = [];
+        self.CuratorIds = [];
+
+        $.each(data, function (index, element) {
+            self.CuratorNames.push(element.name);
+            self.CuratorIds.push(element.id);
+        });
+
+        self.SearchSelectDropdownCurators.setData(self.CuratorNames);
+    },
+
+    Save: function () {
+        var self = this;
+
+        debugger;
+        var curatorId = self.CuratorIds[self.CuratorNames.indexOf($("#dropdown-input-for-curator").val())];
+        curatorId = curatorId === "" ? null : curatorId;
+
+        var saveTextViewModel = {
+            Id: $("#Id").val() === "" ? null : $("#Id").val(),
+            CuratorId: curatorId,
+            Name: $("#Name").val(),
+            Subject: $("#Subject").val(),
+            Content: "not complete"
+        };
+
+        $.ajax({
+            type: 'POST',
+            url: "/Text/SaveText",
+            data: JSON.stringify(saveTextViewModel),
+            contentType: 'application/json; charset=utf-8',
+            success: function (result) {
+                ResultPopUp(result.success, result.text, result.url, result.id);
+            }
+        });
+
+    },
+    
+    DeleteText: function () {
+        $.ajax({
+            type: 'POST',
+            url: "/Text/DeleteText",
+            contentType: 'application/json; charset=utf-8',
+            success: function (src) {
+                $('#deleteTextPlaceholder').html(src);
+            }
+        });
+    }
+})
+var RevisionCuratorView = Class.extend({
+    Texts: null,
+
+    TableCuratorTextsRowStartConstString: "<div class=\"table-body-curator-texts-row justify-content-center d-flex\"><div class=\"table-body-curator-texts-column-number flex-container-center-custom\">",
+    TableCuratorTextsRowNameConstString: "</div><div class=\"table-body-curator-texts-column-name flex-container-center-custom\"><a href=\"/Text/Revision?id=",
+    TableCuratorTextsRowSubjectConstString: "</a></div><div class=\"table-body-curator-texts-column-subject flex-container-center-custom\">",
+    TableCuratorTextsRowEndConstString: "</div></div>",
+
+    InitializeControls: function () {
+        var self = this;
+
+        self.InitTable();
+
+        self.SubscribeEvents();
+    },
+    SubscribeEvents: function () {
+        var self = this;
+    },
+    InitTable: function () {
+        var self = this;
+
+        if (self.Texts.length === 0) {
+            $("#revisionCuratorTable").addClass("display-none-custom");
+            return;
+        }
+        var toAdd = "";
+
+        $.each(self.Texts, function (index, element) {
+
+            toAdd += self.TableCuratorTextsRowStartConstString + (index + 1);
+            toAdd += self.TableCuratorTextsRowNameConstString + element.id + "\">" + element.name;
+            toAdd += self.TableCuratorTextsRowSubjectConstString + element.subject;
+            
+            toAdd += self.TableCuratorTextsRowEndConstString;
+        });
+
+        $(".table-body-curator-texts").append(toAdd);
+    }
+})
+var CatalogueCuratorView = Class.extend({
+    InitializeControls: function () {
+        var self = this;
+
+        self.SubscribeEvents();
+    },
+    SubscribeEvents: function () {
+        var self = this;
+
+        $(".curator-box").click(function () {
+            window.location.href = window.location.origin + "/Curator/Revision?id=" + $(this).attr("value");
+        });
+    }
+})

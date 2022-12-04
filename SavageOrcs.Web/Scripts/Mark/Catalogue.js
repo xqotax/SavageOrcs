@@ -5,17 +5,20 @@
     CountConst: 4,
     WereDataInDetailedTable: null,
     WereDataInShortTable: null,
+    OnEnglish: false,
     
     TableShortRowStartConstString: "<div class=\"table-body-short-row justify-content-center d-flex\"><div class=\"table-body-short-column-number\">",
     TableShortRowNameConstString: "</div><div class=\"table-body-short-column-name\"><a href=\"/Mark/Revision?id=",
-    TableShortRowDescriptionConstString: "</a></div><div class=\"table-body-short-column-description\">",
+    TableShortRowDescriptionConstString: "</a></div><div class=\"table-body-short-column-description ukr-description\">",
+    TableShortRowDescriptionEngConstString: "</div><div class=\"table-body-short-column-description eng-description\">",
     TableShortRowAreaConstString: "</div><div class=\"table-body-short-column-area\">",
     TableShortRowAreaButtonConstString: "<button class=\"button-short-column-area\" value=\"",
     TableShortRowEndConstString: "</div></div>",
 
     TableDetailRowStartConstString: "<div class=\"table-body-detail-row justify-content-center d-flex\"><div class=\"table-body-detail-column-number flex-container-center-custom\">",
     TableDetailRowNameConstString: "</div><div class=\"table-body-detail-column-name flex-container-center-custom\"><a href=\"/Mark/Revision?id=",
-    TableDetailRowDescriptionConstString: "</a></div><div class=\"table-body-detail-column-description flex-container-center-custom\">",
+    TableDetailRowDescriptionConstString: "</a></div><div class=\"table-body-detail-column-description flex-container-center-custom ukr-description\">",
+    TableDetailRowDescriptionEngConstString: "</div><div class=\"table-body-detail-column-description flex-container-center-custom eng-description\">",
     TableDetailRowAreaConstString: "</div><div class=\"table-body-detail-column-area flex-container-center-custom\">",
     TableDetailRowAreaButtonConstString: "<button class=\"button-detail-column-area\" value=\"",
     TableDetailRowLinkConstString: "</div><div class=\"table-body-detail-column-photo flex-container-center-custom\"><a href=\"",
@@ -42,7 +45,9 @@
 
         $("#clearFilters").click(function () {
             $("#KeyWord").val('');
-            $("#Area").val(''); 
+            $("#AreaName").val(''); 
+            $("#MarkName").val(''); 
+            $("#MarkDescription").val('');
         });
 
         $("#showMore").click(function () {
@@ -82,13 +87,36 @@
             //    self.Search();
             //}
         });
+
+        $('#flagGB').on('click', function () {
+            self.OnEnglish = true;
+            $('#flagUA').removeClass("box-shadow-grey-custom");
+            $("#flagGB").addClass("box-shadow-grey-custom");
+
+
+            $(".ukr-description").addClass("display-none-custom");
+            $(".eng-description").removeClass("display-none-custom");
+
+        });
+
+        $('#flagUA').on('click', function () {
+            self.OnEnglish = false;
+            $('#flagGB').removeClass("box-shadow-grey-custom");
+            $("#flagUA").addClass("box-shadow-grey-custom");
+
+            $(".eng-description").addClass("display-none-custom");
+            $(".ukr-description").removeClass("display-none-custom");
+        });
     },
     Search: function () {
         var self = this;
 
         var filters = {
-            Area: $("#Area").val(),
+            AreaName: $("#AreaName").val(),
+            MarkName: $("#MarkName").val(),
+            MarkDescription: $("#MarkDescription").val(),
             KeyWord: $("#KeyWord").val(),
+            NotIncludeCluster: $("#NotIncludeCluster").is(":checked"),
             FullData: self.DetailedView,
             From: self.From,
             Count: self.CountConst
@@ -100,7 +128,6 @@
             data: JSON.stringify(filters),
             contentType: 'application/json; charset=utf-8',
             success: function (data) {
-                debugger;
                 if (self.DetailedView) {
                     self.WereDataInShortTable = false;
                     self.WereDataInDetailedTable = true;
@@ -112,9 +139,13 @@
                         toAdd += self.TableDetailRowStartConstString + (self.From + index + 1);
                         toAdd += self.TableDetailRowNameConstString + element.id + "\">" + element.name;
                         toAdd += self.TableDetailRowDescriptionConstString + element.description;
-                        if (element.area.id !== null) {
-                            toAdd += self.TableDetailRowAreaConstString + self.TableDetailRowAreaButtonConstString;
-                            toAdd += element.area.id + "\">" + element.area.name + "</button>";
+                        toAdd += self.TableDetailRowDescriptionEngConstString + element.descriptionEng;
+                        
+                        if (element.area !== null) {
+                            if (element.area.id !== null) {
+                                toAdd += self.TableDetailRowAreaConstString + self.TableDetailRowAreaButtonConstString;
+                                toAdd += element.area.id + "\">" + element.area.name + "</button>";
+                            }
                         }
                         else {
                             toAdd += self.TableDetailRowAreaConstString;
@@ -131,10 +162,14 @@
 
                     $(".button-detail-column-area").click(function () {
                         $("#KeyWord").val("");
-                        $("#Area").val(this.innerText);
+                        $("#AreaName").val(this.innerText);
                         self.Search();
                     });
 
+                    if (self.OnEnglish)
+                        $(".ukr-description").addClass("display-none-custom");
+                    else
+                        $(".eng-description").addClass("display-none-custom");
                 }
                 else {
                     self.WereDataInShortTable = true;
@@ -148,9 +183,14 @@
                         toAdd += self.TableShortRowStartConstString + (index + 1);
                         toAdd += self.TableShortRowNameConstString + element.id + "\">" + element.name;
                         toAdd += self.TableShortRowDescriptionConstString + element.description;
-                        if (element.area.id !== null) {
-                            toAdd += self.TableShortRowAreaConstString + self.TableShortRowAreaButtonConstString;
-                            toAdd += element.area.id + "\">" + element.area.name + "</button>";
+                        toAdd += self.TableShortRowDescriptionEngConstString + element.descriptionEng;
+                        
+
+                        if (element.area !== null) {
+                            if (element.area.id !== null) {
+                                toAdd += self.TableShortRowAreaConstString + self.TableShortRowAreaButtonConstString;
+                                toAdd += element.area.id + "\">" + element.area.name + "</button>";
+                            }
                         }
                         else {
                             toAdd += self.TableShortRowAreaConstString;
@@ -162,9 +202,14 @@
 
                     $(".button-short-column-area").click(function () {
                         $("#KeyWord").val("");
-                        $("#Area").val(this.innerText);
+                        $("#AreaName").val(this.innerText);
                         self.Search();
                     });
+
+                    if (self.OnEnglish)
+                        $(".ukr-description").addClass("display-none-custom");
+                    else
+                        $(".eng-description").addClass("display-none-custom");
                 }
             }
         });

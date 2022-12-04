@@ -15,8 +15,16 @@
         }
       },
       "SavageOrcs.DataTransferObjects/1.0.0": {
+        "dependencies": {
+          "SavageOrcs.Enums": "1.0.0"
+        },
         "runtime": {
           "SavageOrcs.DataTransferObjects.dll": {}
+        }
+      },
+      "SavageOrcs.Enums/1.0.0": {
+        "runtime": {
+          "SavageOrcs.Enums.dll": {}
         }
       }
     }
@@ -28,6 +36,11 @@
       "sha512": ""
     },
     "SavageOrcs.DataTransferObjects/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "SavageOrcs.Enums/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

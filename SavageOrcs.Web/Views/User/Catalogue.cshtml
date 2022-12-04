@@ -1,6 +1,6 @@
 ﻿
 
-<link itemprop="url" rel="stylesheet" href="~/css/user/table.css" asp-append-version="true" />
+<link itemprop="url" rel="stylesheet" href="~/css/user/userCatalogue.css" asp-append-version="true" />
 <div class="row">
     <div class="col-md-3">
         @Html.TextBox("Name", "",new { @class = "text-box-custom form-control display-8-custom", @placeholder = "Ім'я"})
@@ -17,50 +17,22 @@
     </div>
 </div>
 <div class="row pt-5">
-    <div class="col-md-12 text-white-custom" id="table">
-        <div class="d-flex text-white-custom display-7-custom table-header justify-content-center pb-2">
-            <div class="table-header-number">
+    <div class="col-md-12 text-white-custom" id="catalogueUserTable">
+        <div class="d-flex text-white-custom display-7-custom table-header-catalogue-user justify-content-center pb-2">
+            <div class="table-header-catalogue-user-number">
                 №
             </div>
-            <div class="table-header-name">
+            <div class="table-header-catalogue-user-name">
                 Ім'я та прізвище
             </div>
-            <div class="table-header-curator-status">
+            <div class="table-header-catalogue-user-curator-status">
                 Кураторство
             </div>
-            <div class="table-header-email">
+            <div class="table-header-catalogue-user-email">
                 Пошта
             </div>
         </div>
-        <div class="table-body display-8-custom text-white-custom">
-            @*<div class="table-body-short-row justify-content-center d-flex">
-            <div class="table-body-short-column-number">
-            1
-            </div>
-            <div class="table-body-short-column-name">
-            <a href="/Mark/Revision/">Їхали солдати</a>
-            </div>
-            <div class="table-body-short-column-description">
-            Щось дуже велике мало бути тут але мені впадло придумувати що самеЩось дуже велике мало бути тут але мені впадло придумувати що самеЩось дуже велике мало бути тут але мені впадло придумувати що саме
-            </div>
-            <div class="table-body-short-column-area">
-            Київ, Київська область
-            </div>
-            </div>
-            <div class="table-body-short-row justify-content-center d-flex">
-            <div class="table-body-short-column-number">
-            2
-            </div>
-            <div class="table-body-short-column-name">
-            Уже не їхали
-            </div>
-            <div class="table-body-short-column-description">
-            Бо подохли
-            </div>
-            <div class="table-body-short-column-area">
-            Київ, Київська область
-            </div>
-            </div>*@
+        <div class="table-body-catalogue-user display-8-custom text-white-custom">
         </div>
     </div>
 </div>

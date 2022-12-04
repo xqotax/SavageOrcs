@@ -1,0 +1,15 @@
+﻿.table-header-curator-texts-number,
+.table-body-curator-texts-column-number {
+    width: 10%;
+}
+
+.table-header-curator-texts-name,
+.table-body-curator-texts-column-name {
+    width: 35%;
+}
+
+.table-header-curator-texts-subject,
+.table-body-curator-texts-column-subject {
+    width: 55%;
+}
+

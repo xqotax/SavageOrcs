@@ -517,7 +517,8 @@
       "SavageOrcs.BusinessObjects/1.0.0": {
         "dependencies": {
           "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "6.0.9",
-          "Microsoft.Extensions.Identity.Core": "6.0.9"
+          "Microsoft.Extensions.Identity.Core": "6.0.9",
+          "SavageOrcs.Enums": "1.0.0"
         },
         "runtime": {
           "SavageOrcs.BusinessObjects.dll": {}
@@ -532,6 +533,11 @@
         },
         "runtime": {
           "SavageOrcs.DbContext.dll": {}
+        }
+      },
+      "SavageOrcs.Enums/1.0.0": {
+        "runtime": {
+          "SavageOrcs.Enums.dll": {}
         }
       },
       "SavageOrcs.Repositories.Interfaces/1.0.0": {
@@ -868,6 +874,11 @@
       "sha512": ""
     },
     "SavageOrcs.DbContext/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "SavageOrcs.Enums/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

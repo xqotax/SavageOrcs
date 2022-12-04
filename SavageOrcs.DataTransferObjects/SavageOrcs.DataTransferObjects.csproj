@@ -6,4 +6,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\SavageOrcs.Enums\SavageOrcs.Enums.csproj" />
+  </ItemGroup>
+
 </Project>

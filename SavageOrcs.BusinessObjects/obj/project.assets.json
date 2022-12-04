@@ -361,6 +361,16 @@
         "build": {
           "buildTransitive/netcoreapp3.1/_._": {}
         }
+      },
+      "SavageOrcs.Enums/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "compile": {
+          "bin/placeholder/SavageOrcs.Enums.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/SavageOrcs.Enums.dll": {}
+        }
       }
     }
   },
@@ -811,12 +821,18 @@
         "system.runtime.compilerservices.unsafe.nuspec",
         "useSharedDesignerContext.txt"
       ]
+    },
+    "SavageOrcs.Enums/1.0.0": {
+      "type": "project",
+      "path": "../SavageOrcs.Enums/SavageOrcs.Enums.csproj",
+      "msbuildProject": "../SavageOrcs.Enums/SavageOrcs.Enums.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net6.0": [
       "Microsoft.AspNetCore.Identity.EntityFrameworkCore >= 6.0.9",
-      "Microsoft.Extensions.Identity.Core >= 6.0.9"
+      "Microsoft.Extensions.Identity.Core >= 6.0.9",
+      "SavageOrcs.Enums >= 1.0.0"
     ]
   },
   "packageFolders": {
@@ -845,7 +861,11 @@
       "frameworks": {
         "net6.0": {
           "targetAlias": "net6.0",
-          "projectReferences": {}
+          "projectReferences": {
+            "D:\\Навчання\\Diploma\\SavageOrcs.Enums\\SavageOrcs.Enums.csproj": {
+              "projectPath": "D:\\Навчання\\Diploma\\SavageOrcs.Enums\\SavageOrcs.Enums.csproj"
+            }
+          }
         }
       },
       "warningProperties": {

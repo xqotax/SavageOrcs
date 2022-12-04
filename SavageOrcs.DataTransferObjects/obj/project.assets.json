@@ -1,11 +1,30 @@
 {
   "version": 3,
   "targets": {
-    "net6.0": {}
+    "net6.0": {
+      "SavageOrcs.Enums/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "compile": {
+          "bin/placeholder/SavageOrcs.Enums.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/SavageOrcs.Enums.dll": {}
+        }
+      }
+    }
   },
-  "libraries": {},
+  "libraries": {
+    "SavageOrcs.Enums/1.0.0": {
+      "type": "project",
+      "path": "../SavageOrcs.Enums/SavageOrcs.Enums.csproj",
+      "msbuildProject": "../SavageOrcs.Enums/SavageOrcs.Enums.csproj"
+    }
+  },
   "projectFileDependencyGroups": {
-    "net6.0": []
+    "net6.0": [
+      "SavageOrcs.Enums >= 1.0.0"
+    ]
   },
   "packageFolders": {
     "C:\\Users\\skrip\\.nuget\\packages\\": {}
@@ -33,7 +52,11 @@
       "frameworks": {
         "net6.0": {
           "targetAlias": "net6.0",
-          "projectReferences": {}
+          "projectReferences": {
+            "D:\\Навчання\\Diploma\\SavageOrcs.Enums\\SavageOrcs.Enums.csproj": {
+              "projectPath": "D:\\Навчання\\Diploma\\SavageOrcs.Enums\\SavageOrcs.Enums.csproj"
+            }
+          }
         }
       },
       "warningProperties": {

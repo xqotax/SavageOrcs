@@ -20,5 +20,7 @@ namespace SavageOrcs.BusinessObjects
         public virtual string UserId { get; set; }
 
         public virtual User User { get; set; }
+
+        public virtual ICollection<Text> Texts { get; set; } = new HashSet<Text>();
     }
 }

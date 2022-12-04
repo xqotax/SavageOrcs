@@ -1,0 +1,23 @@
+﻿
+.table-header-catalogue-user-number, .table-body-catalogue-user-column-number {
+    width: 10%;
+}
+
+.table-header-catalogue-user-name, .table-body-catalogue-user-column-name {
+    width: 35%;
+}
+
+.table-header-catalogue-user-curator-status, .table-body-catalogue-user-column-curator-status {
+    width: 20%;
+}
+
+.table-header-catalogue-user-email, .table-body-catalogue-user-column-email {
+    width: 35%;
+}
+
+.table-body-catalogue-user-column-name-link {
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+
