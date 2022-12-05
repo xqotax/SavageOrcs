@@ -13,6 +13,15 @@ namespace SavageOrcs.Services
         public ImageService(IUnitOfWork unitOfWork) : base(unitOfWork)
         {
         }
+        public byte[] GetBytesForText(string data)
+        {
+            return Encoding.UTF8.GetBytes(data);
+        }
+
+        public string GetStringForText(byte[] data)
+        {
+            return Encoding.UTF8.GetString(data);
+        }
 
         public byte[] GetBytes(string data)
         {

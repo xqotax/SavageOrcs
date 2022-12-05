@@ -218,7 +218,6 @@ var MarkAddView = Class.extend({
     Save: function () {
         var self = this;
 
-        debugger;
         var areaId = self.AreaIds[self.AreaNames.indexOf($("#dropdown-input-for-mark").val())];
         var clusterId = self.ClusterIds[self.ClusterNames.indexOf($("#dropdown-input-for-cluster").val())];
         areaId = areaId === "" ? null : areaId;

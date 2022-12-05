@@ -25,6 +25,8 @@
         "Scripts/Text/Revision.js",
         "Scripts/Text/Catalogue.js",
         "Scripts/Text/Add.js",
+        "Scripts/Text/AddImage.js",
+        "Scripts/Text/Delete.js",
 
         "Scripts/Curator/Revision.js",
         "Scripts/Curator/Catalogue.js"

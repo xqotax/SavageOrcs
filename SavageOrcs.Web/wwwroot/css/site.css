@@ -176,3 +176,12 @@ input[type="checkbox"]:checked {
 .curator-box {
     cursor: pointer;
 }
+
+.footer-custom {
+    background-color: rgb(16, 17, 16);
+    color: white;
+}
+
+.footer-custom a, .footer-custom a:hover, .footer-custom a:active, .footer-custom a:visited {
+    color: white;
+}

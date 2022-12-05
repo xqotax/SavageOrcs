@@ -9,11 +9,15 @@ namespace SavageOrcs.DataTransferObjects.Blocks
 {
     public class BlockDto
     {
-        public Guid Id { get; set; }
+        public Guid? Id { get; set; }
+
+        public string? CustomId { get; set; }
 
         public BlockType Type { get; set; }
 
-        public object? Content { get; set; }
+        public string? Content { get; set; }
+
+        public string? AdditionParameter { get; set; }
 
         public int Index { get; set; }
     }

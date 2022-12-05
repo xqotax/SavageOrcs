@@ -121,8 +121,8 @@ namespace SavageOrcs.Web.Controllers
                 {
                     Id = x.Id,
                     Name = x.Name,
-                    Description = x.Description?.Replace('\n', ' '),
-                    DescriptionEng = x.DescriptionEng?.Replace('\n', ' ').Replace('"', '\''),
+                    Description = x.Description?.Replace('"', '\'').Replace('\n', ' '),
+                    DescriptionEng = x.DescriptionEng?.Replace('"', '\'').Replace('\n', ' '),
                     ResourceUrl = x.ResourceUrl,
                     Image = x.Image is null ? null : _imageService.GetImage(x.Image),
                     Area = x.Area is null ? null : new GuidIdAndStringName

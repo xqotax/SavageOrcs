@@ -15,7 +15,7 @@
     width: 25%;
 }
 
-.table-body-catalogue-text-column-name, .table-header-catalogue-text-curator {
+.table-body-catalogue-text-column-name {
     text-decoration: underline;
     cursor: pointer;
 }

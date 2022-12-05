@@ -21,7 +21,6 @@ Class.extend = function (def) {
 };
 
 function ResultPopUp(success, text, url, id) {
-    debugger;
     var mainText = "Успіх";
     if (!success)
         mainText = "Помилка";

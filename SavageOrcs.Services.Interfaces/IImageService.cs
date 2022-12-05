@@ -11,5 +11,10 @@ namespace SavageOrcs.Services.Interfaces
         byte[] GetBytes(string data);
 
         string GetImage(byte[] data);
+
+        byte[] GetBytesForText(string data);
+
+        string GetStringForText(byte[] data);
+        
     }
 }

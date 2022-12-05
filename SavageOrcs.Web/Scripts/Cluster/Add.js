@@ -162,7 +162,6 @@ var ClusterAddView = Class.extend({
             Description: $("#Description").val(),
         };
 
-        debugger;
         $.ajax({
             type: 'POST',
             url: "/Cluster/Save",

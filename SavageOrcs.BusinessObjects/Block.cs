@@ -11,9 +11,13 @@ namespace SavageOrcs.BusinessObjects
     {
         public Guid Id { get; set; }
 
+        public string? CustomId { get; set; }
+
         public BlockType Type { get; set; }
 
         public byte[]? Content { get; set; }
+
+        public string? AdditionalParameter { get; set; }
 
         public int Index { get; set; }
 

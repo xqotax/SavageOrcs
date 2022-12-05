@@ -17,13 +17,15 @@ namespace SavageOrcs.Services
 {
     public class TextService : UnitOfWorkService, ITextService
     {
+        private readonly IImageService _imageService;
         private readonly IRepository<Text> _textRepository;
         private readonly IRepository<Block> _blockRepository;
 
-        public TextService(IUnitOfWork unitOfWork, IRepository<Text> textRepository, IRepository<Block> blockRepository) : base(unitOfWork)
+        public TextService(IUnitOfWork unitOfWork, IRepository<Text> textRepository, IRepository<Block> blockRepository, IImageService imageService) : base(unitOfWork)
         {
             _textRepository = textRepository;
             _blockRepository = blockRepository;
+            _imageService = imageService;
         }
 
         public async Task<TextDto[]> GetTexts()
@@ -42,7 +44,7 @@ namespace SavageOrcs.Services
             return CreateTextDto(text);
         }
 
-        private static TextDto CreateTextDto(Text text)
+        private TextDto CreateTextDto(Text text)
         {
             return new TextDto
             {
@@ -53,9 +55,11 @@ namespace SavageOrcs.Services
                 BlockDtos = text.Blocks.Select(x => new BlockDto
                 {
                     Id = x.Id,
+                    CustomId = x.CustomId,
                     Type = x.Type,
-                    Content = x.Content,
-                    Index = x.Index
+                    Content = x.Content is not null ? _imageService.GetStringForText(x.Content) : null,
+                    Index = x.Index,
+                    AdditionParameter = x.AdditionalParameter
                 }).ToArray()
             };
         }
@@ -67,7 +71,7 @@ namespace SavageOrcs.Services
             if (textSaveDto.Id is not null)
             {
                 text = await _textRepository.GetTAsync(x => x.Id == textSaveDto.Id);
-                text ??= new Text(); ;
+                text ??= new Text();
             }
             else
             {
@@ -80,8 +84,29 @@ namespace SavageOrcs.Services
             text.Name = textSaveDto.Name;
             text.Subject = textSaveDto.Subject;
             text.CuratorId = textSaveDto.CuratorId;
-            
 
+            foreach(var block in text.Blocks)
+            {
+                _blockRepository.Delete(block);
+            }
+
+            if (textSaveDto.BlockDtos is not null) {
+                foreach (var newBlock in textSaveDto.BlockDtos)
+                {
+                    var block = new Block
+                    {
+                        Id = Guid.NewGuid(),
+                        Index = newBlock.Index,
+                        CustomId = newBlock.CustomId,
+                        TextId = text.Id,
+                        Type = newBlock.Type,
+                        AdditionalParameter = newBlock.AdditionParameter,
+                        Content = newBlock.Content is null? null : _imageService.GetBytesForText(newBlock.Content)
+                    };
+
+                    await _blockRepository.AddAsync(block);
+                }
+            }
             await UnitOfWork.SaveChangesAsync();
             return new TextSaveResultDto()
             {
@@ -112,6 +137,25 @@ namespace SavageOrcs.Services
 
             return texts.Select(x => CreateTextDto(x)).ToArray();
 
+        }
+
+        public async Task<bool> DeleteCluster(Guid id)
+        {
+            var text = await _textRepository.GetTAsync(x => x.Id == id);
+
+            if (text == null)
+                return false;
+
+            foreach (var block in text.Blocks)
+            {
+                _blockRepository.Delete(block);
+            }
+
+            _textRepository.Delete(text);
+
+            await UnitOfWork.SaveChangesAsync();
+
+            return true;
         }
     }
 }

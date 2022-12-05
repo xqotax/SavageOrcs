@@ -78,8 +78,13 @@
                     toAdd += self.TableTextStartConstString + (index + 1);
                     toAdd += self.TableTextNameConstString + element.id + "\">" + element.name;
                     toAdd += self.TableTextSubjectConstString + element.subject;
-                    toAdd += self.TableTextCuratorConstString + element.curator.id + "\">" + element.curator.name;
-                    toAdd += self.TableTextEndConstString;
+                    if (element.curator !== null) {
+                        toAdd += self.TableTextCuratorConstString + element.curator.id + "\">" + element.curator.name;
+                        toAdd += self.TableTextEndConstString;
+                    }
+                    else {
+                        toAdd += "</div><div class=\"table-body-catalogue-text-column-curator\"></div></div>";
+                    }
                 });
 
                 $(".table-body-catalogue-text").append(toAdd);

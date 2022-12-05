@@ -48,20 +48,20 @@ namespace SavageOrcs.Services
 
             if (minCountOfMarks is not null)
             {
-                clusters = clusters.Where(x => x.Marks.Count > minCountOfMarks);
+                clusters = clusters.Where(x => x.Marks.Count >= minCountOfMarks);
             }
 
-            if (clusterName  is not null)
+            if (!string.IsNullOrEmpty(clusterName))
             {
                 clusters = clusters.Where(x => x.Name is not null && x.Name.Contains(clusterName));
             }
 
-            if (clusterDescription is not null)
+            if (!string.IsNullOrEmpty(clusterDescription))
             {
                 clusters = clusters.Where(x => x.Description is not null && x.Description.Contains(clusterDescription));
             }
 
-            if (areaName is not null)
+            if (!string.IsNullOrEmpty(areaName))
             {
                 clusters = clusters.Where(x => x.Area is not null && x.Area.Name.Contains(areaName));
             }

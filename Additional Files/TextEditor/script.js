@@ -1,3 +1,6 @@
+
+
+
 class SimpleImage {
   static get toolbox() {
     return {
@@ -127,6 +130,7 @@ const editor = new EditorJS({
 
 function myFunction(){
     editor.save().then((output) => {
+    		debugger;
         console.log('Data: ', output);
     }).catch((error) => {
         console.log('Saving failed: ', error)

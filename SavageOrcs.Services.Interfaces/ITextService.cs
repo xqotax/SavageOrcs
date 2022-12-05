@@ -12,5 +12,6 @@ namespace SavageOrcs.Services.Interfaces
         Task<TextSaveResultDto> SaveText(TextSaveDto textSaveDto);
         Task<TextDto> GetTextById(Guid id);
         Task<TextDto[]> GetTextsByFilters(string? textName, string? textSubject, string? curatorName);
+        Task<bool> DeleteCluster(Guid id);
     }
 }

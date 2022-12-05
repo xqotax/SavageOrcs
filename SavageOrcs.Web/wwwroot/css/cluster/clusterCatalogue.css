@@ -1,5 +1,5 @@
 ﻿.table-header-catalogue-cluster-number, .table-body-catalogue-cluster-column-number {
-    width: 10%;
+    width: 5%;
 }
 
 .table-header-catalogue-cluster-name, .table-body-catalogue-cluster-column-name {
@@ -11,11 +11,11 @@
 }
 
 .table-header-catalogue-cluster-markCount, .table-body-catalogue-cluster-column-markCount {
-    width: 10%;
+    width: 6%;
 }
 
 .table-header-catalogue-cluster-area, .table-body-catalogue-cluster-column-area {
-    width: 25%;
+    width: 34%;
 }
 
 .table-body-catalogue-cluster-column-name {

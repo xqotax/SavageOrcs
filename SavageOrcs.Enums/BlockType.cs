@@ -8,14 +8,12 @@ namespace SavageOrcs.Enums
 {
     public enum BlockType
     {
-        SimpleText,
+        Text,
         Image,
-        Header1,
-        Header2,
-        Header3,
-        Header4,
-        Header5,
-        Header6,
-        Video
+        Header,
+        List,
+        CheckList,
+        Raw
+        //Video
     }
 }

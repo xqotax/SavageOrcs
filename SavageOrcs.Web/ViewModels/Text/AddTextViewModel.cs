@@ -14,7 +14,7 @@ namespace SavageOrcs.Web.ViewModels.Text
 
         public string? Subject { get; set; }
 
-        public string? Content { get; set; }
+        public TextBlockViewModel? Blocks { get; set; }
 
         public bool? IsNew { get; set; }
 

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SavageOrcs.DataTransferObjects.Blocks;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -16,6 +17,6 @@ namespace SavageOrcs.DataTransferObjects.Texts
 
         public string? Subject { get; set; }
 
-        public string? Content { get; set; }
+        public BlockDto[]? BlockDtos { get; set; }
     }
 }

@@ -32,7 +32,6 @@
     },
     Save: function () {
         var self = this;
-        debugger;
         $("#imageContainer").empty();
 
         var element = $(".popup-content-custom .add-image-placeholder-custom").html();

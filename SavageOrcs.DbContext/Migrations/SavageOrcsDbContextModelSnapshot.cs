@@ -225,8 +225,14 @@ namespace SavageOrcs.DbContext.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<string>("AdditionalParameter")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<byte[]>("Content")
                         .HasColumnType("varbinary(max)");
+
+                    b.Property<string>("CustomId")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("Index")
                         .HasColumnType("int");

@@ -203,18 +203,6 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ3VyYXRvclxSZXZpc2lvbi5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Навчання/Diploma/SavageOrcs.Web/Views/Home/Index.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
-build_metadata.AdditionalFiles.CssScope = 
-
-[D:/Навчання/Diploma/SavageOrcs.Web/Views/Home/Privacy.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
-build_metadata.AdditionalFiles.CssScope = 
-
-[D:/Навчання/Diploma/SavageOrcs.Web/Views/Home/Test.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxUZXN0LmNzaHRtbA==
-build_metadata.AdditionalFiles.CssScope = 
-
 [D:/Навчання/Diploma/SavageOrcs.Web/Views/Map/Main.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWFwXE1haW4uY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
@@ -265,6 +253,14 @@ build_metadata.AdditionalFiles.CssScope =
 
 [D:/Навчання/Diploma/SavageOrcs.Web/Views/Text/Revision.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGV4dFxSZXZpc2lvbi5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Навчання/Diploma/SavageOrcs.Web/Views/Text/_AddImage.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGV4dFxfQWRkSW1hZ2UuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Навчання/Diploma/SavageOrcs.Web/Views/Text/_Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGV4dFxfRGVsZXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [D:/Навчання/Diploma/SavageOrcs.Web/Views/User/Catalogue.cshtml]

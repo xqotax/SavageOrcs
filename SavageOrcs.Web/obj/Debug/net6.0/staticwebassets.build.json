@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "mfaCNF4IpEyd4Gi4AdP+LbbRYLwP++rsFLh17Jde0d0=",
+  "Hash": "24AwHV8TKEu83x3cwFoaV4n8Bx4yQWfa1pmC/OoqbhI=",
   "Source": "SavageOrcs.Web",
   "BasePath": "_content/SavageOrcs.Web",
   "Mode": "Default",
@@ -1258,6 +1258,23 @@
       "OriginalItemSpec": "wwwroot\\css\\tables.css"
     },
     {
+      "Identity": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\wwwroot\\css\\text\\textAdd.css",
+      "SourceId": "SavageOrcs.Web",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\wwwroot\\",
+      "BasePath": "_content/SavageOrcs.Web",
+      "RelativePath": "css/text/textAdd.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\text\\textAdd.css"
+    },
+    {
       "Identity": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\wwwroot\\css\\text\\textCatalogue.css",
       "SourceId": "SavageOrcs.Web",
       "SourceType": "Discovered",
@@ -2310,6 +2327,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\LICENSE"
+    },
+    {
+      "Identity": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\wwwroot\\lib\\editor\\editor.js",
+      "SourceId": "SavageOrcs.Web",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\wwwroot\\",
+      "BasePath": "_content/SavageOrcs.Web",
+      "RelativePath": "lib/editor/editor.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\lib\\editor\\editor.js"
     },
     {
       "Identity": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\wwwroot\\lib\\jquery\\dist\\jquery.js",
