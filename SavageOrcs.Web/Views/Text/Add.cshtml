@@ -1,0 +1,111 @@
+﻿@using SavageOrcs.Web.ViewModels.Text
+@model AddTextViewModel
+
+<link itemprop="url" rel="stylesheet" href="~/css/text/textAdd.css" />
+<link itemprop="url" rel="stylesheet" href="~/lib/search-select/search-select.css" />
+<div id="addImageTextPlaceholder"></div>
+<div id="deleteTextPlaceholder"></div>
+<div class="row">
+    <div class="col-md-4">
+        @Html.HiddenFor(m => m.Id)
+        <div class="row pb-2">
+            <div class="col-md-4 d-flex align-items-center">
+                <label class="text-white-custom display-8-custom">
+                    Назва:
+                </label>
+            </div>
+            <div class="col-md-8">
+                @Html.TextBoxFor(m => m.Name, new { @class = "text-box-custom form-control display-8-custom"})
+            </div>
+        </div>
+        <div class="row pb-2">
+            <div class="col-md-4 d-flex align-items-center">
+                <label class="text-white-custom display-8-custom">
+                    Тема:
+                </label>
+            </div>
+            <div class="col-md-8">
+                @Html.TextAreaFor(m => m.Subject, new { @class = "text-box-custom form-control display-8-custom area-for-custom"})
+            </div>
+        </div>
+        <div class="row pb-2">
+            <div class="col-md-4 d-flex align-items-center">
+                <label class="text-white-custom display-8-custom">
+                    Куратор:
+                </label>
+            </div>
+
+            <div class="col-md-8" id="Curator">
+                <input id="dropdown-input-for-curator"
+                       name="dropdown-input-for-curator"
+                       class="Search-Select--Hidden-Input"
+                       placeholder=""
+                       data-search-placeholder="Виберіть куратора"
+                       hidden />
+            </div>
+        </div>
+        <div class="row pb-2">
+            <div class="col-md-12">
+                <div class="row justify-content-end">
+                    <button id="saveText" class="btn btn-dark-custom display-8-custom mt-3">Зберегти</button>
+                </div>
+            </div>
+        </div>
+        <div class="row pb-2">
+            <div class="col-md-5">
+                <div class="row justify-content-end">
+                    <button id="addPhoto" class="btn btn-dark-custom display-8-custom mt-3">Добавити фото</button>
+                </div>
+            </div>
+            <div class="col-md-2">
+                
+            </div>
+            <div class="col-md-5">
+                <div class="row justify-content-end">
+                    <button id="removePhotos" class="btn btn-dark-custom display-8-custom mt-3">Видалити фото</button>
+                </div>
+            </div>
+        </div>
+        <div class="row pb-2">
+            <div class="row" id="imageTextContainer">
+                <div class="row justify-content-md-around">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-1"></div>
+    <div class="col-md-7" style="background-color:white;">
+        <div id="editorjs" name="editor"></div>
+    </div>
+</div>
+
+@section Scripts{
+    <script src="~/lib/search-select/search-select.js"></script>
+    <script src="~/lib/editor/editor.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/editorjs-text-color-plugin@1.12.1/dist/bundle.js"></script>
+
+    <!--<script src="https://cdn.jsdelivr.net/npm/@@editorjs/editorjs@latest"></script>-->
+    <script src="https://cdn.jsdelivr.net/npm/@@editorjs/header@latest"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@@editorjs/list@latest"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@@editorjs/raw"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@@editorjs/checklist@latest"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/@@editorjs/paragraph@latest"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@@editorjs/simple-image@latest"></script>
+    <script>
+        var addTextView = new AddTextView();
+
+        addTextView.IsNew = '@Html.Raw(Model.IsNew)' === '@true';
+        addTextView.ToDelete = '@Html.Raw(Model.ToDelete)' === '@true';
+        addTextView.Blocks = @Json.Serialize(Model.Blocks);
+        addTextView.Curators = @Json.Serialize(Model.Curators);
+        addTextView.CuratorName = '@Html.Raw(Model.CuratorName)';
+        addTextView.CuratorId = '@Html.Raw(Model.CuratorId)';
+
+        $(document).ready(function () {
+            addTextView.InitializeControls();
+        });
+
+    </script>
+}

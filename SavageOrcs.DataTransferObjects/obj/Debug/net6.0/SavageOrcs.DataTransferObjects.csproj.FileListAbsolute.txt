@@ -1,0 +1,15 @@
+D:\Навчання\Diploma\SavageOrcs.DataTransferObjects\bin\Debug\net6.0\SavageOrcs.DataTransferObjects.deps.json
+D:\Навчання\Diploma\SavageOrcs.DataTransferObjects\bin\Debug\net6.0\SavageOrcs.DataTransferObjects.dll
+D:\Навчання\Diploma\SavageOrcs.DataTransferObjects\bin\Debug\net6.0\SavageOrcs.DataTransferObjects.pdb
+D:\Навчання\Diploma\SavageOrcs.DataTransferObjects\obj\Debug\net6.0\SavageOrcs.DataTransferObjects.csproj.AssemblyReference.cache
+D:\Навчання\Diploma\SavageOrcs.DataTransferObjects\obj\Debug\net6.0\SavageOrcs.DataTransferObjects.GeneratedMSBuildEditorConfig.editorconfig
+D:\Навчання\Diploma\SavageOrcs.DataTransferObjects\obj\Debug\net6.0\SavageOrcs.DataTransferObjects.AssemblyInfoInputs.cache
+D:\Навчання\Diploma\SavageOrcs.DataTransferObjects\obj\Debug\net6.0\SavageOrcs.DataTransferObjects.AssemblyInfo.cs
+D:\Навчання\Diploma\SavageOrcs.DataTransferObjects\obj\Debug\net6.0\SavageOrcs.DataTransferObjects.csproj.CoreCompileInputs.cache
+D:\Навчання\Diploma\SavageOrcs.DataTransferObjects\obj\Debug\net6.0\SavageOrcs.DataTransferObjects.dll
+D:\Навчання\Diploma\SavageOrcs.DataTransferObjects\obj\Debug\net6.0\refint\SavageOrcs.DataTransferObjects.dll
+D:\Навчання\Diploma\SavageOrcs.DataTransferObjects\obj\Debug\net6.0\SavageOrcs.DataTransferObjects.pdb
+D:\Навчання\Diploma\SavageOrcs.DataTransferObjects\obj\Debug\net6.0\ref\SavageOrcs.DataTransferObjects.dll
+D:\Навчання\Diploma\SavageOrcs.DataTransferObjects\bin\Debug\net6.0\SavageOrcs.Enums.dll
+D:\Навчання\Diploma\SavageOrcs.DataTransferObjects\bin\Debug\net6.0\SavageOrcs.Enums.pdb
+D:\Навчання\Diploma\SavageOrcs.DataTransferObjects\obj\Debug\net6.0\SavageOrcs.DataTransferObjects.csproj.CopyComplete

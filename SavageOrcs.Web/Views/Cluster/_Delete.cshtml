@@ -1,0 +1,41 @@
+﻿<div id="deleteClusterView" class="popup-custom">
+    <div class="popup-body-custom">
+        <div class="popup-content-custom">
+            <div class="row">
+                <h2>Видалення скупчення</h2>
+            </div>
+            <div class="row pt-3 pb-3">
+                <div class="col">
+                    <label class="display-8-custom">
+                        Ви точно впевнені, що хочете видалити скупчення?
+                    </label>
+                </div>
+            </div>
+            <div class="row pb-3">
+                <div class="col-md-auto">
+                    <label class="display-8-custom">
+                        Видалити скупченням разом з мітками:
+                    </label>
+                </div>
+                <div class="col-md-auto">
+                    @Html.CheckBox("IncludeMarks", true)
+                </div>
+            </div>
+            <div class="row justify-content-end">
+                <div class="col-md-1" style="padding-right: 40px">
+                    <button id="deleteClusterConfirmButton" class="btn btn-dark-custom">Так</button>
+                </div>
+                <div class="col-md-3">
+                    <button id="deleteClusterCancelButton" class="btn btn-dark-custom">Відмінити</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    var deleteClusterView = new DeleteClusterView();
+    $(document).ready(function () {
+        deleteClusterView.InitializeControls();
+    });
+</script>

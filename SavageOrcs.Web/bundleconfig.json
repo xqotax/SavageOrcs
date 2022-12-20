@@ -1,0 +1,39 @@
+﻿[
+    {
+        "outputFileName": "wwwroot/js/site.js",
+      "inputFiles": [
+        "Scripts/Proto/Proto.js",
+
+        "Scripts/Map/Main.js",
+
+        "Scripts/Mark/Add.js",
+        "Scripts/Mark/AddImage.js",
+        "Scripts/Mark/Revision.js",
+        "Scripts/Mark/Catalogue.js",
+        "Scripts/Mark/Delete.js",
+        "Scripts/Mark/RevisionImage.js",
+
+        "Scripts/User/Catalogue.js",
+        "Scripts/User/Revision.js",
+        "Scripts/User/AddCuratorImage.js",
+
+        "Scripts/Cluster/Add.js",
+        "Scripts/Cluster/Revision.js",
+        "Scripts/Cluster/Catalogue.js",
+        "Scripts/Cluster/Delete.js",
+
+        "Scripts/Text/Revision.js",
+        "Scripts/Text/Catalogue.js",
+        "Scripts/Text/Add.js",
+        "Scripts/Text/AddImage.js",
+        "Scripts/Text/Delete.js",
+
+        "Scripts/Curator/Revision.js",
+        "Scripts/Curator/Catalogue.js"
+      ],
+      "minify": {
+        "enabled": true,
+        "renameLocals": false
+      }
+    }
+]

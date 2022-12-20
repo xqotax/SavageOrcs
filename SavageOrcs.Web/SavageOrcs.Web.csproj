@@ -7,8 +7,19 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Remove="bundleconfig.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="bundleconfig.json" />
+    <None Include="wwwroot\images\1.jpg" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="BuildBundlerMinifier" Version="3.2.449" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="6.0.9" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="6.0.9" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Proxies" Version="6.0.9" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="6.0.9" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="6.0.9">
       <PrivateAssets>all</PrivateAssets>
@@ -18,7 +29,17 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\SavageOrcs.BusinessObjects\SavageOrcs.BusinessObjects.csproj" />
     <ProjectReference Include="..\SavageOrcs.DbContext\SavageOrcs.DbContext.csproj" />
+    <ProjectReference Include="..\SavageOrcs.Repositories.Interfaces\SavageOrcs.Repositories.Interfaces.csproj" />
+    <ProjectReference Include="..\SavageOrcs.Repositories\SavageOrcs.Repositories.csproj" />
+    <ProjectReference Include="..\SavageOrcs.Services.Interfaces\SavageOrcs.Services.Interfaces.csproj" />
+    <ProjectReference Include="..\SavageOrcs.Services\SavageOrcs.Services.csproj" />
+    <ProjectReference Include="..\SavageOrcs.UnitOfWork\SavageOrcs.UnitOfWork.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="wwwroot\images\flags\" />
   </ItemGroup>
 
 </Project>

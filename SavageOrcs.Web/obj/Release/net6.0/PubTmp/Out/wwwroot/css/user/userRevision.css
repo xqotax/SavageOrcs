@@ -1,0 +1,14 @@
+﻿
+.table-header-revision-user-number, .table-body-revision-user-number {
+    width: 20%;
+}
+
+.table-header-revision-user-role-name, .table-body-revision-user-role-name {
+    width: 60%;
+}
+
+.table-header-revision-user-role-status, .table-body-revision-user-role-status {
+    width: 20%;
+}
+
+

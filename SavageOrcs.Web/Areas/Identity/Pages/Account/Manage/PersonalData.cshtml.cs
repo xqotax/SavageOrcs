@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
-using SavageOrcs.DbContext;
+using SavageOrcs.BusinessObjects;
 
 namespace SavageOrcs.Web.Areas.Identity.Pages.Account.Manage
 {

@@ -1,0 +1,49 @@
+﻿
+
+<link itemprop="url" rel="stylesheet" href="~/css/user/userCatalogue.css" asp-append-version="true" />
+<div class="row">
+    <div class="col-md-3">
+        @Html.TextBox("Name", "",new { @class = "text-box-custom form-control display-8-custom", @placeholder = "Ім'я"})
+    </div>
+    <div class="col-md-3">
+        @Html.TextBox("Email","", new { @class = "text-box-custom form-control display-8-custom", @placeholder = "Email"})
+    </div>
+   
+    <div class="col-md-auto pr-2">
+        <button class="btn btn-dark-custom display-8-custom" id="search">Пошук</button>
+    </div>
+    <div class="col-md-auto">
+        <button class="btn btn-dark-custom display-8-custom" id="clearFilters">Х</button>
+    </div>
+</div>
+<div class="row pt-5">
+    <div class="col-md-12 text-white-custom" id="catalogueUserTable">
+        <div class="d-flex text-white-custom display-7-custom table-header-catalogue-user justify-content-center pb-2">
+            <div class="table-header-catalogue-user-number">
+                №
+            </div>
+            <div class="table-header-catalogue-user-name">
+                Ім'я та прізвище
+            </div>
+            <div class="table-header-catalogue-user-curator-status">
+                Кураторство
+            </div>
+            <div class="table-header-catalogue-user-email">
+                Пошта
+            </div>
+        </div>
+        <div class="table-body-catalogue-user display-8-custom text-white-custom">
+        </div>
+    </div>
+</div>
+@section Scripts{
+    <script>
+        var catalogueUserView = new CatalogueUserView();
+
+        catalogueUserView.IsGlobalAdmin = '@(this.User.IsInRole("Global admin"))' === '@true';
+        $(document).ready(function () {
+            catalogueUserView.InitializeControls();
+        });
+
+    </script>
+}

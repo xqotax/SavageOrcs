@@ -1,0 +1,89 @@
+﻿@using SavageOrcs.Web.ViewModels.Mark
+@model RevisionMarkViewModel
+
+
+<div id="imageFullScreenPlaceholder"></div>
+<div class="row">
+    @if (this.User.IsInRole("Admin"))
+    {
+        <div class="row mt-1 mb-1 display-8-custom">
+            <div class="col-md-auto pr-2">
+                <a class="btn btn-dark-custom" href="/Mark/Add?id=@Model.Id">Редагувати</a>
+            </div>
+            <div class="col-md-auto pr-2">
+                <a class="btn btn-dark-custom" href="/Mark/Delete?id=@Model.Id">Видалити</a>
+            </div>
+            <div class="col-md-auto pr-2">
+                <a class="btn btn-dark-custom" href="/Mark/Add">Додати ще одну</a>
+            </div>
+        </div>
+        <hr style="border-top: 3px solid #3c6624">
+    }
+    <div class="col-md-6  mt-3">
+        @Html.HiddenFor(m => m.Id)
+        <div class="row mb-4">
+            <div class="col-md-12 text-white-custom display-6">
+                @Model.Name
+            </div>
+        </div>
+        <div class="row mb-2">
+            <div class="col-md-1" >
+                <img class="flag-select-custom" id="flagUA" class="box-shadow-grey-custom" src="~/images/flags/UA.png" />
+            </div>
+            <div class="col-md-1">
+                <img class="flag-select-custom" id="flagGB" src="~/images/flags/GB.png" />
+            </div>
+        </div>
+        <div class="row mb-4">
+            <div class="col-md-12 text-white-custom display-8-custom" id="textUA">
+                @Model.Description
+            </div>
+            <div class="col-md-12 text-white-custom display-8-custom display-none-custom" id="textGB">
+                @Model.DescriptionEng
+            </div>
+        </div>
+        <div class="row mb-4">
+            <div class="col-md-12 text-white-custom display-8-custom">
+                @Model.Area
+            </div>
+        </div>
+        <div class="row mb-4">
+            <div class="col-md-auto text-white-custom display-8-custom">
+                <a class="btn btn-dark-custom" href="@Model.ResourceUrl">Посилання на ресурс</a>
+            </div>
+            @if (Model.ClusterId is not null)
+            {
+                <div class="col-md-auto text-white-custom display-8-custom">
+                    <a class="btn btn-dark-custom" href="/Cluster/Revision?id=@Model.ClusterId">Перейти до скупчення</a>
+                </div>
+            }
+        </div>
+
+        
+    </div>
+    <div class="col-md-6 d-flex justify-content-space-around flex-column">
+        @{
+            if (Model.Images is not null){
+                foreach (var image in Model.Images)
+                {
+                    <div class="row mb-4">
+                        <div class="col-md-12 text-white-custom display-8-custom">
+                            <img class="image-revision-mark-custom" src="@image" />
+                        </div>
+                    </div>
+                }
+            }
+        }
+    </div>
+</div>
+
+@section Scripts{
+    <script>
+        var revisionMarkView = new RevisionMarkView();
+
+        $(document).ready(function () {
+            revisionMarkView.InitializeControls();
+        });
+        
+    </script>
+}

@@ -1,0 +1,121 @@
+﻿#catalogueClusterTable,
+#revisionClusterTable,
+#revisionCuratorTable,
+#catalogueTextTable,
+#revisionUserTable,
+#catalogueUserTable {
+    text-align: center;
+}
+
+.table-body-catalogue-cluster a, a:hover, a:active, a:visited,
+.table-body-revision-cluster-marks a, a:hover, a:active, a:visited,
+.table-body-curator-texts a, a:hover, a:active, a:visited,
+.table-body-catalogue-text a, a:hover, a:active, a:visited,
+.table-body-revision-user,
+.table-body-catalogue-user a, a:hover, a:active, a:visited {
+    color: white;
+}
+
+.table-header-catalogue-cluster,
+.table-header-revision-cluster-marks,
+.table-header-curator-texts,
+.table-header-catalogue-text,
+.table-header-revision-user,
+.table-header-catalogue-user {
+    height: 50px;
+    background-color: rgb(4 107 28);
+}
+
+.table-header-catalogue-cluster-number,
+.table-header-catalogue-cluster-name,
+.table-header-catalogue-cluster-description,
+.table-header-catalogue-cluster-markCount,
+.table-header-catalogue-cluster-area,
+.table-header-revision-cluster-marks-number,
+.table-header-revision-cluster-marks-name,
+.table-header-revision-cluster-marks-description,
+.table-header-revision-cluster-marks-photo,
+.table-header-curator-texts-number,
+.table-header-curator-texts-name,
+.table-header-curator-texts-subject,
+.table-header-catalogue-text-number,
+.table-header-catalogue-text-name,
+.table-header-catalogue-text-subject,
+.table-header-catalogue-text-curator,
+.table-header-revision-user-number,
+.table-header-revision-user-role-name,
+.table-header-revision-user-role-status,
+.table-header-catalogue-user-number,
+.table-header-catalogue-user-name,
+.table-header-catalogue-user-curator-status,
+.table-header-catalogue-user-email {
+    padding-top: 8px;
+    height: 50px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.table-header-catalogue-cluster-number,
+.table-header-catalogue-cluster-name,
+.table-header-catalogue-cluster-description,
+.table-header-catalogue-cluster-markCount,
+.table-body-catalogue-cluster-column-number,
+.table-body-catalogue-cluster-column-name,
+.table-body-catalogue-cluster-column-description,
+.table-body-catalogue-cluster-column-markCount,
+.table-header-revision-cluster-marks-number,
+.table-header-revision-cluster-marks-name,
+.table-header-revision-cluster-marks-description,
+.table-body-revision-cluster-marks-column-number,
+.table-body-revision-cluster-marks-column-name,
+.table-body-revision-cluster-marks-column-description,
+.table-header-curator-texts-number,
+.table-header-curator-texts-name,
+.table-body-curator-texts-column-number,
+.table-body-curator-texts-column-name,
+.table-header-catalogue-text-number,
+.table-header-catalogue-text-name,
+.table-header-catalogue-text-subject,
+.table-body-catalogue-text-column-number,
+.table-body-catalogue-text-column-name,
+.table-body-catalogue-text-column-subject,
+.table-header-revision-user-number,
+.table-header-revision-user-role-name,
+.table-body-revision-user-number,
+.table-body-revision-user-role-name,
+.table-header-catalogue-user-number,
+.table-header-catalogue-user-name,
+.table-header-catalogue-user-curator-status,
+.table-body-catalogue-user-column-number,
+.table-body-catalogue-user-column-name,
+.table-body-catalogue-user-column-curator-status {
+    border-right: 2px solid white;
+}
+
+.table-body-catalogue-cluster-column-number,
+.table-body-catalogue-cluster-column-name,
+.table-body-catalogue-cluster-column-description,
+.table-body-catalogue-cluster-column-markCount,
+.table-body-catalogue-cluster-column-area,
+.table-body-revision-cluster-marks-column-number,
+.table-body-revision-cluster-marks-column-name,
+.table-body-revision-cluster-marks-column-description,
+.table-body-revision-cluster-marks-column-photo,
+.table-body-curator-texts-column-number,
+.table-body-curator-texts-column-name,
+.table-body-curator-texts-column-subject,
+.table-body-catalogue-text-column-number,
+.table-body-catalogue-text-column-name,
+.table-body-catalogue-text-column-subject,
+.table-body-catalogue-text-column-curator,
+.table-body-revision-user-number,
+.table-body-revision-user-role-name,
+.table-body-revision-user-role-status,
+.table-body-catalogue-user-column-number,
+.table-body-catalogue-user-column-name,
+.table-body-catalogue-user-column-curator-status,
+.table-body-catalogue-user-column-email {
+    background-color: rgb(16, 17, 16);
+    border-top: 2px solid white;
+    padding: 5px;
+}
+ 

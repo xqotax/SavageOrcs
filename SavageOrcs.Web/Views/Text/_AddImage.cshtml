@@ -1,0 +1,33 @@
+﻿
+<div id="addImageView" class="popup-custom">
+    <div class="popup-body-custom">
+        <div class="popup-content-custom">
+            <div class="row">
+                <h2>Додавання фотографії</h2>
+            </div>
+            <div class="row mb-2">
+                <div class="col">
+                    <input type="file" id="imageInput" class="btn btn-dark-custom">
+                </div>
+            </div>
+            <div class="row add-image-placeholder-custom mb-2">
+                <img src="" id="imagePlaceholder"  height="200" alt="Image preview" />
+            </div>
+            <div class="row justify-content-end">
+                <div class="col-md-1" style="padding-right: 40px">
+                    <button id="addImageConfirmButton" class="btn btn-dark-custom">ОK</button>
+                </div>
+                <div class="col-md-3">
+                    <button id="addImageCancelButton" class="btn btn-dark-custom">Відмінити</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    var addImageTextView = new AddImageTextView();
+    $(document).ready(function () {
+        addImageTextView.InitializeControls();
+    });
+</script>

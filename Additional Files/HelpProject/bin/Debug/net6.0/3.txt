@@ -1,0 +1,13 @@
+[
+  {
+    "level_1": 2000000000,
+    "level_2": 2010400000,
+    "level_3": null,
+    "level_4": null,
+    "object_category": "Місто",
+    "object_name": "БЕРДЯНСЬК",
+    "object_code": 2010400000,
+    "region": "ЗАПОРІЗЬКА ОБЛАСТЬ",
+    "community": "БЕРДЯНСЬК"
+  }
+]

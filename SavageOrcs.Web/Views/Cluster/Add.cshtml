@@ -1,0 +1,108 @@
+﻿@using SavageOrcs.Web.ViewModels.Cluster
+@model AddClusterViewModel
+
+<link itemprop="url" rel="stylesheet" href="~/lib/search-select/search-select.css" />
+<link itemprop="url" rel="stylesheet" href="~/css/checkBox.css" asp-append-version="true" />
+<div id="deleteClusterPlaceholder"></div>
+<div class="row">
+    <div class="col-md-5">
+        @Html.HiddenFor(m => m.Id)
+        @Html.HiddenFor(m => m.Zoom)
+        <div class="row pb-2">
+            <div class="col-md-4 d-flex align-items-center">
+                <label class="text-white-custom display-8-custom">
+                    Ширина:
+                </label>
+            </div>
+            <div class="col-md-7">
+                @Html.TextBoxFor(m => m.Lng, new { @class = "text-box-custom form-control display-8-custom"})
+            </div>
+        </div>
+        <div class="row pb-2">
+            <div class="col-md-4 d-flex align-items-center">
+                <label class="text-white-custom  display-8-custom">
+                    Висота:
+                </label>
+            </div>
+            <div class="col-md-7">
+                @Html.TextBoxFor(m => m.Lat, new { @class = "text-box-custom form-control display-8-custom"})
+            </div>
+        </div>
+        <div class="row pb-2">
+            <div class="col-md-4 d-flex align-items-center">
+                <label class="text-white-custom display-8-custom">
+                    Назва:
+                </label>
+            </div>
+            <div class="col-md-7">
+                @Html.TextBoxFor(m => m.Name, new { @class = "text-box-custom form-control display-8-custom"})
+            </div>
+        </div>
+        <div class="row pb-2">
+            <div class="col-md-4 d-flex align-items-center">
+                <label class="text-white-custom display-8-custom">
+                    Опис:
+                </label>
+            </div>
+            <div class="col-md-7">
+                @Html.TextAreaFor(m => m.Description, new { @class = "text-box-custom form-control display-8-custom area-for-custom"})
+            </div>
+        </div>
+        <div class="row pb-2">
+            <div class="col-md-4 d-flex align-items-center">
+                <label class="text-white-custom display-8-custom">
+                    Місце:
+                </label>
+            </div>
+
+            <div class="col-md-7">
+                <input id="dropdown-input"
+                       name="dropdown-input"
+                       class="Search-Select--Hidden-Input"
+                       placeholder=""
+                       data-search-placeholder="Знайдіть необхідне місто"
+                       hidden />
+            </div>
+        </div>
+    </div>
+    <div class="col-md-7">
+        <div class="row">
+            <div id="mapClusterAdd">
+            </div>
+        </div>
+        <div class="row justify-content-end">
+            <button id="setCoordinates" class="btn btn-dark-custom display-8-custom mt-3">Задати координати</button>
+        </div>
+        <div class="row justify-content-end">
+            <button id="saveCluster" class="btn btn-dark-custom display-8-custom mt-3">Зберегти</button>
+        </div>
+    </div>
+</div>
+
+
+
+@section Scripts{
+    <script src="~/lib/search-select/search-select.js"></script>
+
+    <script>
+        var clusterAddView = new ClusterAddView();
+        clusterAddView.Lat = '@Html.Raw(Model.Lat)';
+        clusterAddView.Lng = '@Html.Raw(Model.Lng)';
+        clusterAddView.Zoom = '@Html.Raw(Model.Zoom)';
+
+        clusterAddView.IsNew = '@Html.Raw(Model.IsNew)' === '@true';
+        clusterAddView.ToDelete = '@Html.Raw(Model.ToDelete)' === '@true';
+
+        clusterAddView.Areas = @Json.Serialize(Model.Areas);
+        clusterAddView.AreaName = '@Html.Raw(Model.AreaName)';
+        clusterAddView.AreaId = '@Html.Raw(Model.AreaId)';
+
+        $(document).ready(function () {
+            clusterAddView.InitializeControls();
+        });
+        function initMap() {
+            clusterAddView.InitMap();
+        }
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDuw7bPRLxL2yVBd9YArtpb47myhmUePGY&callback=initMap"></script>
+}

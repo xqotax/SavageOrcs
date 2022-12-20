@@ -1,0 +1,66 @@
+﻿@using SavageOrcs.Web.ViewModels.Map
+@model MapCoordinatesViewModel
+
+<div class="row">
+    <div class="col-md-8">
+        <h2 class="text-white-custom">Люті орки</h2>
+        <div class="row">
+            <div class="col-md-12 text-white-custom">
+                Даний ресурс - сховище вандалізму російських окупантів.
+            </div>
+        </div>
+        <div class="row pb-3">
+            <div class="col-md-12 text-white-custom">
+                На карті Ви маєте можливість переглянути фотоматеріали та текст-опис багатьох місць, де загарбники показали свою культуру.
+                Також, якщо у Вас є нові матеріали, після реєстрації Ви зможете їх добавити.
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12 font-weight-bold-custom text-danger">
+                На сайті присутній 18+ контент! Якщо Вам немає 18 років - негайно покиньте ресурс
+            </div>
+        </div>
+        <div class="row pt-3">
+            <div class="col-md-12 font-weight-bold-custom text-white-custom">
+                Смайлик, який плаче - скупчення міток з фотографіями та описом
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12 font-weight-bold-custom text-white-custom">
+                Злий смайлик - одинока мітка з точними координатами
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12 font-weight-bold-custom text-white-custom">
+                Дуже злий смайлик - одинока мітка з приблизними координатами
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row pt-5">
+    <div class="col-md-12">
+        <div id="map"></div>
+    </div>
+</div>
+
+@section Scripts{
+    <script>
+        var mapMainView = new MapMainView();
+        mapMainView.Lat = '@Html.Raw(Model.Lat)';
+        mapMainView.Lng = '@Html.Raw(Model.Lng)';
+        mapMainView.Marks =  @Json.Serialize(Model.MapMarkViewModels);
+        mapMainView.Clusters = @Json.Serialize(Model.MapClusterViewModels);
+        mapMainView.MapId = '@Html.Raw(Model.Id)';
+        mapMainView.MapName = '@Html.Raw(Model.Name)';
+        
+
+        $(document).ready(function () {
+            mapMainView.InitializeControls();
+        });
+        function initMap() {
+            mapMainView.InitMap();
+        }
+    </script>
+    <script src = "https://maps.googleapis.com/maps/api/js?key=AIzaSyDuw7bPRLxL2yVBd9YArtpb47myhmUePGY&callback=initMap" ></script>
+}

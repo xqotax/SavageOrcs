@@ -18,7 +18,9 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.Extensions.Logging;
+using SavageOrcs.BusinessObjects;
 using SavageOrcs.DbContext;
+using SavageOrcs.Services.Interfaces;
 
 namespace SavageOrcs.Web.Areas.Identity.Pages.Account
 {
@@ -26,17 +28,20 @@ namespace SavageOrcs.Web.Areas.Identity.Pages.Account
     {
         private readonly SignInManager<User> _signInManager;
         private readonly UserManager<User> _userManager;
+        private readonly RoleManager<IdentityRole> _roleManager;
         private readonly IUserStore<User> _userStore;
         private readonly IUserEmailStore<User> _emailStore;
         private readonly ILogger<RegisterModel> _logger;
         private readonly IEmailSender _emailSender;
-
+        private readonly IEmailService _emailService;
         public RegisterModel(
             UserManager<User> userManager,
             IUserStore<User> userStore,
             SignInManager<User> signInManager,
             ILogger<RegisterModel> logger,
-            IEmailSender emailSender)
+            IEmailSender emailSender,
+            IEmailService emailService,
+            RoleManager<IdentityRole> roleManager)
         {
             _userManager = userManager;
             _userStore = userStore;
@@ -44,6 +49,8 @@ namespace SavageOrcs.Web.Areas.Identity.Pages.Account
             _signInManager = signInManager;
             _logger = logger;
             _emailSender = emailSender;
+            _emailService = emailService;
+            _roleManager = roleManager;
         }
 
         /// <summary>
@@ -105,7 +112,7 @@ namespace SavageOrcs.Web.Areas.Identity.Pages.Account
             /// </summary>
             [DataType(DataType.Password)]
             [Display(Name = "Підтверіть пароль")]
-            [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
+            [Compare("Password", ErrorMessage = "Паролі не співпадають")]
             public string ConfirmPassword { get; set; }
         }
 
@@ -132,6 +139,13 @@ namespace SavageOrcs.Web.Areas.Identity.Pages.Account
 
                 if (result.Succeeded)
                 {
+                    var userRole = _roleManager.FindByIdAsync("11111111-1111-1111-1111-111111111111").Result;
+
+                    if(userRole != null)
+                    {
+                        var roleResult = await _userManager.AddToRoleAsync(user, userRole.Name);
+                    }
+
                     _logger.LogInformation("User created a new account with password.");
 
                     var userId = await _userManager.GetUserIdAsync(user);
@@ -143,8 +157,8 @@ namespace SavageOrcs.Web.Areas.Identity.Pages.Account
                         values: new { area = "Identity", userId = userId, code = code, returnUrl = returnUrl },
                         protocol: Request.Scheme);
 
-                    await _emailSender.SendEmailAsync(Input.Email, "Confirm your email",
-                        $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
+                    await _emailService.SendEmailAsync(Input.Email, "Підтвердження email-адреси",
+                        $"Будь ласка підтвердіть свою електронну адресу, нажавши <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>тут</a>.");
 
                     if (_userManager.Options.SignIn.RequireConfirmedAccount)
                     {

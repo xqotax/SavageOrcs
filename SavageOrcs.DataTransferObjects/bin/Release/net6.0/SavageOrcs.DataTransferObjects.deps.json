@@ -1,0 +1,36 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v6.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v6.0": {
+      "SavageOrcs.DataTransferObjects/1.0.0": {
+        "dependencies": {
+          "SavageOrcs.Enums": "1.0.0"
+        },
+        "runtime": {
+          "SavageOrcs.DataTransferObjects.dll": {}
+        }
+      },
+      "SavageOrcs.Enums/1.0.0": {
+        "runtime": {
+          "SavageOrcs.Enums.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "SavageOrcs.DataTransferObjects/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "SavageOrcs.Enums/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

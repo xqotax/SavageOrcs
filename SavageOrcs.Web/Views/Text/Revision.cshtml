@@ -1,0 +1,56 @@
+﻿@using SavageOrcs.Web.ViewModels.Text
+@model TextRevisionViewModel
+
+
+<div class="row">
+    @if (this.User.IsInRole("Admin"))
+    {
+        <div class="row mt-1 mb-1 display-8-custom">
+            <div class="col-md-auto pr-2">
+                <a class="btn btn-dark-custom" href="/Text/Add?id=@Model.Id">Редагувати</a>
+            </div>
+            <div class="col-md-auto pr-2">
+                <a class="btn btn-dark-custom" href="/Text/Delete?id=@Model.Id">Видалити</a>
+            </div>
+            <div class="col-md-auto pr-2">
+                <a class="btn btn-dark-custom" href="/Text/Add">Додати ще один</a>
+            </div>
+        </div>
+        <hr style="border-top: 3px solid #3c6624">
+    }
+    <div class="col-md-4  mt-3">
+        @Html.HiddenFor(m => m.Id)
+        <div class="row mb-4">
+            <div class="col-md-12 text-white-custom display-6">
+                @Model.Name
+            </div>
+        </div>
+        <div class="row mb-4">
+            <div class="col-md-12 text-white-custom display-6">
+                @Model.Subject
+            </div>
+        </div>
+        @if (Model.CuratorId is not null){
+            <div class="row mb-4">
+                <div class="col-md-12 text-white-custom display-8-custom">
+                    <a class="btn btn-dark-custom" href="/Curator/Revision?id=@Model.CuratorId">@Model.CuratorName</a>
+                </div>
+            </div>
+        }
+    </div>
+    <div class="col-md-1">
+    </div>
+    <div class="col-md-7 mt-3" id="textRevisionPlaceholder">
+        @Html.Raw(Model.Content)
+    </div>
+</div>
+@section Scripts{
+    <script>
+        var revisionTextView = new RevisionTextView();
+
+        $(document).ready(function () {
+            revisionTextView.InitializeControls();
+        });
+
+    </script>
+}
