@@ -2,7 +2,7 @@
 {
     public class SaveMarkResultViewModel
     {
-        public Guid Id { get; set; }
+        public Guid? Id { get; set; }
 
         public bool Success { get; set; }
 

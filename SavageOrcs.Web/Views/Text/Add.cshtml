@@ -98,8 +98,8 @@
 
         addTextView.IsNew = '@Html.Raw(Model.IsNew)' === '@true';
         addTextView.ToDelete = '@Html.Raw(Model.ToDelete)' === '@true';
-        addTextView.Blocks = JSON.parse('@Html.Raw(Json.Serialize(Model.Blocks))');
-        addTextView.Curators = JSON.parse('@Html.Raw(Json.Serialize(Model.Curators))');
+        addTextView.Blocks = @Json.Serialize(Model.Blocks);
+        addTextView.Curators = @Json.Serialize(Model.Curators);
         addTextView.CuratorName = '@Html.Raw(Model.CuratorName)';
         addTextView.CuratorId = '@Html.Raw(Model.CuratorId)';
 

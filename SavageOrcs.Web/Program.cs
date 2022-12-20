@@ -32,8 +32,9 @@ builder.Services.AddTransient<IUserService, UserService>();
 builder.Services.AddTransient<IRoleService, RoleService>();
 builder.Services.AddTransient<ICuratorService, CuratorService>();
 builder.Services.AddTransient<IClusterService, ClusterService>();
-builder.Services.AddTransient<IImageService, ImageService>();
+builder.Services.AddTransient<IHelperService, HelperService>();
 builder.Services.AddTransient<ITextService, TextService>();
+builder.Services.AddTransient<IKeyWordService, KeyWordService>();
 
 
 

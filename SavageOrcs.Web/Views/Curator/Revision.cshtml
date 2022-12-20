@@ -60,7 +60,7 @@
     <script>
         var revisionCuratorView = new RevisionCuratorView();
 
-        revisionCuratorView.Texts = JSON.parse('@Html.Raw(Json.Serialize(Model.Texts))');
+        revisionCuratorView.Texts = @Json.Serialize(Model.Texts);
 
         $(document).ready(function () {
             revisionCuratorView.InitializeControls();

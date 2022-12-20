@@ -77,7 +77,7 @@
         var revisionClusterView = new RevisionClusterView();
         revisionClusterView.Lat = '@Html.Raw(Model.Lat)';
         revisionClusterView.Lng = '@Html.Raw(Model.Lng)';
-        revisionClusterView.Marks = JSON.parse('@Html.Raw(Json.Serialize(Model.Marks))');
+        revisionClusterView.Marks = @Json.Serialize(Model.Marks);
 
         $(document).ready(function () {
             revisionClusterView.InitializeControls();

@@ -19,11 +19,11 @@ namespace SavageOrcs.Web.Controllers
     public class ClusterController : Controller
     {
         
-        private readonly IImageService _imageService;
+        private readonly IHelperService _imageService;
         private readonly IAreaService _areaService;
         private readonly IClusterService _clusterService;
 
-        public ClusterController(IAreaService areaService, IImageService imageService, IClusterService clusterService)
+        public ClusterController(IAreaService areaService, IHelperService imageService, IClusterService clusterService)
         {
             _clusterService = clusterService;
             _areaService = areaService;

@@ -5,15 +5,13 @@
 <link itemprop="url" rel="stylesheet" href="~/css/checkBox.css" asp-append-version="true" />
 
 <div class="row">
-    <div class="col-md-3 display-8-custom">
-        <input id="dropdown-input"
-               name="dropdown-input"
-               class="Search-Select--Hidden-Input"
-               placeholder=""
-               data-search-placeholder="Виберіть автора"
-               hidden />
+    <div class="col-md-3">
+        <select name="curatorMultiselect" id="curatorMultiselect" multiple multiselect-search="true" multiselect-select-all="true" multiselect-hide-x="true">
+            @foreach(var curator in Model.Curators){
+                <option selected value=@curator.Id.ToString()>@curator.Name</option>
+            }
+        </select>
     </div>
-    
     <div class="col-md-3">
         @Html.TextBoxFor(m => m.TextName, new { @class = "text-box-custom form-control display-8-custom", @placeholder = "Назва тексту"})
     </div>
@@ -61,7 +59,7 @@
     <script>
         var catalogueTextView = new CatalogueTextView();
 
-        catalogueTextView.Curators = JSON.parse('@Html.Raw(Json.Serialize(Model.Curators))');
+        catalogueTextView.Curators = @Json.Serialize(Model.Curators);
 
         $(document).ready(function () {
             catalogueTextView.InitializeControls();

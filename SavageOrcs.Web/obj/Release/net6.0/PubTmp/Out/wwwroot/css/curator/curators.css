@@ -1,0 +1,49 @@
+.curator-row {
+	padding-top: 20px;
+	padding-bottom: 30px;
+}
+
+.curator-box {
+	height: 450px;
+	width: 22%;
+	position: relative;
+}
+
+.curator-box-image {
+	width: 100%;
+	position: relative;
+	height: 450px;
+	background-color: rgba(0, 0, 0, 1);
+}
+
+.curator-image {
+	width: 100%;
+	position: relative;
+	min-height: 250px;
+	max-height: 450px;
+}
+
+.curator-box-text {
+	top: 300px;
+	width: 100%;
+	height: 150px;
+	text-align: center;
+	position: absolute;
+	left: 0px;
+	background-color: rgba(0, 0, 0, 0.8);
+	border-radius: 10px 10px 0px 0px;
+	-webkit-mask-size: 100% 100%;
+	-webkit-mask-image: -webkit-gradient(linear, center top, center bottom, color-stop(0.00, rgba(0,0,0,0.8)), color-stop(1.00, rgba(0,0,0,1)));
+}
+
+.curator-box-name {
+	position: relative;
+	height: 40px;
+	width: 100%;
+}
+
+.curator-box-description {
+	position: relative;
+	height: 130px;
+	width: 100%;
+}

@@ -1,10 +1,11 @@
-﻿namespace SavageOrcs.Web.ViewModels.Mark
+﻿using SavageOrcs.DataTransferObjects._Constants;
+using SavageOrcs.Web.ViewModels.Constants;
+
+namespace SavageOrcs.Web.ViewModels.Mark
 {
     public class MarkCatalogueFilter
     {
         public bool FullData { get; set; }
-
-        public string? KeyWord { get; set; }
 
         public string? AreaName { get; set; }
 
@@ -17,5 +18,9 @@
         public int? From { get; set; }
 
         public int? Count { get; set; }
+
+        public GuidIdAndStringName[] KeyWords { get; set; }
+
+        public Guid[]? KeyWordIds { get; set; }
     }
 }

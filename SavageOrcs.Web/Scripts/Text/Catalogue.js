@@ -11,18 +11,17 @@
     InitializeControls: function () {
         var self = this;
 
-        self.SearchSelectDropdown = new SearchSelect('#dropdown-input', {
-            data: [],
-            filter: SearchSelect.FILTER_CONTAINS,
-            sort: undefined,
-            inputClass: 'form-control-Select mobile-field',
-            maxOpenEntries: 9,
-            searchPosition: 'top',
-            onInputClickCallback: null,
-            onInputKeyDownCallback: null,
-        });
+        var options = {
+            placeholder: "Виберіть куратора",
+            txtSelected: "вибрано",
+            txtAll: "Всі",
+            txtRemove: "Видалити",
+            txtSearch: "Пошук",
+            height: "300px",
+            Id: "curatorMultiselect"
+        }
 
-        self.InitializeCurators(self.Curators);
+        MultiselectDropdown(options);
 
         self.SubscribeEvents();
     },
@@ -33,33 +32,21 @@
             self.Search();
         });
 
-        $('#dropdown-input').addClass("display-8-custom");
 
         $("#clearFilters").click(function () {
             //$("#KeyWord").val('');
-            $("#dropdown-input").val('');
             $("#TextName").val('');
             $("#TextSubject").val('');
+            $('#curatorMultiselect option').attr('selected', 'selected');
         });
         
-    },
-    InitializeCurators: function (data) {
-        var self = this;
-        var curatorNames = [];
-
-        $.each(data, function (index, element) {
-            curatorNames.push(element);
-        });
-
-        self.SearchSelectDropdown.setData(curatorNames);
     },
     Search: function () {
         $(".table-body-catalogue-text").empty();
 
         var self = this;
-
         var filters = {
-            CuratorName: $("#dropdown-input").val(),
+            CuratorIds: $("#curatorMultiselect").val(),
             TextName: $("#TextName").val(),
             TextSubject: $("#TextSubject").val()
             //KeyWord: $("#KeyWord").val(),

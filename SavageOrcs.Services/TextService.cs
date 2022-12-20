@@ -4,6 +4,7 @@ using SavageOrcs.DataTransferObjects._Constants;
 using SavageOrcs.DataTransferObjects.Blocks;
 using SavageOrcs.DataTransferObjects.Marks;
 using SavageOrcs.DataTransferObjects.Texts;
+using SavageOrcs.Enums;
 using SavageOrcs.Repositories.Interfaces;
 using SavageOrcs.Services.Interfaces;
 using SavageOrcs.UnitOfWork;
@@ -17,15 +18,23 @@ namespace SavageOrcs.Services
 {
     public class TextService : UnitOfWorkService, ITextService
     {
-        private readonly IImageService _imageService;
+        private readonly IHelperService _imageService;
         private readonly IRepository<Text> _textRepository;
+        private readonly IRepository<Mark> _markRepository;
+        private readonly IRepository<Cluster> _clusterRepository;
+        private readonly IRepository<TextToCluster> _textsToClustersRepository;
+        private readonly IRepository<TextToMark> _textsToMarksRepository;
         private readonly IRepository<Block> _blockRepository;
 
-        public TextService(IUnitOfWork unitOfWork, IRepository<Text> textRepository, IRepository<Block> blockRepository, IImageService imageService) : base(unitOfWork)
+        public TextService(IUnitOfWork unitOfWork, IRepository<Text> textRepository, IRepository<Block> blockRepository, IHelperService imageService, IRepository<TextToCluster> textsToClustersRepository, IRepository<TextToMark> textsToMarksRepository, IRepository<Cluster> clusterRepository, IRepository<Mark> markRepository) : base(unitOfWork)
         {
             _textRepository = textRepository;
             _blockRepository = blockRepository;
             _imageService = imageService;
+            _textsToClustersRepository = textsToClustersRepository;
+            _textsToMarksRepository = textsToMarksRepository;
+            _clusterRepository = clusterRepository;
+            _markRepository = markRepository;
         }
 
         public async Task<TextDto[]> GetTexts()
@@ -90,6 +99,16 @@ namespace SavageOrcs.Services
                 _blockRepository.Delete(block);
             }
 
+            foreach(var textToMark in text.TextsToMarks)
+            {
+                _textsToMarksRepository.Delete(textToMark);
+            }
+
+            foreach (var textToCluster in text.TextsToClusters)
+            {
+                _textsToClustersRepository.Delete(textToCluster);
+            }
+
             if (textSaveDto.BlockDtos is not null) {
                 foreach (var newBlock in textSaveDto.BlockDtos)
                 {
@@ -107,6 +126,43 @@ namespace SavageOrcs.Services
                     await _blockRepository.AddAsync(block);
                 }
             }
+
+            if (textSaveDto.UrlDtos is not null)
+            {
+                foreach(var urlDto in textSaveDto.UrlDtos)
+                {
+                    if (urlDto.Type == ObjectType.Mark)
+                    {
+                        var mark = await _markRepository.GetTAsync(x => x.Id == urlDto.Id);
+
+                        if (mark is not null)
+                        {
+                            var textToMark = new TextToMark
+                            {
+                                MarkId = mark.Id,
+                                TextId = text.Id
+                            };
+
+                            await _textsToMarksRepository.AddAsync(textToMark);
+                        }
+                    }
+                    else if (urlDto.Type == ObjectType.Cluster)
+                    {
+                        var cluster = await _clusterRepository.GetTAsync(x => x.Id == urlDto.Id);
+
+                        if (cluster is not null)
+                        {
+                            var textToCluster = new TextToCluster
+                            {
+                                ClusterId = cluster.Id,
+                                TextId = text.Id
+                            };
+
+                            await _textsToClustersRepository.AddAsync(textToCluster);
+                        }
+                    }
+                }
+            }
             await UnitOfWork.SaveChangesAsync();
             return new TextSaveResultDto()
             {
@@ -115,7 +171,7 @@ namespace SavageOrcs.Services
             };
         }
 
-        public async Task<TextDto[]> GetTextsByFilters(string? textName, string? textSubject, string? curatorName)
+        public async Task<TextDto[]> GetTextsByFilters(string? textName, string? textSubject, Guid[]? curatorIds)
         {
 
             var texts = await _textRepository.GetAllAsync();
@@ -130,9 +186,9 @@ namespace SavageOrcs.Services
                 texts = texts.Where(x => x.Subject is not null && x.Subject.Contains(textSubject, StringComparison.OrdinalIgnoreCase));
             }
 
-            if (!string.IsNullOrEmpty(curatorName))
+            if (curatorIds is not null && curatorIds.Length > 0)
             {
-                texts = texts.Where(x => x.Curator is not null && x.Curator.Name is not null && x.Curator.Name.Contains(curatorName, StringComparison.OrdinalIgnoreCase));
+                texts = texts.Where(x => x.Curator is not null && curatorIds.Contains(x.Curator.Id));
             }
 
             return texts.Select(x => CreateTextDto(x)).ToArray();

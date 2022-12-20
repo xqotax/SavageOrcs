@@ -93,7 +93,7 @@
         clusterAddView.IsNew = '@Html.Raw(Model.IsNew)' === '@true';
         clusterAddView.ToDelete = '@Html.Raw(Model.ToDelete)' === '@true';
 
-        clusterAddView.Areas = JSON.parse('@Html.Raw(Json.Serialize(Model.Areas))');
+        clusterAddView.Areas = @Json.Serialize(Model.Areas);
         clusterAddView.AreaName = '@Html.Raw(Model.AreaName)';
         clusterAddView.AreaId = '@Html.Raw(Model.AreaId)';
 

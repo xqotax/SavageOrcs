@@ -17,6 +17,7 @@ using NuGet.Versioning;
 using SavageOrcs.DataTransferObjects._Constants;
 using SavageOrcs.DataTransferObjects.Maps;
 using SavageOrcs.DataTransferObjects.Areas;
+using static Microsoft.Extensions.Logging.EventSource.LoggingEventSource;
 
 namespace SavageOrcs.Web.Controllers
 {
@@ -25,16 +26,18 @@ namespace SavageOrcs.Web.Controllers
         private readonly ILogger<MarkController> _logger;
         private readonly IAreaService _areaService;
         private readonly IMarkService _markService;
+        private readonly IKeyWordService _keyWordService;
         private readonly IClusterService _clusterService;
         private readonly UserManager<User> _userManager;
 
-        public MarkController(ILogger<MarkController> logger, UserManager<User> userManager, IAreaService areaService, IMarkService markService, IClusterService clusterService)
+        public MarkController(ILogger<MarkController> logger, UserManager<User> userManager, IAreaService areaService, IMarkService markService, IClusterService clusterService, IKeyWordService keyWordService)
         {
             _logger = logger;
             _userManager = userManager;
             _areaService = areaService;
             _markService = markService;
             _clusterService = clusterService;
+            _keyWordService = keyWordService;
         }
 
         [AllowAnonymous]
@@ -43,7 +46,7 @@ namespace SavageOrcs.Web.Controllers
             var markDto = await _markService.GetMarkById(id);
             if (markDto is null)
             {
-                return NotFound();
+                return RedirectToAction("NotFound", "Error", new { info = "Mark" });
             }
             else
             {
@@ -157,8 +160,35 @@ namespace SavageOrcs.Web.Controllers
                 markSaveDto.UserId = _userManager.GetUserId(User);
                 markSaveDto.AreaId = saveMarkViewModel.AreaId;
                 markSaveDto.ClusterId = saveMarkViewModel.ClusterId;
-                markSaveDto.Lng = saveMarkViewModel.Lng is null ? null : double.Parse(saveMarkViewModel.Lng, CultureInfo.InvariantCulture);
-                markSaveDto.Lat = saveMarkViewModel.Lat is null ? null : double.Parse(saveMarkViewModel.Lat, CultureInfo.InvariantCulture);
+
+                if (saveMarkViewModel.ClusterId is not null)
+                {
+                    var clusterDto = await _clusterService.GetClusterById(saveMarkViewModel.ClusterId.Value);
+
+                    if (clusterDto is null)
+                        return Json(new SaveMarkResultViewModel
+                        {
+                            Id = null,
+                            Success = false,
+                            Url = "/Mark/Revision/{id}",
+                            Text = "Вибраного скупчення не існує"
+                        });
+                    markSaveDto.Lng = clusterDto.Lng;
+                    markSaveDto.Lat = clusterDto.Lat;
+                }
+                else
+                {
+                    if (saveMarkViewModel.Lng is null || saveMarkViewModel.Lat is null)
+                        return Json(new SaveMarkResultViewModel
+                        {
+                            Id = null,
+                            Success = false,
+                            Url = "",
+                            Text = "Виставіть координати мітці або виберіть скупчення для неї"
+                        });
+                    markSaveDto.Lng = double.Parse(saveMarkViewModel.Lng, CultureInfo.InvariantCulture);
+                    markSaveDto.Lat = double.Parse(saveMarkViewModel.Lat, CultureInfo.InvariantCulture);
+                }
                 markSaveDto.Name = saveMarkViewModel.Name;
                 markSaveDto.Description = saveMarkViewModel.Description;
                 markSaveDto.DescriptionEng = saveMarkViewModel.DescriptionEng;
@@ -173,8 +203,6 @@ namespace SavageOrcs.Web.Controllers
             }
 
             var markSaveResultDto = await _markService.SaveMark(markSaveDto);
-
-
 
             return Json(new SaveMarkResultViewModel
             {
@@ -195,12 +223,12 @@ namespace SavageOrcs.Web.Controllers
         }
 
         [AllowAnonymous]
-        public IActionResult Catalogue()
+        public async Task<IActionResult> Catalogue()
         {
             var markCatalogueFilterViewModel = new MarkCatalogueFilter()
             {
+                KeyWords = (await _keyWordService.GetKeyWords()),
                 AreaName = "",
-                KeyWord = "",
                 MarkDescription = "",
                 MarkName = "",
                 NotIncludeCluster = false
@@ -213,7 +241,12 @@ namespace SavageOrcs.Web.Controllers
         [AllowAnonymous]
         public async Task<JsonResult> GetMarks([FromBody] MarkCatalogueFilter filter)
         {
-            var markDtos = await _markService.GetMarksByFilters(filter.AreaName, filter.KeyWord, filter.MarkName, filter.MarkDescription, filter.NotIncludeCluster);
+            var markDtos = await _markService.GetMarksByFilters(
+                filter.AreaName, 
+                filter.KeyWordIds is null ? Array.Empty<Guid>() : filter.KeyWordIds, 
+                filter.MarkName, 
+                filter.MarkDescription, 
+                filter.NotIncludeCluster);
 
             if (!filter.FullData)
             {
@@ -277,7 +310,7 @@ namespace SavageOrcs.Web.Controllers
             }
 
             if (markDto is null)
-                return NotFound();
+                return RedirectToAction("NotFound", "Error", new {info = "Mark"});
 
             var areaDtos = await _areaService.GetAreasByNameAsync(markDto.Area is null ? "Херсон" : markDto.Area.Name);
 

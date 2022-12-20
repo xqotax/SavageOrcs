@@ -39,5 +39,7 @@
         public virtual Map Map { get; set;  }
 
         public virtual ICollection<Image> Images { get; set; } = new HashSet<Image>();
+
+        public virtual ICollection<TextToMark> TextsToMarks { get; set; } = new HashSet<TextToMark>();
     }
 }

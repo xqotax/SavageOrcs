@@ -18,37 +18,48 @@ namespace SavageOrcs.Services
     public class MarkService : UnitOfWorkService, IMarkService
     {
         private readonly IRepository<Mark> _markRepository;
+        private readonly IKeyWordService _keyWordService;
         private readonly IRepository<Image> _imageRepository;
+        private readonly IRepository<TextToMark> _textsToMarksRepository;
 
 
-        public MarkService(IUnitOfWork unitOfWork, IRepository<Mark> markRepository, IRepository<Image> imageRepository) : base(unitOfWork)
+        public MarkService(IUnitOfWork unitOfWork, IRepository<Mark> markRepository, IRepository<Image> imageRepository, IRepository<TextToMark> textsToMarksRepository, IKeyWordService keyWordService) : base(unitOfWork)
         {
             _markRepository = markRepository;
             _imageRepository = imageRepository;
+            _textsToMarksRepository = textsToMarksRepository;
+            _keyWordService = keyWordService;
         }
 
-        public async Task<MarkDto> GetMarkById(Guid id)
+        public async Task<MarkDto?> GetMarkById(Guid id)
         {
             var mark = await _markRepository.GetTAsync(x => x.Id == id);
             if (mark is null) {
-                mark = new Mark();
-                //error
+                return null;
             }
 
             return CreateMarkDto(mark);
         }
 
-        public async Task<MarkDto[]> GetMarksByFilters(string? areaName, string? keyWord, string? markName, string? markDescription, bool NotIncludeCluster = false)
+        public async Task<MarkDto[]> GetMarksByFilters(string? areaName, Guid[] keyWordIds, string? markName, string? markDescription, bool NotIncludeCluster = false)
         {
             
             var marks = await _markRepository.GetAllAsync();
 
+            var keyWords = await _keyWordService.GetKeyWordNamesByIds(keyWordIds);
             if (NotIncludeCluster)
                 marks = marks.Where(x => x.ClusterId is null);
 
-            if (!string.IsNullOrEmpty(keyWord))
+            if (keyWords.Length > 0)
             {
-                marks = marks.Where(x => x.Name is not null && x.Name.Contains(keyWord, StringComparison.OrdinalIgnoreCase));
+                marks = marks.Where(x => (x.Name is not null && keyWords.Any(y => 
+                                (y.Bool.HasValue && y.Bool.Value) ? x.Name.Contains(y.Name) :
+                                    x.Name.Contains(y.Name, StringComparison.OrdinalIgnoreCase))) ||
+                (x.Description is not null && keyWords.Any(y =>
+                                (y.Bool.HasValue && y.Bool.Value) ? x.Description.Contains(y.Name) :
+                                    x.Description.Contains(y.Name, StringComparison.OrdinalIgnoreCase))));
+
+                var markDebugger = marks.ToList();
             }
 
             if (!string.IsNullOrEmpty(markName))
@@ -87,9 +98,15 @@ namespace SavageOrcs.Services
                 Description = mark.Description,
                 DescriptionEng = mark.DescriptionEng,
                 IsApproximate = mark.IsApproximate,
-                Lat = mark.Lat,
-                Lng = mark.Lng,
-                Area = mark.Area is null? null: new AreaShortDto
+                Lat = mark.Cluster is null ? mark.Lat : mark.Cluster.Lat,
+                Lng = mark.Cluster is null ? mark.Lng : mark.Cluster.Lng,
+                Area = mark.Area is null ? (mark.Cluster?.Area is null ? null : new AreaShortDto
+                {
+                    Id = mark.Cluster.Area.Id,
+                    Name = mark.Cluster.Area.Name,
+                    Region = mark.Cluster.Area.Region,
+                    Community = mark.Cluster.Area.Community
+                }): new AreaShortDto
                 {
                     Id = mark.Area.Id,
                     Name = mark.Area.Name,
@@ -176,6 +193,12 @@ namespace SavageOrcs.Services
                 if (mark is null) return false;
 
                 _imageRepository.DeleteRange(mark.Images);
+
+                foreach (var textToMark in mark.TextsToMarks)
+                {
+                    _textsToMarksRepository.Delete(textToMark);
+                }
+
                 _markRepository.Delete(mark);
 
                 await UnitOfWork.SaveChangesAsync();

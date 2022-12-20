@@ -18,5 +18,7 @@ namespace SavageOrcs.DataTransferObjects.Texts
         public string? Subject { get; set; }
 
         public BlockDto[]? BlockDtos { get; set; }
+
+        public UrlDto[]? UrlDtos { get; set; }
     }
 }

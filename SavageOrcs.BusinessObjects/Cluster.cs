@@ -31,5 +31,7 @@ namespace SavageOrcs.BusinessObjects
         public virtual Area? Area { get; set; }
 
         public virtual ICollection<Mark> Marks { get; set; } = new HashSet<Mark>();
+
+        public virtual ICollection<TextToCluster> TextsToClusters { get; set; } = new HashSet<TextToCluster>();
     }
 }

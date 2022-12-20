@@ -28,6 +28,18 @@
         var self = this;
        
 
+        var options = {
+            placeholder: "Виберіть ключове слово",
+            txtSelected: "вибрано",
+            txtAll: "Всі",
+            txtRemove: "Видалити",
+            txtSearch: "Пошук",
+            height: "300px",
+            Id: "keyWordsMultiselect"
+        }
+
+        MultiselectDropdown(options);
+
         self.SubscribeEvents();
     },
     SubscribeEvents: function () {
@@ -44,7 +56,7 @@
         });
 
         $("#clearFilters").click(function () {
-            $("#KeyWord").val('');
+            $('#keyWordsMultiselect option').attr('selected', ''),
             $("#AreaName").val(''); 
             $("#MarkName").val(''); 
             $("#MarkDescription").val('');
@@ -110,12 +122,12 @@
     },
     Search: function () {
         var self = this;
-
+        
         var filters = {
+            KeyWordIds: $("#keyWordsMultiselect").val(),
             AreaName: $("#AreaName").val(),
             MarkName: $("#MarkName").val(),
             MarkDescription: $("#MarkDescription").val(),
-            KeyWord: $("#KeyWord").val(),
             NotIncludeCluster: $("#NotIncludeCluster").is(":checked"),
             FullData: self.DetailedView,
             From: self.From,

@@ -20,12 +20,14 @@ namespace SavageOrcs.Services
         private readonly IRepository<Cluster> _clusterRepository;
         private readonly IRepository<Mark> _markRepository;
         private readonly IRepository<Image> _imageRepository;
+        private readonly IRepository<TextToCluster> _textsToClustersRepository;
 
-        public ClusterService(IUnitOfWork unitOfWork, IRepository<Cluster> clusterRepository, IRepository<Image> imageRepository, IRepository<Mark> markRepository) : base(unitOfWork)
+        public ClusterService(IUnitOfWork unitOfWork, IRepository<Cluster> clusterRepository, IRepository<Image> imageRepository, IRepository<Mark> markRepository, IRepository<TextToCluster> textsToClustersRepository) : base(unitOfWork)
         {
             _clusterRepository = clusterRepository;
             _imageRepository = imageRepository;
             _markRepository = markRepository;
+            _textsToClustersRepository = textsToClustersRepository;
         }
 
         public async Task<ClusterDto[]> GetClusters()
@@ -159,8 +161,16 @@ namespace SavageOrcs.Services
                 {
                     foreach (var mark in cluster.Marks)
                     {
+                        mark.Lat = cluster.Lat;
+                        mark.Lng = cluster.Lng;
+                        mark.AreaId = cluster.AreaId;
                         mark.ClusterId = null;
                     }
+                }
+
+                foreach (var textToCluster in cluster.TextsToClusters)
+                {
+                    _textsToClustersRepository.Delete(textToCluster);
                 }
 
                 _clusterRepository.Delete(cluster);

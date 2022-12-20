@@ -7,7 +7,12 @@
 
 <div class="row">
     <div class="col-md-2">
-        @Html.TextBoxFor(m => m.KeyWord, new { @class = "text-box-custom form-control display-8-custom", @placeholder = "Ключове слово"})
+        <select name="keyWordsMultiselect" id="keyWordsMultiselect" multiple multiselect-search="true" multiselect-select-all="true" multiselect-hide-x="true">
+            @foreach (var curator in Model.KeyWords)
+            {
+                <option value=@curator.Id.ToString()>@curator.Name</option>
+            }
+        </select>
     </div>
     <div class="col-md-2">
         @Html.TextBoxFor(m => m.AreaName, new { @class = "text-box-custom form-control display-8-custom", @placeholder = "Назва міста"})

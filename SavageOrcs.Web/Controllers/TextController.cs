@@ -13,7 +13,9 @@ using SavageOrcs.Web.ViewModels.Constants;
 using SavageOrcs.Web.ViewModels.Mark;
 using SavageOrcs.Web.ViewModels.Text;
 using SavageOrcs.Web.ViewModels.Text.Blocks;
+using System.ComponentModel.Design;
 using System.Globalization;
+using System.Text.RegularExpressions;
 
 namespace SavageOrcs.Web.Controllers
 {
@@ -21,11 +23,13 @@ namespace SavageOrcs.Web.Controllers
     {
         private readonly ITextService _textService;
         private readonly ICuratorService _curatorService;
+        private readonly IHelperService _helperService;
 
-        public TextController(ITextService textService, ICuratorService curatorService)
+        public TextController(ITextService textService, ICuratorService curatorService, IHelperService helperService)
         {
             _textService = textService;
             _curatorService = curatorService;
+            _helperService = helperService;
         }
 
         [AllowAnonymous]
@@ -53,11 +57,11 @@ namespace SavageOrcs.Web.Controllers
         {
             if (block.Type == BlockType.Header)
             {
-                return "<h" + block.AdditionParameter + ">" + block.Content + "</h" + block.AdditionParameter + ">";
+                return "<h" + block.AdditionParameter + ">" + block.Content?.Replace('"', '\'') + "</h" + block.AdditionParameter + ">";
             }
             else if (block.Type == BlockType.Text)
             {
-                return "<p>" + block.Content + "</p>";
+                return "<p>" + block.Content?.Replace('"', '\'') + "</p>";
             }
             else if (block.Type == BlockType.List)
             {
@@ -77,7 +81,7 @@ namespace SavageOrcs.Web.Controllers
             }
             else if (block.Type == BlockType.Image)
             {
-                return "<img class=\"textRevisionImage\" src=\"" + block.Content +"\" title=\"" + block.AdditionParameter +  "\"/>";
+                return "<img class=\"textRevisionImage\" src=\"" + block.Content +"\" title=\"" + block.AdditionParameter?.Replace('"', '\'') +  "\"/>";
             }
 
             else return "";
@@ -88,7 +92,7 @@ namespace SavageOrcs.Web.Controllers
             var stringToReturn = "";
             foreach(var item in items)
             {
-                stringToReturn += "<li>" + item + "</li>";
+                stringToReturn += "<li>" + item?.Replace('"', '\'') + "</li>";
             };
             return stringToReturn;
         }
@@ -228,6 +232,41 @@ namespace SavageOrcs.Web.Controllers
                 })).ToArray()
             };
 
+            var urlDtos = new List<UrlDto> { };
+            try
+            {
+                if (textSaveDto.BlockDtos is not null)
+                {
+                    foreach (var block in textSaveDto.BlockDtos)
+                    {
+                        if ((block.Type == BlockType.List || block.Type == BlockType.Text || block.Type == BlockType.Header) && block.Content is not null)
+                        {
+                            var textToEdit = block.Content;
+                            while (textToEdit.Contains("<a href=\""))
+                            {
+                                var textToFind = textToEdit;
+
+                                var urlDto = _helperService.FindOurUrl(textToFind, out textToEdit);
+                                if (urlDto != null)
+                                    urlDtos.Add(urlDto);
+                            }
+                        }
+                    }
+                }
+            }
+            catch
+            {
+                return Json(new SaveMarkResultViewModel
+                {
+                    Id = null,
+                    Success = false,
+                    Url = "",
+                    Text = "У посиланнях виникла помилка"
+                });
+            }
+            
+            textSaveDto.UrlDtos = urlDtos.ToArray();
+
             var result = await _textService.SaveText(textSaveDto);
 
             return Json(new SaveMarkResultViewModel
@@ -247,10 +286,14 @@ namespace SavageOrcs.Web.Controllers
 
             var filterCatalogueTextViewModel = new FilterCatalogueTextViewModel
             {
-                CuratorName = "",
+                CuratorIds = Array.Empty<Guid>(),
                 TextName = "",
                 TextSubject = "",
-                Curators = curatorDtos.Select(x => x.DisplayName).ToArray()
+                Curators = curatorDtos.Select(x => new GuidIdAndNameViewModel
+                {
+                    Id = x.Id,
+                    Name = x.DisplayName
+                }).ToArray()
             };
 
             return View(filterCatalogueTextViewModel);
@@ -260,7 +303,7 @@ namespace SavageOrcs.Web.Controllers
         [HttpPost]
         public async Task<JsonResult> GetTexts([FromBody] FilterCatalogueTextViewModel filters)
         {
-            var textDtos = await _textService.GetTextsByFilters(filters.TextName, filters.TextSubject, filters.CuratorName);
+            var textDtos = await _textService.GetTextsByFilters(filters.TextName, filters.TextSubject, filters.CuratorIds);
 
             var textCatalogueViewModel = textDtos.Select(x => new TextCatalogueViewModel { 
                 Id = x.Id,

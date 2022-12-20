@@ -176,7 +176,8 @@ var AddTextView = Class.extend({
                             "#4CAF50",
                             "#8BC34A",
                             "#CDDC39",
-                            "#FFF"
+                            "#FFF",
+                            "#000000"
                         ],
                         defaultColor: "#FF1300",
                         type: "text"
@@ -304,7 +305,7 @@ var AddTextView = Class.extend({
                     });
                 }
             });
-
+            debugger;
             $.ajax({
                 type: 'POST',
                 url: "/Text/SaveText",
@@ -384,7 +385,7 @@ class SimpleImage {
         this.wrapper = document.createElement('div');
         this.wrapper.classList.add('simple-image');
 
-        if (this.data && this.data.url) {
+        if (this.data && this.data.src) {
             this._createImage(this.data.src, this.data.caption);
             return this.wrapper;
         }

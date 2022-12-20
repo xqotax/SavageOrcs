@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "24AwHV8TKEu83x3cwFoaV4n8Bx4yQWfa1pmC/OoqbhI=",
+  "Hash": "SOUX+WEcYjzKpCIhjXdxCH+szUdfZ0JiScbBqSl83OQ=",
   "Source": "SavageOrcs.Web",
   "BasePath": "_content/SavageOrcs.Web",
   "Mode": "Default",
@@ -1188,6 +1188,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\css\\mark\\tableShort.css"
+    },
+    {
+      "Identity": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\wwwroot\\css\\multiselect.css",
+      "SourceId": "SavageOrcs.Web",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\wwwroot\\",
+      "BasePath": "_content/SavageOrcs.Web",
+      "RelativePath": "css/multiselect.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\multiselect.css"
     },
     {
       "Identity": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\wwwroot\\css\\rightScroll.css",
@@ -2548,6 +2565,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\lib\\jquery-validation-unobtrusive\\LICENSE.txt"
+    },
+    {
+      "Identity": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\wwwroot\\lib\\multiselect\\multiselect-dropdown.js",
+      "SourceId": "SavageOrcs.Web",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\wwwroot\\",
+      "BasePath": "_content/SavageOrcs.Web",
+      "RelativePath": "lib/multiselect/multiselect-dropdown.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\lib\\multiselect\\multiselect-dropdown.js"
     },
     {
       "Identity": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\wwwroot\\lib\\search-select\\search-select.css",

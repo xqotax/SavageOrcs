@@ -23,5 +23,9 @@ namespace SavageOrcs.BusinessObjects
         public virtual Curator? Curator { get; set; }
 
         public virtual ICollection<Block> Blocks { get; set; } = new HashSet<Block>();
+
+        public virtual ICollection<TextToCluster> TextsToClusters { get; set; } = new HashSet<TextToCluster>();
+
+        public virtual ICollection<TextToMark> TextsToMarks { get; set; } = new HashSet<TextToMark>();
     }
 }

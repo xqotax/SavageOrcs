@@ -8,10 +8,10 @@ namespace SavageOrcs.Web.Controllers
 {
     public class CuratorController : Controller
     {
-        private readonly IImageService _imageService;
+        private readonly IHelperService _imageService;
         private readonly ICuratorService _curatorService;
 
-        public CuratorController(ICuratorService curatorService, IImageService imageService)
+        public CuratorController(ICuratorService curatorService, IHelperService imageService)
         {
             _curatorService = curatorService;
             _imageService = imageService;

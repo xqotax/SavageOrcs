@@ -335,6 +335,29 @@ namespace SavageOrcs.DbContext.Migrations
                     b.ToTable("Images");
                 });
 
+            modelBuilder.Entity("SavageOrcs.BusinessObjects.KeyWord", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool?>("RegisterIsImportant")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime>("UpdatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("KeyWords");
+                });
+
             modelBuilder.Entity("SavageOrcs.BusinessObjects.Map", b =>
                 {
                     b.Property<int>("Id")
@@ -442,6 +465,48 @@ namespace SavageOrcs.DbContext.Migrations
                     b.HasIndex("CuratorId");
 
                     b.ToTable("Texts");
+                });
+
+            modelBuilder.Entity("SavageOrcs.BusinessObjects.TextToCluster", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("ClusterId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("TextId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ClusterId");
+
+                    b.HasIndex("TextId");
+
+                    b.ToTable("TextsToClusters");
+                });
+
+            modelBuilder.Entity("SavageOrcs.BusinessObjects.TextToMark", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("MarkId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("TextId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("MarkId");
+
+                    b.HasIndex("TextId");
+
+                    b.ToTable("TextsToMarks");
                 });
 
             modelBuilder.Entity("SavageOrcs.BusinessObjects.User", b =>
@@ -679,6 +744,44 @@ namespace SavageOrcs.DbContext.Migrations
                     b.Navigation("Curator");
                 });
 
+            modelBuilder.Entity("SavageOrcs.BusinessObjects.TextToCluster", b =>
+                {
+                    b.HasOne("SavageOrcs.BusinessObjects.Cluster", "Cluster")
+                        .WithMany("TextsToClusters")
+                        .HasForeignKey("ClusterId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("SavageOrcs.BusinessObjects.Text", "Text")
+                        .WithMany("TextsToClusters")
+                        .HasForeignKey("TextId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Cluster");
+
+                    b.Navigation("Text");
+                });
+
+            modelBuilder.Entity("SavageOrcs.BusinessObjects.TextToMark", b =>
+                {
+                    b.HasOne("SavageOrcs.BusinessObjects.Mark", "Mark")
+                        .WithMany("TextsToMarks")
+                        .HasForeignKey("MarkId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("SavageOrcs.BusinessObjects.Text", "Text")
+                        .WithMany("TextsToMarks")
+                        .HasForeignKey("TextId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Mark");
+
+                    b.Navigation("Text");
+                });
+
             modelBuilder.Entity("SavageOrcs.BusinessObjects.Area", b =>
                 {
                     b.Navigation("Marks");
@@ -692,6 +795,8 @@ namespace SavageOrcs.DbContext.Migrations
             modelBuilder.Entity("SavageOrcs.BusinessObjects.Cluster", b =>
                 {
                     b.Navigation("Marks");
+
+                    b.Navigation("TextsToClusters");
                 });
 
             modelBuilder.Entity("SavageOrcs.BusinessObjects.Curator", b =>
@@ -709,11 +814,17 @@ namespace SavageOrcs.DbContext.Migrations
             modelBuilder.Entity("SavageOrcs.BusinessObjects.Mark", b =>
                 {
                     b.Navigation("Images");
+
+                    b.Navigation("TextsToMarks");
                 });
 
             modelBuilder.Entity("SavageOrcs.BusinessObjects.Text", b =>
                 {
                     b.Navigation("Blocks");
+
+                    b.Navigation("TextsToClusters");
+
+                    b.Navigation("TextsToMarks");
                 });
 
             modelBuilder.Entity("SavageOrcs.BusinessObjects.User", b =>
