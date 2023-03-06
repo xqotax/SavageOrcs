@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Mvc;
 using SavageOrcs.BusinessObjects;
 using SavageOrcs.Services.Interfaces;
@@ -17,6 +18,25 @@ namespace SavageOrcs.Web.Controllers
             _logger = logger;
             _mapService = mapService;
         }
+
+        [AllowAnonymous]
+        public IActionResult ChangeLanguage(string culture)
+        {
+            //var a = Thread.CurrentThread.CurrentUICulture.TwoLetterISOLanguageName;
+
+            Response.Cookies.Append(CookieRequestCultureProvider.DefaultCookieName,
+                CookieRequestCultureProvider.MakeCookieValue(new RequestCulture(culture)),
+                new CookieOptions() { Expires = DateTimeOffset.UtcNow.AddYears(1) });
+            return Redirect(Request.Headers["Referer"].ToString());
+        }
+
+        [AllowAnonymous]
+        [HttpPost]
+        public IActionResult Get18PlusPopup()
+        {
+            return PartialView("_18PlusPopup");
+        }
+
 
         [AllowAnonymous]
         public async Task<IActionResult> Main(string lat = "48.5819022", string lng = "32.0356408", string zoom = "6")

@@ -218,6 +218,14 @@ var AddTextView = Class.extend({
             self.RemoveImages();
         });
 
+        $('#addVideo').on('click', function () {
+            self.AddVideo();
+        });
+
+        $('#removeVideos').on('click', function () {
+            self.RemoveVideos();
+        });
+
         $('#dropdown-input-for-curator').addClass("display-8-custom");
     },
 
@@ -364,7 +372,31 @@ var AddTextView = Class.extend({
     },
     RemoveImages: function () {
         $("#imageTextContainer .row").empty();
-    }
+    },
+
+    AddVideo: function () {
+        var self = this;
+        $.ajax({
+            type: 'POST',
+            url: "/Text/AddVideo",
+            contentType: 'application/json; charset=utf-8',
+            success: function (src) {
+                $('#addVideoTextPlaceholder').html(src);
+
+
+            }
+        });
+    },
+    AfterAddingVideo: function () {
+        var self = this;
+
+        $("video").click(function () {
+            self.CopyTextToClipboard($(this).attr("src"));
+        });
+    },
+    RemoveVideos: function () {
+        $("#videoTextContainer .row").empty();
+    },
 
 });
 

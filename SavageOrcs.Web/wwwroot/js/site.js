@@ -78,10 +78,29 @@ var MapMainView = Class.extend({
                 lng: parseFloat(this.Lng)
             },
             zoom: 6,
-            options: {
-                gestureHandling: 'greedy'
-            },
-            disableDefaultUI: true
+            //options: {
+            //    gestureHandling: 'greedy'
+            //},
+            //disableDefaultUI: true,
+            styles: [{ "featureType": "water", "elementType": "geometry.fill", "stylers": [{ "color": "#d3d3d3" }] },
+                { "featureType": "transit", "stylers": [{ "color": "#808080" }, { "visibility": "off" }] },
+                { "featureType": "road.highway", "elementType": "geometry.stroke", "stylers": [{ "visibility": "on" }, { "color": "#b3b3b3" }]},
+                { "featureType": "road.highway", "elementType": "geometry.fill", "stylers": [{ "color": "#ffffff" }] },
+                { "featureType": "road.local", "elementType": "geometry.fill", "stylers": [{ "visibility": "on" }, { "color": "#ffffff" }, { "weight": 1.8 }] },
+                { "featureType": "road.local", "elementType": "geometry.stroke", "stylers": [{ "color": "#d7d7d7" }] },
+                { "featureType": "poi", "elementType": "geometry.fill", "stylers": [{ "visibility": "on" }, { "color": "#ebebeb" }] },
+                { "featureType": "administrative", "elementType": "geometry", "stylers": [{ "color": "#a7a7a7" }] },
+                { "featureType": "road.arterial", "elementType": "geometry.fill", "stylers": [{ "color": "#ffffff" }] },
+                { "featureType": "road.arterial", "elementType": "geometry.fill", "stylers": [{ "color": "#ffffff" }] },
+                { "featureType": "landscape", "elementType": "geometry.fill", "stylers": [{ "visibility": "on" }, { "color": "#efefef" }] },
+                { "featureType": "road", "elementType": "labels.text.fill", "stylers": [{ "color": "#696969" }] },
+                { "featureType": "administrative", "elementType": "labels.text.fill", "stylers": [{ "visibility": "on" }, { "color": "#737373" }] },
+                { "featureType": "poi", "elementType": "labels.icon", "stylers": [{ "visibility": "off" }] },
+                { "featureType": "poi", "elementType": "labels", "stylers": [{ "visibility": "off" }] },
+                { "featureType": "road.arterial", "elementType": "geometry.stroke", "stylers": [{ "color": "#d6d6d6" }] },
+                { "featureType": "road", "elementType": "labels.icon", "stylers": [{ "visibility": "off" }] },
+                {},
+                { "featureType": "poi", "elementType": "geometry.fill", "stylers": [{ "color": "#dadada" }] }]
         });
         self.Map = map;
 
@@ -564,6 +583,9 @@ var AddImageView = Class.extend({
 
         var imageToMove = $(".popup-content-custom .add-image-placeholder-custom").html();
 
+        console.log(imageToMove);
+        debugger;
+
         if ((rowCount === 0) || (colCount !== 0 && Math.floor(colCount / rowCount) === 3 )) {
             $("#imageContainer").append(markAddView.RowAddConstString + markAddView.ColAddConstString + imageToMove + markAddView.DivAddConstString + markAddView.DivAddConstString);
         }
@@ -649,7 +671,7 @@ var CatalogueMarkView = Class.extend({
         var self = this;
        
 
-        var options = {
+        var keyWordsAndMarksOptions = {
             placeholder: "Виберіть ключове слово",
             txtSelected: "вибрано",
             txtAll: "Всі",
@@ -659,7 +681,18 @@ var CatalogueMarkView = Class.extend({
             Id: "keyWordsMultiselect"
         }
 
-        MultiselectDropdown(options);
+        var areasOptions = {
+            placeholder: "Виберіть місце",
+            txtSelected: "вибрано",
+            txtAll: "Всі",
+            txtRemove: "Видалити",
+            txtSearch: "Пошук",
+            height: "300px",
+            Id: "areasMultiselect"
+        }
+
+        MultiselectDropdown(keyWordsAndMarksOptions);
+        MultiselectDropdown(areasOptions);
 
         self.SubscribeEvents();
     },
@@ -745,9 +778,10 @@ var CatalogueMarkView = Class.extend({
         var self = this;
         
         var filters = {
-            KeyWordIds: $("#keyWordsMultiselect").val(),
-            AreaName: $("#AreaName").val(),
-            MarkName: $("#MarkName").val(),
+            SelectedKeyWordAndMarkIds: $("#keyWordsMultiselect").val(),
+            SelectedAreaIds: $("#areasMultiselect").val(),
+            //AreaName: $("#AreaName").val(),
+            //MarkName: $("#MarkName").val(),
             MarkDescription: $("#MarkDescription").val(),
             NotIncludeCluster: $("#NotIncludeCluster").is(":checked"),
             FullData: self.DetailedView,
@@ -1850,6 +1884,14 @@ var AddTextView = Class.extend({
             self.RemoveImages();
         });
 
+        $('#addVideo').on('click', function () {
+            self.AddVideo();
+        });
+
+        $('#removeVideos').on('click', function () {
+            self.RemoveVideos();
+        });
+
         $('#dropdown-input-for-curator').addClass("display-8-custom");
     },
 
@@ -1996,7 +2038,31 @@ var AddTextView = Class.extend({
     },
     RemoveImages: function () {
         $("#imageTextContainer .row").empty();
-    }
+    },
+
+    AddVideo: function () {
+        var self = this;
+        $.ajax({
+            type: 'POST',
+            url: "/Text/AddVideo",
+            contentType: 'application/json; charset=utf-8',
+            success: function (src) {
+                $('#addVideoTextPlaceholder').html(src);
+
+
+            }
+        });
+    },
+    AfterAddingVideo: function () {
+        var self = this;
+
+        $("video").click(function () {
+            self.CopyTextToClipboard($(this).attr("src"));
+        });
+    },
+    RemoveVideos: function () {
+        $("#videoTextContainer .row").empty();
+    },
 
 });
 
@@ -2119,6 +2185,60 @@ var AddImageTextView = Class.extend({
 
         addTextView.AfterAddingImage();
         $("#addImageTextPlaceholder").empty();
+    },
+});
+
+
+var AddVideoTextView = Class.extend({
+    Video: null,
+    VideoInput: null,
+    Reader: null,
+    InitializeControls: function () {
+        var self = this;
+        self.VideoInput = $('#videoInput');
+        self.Reader = new FileReader();
+
+        self.SubscribeEvents();
+    },
+    SubscribeEvents: function () {
+        var self = this;
+
+        self.Reader.addEventListener("load", () => {
+            $("#videoPlaceholder")[0].src = self.Reader.result;
+        }, false);
+
+        self.VideoInput.on('change', function () {
+            self.Reader.readAsDataURL(self.VideoInput[0].files[0]);
+        });
+
+        $('#addVideoCancelButton').on('click', function () {
+            self.Close();
+        });
+        $('#addVideoConfirmButton').on('click', function () {
+            self.Save();
+        });
+    },
+    Close: function () {
+        $("#addVideoTextPlaceholder").empty();
+    },
+    Save: function () {
+        debugger;
+        var rowCount = $("#videoTextContainer .row").length;
+        var colCount = $("#videoTextContainer .col-md-3").length;
+
+        $(".popup-content-custom .row #videoPlaceholder").removeAttr('id');
+
+        var videoToMove = $(".popup-content-custom .add-video-placeholder-custom").html();
+
+        if ((rowCount === 0) || (colCount !== 0 && Math.floor(colCount / rowCount) === 3)) {
+            $("#videoTextContainer").append(addTextView.RowAddConstString + addTextView.ColAddConstString + videoToMove + addTextView.DivAddConstString + addTextView.DivAddConstString);
+        }
+        else {
+            $("#videoTextContainer .row").last().append(addTextView.ColAddConstString + videoToMove + addTextView.DivAddConstString);
+        }
+
+        addTextView.AfterAddingVideo();
+        $("#addVideoTextPlaceholder").empty();
     },
 });
 

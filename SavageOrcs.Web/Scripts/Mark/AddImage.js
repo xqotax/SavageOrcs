@@ -40,6 +40,9 @@ var AddImageView = Class.extend({
 
         var imageToMove = $(".popup-content-custom .add-image-placeholder-custom").html();
 
+        console.log(imageToMove);
+        debugger;
+
         if ((rowCount === 0) || (colCount !== 0 && Math.floor(colCount / rowCount) === 3 )) {
             $("#imageContainer").append(markAddView.RowAddConstString + markAddView.ColAddConstString + imageToMove + markAddView.DivAddConstString + markAddView.DivAddConstString);
         }

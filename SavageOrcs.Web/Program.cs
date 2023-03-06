@@ -1,5 +1,7 @@
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Localization;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
 using SavageOrcs.BusinessObjects;
 using SavageOrcs.DbContext;
 using SavageOrcs.Repositories;
@@ -7,6 +9,9 @@ using SavageOrcs.Repositories.Interfaces;
 using SavageOrcs.Services;
 using SavageOrcs.Services.Interfaces;
 using SavageOrcs.UnitOfWork;
+using SavageOrcs.Web.Resources.Classes;
+using System.Globalization;
+using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
 var connectionString = builder.Configuration.GetConnectionString("SavageOrcsDbContextConnection") ?? throw new InvalidOperationException("Connection string 'SavageOrcsDbContextConnection' not found.");
@@ -41,6 +46,35 @@ builder.Services.AddTransient<IKeyWordService, KeyWordService>();
 builder.Services.AddControllersWithViews();
 builder.Services.AddRazorPages();
 
+builder.Services.AddSingleton<LanguageService>();
+builder.Services.AddLocalization(options => options.ResourcesPath = "Resources");
+builder.Services.AddMvc()
+    .AddViewLocalization()
+    .AddDataAnnotationsLocalization(options =>
+    {
+        options.DataAnnotationLocalizerProvider = (type, factory) =>
+        {
+            var asseblyName = new AssemblyName(typeof(MainResource).GetTypeInfo().Assembly.FullName);
+            return factory.Create("MainResource", asseblyName.Name);
+        };
+    });
+
+builder.Services.Configure<RequestLocalizationOptions>(
+    options =>
+    {
+        var supportedCultures = new List<CultureInfo>
+        {
+            new CultureInfo("en-US"),
+            new CultureInfo("uk-UA")
+        };
+        options.DefaultRequestCulture = new RequestCulture(culture: "en-US", uiCulture: "en-US");
+        options.SupportedCultures = supportedCultures;
+        options.SupportedUICultures = supportedCultures;
+
+        options.RequestCultureProviders.Insert(0, new QueryStringRequestCultureProvider());
+    }
+);
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -50,6 +84,10 @@ if (!app.Environment.IsDevelopment())
     // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
 }
+
+var options = app.Services.GetRequiredService<IOptions<RequestLocalizationOptions>>();
+
+app.UseRequestLocalization(options.Value);
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();

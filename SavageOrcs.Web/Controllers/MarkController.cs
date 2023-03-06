@@ -7,32 +7,25 @@ using SavageOrcs.DbContext;
 using SavageOrcs.Services.Interfaces;
 using SavageOrcs.Web.ViewModels.Constants;
 using SavageOrcs.Web.ViewModels.Mark;
-using System.Linq;
-using System.Drawing;
 using System.Globalization;
-using System.Text.RegularExpressions;
 using SavageOrcs.DataTransferObjects.Marks;
 using System.Text;
-using NuGet.Versioning;
 using SavageOrcs.DataTransferObjects._Constants;
-using SavageOrcs.DataTransferObjects.Maps;
 using SavageOrcs.DataTransferObjects.Areas;
-using static Microsoft.Extensions.Logging.EventSource.LoggingEventSource;
+using System.Linq;
 
 namespace SavageOrcs.Web.Controllers
 {
     public class MarkController : Controller
     {
-        private readonly ILogger<MarkController> _logger;
         private readonly IAreaService _areaService;
         private readonly IMarkService _markService;
         private readonly IKeyWordService _keyWordService;
         private readonly IClusterService _clusterService;
         private readonly UserManager<User> _userManager;
 
-        public MarkController(ILogger<MarkController> logger, UserManager<User> userManager, IAreaService areaService, IMarkService markService, IClusterService clusterService, IKeyWordService keyWordService)
+        public MarkController(UserManager<User> userManager, IAreaService areaService, IMarkService markService, IClusterService clusterService, IKeyWordService keyWordService)
         {
-            _logger = logger;
             _userManager = userManager;
             _areaService = areaService;
             _markService = markService;
@@ -51,12 +44,7 @@ namespace SavageOrcs.Web.Controllers
             else
             {
                 var descriptionEng = "";
-                if ((markDto.DescriptionEng is null) || (markDto.DescriptionEng == ""))
-                    descriptionEng = "This mark has no english description";
-                else
-                {
-                    descriptionEng = markDto.DescriptionEng;
-                }
+                descriptionEng = markDto.DescriptionEng is null or "" ? "This mark has no english description" : markDto.DescriptionEng;
 
                 var revisionMarkViewModel = new RevisionMarkViewModel
                 {
@@ -69,7 +57,7 @@ namespace SavageOrcs.Web.Controllers
                     ResourceUrl = markDto.ResourceUrl,
                     IsApproximate = markDto.IsApproximate,
                     Area = markDto.Area is null ? "" : markDto.Area.Name + ", " + markDto.Area.Community + ", " + markDto.Area.Region,
-                    Images = markDto.Images?.Select(x => GetImage(x)).ToArray(),
+                    Images = markDto.Images?.Select(GetImage).ToArray(),
                     ClusterId = markDto.Cluster?.Id
                 };
 
@@ -117,7 +105,7 @@ namespace SavageOrcs.Web.Controllers
                 ResourceUrl = markDto?.ResourceUrl,
                 IsApproximate  = markDto?.IsApproximate is not null && markDto.IsApproximate.Value,
                 Name = markDto?.Name,
-                Images = markDto?.Images?.Select(x => GetImage(x)).ToArray(),
+                Images = markDto?.Images?.Select(GetImage).ToArray(),
                 IsNew = markDto is null,
                 Areas = areaDtos.Select(x => new GuidIdAndNameViewModel
                 {
@@ -195,7 +183,7 @@ namespace SavageOrcs.Web.Controllers
                 markSaveDto.IsApproximate = saveMarkViewModel.IsApproximate;
                 markSaveDto.ResourceUrl = saveMarkViewModel.ResourceUrl;
                 markSaveDto.MapId = 1;
-                markSaveDto.Images = saveMarkViewModel.Images?.Select(x => GetBytes(x)).ToArray();
+                markSaveDto.Images = saveMarkViewModel.Images?.Select(GetBytes).ToArray();
             }
             catch
             {
@@ -227,10 +215,24 @@ namespace SavageOrcs.Web.Controllers
         {
             var markCatalogueFilterViewModel = new MarkCatalogueFilter()
             {
-                KeyWords = (await _keyWordService.GetKeyWords()),
+                KeyWordAndMarkIds = (await _keyWordService.GetKeyWords())
+                    .Select(x => new StringIdAndStringName
+                    {
+                        Id = "K" + x.Id,
+                        Name = x.Name
+                    }).ToArray().Concat((await _markService.GetMarkNames()).Select(x => new StringIdAndStringName
+                    {
+                        Id = "M" + x.Id,
+                        Name = x.Name
+                    })).ToArray(),
+                AreaIds = (await _areaService.GetUsedAreasAsync()).Select(x => new GuidIdAndStringName
+                {
+                    Id = x.Id,
+                    Name = x.Name + ", " + x.Community + ", " + x.Region
+                }).ToArray(),
                 AreaName = "",
                 MarkDescription = "",
-                MarkName = "",
+                //MarkName = "",
                 NotIncludeCluster = false
             };
 
@@ -241,10 +243,14 @@ namespace SavageOrcs.Web.Controllers
         [AllowAnonymous]
         public async Task<JsonResult> GetMarks([FromBody] MarkCatalogueFilter filter)
         {
+            var markIds = filter.SelectedKeyWordAndMarkIds.Where(x => x.StartsWith("M")).Select(x => Guid.Parse(x[1..]));
+            var keyWordIds = filter.SelectedKeyWordAndMarkIds.Where(x => x.StartsWith("K")).Select(x => Guid.Parse(x[1..]));
+            
             var markDtos = await _markService.GetMarksByFilters(
-                filter.AreaName, 
-                filter.KeyWordIds is null ? Array.Empty<Guid>() : filter.KeyWordIds, 
-                filter.MarkName, 
+                filter.AreaName,
+                keyWordIds.ToArray(),
+                markIds.ToArray(),
+                filter.SelectedAreaIds,
                 filter.MarkDescription, 
                 filter.NotIncludeCluster);
 

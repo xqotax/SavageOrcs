@@ -289,3 +289,10 @@ D:\Навчання\Diploma\SavageOrcs.Web\obj\Debug\net6.0\SavageOrcs.Web.genru
 D:\Навчання\Diploma\SavageOrcs.Web\obj\Debug\net6.0\ref\SavageOrcs.Web.dll
 D:\Навчання\Diploma\SavageOrcs.Web\bin\Debug\net6.0\SavageOrcs.Enums.dll
 D:\Навчання\Diploma\SavageOrcs.Web\bin\Debug\net6.0\SavageOrcs.Enums.pdb
+D:\Навчання\Diploma\SavageOrcs.Web\bin\Debug\net6.0\en-US\SavageOrcs.Web.resources.dll
+D:\Навчання\Diploma\SavageOrcs.Web\bin\Debug\net6.0\uk-UA\SavageOrcs.Web.resources.dll
+D:\Навчання\Diploma\SavageOrcs.Web\obj\Debug\net6.0\SavageOrcs.Web.Resources.MainResource.en-US.resources
+D:\Навчання\Diploma\SavageOrcs.Web\obj\Debug\net6.0\SavageOrcs.Web.Resources.MainResource.uk-UA.resources
+D:\Навчання\Diploma\SavageOrcs.Web\obj\Debug\net6.0\SavageOrcs.Web.csproj.GenerateResource.cache
+D:\Навчання\Diploma\SavageOrcs.Web\obj\Debug\net6.0\en-US\SavageOrcs.Web.resources.dll
+D:\Навчання\Diploma\SavageOrcs.Web\obj\Debug\net6.0\uk-UA\SavageOrcs.Web.resources.dll

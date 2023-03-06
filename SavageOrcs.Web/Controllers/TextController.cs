@@ -322,6 +322,12 @@ namespace SavageOrcs.Web.Controllers
             return PartialView("_AddImage");
         }
 
+        [Authorize(Roles = "Admin")]
+        public IActionResult AddVideo()
+        {
+            return PartialView("_AddVideo");
+        }
+
 
 
         [Authorize(Roles = "Admin")]

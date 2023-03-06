@@ -1,46 +1,90 @@
 ﻿@using SavageOrcs.Web.ViewModels.Map
 @model MapCoordinatesViewModel
-
-<div class="row">
-    <div class="col-md-8">
-        <h2 class="text-white-custom">Люті орки</h2>
-        <div class="row">
-            <div class="col-md-12 text-white-custom">
-                Даний ресурс - сховище вандалізму російських окупантів.
-            </div>
+<style>
+    @@media (min-width: 900px) {
+        #mapRow{
+            padding-bottom:37px
+        }
+    }
+</style>
+<div class="wrapper-custom">
+    <img class="main-image" src="~/images/main/yourHouse-OurHouse.jpg" />
+    <img class="main-image-mob" src="~/images/main/yourHouse-OurHouse-mob.png" />
+    <div class="info-container">
+        <div class="main-photo-info">
+            <p>Джерело:</p>
+            <p>Власник фото</p>
+            <p>Your house is our house</p>
         </div>
-        <div class="row pb-3">
-            <div class="col-md-12 text-white-custom">
-                На карті Ви маєте можливість переглянути фотоматеріали та текст-опис багатьох місць, де загарбники показали свою культуру.
-                Також, якщо у Вас є нові матеріали, після реєстрації Ви зможете їх добавити.
+        <div class="main-text-info">Відкритий архів написів російських окупантів</div>
+        <div class="additional-text-info">
+            <div class="additional-text-info-col">
+                Перед вами архів написів, які залишили російські
+                військові під час окупації територій України з лютого 2022 року.
+                Тут ви знайдете красномовні свідчення про російську культуру,
+                з якої походить військова агресія, а також докази воєнних злочинів росіян.
             </div>
-        </div>
-        <div class="row">
-            <div class="col-md-12 font-weight-bold-custom text-danger">
-                На сайті присутній 18+ контент! Якщо Вам немає 18 років - негайно покиньте ресурс
-            </div>
-        </div>
-        <div class="row pt-3">
-            <div class="col-md-12 font-weight-bold-custom text-white-custom">
-                Смайлик, який плаче - скупчення міток з фотографіями та описом
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-12 font-weight-bold-custom text-white-custom">
-                Злий смайлик - одинока мітка з точними координатами
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-12 font-weight-bold-custom text-white-custom">
-                Дуже злий смайлик - одинока мітка з приблизними координатами
+            <div class="additional-text-info-col" style="margin-right: 40px">
+                Базу даних збирає команда культурної інституції «Міжвухами».
+                Для цього ми їздимо в експедиції деокупованими територіями та моніторимо відкриті джерела.
+                Архів відкритий для користування дослідників, митців та всіх, хто працює задля перемоги України.
             </div>
         </div>
     </div>
-</div>
-
-<div class="row pt-5">
-    <div class="col-md-12">
-        <div id="map"></div>
+    <div class="map-container">
+        <div class="row" id="mapRow">
+            <h1>МАПА</h1>
+        </div>
+        <div class="d-flex justify-content-between filter-container">
+            <div class="filter-col">
+                <div class="filter-line mb-2"></div>
+                <div class="filter-text">01 &nbsp;&nbsp;&nbsp; Ключові слова</div>
+            </div>
+            <div class="filter-col">
+                <div class="filter-line mb-2"></div>
+                <div class="filter-text">02 &nbsp;&nbsp;&nbsp; Населений пункт</div>
+            </div>
+            <div class="filter-col">
+                <div class="filter-line mb-2"></div>
+                <div class="filter-text">03 &nbsp;&nbsp;&nbsp; Локація</div>
+            </div>
+        </div>
+        <div class="row-lg">
+            <div id="map"></div>
+        </div>
+    </div>
+    <div class="email-container">
+        <div class="email-col">
+            <div class="email-text-info-row">
+                ЯКЩО БАЖАЄТЕ ДОЛУЧИТИСЬ
+            </div>
+            <div class="email-text-info-row mr-lg-2">
+                ДО ПРОЄКТУ АРХІВУ
+            </div>
+        </div>
+        <div class="email-col">
+            <div class="email-text-info-row">
+                ПИШІТЬ НА СКРИНЮ:
+            </div>
+            <div class="email-text-info-row mr-lg-2">
+                <a href="mailto:info@mizhvukhamy.com?subject=Application%20for%20joining%20the%20team">
+                    info@mizhvukhamy.com
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="form-container">
+        <div class="form-col">
+            Або заповніть та надішліть форму
+        </div>
+        <div class="form-col">
+            <div class="from-text-info-row">
+                Риска
+            </div>
+            <div class="from-text-info-row">
+                Надіслати
+            </div>
+        </div>
     </div>
 </div>
 
@@ -49,11 +93,11 @@
         var mapMainView = new MapMainView();
         mapMainView.Lat = '@Html.Raw(Model.Lat)';
         mapMainView.Lng = '@Html.Raw(Model.Lng)';
-        mapMainView.Marks =  @Json.Serialize(Model.MapMarkViewModels);
+        mapMainView.Marks = @Json.Serialize(Model.MapMarkViewModels);
         mapMainView.Clusters = @Json.Serialize(Model.MapClusterViewModels);
         mapMainView.MapId = '@Html.Raw(Model.Id)';
         mapMainView.MapName = '@Html.Raw(Model.Name)';
-        
+
 
         $(document).ready(function () {
             mapMainView.InitializeControls();
@@ -62,5 +106,5 @@
             mapMainView.InitMap();
         }
     </script>
-    <script src = "https://maps.googleapis.com/maps/api/js?key=AIzaSyDuw7bPRLxL2yVBd9YArtpb47myhmUePGY&callback=initMap" ></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDuw7bPRLxL2yVBd9YArtpb47myhmUePGY&callback=initMap"></script>
 }

@@ -6,20 +6,28 @@
 <link itemprop="url" rel="stylesheet" href="~/css/checkBox.css" asp-append-version="true" />
 
 <div class="row">
-    <div class="col-md-2">
+    <div class="col-md-3">
         <select name="keyWordsMultiselect" id="keyWordsMultiselect" multiple multiselect-search="true" multiselect-select-all="true" multiselect-hide-x="true">
-            @foreach (var curator in Model.KeyWords)
+            @foreach (var keyWordAndMark in Model.KeyWordAndMarkIds)
             {
-                <option value=@curator.Id.ToString()>@curator.Name</option>
+                <option value=@keyWordAndMark.Id>@keyWordAndMark.Name</option>
             }
         </select>
     </div>
-    <div class="col-md-2">
+    <div class="col-md-3">
+        <select name="areasMultiselect" id="areasMultiselect" multiple multiselect-search="true" multiselect-select-all="true" multiselect-hide-x="true">
+            @foreach (var area in Model.AreaIds)
+            {
+                <option value=@area.Id>@area.Name</option>
+            }
+        </select>
+    </div>
+    <div style="visibility: hidden">
         @Html.TextBoxFor(m => m.AreaName, new { @class = "text-box-custom form-control display-8-custom", @placeholder = "Назва міста"})
     </div>
-    <div class="col-md-2">
+   @* <div class="col-md-2">
         @Html.TextBoxFor(m => m.MarkName, new { @class = "text-box-custom form-control display-8-custom", @placeholder = "Назва мітки"})
-    </div>
+    </div>*@
     <div class="col-md-3">
         @Html.TextBoxFor(m => m.MarkDescription, new { @class = "text-box-custom form-control display-8-custom", @placeholder = "Опис мітки"})
     </div>
@@ -55,7 +63,7 @@
                 <img class="flag-select-custom" id="flagUA" class="box-shadow-grey-custom" src="~/images/flags/UA.png" />
             </div>
             <div class="col-md-auto pr-1">
-                <img class="flag-select-custom" id="flagGB" src="~/images/flags/GB.png" />
+                <img class="flag-select-custom" id="flagGB" src="~/images/flags/GB.png" alt=""/>
             </div>
             <div class="col-md-auto">
                 <button class="btn btn-dark-custom display-8-custom" id="fullData">Ввімкнути детальний перегляд</button>

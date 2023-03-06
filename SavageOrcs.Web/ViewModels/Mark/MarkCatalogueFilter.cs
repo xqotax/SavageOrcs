@@ -7,9 +7,12 @@ namespace SavageOrcs.Web.ViewModels.Mark
     {
         public bool FullData { get; set; }
 
+        public GuidIdAndStringName[] AreaIds { get; set; }
+        public Guid[] SelectedAreaIds { get; set; }
+
         public string? AreaName { get; set; }
 
-        public string? MarkName { get; set; }
+        //public string? MarkName { get; set; }
 
         public string? MarkDescription { get; set; }
 
@@ -19,8 +22,8 @@ namespace SavageOrcs.Web.ViewModels.Mark
 
         public int? Count { get; set; }
 
-        public GuidIdAndStringName[] KeyWords { get; set; }
+        public StringIdAndStringName[] KeyWordAndMarkIds { get; set; }
 
-        public Guid[]? KeyWordIds { get; set; }
+        public string[] SelectedKeyWordAndMarkIds { get; set; }
     }
 }

@@ -1,0 +1,33 @@
+﻿
+<div id="addVideoView" class="popup-custom">
+    <div class="popup-body-custom">
+        <div class="popup-content-custom">
+            <div class="row">
+                <h2>Додавання відео</h2>
+            </div>
+            <div class="row mb-2">
+                <div class="col">
+                    <input type="file" id="videoInput" class="btn btn-dark-custom">
+                </div>
+            </div>
+            <div class="row add-video-placeholder-custom mb-2">
+                <video controls src="" id="videoPlaceholder" height="200" alt="Video preview"></video>
+            </div>
+            <div class="row justify-content-end">
+                <div class="col-md-1" style="padding-right: 40px">
+                    <button id="addVideoConfirmButton" class="btn btn-dark-custom">ОK</button>
+                </div>
+                <div class="col-md-3">
+                    <button id="addVideoCancelButton" class="btn btn-dark-custom">Відмінити</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    var addVideoTextView = new AddVideoTextView();
+    $(document).ready(function () {
+        addVideoTextView.InitializeControls();
+    });
+</script>

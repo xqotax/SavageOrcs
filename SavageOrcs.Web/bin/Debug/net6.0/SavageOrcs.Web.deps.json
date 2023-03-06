@@ -25,6 +25,14 @@
         },
         "runtime": {
           "SavageOrcs.Web.dll": {}
+        },
+        "resources": {
+          "en-US/SavageOrcs.Web.resources.dll": {
+            "locale": "en-US"
+          },
+          "uk-UA/SavageOrcs.Web.resources.dll": {
+            "locale": "uk-UA"
+          }
         }
       },
       "BuildBundlerMinifier/3.2.449": {},

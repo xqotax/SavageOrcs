@@ -5,13 +5,6 @@ using SavageOrcs.DataTransferObjects.Marks;
 using SavageOrcs.Repositories.Interfaces;
 using SavageOrcs.Services.Interfaces;
 using SavageOrcs.UnitOfWork;
-using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Linq;
-using System.Text;
-using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 
 namespace SavageOrcs.Services
 {
@@ -34,20 +27,16 @@ namespace SavageOrcs.Services
         public async Task<MarkDto?> GetMarkById(Guid id)
         {
             var mark = await _markRepository.GetTAsync(x => x.Id == id);
-            if (mark is null) {
-                return null;
-            }
-
-            return CreateMarkDto(mark);
+            return mark is null ? null : CreateMarkDto(mark);
         }
 
-        public async Task<MarkDto[]> GetMarksByFilters(string? areaName, Guid[] keyWordIds, string? markName, string? markDescription, bool NotIncludeCluster = false)
+        public async Task<MarkDto[]> GetMarksByFilters(string? areaName, Guid[] keyWordIds,  Guid[] markIds, Guid[] areaIds, string? markDescription, bool notIncludeCluster = false)
         {
             
             var marks = await _markRepository.GetAllAsync();
 
             var keyWords = await _keyWordService.GetKeyWordNamesByIds(keyWordIds);
-            if (NotIncludeCluster)
+            if (notIncludeCluster)
                 marks = marks.Where(x => x.ClusterId is null);
 
             if (keyWords.Length > 0)
@@ -59,13 +48,22 @@ namespace SavageOrcs.Services
                                 (y.Bool.HasValue && y.Bool.Value) ? x.Description.Contains(y.Name) :
                                     x.Description.Contains(y.Name, StringComparison.OrdinalIgnoreCase))));
 
-                var markDebugger = marks.ToList();
             }
 
-            if (!string.IsNullOrEmpty(markName))
+
+            if (markIds.Length > 0)
             {
-                marks = marks.Where(x => x.Name is not null && x.Name.Contains(markName, StringComparison.OrdinalIgnoreCase));
+                marks = marks.Where(x => markIds.Contains(x.Id));
             }
+
+            if (areaIds.Length > 0)
+            {
+                marks = marks.Where(x => x.AreaId != null && areaIds.Contains(x.AreaId.Value));
+            }
+            //if (!string.IsNullOrEmpty(markName))
+            //{
+            //    marks = marks.Where(x => x.Name is not null && x.Name.Contains(markName, StringComparison.OrdinalIgnoreCase));
+            //}
 
             if (!string.IsNullOrEmpty(markDescription))
             {
@@ -78,15 +76,23 @@ namespace SavageOrcs.Services
                 marks = marks.Where(x => x.Area is not null && (x.Area.Name + ", " + x.Area.Community + ", " + x.Area.Region).Contains(areaName, StringComparison.OrdinalIgnoreCase));
             }
 
-            return marks.Select(x => CreateMarkDto(x)).ToArray();
-
+            return marks.Select(CreateMarkDto).ToArray();
         }
 
         public async Task<MarkDto[]> GetMarks()
         {
             var marks = await _markRepository.GetAllAsync();
 
-            return marks.Select(x => CreateMarkDto(x)).ToArray();
+            return marks.Select(CreateMarkDto).ToArray();
+        }
+
+        public async Task<GuidIdAndStringName[]> GetMarkNames()
+        {
+            return (await _markRepository.GetAllAsync()).OrderBy(x => x.Name).Select(x => new GuidIdAndStringName
+            {
+                Id = x.Id,
+                Name = x.Name
+            }).ToArray();
         }
 
         private static MarkDto CreateMarkDto(Mark mark)
@@ -98,8 +104,8 @@ namespace SavageOrcs.Services
                 Description = mark.Description,
                 DescriptionEng = mark.DescriptionEng,
                 IsApproximate = mark.IsApproximate,
-                Lat = mark.Cluster is null ? mark.Lat : mark.Cluster.Lat,
-                Lng = mark.Cluster is null ? mark.Lng : mark.Cluster.Lng,
+                Lat = mark.Cluster?.Lat ?? mark.Lat,
+                Lng = mark.Cluster?.Lng ?? mark.Lng,
                 Area = mark.Area is null ? (mark.Cluster?.Area is null ? null : new AreaShortDto
                 {
                     Id = mark.Cluster.Area.Id,
@@ -119,7 +125,7 @@ namespace SavageOrcs.Services
                 Cluster = mark.Cluster is null ? null: new GuidIdAndStringName
                 {
                     Id = mark.Cluster.Id,
-                    Name = mark.Cluster.Name is null ? "" : mark.Cluster.Name
+                    Name = mark.Cluster.Name ?? ""
                 }
             };
         }
@@ -164,16 +170,18 @@ namespace SavageOrcs.Services
                     }
                 }
 
-                foreach (var imageDto in markSaveDto.Images)
-                {
-                    var image = new Image();
-                    if (mark.Images.All(x => !x.Content.SequenceEqual(imageDto)))
+                if (markSaveDto.Images != null)
+                    foreach (var imageDto in markSaveDto.Images)
                     {
+                        var image = new Image();
+                        if (mark.Images.Any(x => x.Content.SequenceEqual(imageDto)))
+                            continue;
+
+
                         image.Mark = mark;
                         image.Content = imageDto;
                         await _imageRepository.AddAsync(image);
                     }
-                }
             }
 
             await UnitOfWork.SaveChangesAsync();

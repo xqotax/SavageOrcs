@@ -28,7 +28,7 @@
         var self = this;
        
 
-        var options = {
+        var keyWordsAndMarksOptions = {
             placeholder: "Виберіть ключове слово",
             txtSelected: "вибрано",
             txtAll: "Всі",
@@ -38,7 +38,18 @@
             Id: "keyWordsMultiselect"
         }
 
-        MultiselectDropdown(options);
+        var areasOptions = {
+            placeholder: "Виберіть місце",
+            txtSelected: "вибрано",
+            txtAll: "Всі",
+            txtRemove: "Видалити",
+            txtSearch: "Пошук",
+            height: "300px",
+            Id: "areasMultiselect"
+        }
+
+        MultiselectDropdown(keyWordsAndMarksOptions);
+        MultiselectDropdown(areasOptions);
 
         self.SubscribeEvents();
     },
@@ -124,9 +135,10 @@
         var self = this;
         
         var filters = {
-            KeyWordIds: $("#keyWordsMultiselect").val(),
-            AreaName: $("#AreaName").val(),
-            MarkName: $("#MarkName").val(),
+            SelectedKeyWordAndMarkIds: $("#keyWordsMultiselect").val(),
+            SelectedAreaIds: $("#areasMultiselect").val(),
+            //AreaName: $("#AreaName").val(),
+            //MarkName: $("#MarkName").val(),
             MarkDescription: $("#MarkDescription").val(),
             NotIncludeCluster: $("#NotIncludeCluster").is(":checked"),
             FullData: self.DetailedView,
