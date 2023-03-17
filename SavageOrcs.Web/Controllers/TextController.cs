@@ -282,21 +282,29 @@ namespace SavageOrcs.Web.Controllers
         [AllowAnonymous]
         public async Task<IActionResult> Catalogue()
         {
-            var curatorDtos = await _curatorService.GetCurators();
-
-            var filterCatalogueTextViewModel = new FilterCatalogueTextViewModel
+            var unitedTextViewModel = new UnitedCatalogueTextViewModel();
+            var textDtos = await _textService.GetTexts();
+            unitedTextViewModel.Curators = (await _curatorService.GetCurators()).Select(x => new GuidIdAndNameViewModel
             {
-                CuratorIds = Array.Empty<Guid>(),
-                TextName = "",
-                TextSubject = "",
-                Curators = curatorDtos.Select(x => new GuidIdAndNameViewModel
-                {
-                    Id = x.Id,
-                    Name = x.DisplayName
-                }).ToArray()
-            };
+                Id = x.Id,
+                Name = x.DisplayName
+            }).ToArray();
 
-            return View(filterCatalogueTextViewModel);
+            unitedTextViewModel.Texts = textDtos.Select(x => new TextRevisionViewModel
+            {
+                Id = x.Id,
+                Name = x.Name,
+                CuratorName = x.Curator?.Name
+            }).ToArray();
+
+
+            unitedTextViewModel.TextNames = textDtos.Select(x => new GuidIdAndNameViewModel
+            {
+                Id = x.Id,
+                Name = x.Name,
+            }).ToArray();
+
+            return View(unitedTextViewModel);
         }
 
         [AllowAnonymous]

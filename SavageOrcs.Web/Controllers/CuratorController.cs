@@ -2,6 +2,8 @@
 using Microsoft.AspNetCore.Mvc;
 using SavageOrcs.Services.Interfaces;
 using SavageOrcs.Web.ViewModels.Curator;
+using SavageOrcs.Web.ViewModels.Text;
+using System.Globalization;
 using System.Text;
 
 namespace SavageOrcs.Web.Controllers
@@ -10,11 +12,13 @@ namespace SavageOrcs.Web.Controllers
     {
         private readonly IHelperService _imageService;
         private readonly ICuratorService _curatorService;
+        private readonly ITextService _textService;
 
-        public CuratorController(ICuratorService curatorService, IHelperService imageService)
+        public CuratorController(ICuratorService curatorService, IHelperService imageService, ITextService textService)
         {
             _curatorService = curatorService;
             _imageService = imageService;
+            _textService = textService;
         }
 
         [AllowAnonymous]
@@ -29,10 +33,25 @@ namespace SavageOrcs.Web.Controllers
                     Id = x.Id,
                     DisplayName = x.DisplayName,
                     Description = x.Description,
-                    UserId = x.UserId,
                     Image = x.Image is not null ? _imageService.GetImage(x.Image) : null
                 }).ToArray()
             };
+
+            foreach (var curatorViewModel in curatorViewModels.Curators)
+            {
+                curatorViewModel.Texts = (await _textService.GetTextsByCuratorIds(curatorViewModel.Id.Value))
+                    .Select(y => new TextCatalogueViewModel
+                    {
+                        Id = y.Id,
+                        CreatedDate = Thread.CurrentThread.CurrentUICulture.TwoLetterISOLanguageName == "ua" 
+                        ? y.CreatedDate.ToString("dd MMMM yyyy", CultureInfo.CreateSpecificCulture("uk-UA"))
+                        : y.CreatedDate.ToString("dd/MM/yyyy"),
+
+                        Name = y.Name
+                    }).ToArray();
+                curatorViewModel.TextCount = curatorViewModel.Texts.Length;
+            }
+
             return View("Catalogue", curatorViewModels);
         }
 
@@ -57,12 +76,12 @@ namespace SavageOrcs.Web.Controllers
         }
 
 
-        [Authorize(Roles = "Global admin")]
-        public async Task<IActionResult> Edit(Guid id)
-        {
-            var curatorDto = await _curatorService.GetCuratorById(id);
+        //[Authorize(Roles = "Global admin")]
+        //public async Task<IActionResult> Edit(Guid id)
+        //{
+        //    var curatorDto = await _curatorService.GetCuratorById(id);
 
-            return RedirectToAction("Revision", "User", new { id = curatorDto.UserId });
-        }
+        //    return RedirectToAction("Revision", "User", new { id = curatorDto.UserId });
+        //}
     }
 }

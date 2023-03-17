@@ -1,0 +1,48 @@
+﻿.wrapper-mark-revision {
+    padding-left: 64px;
+    padding-right: 70px;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    padding-top: 32px;
+    height: 800px;
+    background-color: #0F0F0F;
+}
+
+.mark-revision-content-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.wrapper-mark-revision,
+.mark-revision-navigation-row,
+.mark-revision-content-row {
+    width: 100%;
+}
+
+.mark-revision-navigation-row {
+    height:118px;
+}
+
+.mark-revision-content-col {
+    width: 20%;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 17px;
+    color: #FFFFFF;
+}
+
+.mark-revision-image-col {
+    width: 70%;
+    max-height: 682px;
+}
+
+.mark-revision-description{
+    padding-bottom: 40px;
+}
+.mark-revision-area,
+.mark-revision-curator,
+.mark-revision-resources {
+    padding-bottom: 14px;
+}

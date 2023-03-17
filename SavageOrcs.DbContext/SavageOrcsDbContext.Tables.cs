@@ -18,5 +18,6 @@ namespace SavageOrcs.DbContext
         public virtual DbSet<TextToCluster> TextsToClusters { get; set; }
         public virtual DbSet<TextToMark> TextsToMarks { get; set; }
         public virtual DbSet<KeyWord> KeyWords { get; set; }
+        public virtual DbSet<Place> Places { get; set; }
     }
 }

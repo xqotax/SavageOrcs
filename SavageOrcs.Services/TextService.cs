@@ -53,6 +53,21 @@ namespace SavageOrcs.Services
             return CreateTextDto(text);
         }
 
+        public async Task<TextShortDto[]> GetTextsByCuratorIds(Guid curatorId)
+        {
+            var texts = await _textRepository.GetAllAsync();
+
+            return texts.Where(x => x.CuratorId.HasValue && x.CuratorId == curatorId)
+                .Select(x => new TextShortDto
+                {
+                    Id = x.Id,
+                    Name = x.Name,
+                    Subject = x.Subject,
+                    CreatedDate = x.CreatedDate
+                }).ToArray();
+
+        }
+
         private TextDto CreateTextDto(Text text)
         {
             return new TextDto

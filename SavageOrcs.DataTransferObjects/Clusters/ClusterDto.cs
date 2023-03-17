@@ -20,8 +20,16 @@ namespace SavageOrcs.DataTransferObjects.Cluster
 
         public string? Description { get; set; }
 
+        public string? DescriptionEng { get; set; }
+
+        public string? ResourceUrl { get; set; }
+
+        public string? ResourceName { get; set; }
+
+        public string? CuratorName { get; set; }
+
         public AreaShortDto? Area { get; set; }
 
-        public ClusterMarkDto[]? Marks { get; set; }
+        public ClusterMarkDto[] Marks { get; set; } = new ClusterMarkDto[0];
     }
 }

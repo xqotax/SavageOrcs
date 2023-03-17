@@ -14,7 +14,7 @@ namespace SavageOrcs.Web.ViewModels.Cluster
 
         public string? ResourceUrl { get; set; }
 
-        public string? Image { get; set; }
+        public string[]? Images { get; set; }
 
         public GuidIdAndStringName? Area { get; set; }
     }

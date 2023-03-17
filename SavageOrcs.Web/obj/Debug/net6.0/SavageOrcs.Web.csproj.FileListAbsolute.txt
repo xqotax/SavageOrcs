@@ -275,7 +275,6 @@ D:\Навчання\Diploma\SavageOrcs.Web\bin\Debug\net6.0\SavageOrcs.Services.
 D:\Навчання\Diploma\SavageOrcs.Web\bin\Debug\net6.0\SavageOrcs.Services.pdb
 D:\Навчання\Diploma\SavageOrcs.Web\bin\Debug\net6.0\SavageOrcs.UnitOfWork.pdb
 D:\Навчання\Diploma\SavageOrcs.Web\bin\Debug\net6.0\SavageOrcs.DataTransferObjects.pdb
-D:\Навчання\Diploma\SavageOrcs.Web\obj\Debug\net6.0\SavageOrcs.Web.MvcApplicationPartsAssemblyInfo.cs
 D:\Навчання\Diploma\SavageOrcs.Web\obj\Debug\net6.0\staticwebassets.build.json
 D:\Навчання\Diploma\SavageOrcs.Web\obj\Debug\net6.0\staticwebassets.development.json
 D:\Навчання\Diploma\SavageOrcs.Web\obj\Debug\net6.0\scopedcss\Views\Shared\_Layout.cshtml.rz.scp.css
@@ -296,3 +295,4 @@ D:\Навчання\Diploma\SavageOrcs.Web\obj\Debug\net6.0\SavageOrcs.Web.Resou
 D:\Навчання\Diploma\SavageOrcs.Web\obj\Debug\net6.0\SavageOrcs.Web.csproj.GenerateResource.cache
 D:\Навчання\Diploma\SavageOrcs.Web\obj\Debug\net6.0\en-US\SavageOrcs.Web.resources.dll
 D:\Навчання\Diploma\SavageOrcs.Web\obj\Debug\net6.0\uk-UA\SavageOrcs.Web.resources.dll
+D:\Навчання\Diploma\SavageOrcs.Web\obj\Debug\net6.0\SavageOrcs.Web.MvcApplicationPartsAssemblyInfo.cs

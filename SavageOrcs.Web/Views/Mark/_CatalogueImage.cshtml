@@ -1,0 +1,105 @@
+﻿@using SavageOrcs.Web.ViewModels.Mark
+@model RevisionImageViewModel
+
+<style>
+    .slideshow-wrapper {
+        width: 100%;
+        max-height: 400px;
+        position: relative;
+    }
+    .mySlides {
+        display: none;
+        height: 100%;
+        width: 100%;
+        position: relative;
+        z-index:2;
+    }
+    .image-slides-button-row{
+        display:flex;
+        flex-direction:row;
+        justify-content:space-between;
+        position: absolute;
+        top: 10px;
+        height: 55px;
+        width: 100%;
+    }
+
+    .prev, .next {
+        cursor: pointer;
+        position: relative;
+        width: auto;
+        height: 55px;
+        top: -8px;
+        padding: 16px;
+        font-weight: bold;
+        font-size: 16px;
+        transition: 0.6s ease;
+        border-radius: 0 3px 3px 0;
+        user-select: none;
+        z-index:3;
+        color: #FF2929;
+
+    }
+
+    .next {
+        border-radius: 3px 0 0 3px;
+    }
+
+        .prev:hover, .next:hover {
+            background-color: rgba(0,0,0,0.8);
+        }
+</style>
+
+<div class="slideshow-wrapper">
+
+@if (Model.Images.Length != 0)
+{
+    if (Model.Images.Length != 1)
+    {
+        foreach (var img in Model.Images)
+        {
+            <div class="mySlides">
+                @if (Model.IsCluster)
+                {
+                    <a href="/Cluster/Revision?id=@Model.Id.ToString()"><img class="mark-image" src="@img" /></a>
+                }
+                else
+                {
+                    <a href="/Mark/Revision?id=@Model.Id.ToString()"><img class="mark-image" src="@img" /></a>
+
+                }
+            </div>
+        }
+        <div class="image-slides-button-row">
+                <a class="prev" style="text-decoration: none" onclick="plusSlides(-1)">&#10094;</a>
+                <a class="next" style="text-decoration: none" onclick="plusSlides(1)">&#10095;</a>
+        </div>
+
+    }
+    else
+    {
+        if (Model.IsCluster)
+        {
+            <a href="/Cluster/Revision?id=@Model.Id.ToString()"><img class="mark-image" src="@Model.Images[0]" /></a>
+        }
+        else
+        {
+            <a href="/Mark/Revision?id=@Model.Id.ToString()"><img class="mark-image" src="@Model.Images[0]" /></a>
+
+        }
+
+    }
+}
+</div>
+
+<script>
+    slideIndex = 1;
+    if ($(".mySlides").length) {
+        showSlides(slideIndex);
+
+        var prevArrow = $(".prev").first();
+        var nextArrow = $(".next").first();
+        var firstSlide = $(".mySlides").first();
+    }
+</script>
+

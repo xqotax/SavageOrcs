@@ -4,7 +4,7 @@ namespace SavageOrcs.Web.ViewModels.Mark
 {
     public class MarkCatalogueViewModel
     {
-        public GuidIdAndStringName? Area { get; set; }
+        public GuidIdAndStringName Area { get; set; } = new GuidIdAndStringName();
 
         public string? Name { get; set; }
 
@@ -17,6 +17,8 @@ namespace SavageOrcs.Web.ViewModels.Mark
         public string? ResourceUrl { get; set; }
 
         public string[]? Images { get; set; }
+
+        public bool IsCluster { get; set; } = false;
 
     }
 }

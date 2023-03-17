@@ -120,6 +120,7 @@ namespace SavageOrcs.Services
                     Community = mark.Area.Community
                 },
                 ResourceUrl = mark.ResourceUrl,
+                ResourceName = mark.ResourceName,
                 Images = mark.Images.Select(x => x.Content).ToArray(),
                 CreatedDate = mark.CreatedDate,
                 Cluster = mark.Cluster is null ? null: new GuidIdAndStringName

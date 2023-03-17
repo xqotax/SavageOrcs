@@ -16,6 +16,8 @@
 
         public string? ResourceUrl { get; set; }
 
+        public string? ResourceName { get; set; }
+
         public DateTime CreatedDate { get; set; }
 
         public DateTime UpdatedDate { get; set; }
@@ -37,6 +39,10 @@
         public int MapId { get; set; }
 
         public virtual Map Map { get; set;  }
+
+        public Guid? CuratorId { get; set; }
+
+        public virtual Curator? Curator { get; set; }
 
         public virtual ICollection<Image> Images { get; set; } = new HashSet<Image>();
 

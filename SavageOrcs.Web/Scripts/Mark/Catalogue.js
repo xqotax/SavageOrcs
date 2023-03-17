@@ -28,16 +28,6 @@
         var self = this;
        
 
-        var keyWordsAndMarksOptions = {
-            placeholder: "Виберіть ключове слово",
-            txtSelected: "вибрано",
-            txtAll: "Всі",
-            txtRemove: "Видалити",
-            txtSearch: "Пошук",
-            height: "300px",
-            Id: "keyWordsMultiselect"
-        }
-
         var areasOptions = {
             placeholder: "Виберіть місце",
             txtSelected: "вибрано",
@@ -48,7 +38,28 @@
             Id: "areasMultiselect"
         }
 
+        var keyWordsAndMarksOptions = {
+            placeholder: "Виберіть ключове слово",
+            txtSelected: "вибрано",
+            txtAll: "Всі",
+            txtRemove: "Видалити",
+            txtSearch: "Пошук",
+            height: "300px",
+            Id: "namesMultiselect"
+        }
+
+        var placesOptions = {
+            placeholder: "Виберіть локацію",
+            txtSelected: "вибрано",
+            txtAll: "Всі",
+            txtRemove: "Видалити",
+            txtSearch: "Пошук",
+            height: "300px",
+            Id: "placesMultiselect"
+        }
+
         MultiselectDropdown(keyWordsAndMarksOptions);
+        MultiselectDropdown(placesOptions);
         MultiselectDropdown(areasOptions);
 
         self.SubscribeEvents();
@@ -235,6 +246,31 @@
                     else
                         $(".eng-description").addClass("display-none-custom");
                 }
+            }
+        });
+    },
+    Show: function (el) {
+        $('.data-row').each(function (idex, element) {
+            $(element).css('opacity', '0.3');
+        });
+        $(el).css('opacity', '1');
+        var fullId = $(el).find("input:first-child").attr('id')
+        id = fullId.substring(fullId.length - 36);
+        var index = fullId.substring(0, fullId.length - 36);
+        var isCluster = $(el).find("input").eq(1).val() == 'True';
+        
+
+        $(".slideshow-container").empty();
+        $.ajax({
+            type: 'POST',
+            url: "/Mark/GetImages?id=" + id + "&isCluster=" + isCluster + "&index=" + index,
+            contentType: 'application/json; charset=utf-8',
+            success: function (result) {
+                $(".slideshow-container").html(result);
+                var containerTop = $(".data-row-container").offset().top;
+                var rowTop = $(el).offset().top;
+                var topToSet = rowTop - containerTop;
+                $(".slideshow-container").css({ "margin-top": topToSet +'px' });
             }
         });
     }

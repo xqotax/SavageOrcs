@@ -7,5 +7,7 @@
         public string? Name { get; set; }
 
         public string? Subject { get; set; }
+
+        public DateTime CreatedDate { get; set; }
     }
 }

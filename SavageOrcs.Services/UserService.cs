@@ -75,7 +75,6 @@ namespace SavageOrcs.Services
                 Id = curator.Id,
                 DisplayName = curator.Name,
                 Description = curator.Description,
-                UserId = curator.UserId,
                 Image = curator.Image
             };
         }
@@ -93,45 +92,45 @@ namespace SavageOrcs.Services
                 };
             try
             {
-                if (userSaveDto.IsCurator is false && user.Curators.Any())
-                {
-                    var curators = await _curatorRepository.GetAllAsync(x => x.UserId == userSaveDto.Id);
+                //if (userSaveDto.IsCurator is false && user.Curators.Any())
+                //{
+                //    var curators = await _curatorRepository.GetAllAsync(x => x.UserId == userSaveDto.Id);
 
-                    if (curators.Any())
-                    {
-                        foreach (var curator in curators)
-                        {
-                            foreach (var text in curator.Texts)
-                            {
-                                text.UpdatedDate = DateTime.Now;
-                                text.CuratorId = null;
-                            }
-                        }
-                        _curatorRepository.DeleteRange(curators);
-                    }
-                }
-                if (userSaveDto.IsCurator is true && user.Curators.Any())
-                {
-                    var curator = user.Curators.First();
+                //    if (curators.Any())
+                //    {
+                //        foreach (var curator in curators)
+                //        {
+                //            foreach (var text in curator.Texts)
+                //            {
+                //                text.UpdatedDate = DateTime.Now;
+                //                text.CuratorId = null;
+                //            }
+                //        }
+                //        _curatorRepository.DeleteRange(curators);
+                //    }
+                //}
+                //if (userSaveDto.IsCurator is true && user.Curators.Any())
+                //{
+                //    var curator = user.Curators.First();
 
-                    curator.Name = userSaveDto.DisplayName is null ? "" : userSaveDto.DisplayName;
-                    curator.Description = userSaveDto.Description is null ? "" : userSaveDto.Description;
-                    curator.Image = userSaveDto.CuratorImage;
-                }
+                //    curator.Name = userSaveDto.DisplayName is null ? "" : userSaveDto.DisplayName;
+                //    curator.Description = userSaveDto.Description is null ? "" : userSaveDto.Description;
+                //    curator.Image = userSaveDto.CuratorImage;
+                //}
 
-                if (userSaveDto.IsCurator is true && !user.Curators.Any())
-                {
-                    var curator = new Curator()
-                    {
-                        Id = new Guid(),
-                        Name = userSaveDto.DisplayName is null ? "" : userSaveDto.DisplayName,
-                        Description = userSaveDto.Description is null ? "" : userSaveDto.Description,
-                        UserId = userSaveDto.Id is null ? "" : userSaveDto.Id,
-                        Image = userSaveDto.CuratorImage
-                    };
+                //if (userSaveDto.IsCurator is true && !user.Curators.Any())
+                //{
+                //    var curator = new Curator()
+                //    {
+                //        Id = new Guid(),
+                //        Name = userSaveDto.DisplayName is null ? "" : userSaveDto.DisplayName,
+                //        Description = userSaveDto.Description is null ? "" : userSaveDto.Description,
+                //        UserId = userSaveDto.Id is null ? "" : userSaveDto.Id,
+                //        Image = userSaveDto.CuratorImage
+                //    };
 
-                    await _curatorRepository.AddAsync(curator);
-                }
+                //    await _curatorRepository.AddAsync(curator);
+                //}
 
                 var oldRoleNames = await _userManager.GetRolesAsync(user);
 

@@ -1,5 +1,6 @@
 ﻿using SavageOrcs.BusinessObjects;
 using SavageOrcs.DataTransferObjects.Curators;
+using SavageOrcs.DataTransferObjects.Marks;
 using SavageOrcs.DataTransferObjects.Texts;
 using SavageOrcs.Repositories.Interfaces;
 using SavageOrcs.Services.Interfaces;
@@ -45,13 +46,23 @@ namespace SavageOrcs.Services
                 DisplayName = curator.Name,
                 Description = curator.Description,
                 Image = curator.Image,
-                UserId = curator.UserId,
                 TextDtos = curator.Texts.Select(x => new TextShortDto { 
                     Id = x.Id,
                     Name = x.Name,
                     Subject = x.Subject
+                }).ToArray(),
+                MarkDtos = curator.Marks.Select(x => new MarkShortDto
+                {
+                    Id = x.Id,
+                    Name  =x.Name,
+                    Lat = x.Lat,
+                    Lng = x.Lng,
+                    Description = x.Description,
+                    DescriptionEng = x.DescriptionEng,
+                    CuratorName = x.Curator is null ? "" : x.Curator.Name,
+                    ResourceUrl = x.ResourceUrl,
+                    ResourceName = x.ResourceName,
                 }).ToArray()
-
             };
         }
     }

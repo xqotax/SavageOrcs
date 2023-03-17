@@ -11,19 +11,30 @@
     InitializeControls: function () {
         var self = this;
 
-        var options = {
-            placeholder: "Виберіть куратора",
+        var textNamesOptions = {
+            placeholder: "Виберіть назву",
             txtSelected: "вибрано",
             txtAll: "Всі",
             txtRemove: "Видалити",
             txtSearch: "Пошук",
             height: "300px",
-            Id: "curatorMultiselect"
+            Id: "textNamesMultiselect"
         }
 
-        MultiselectDropdown(options);
+        var curatorsOptions = {
+            placeholder: "Виберіть автора",
+            txtSelected: "вибрано",
+            txtAll: "Всі",
+            txtRemove: "Видалити",
+            txtSearch: "Пошук",
+            height: "300px",
+            Id: "curatorsMultiselect"
+        }
 
-        self.SubscribeEvents();
+        MultiselectDropdown(textNamesOptions);
+        MultiselectDropdown(curatorsOptions);
+
+        //self.SubscribeEvents();
     },
     SubscribeEvents: function () {
         var self = this;

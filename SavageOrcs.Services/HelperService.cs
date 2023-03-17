@@ -1,6 +1,8 @@
 ﻿using SavageOrcs.BusinessObjects;
+using SavageOrcs.DataTransferObjects._Constants;
 using SavageOrcs.DataTransferObjects.Texts;
 using SavageOrcs.Enums;
+using SavageOrcs.Repositories.Interfaces;
 using SavageOrcs.Services.Interfaces;
 using SavageOrcs.UnitOfWork;
 using System;
@@ -14,8 +16,12 @@ namespace SavageOrcs.Services
 {
     public class HelperService: UnitOfWorkService, IHelperService
     {
-        public HelperService(IUnitOfWork unitOfWork) : base(unitOfWork)
+        private readonly IRepository<KeyWord> _keyWordRepository;
+        private readonly IRepository<Place> _placesRepository;
+        public HelperService(IUnitOfWork unitOfWork, IRepository<KeyWord> keyWordRepository, IRepository<Place> placesRepository) : base(unitOfWork)
         {
+            _keyWordRepository = keyWordRepository;
+            _placesRepository = placesRepository;
         }
         public byte[] GetBytesForText(string data)
         {
@@ -79,6 +85,28 @@ namespace SavageOrcs.Services
             //    };
             //}
             return null;
+        }
+
+        public async Task<GuidIdAndStringName[]> GetAllKeyWords()
+        {
+            var keyWords = await _keyWordRepository.GetAllAsync();
+
+            return keyWords.Select(x => new GuidIdAndStringName
+            {
+                Id = x.Id,
+                Name = x.Name
+            }).ToArray();
+        }
+
+        public async Task<GuidIdAndStringName[]> GetAllPlaces()
+        {
+            var places = await _placesRepository.GetAllAsync();
+
+            return places.Select(x => new GuidIdAndStringName
+            {
+                Id = x.Id,
+                Name = Thread.CurrentThread.CurrentUICulture.TwoLetterISOLanguageName == "uk" ? x.Name : x.NameEng,
+            }).ToArray();
         }
     }
 }

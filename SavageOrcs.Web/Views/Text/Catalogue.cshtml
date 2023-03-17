@@ -1,65 +1,72 @@
 ﻿@using SavageOrcs.Web.ViewModels.Text
-@model FilterCatalogueTextViewModel
-<link itemprop="url" rel="stylesheet" href="~/lib/search-select/search-select.css" />
-<link itemprop="url" rel="stylesheet" href="~/css/text/textCatalogue.css" asp-append-version="true" />
-<link itemprop="url" rel="stylesheet" href="~/css/checkBox.css" asp-append-version="true" />
+@model UnitedCatalogueTextViewModel
 
-<div class="row">
-    <div class="col-md-3">
-        <select name="curatorMultiselect" id="curatorMultiselect" multiple multiselect-search="true" multiselect-select-all="true" multiselect-hide-x="true">
-            @foreach(var curator in Model.Curators){
-                <option selected value=@curator.Id.ToString()>@curator.Name</option>
-            }
-        </select>
-    </div>
-    <div class="col-md-3">
-        @Html.TextBoxFor(m => m.TextName, new { @class = "text-box-custom form-control display-8-custom", @placeholder = "Назва тексту"})
-    </div>
-    <div class="col-md-3">
-        @Html.TextBoxFor(m => m.TextSubject, new { @class = "text-box-custom form-control display-8-custom", @placeholder = "Тема тексту"})
-    </div>
-    <div class="col-md-3">
-        <div class="row justify-content-end">
-            <div class="col-md-auto">
-                <button class="btn btn-dark-custom display-8-custom" id="search">Пошук</button>
-            </div>
-            <div class="col-md-auto">
-                <button class="btn btn-dark-custom display-8-custom" id="clearFilters">Х</button>
-            </div>
+<div class="wrapper-text-search">
+    <div class="text-content-col">
+        <div class="header-text-search-row">ТЕКСТИ</div>
+        <div class="text-content-row">
+            <div id="textContentPlaceholder"></div>
         </div>
     </div>
-
-</div>
-
-<div class="row pt-3">
-    <div class="col-md-12 text-white-custom" id="catalogueTextTable">
-        <div class="d-flex text-white-custom display-7-custom table-header-catalogue-text justify-content-center pb-2">
-            <div class="table-header-catalogue-text-number">
-                №
+    <div class="text-data-col">
+        <div class="description-header-text-search-row">
+            Аналітика та рефлексії на базі матеріалів архіву
+        </div>
+        <div class="text-search-filter-row">
+            <div class="text-search-filter-item">
+                <div class="text-search-filter-multiselect-placeholder">
+                    <select name="textNamesMultiselect" id="textNamesMultiselect" multiple multiselect-search="true" multiselect-select-all="true" multiselect-hide-x="true">
+                        @foreach (var area in Model.TextNames)
+                        {
+                            <option value=@area.Id>@area.Name</option>
+                        }
+                    </select>
+                </div>
+                <div class="text-search-filter-big-text-info">Текст</div>
+                <div class="text-search-filter-small-text-info">
+                    <div class="text-container-big">Почність вводити назву матеріалу</div>
+                </div>
             </div>
-            <div class="table-header-catalogue-text-name">
-                Назва
-            </div>
-            <div class="table-header-catalogue-text-subject">
-                Тема
-            </div>
-            <div class="table-header-catalogue-text-curator">
-                Автор
+            <div class="text-search-filter-item">
+                <div class="text-search-filter-multiselect-placeholder">
+                    <select name="curatorsMultiselect" id="curatorsMultiselect" multiple multiselect-search="true" multiselect-select-all="true" multiselect-hide-x="true">
+                        @foreach (var area in Model.Curators)
+                        {
+                            <option value=@area.Id>@area.Name</option>
+                        }
+                    </select>
+                </div>
+                <div class="text-search-filter-big-text-info">Автор</div>
+                <div class="text-search-filter-small-text-info">
+                    <div class="text-search-text-container-big">Почніть вводити ім'я автора</div>
+                </div>
             </div>
         </div>
-        <div class="table-body-catalogue-text display-8-custom text-white-custom">
+        <div class="text-search-data-table">
+            @await Html.PartialAsync("_CatalogueDataRows", Model.Texts)
         </div>
     </div>
 </div>
-
+<div class="wrapper-search-bottom-text">
+    <div class="bottom-text-row">
+        <div class="bottom-text-col">
+            Бажаєте опублікувати власні роботи?
+        </div>
+        <div class="bottom-text-col">Пишіть на скриню:</div>
+    </div>
+    <div class="bottom-text-row">
+        <div class="bottom-text-col"></div>
+        <div class="bottom-text-col">
+            <a style="color: #FF2929" href="mailto:info@mizhvukhamy.com?subject=Application%20for%20joining%20the%20team">
+                info@mizhvukhamy.com
+            </a>
+        </div>
+    </div>
+</div>
 
 @section Scripts{
-    <script src="~/lib/search-select/search-select.js"></script>
-
     <script>
         var catalogueTextView = new CatalogueTextView();
-
-        catalogueTextView.Curators = @Json.Serialize(Model.Curators);
 
         $(document).ready(function () {
             catalogueTextView.InitializeControls();

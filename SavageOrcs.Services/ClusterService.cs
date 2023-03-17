@@ -113,6 +113,10 @@ namespace SavageOrcs.Services
                 Id = cluster.Id,
                 Name = cluster.Name,
                 Description = cluster.Description,
+                DescriptionEng = cluster.DescriptionEng,
+                ResourceName = cluster.ResourceName,
+                ResourceUrl = cluster.ResourceUrl,
+                CuratorName = cluster.Curator?.Name,
                 Lat = cluster.Lat,
                 Lng = cluster.Lng,
                 Area = cluster.Area is null ? null : new AreaShortDto
@@ -126,7 +130,7 @@ namespace SavageOrcs.Services
                     Id = x.Id,
                     Name = x.Name,
                     Description = x.Description,
-                    Image = x.Images.FirstOrDefault()?.Content,
+                    Images = x.Images.Select(y => y.Content).ToArray(),
                     DescriptionEng = x.DescriptionEng,
                     ResourceUrl = x.ResourceUrl,
                     Area = x.Area is null? null : new AreaShortDto

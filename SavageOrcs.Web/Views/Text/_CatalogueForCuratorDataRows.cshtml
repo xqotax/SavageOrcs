@@ -1,0 +1,19 @@
+﻿@using SavageOrcs.Web.ViewModels.Text
+@using System.Globalization;
+@model TextCatalogueViewModel[]
+@for (int i = 1; i <= Model.Length; i++)
+{
+    <div class="curator-text-data-row" onclick="">
+        @Html.HiddenFor(m => m[i-1].Id, new { id =  "T" + Model[i-1].Id.ToString()})
+        <div class="col-curator-text-double">
+            <div class="col-curator-text-item">
+                <div class="col-curator-text-name">@Model[i - 1].Name</div>
+            </div>
+        </div>
+        <div class="col-curator-text">
+            <div class="col-curator-text-item">
+                <div class="col-curator-text-date">@Model[i - 1].CreatedDate</div>
+            </div>
+        </div>
+    </div>
+}

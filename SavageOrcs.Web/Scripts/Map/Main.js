@@ -67,10 +67,10 @@ var MapMainView = Class.extend({
                 map: map,
                 title: element.name,
                 icon: {
-                    url: element.isApproximate ? "images/markIconApproximate.png" : "images/markIcon.png",
-                    scaledSize: new google.maps.Size(20, 20),
+                    url: "images/redCircle.png",
+                    scaledSize: new google.maps.Size(10, 10),
                     origin: new google.maps.Point(0, 0),
-                    anchor: new google.maps.Point(10, 10)
+                    anchor: new google.maps.Point(5, 5)
                 }
             });
 
@@ -91,10 +91,10 @@ var MapMainView = Class.extend({
                 map: map,
                 title: element.name,
                 icon: {
-                    url: "images/clusterIcon.png",
-                    scaledSize: new google.maps.Size(30, 30),
+                    url: "images/redCircle.png",
+                    scaledSize: new google.maps.Size(16, 16),
                     origin: new google.maps.Point(0, 0),
-                    anchor: new google.maps.Point(15, 15)
+                    anchor: new google.maps.Point(8, 8)
                 }
             });
 

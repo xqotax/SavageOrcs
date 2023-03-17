@@ -116,7 +116,7 @@ var MapMainView = Class.extend({
                 map: map,
                 title: element.name,
                 icon: {
-                    url: element.isApproximate ? "images/markIconApproximate.png" : "images/markIcon.png",
+                    url: "images/redCircle.png",
                     scaledSize: new google.maps.Size(20, 20),
                     origin: new google.maps.Point(0, 0),
                     anchor: new google.maps.Point(10, 10)
@@ -140,7 +140,7 @@ var MapMainView = Class.extend({
                 map: map,
                 title: element.name,
                 icon: {
-                    url: "images/clusterIcon.png",
+                    url: "images/redCircle.png",
                     scaledSize: new google.maps.Size(30, 30),
                     origin: new google.maps.Point(0, 0),
                     anchor: new google.maps.Point(15, 15)
@@ -671,16 +671,6 @@ var CatalogueMarkView = Class.extend({
         var self = this;
        
 
-        var keyWordsAndMarksOptions = {
-            placeholder: "Виберіть ключове слово",
-            txtSelected: "вибрано",
-            txtAll: "Всі",
-            txtRemove: "Видалити",
-            txtSearch: "Пошук",
-            height: "300px",
-            Id: "keyWordsMultiselect"
-        }
-
         var areasOptions = {
             placeholder: "Виберіть місце",
             txtSelected: "вибрано",
@@ -691,7 +681,28 @@ var CatalogueMarkView = Class.extend({
             Id: "areasMultiselect"
         }
 
+        var keyWordsAndMarksOptions = {
+            placeholder: "Виберіть ключове слово",
+            txtSelected: "вибрано",
+            txtAll: "Всі",
+            txtRemove: "Видалити",
+            txtSearch: "Пошук",
+            height: "300px",
+            Id: "namesMultiselect"
+        }
+
+        var placesOptions = {
+            placeholder: "Виберіть локацію",
+            txtSelected: "вибрано",
+            txtAll: "Всі",
+            txtRemove: "Видалити",
+            txtSearch: "Пошук",
+            height: "300px",
+            Id: "placesMultiselect"
+        }
+
         MultiselectDropdown(keyWordsAndMarksOptions);
+        MultiselectDropdown(placesOptions);
         MultiselectDropdown(areasOptions);
 
         self.SubscribeEvents();
@@ -878,6 +889,31 @@ var CatalogueMarkView = Class.extend({
                     else
                         $(".eng-description").addClass("display-none-custom");
                 }
+            }
+        });
+    },
+    Show: function (el) {
+        $('.data-row').each(function (idex, element) {
+            $(element).css('opacity', '0.3');
+        });
+        $(el).css('opacity', '1');
+        var fullId = $(el).find("input:first-child").attr('id')
+        id = fullId.substring(fullId.length - 36);
+        var index = fullId.substring(0, fullId.length - 36);
+        var isCluster = $(el).find("input").eq(1).val() == 'True';
+        
+
+        $(".slideshow-container").empty();
+        $.ajax({
+            type: 'POST',
+            url: "/Mark/GetImages?id=" + id + "&isCluster=" + isCluster + "&index=" + index,
+            contentType: 'application/json; charset=utf-8',
+            success: function (result) {
+                $(".slideshow-container").html(result);
+                var containerTop = $(".data-row-container").offset().top;
+                var rowTop = $(el).offset().top;
+                var topToSet = rowTop - containerTop;
+                $(".slideshow-container").css({ "margin-top": topToSet +'px' });
             }
         });
     }
@@ -1596,19 +1632,30 @@ var CatalogueTextView = Class.extend({
     InitializeControls: function () {
         var self = this;
 
-        var options = {
-            placeholder: "Виберіть куратора",
+        var textNamesOptions = {
+            placeholder: "Виберіть назву",
             txtSelected: "вибрано",
             txtAll: "Всі",
             txtRemove: "Видалити",
             txtSearch: "Пошук",
             height: "300px",
-            Id: "curatorMultiselect"
+            Id: "textNamesMultiselect"
         }
 
-        MultiselectDropdown(options);
+        var curatorsOptions = {
+            placeholder: "Виберіть автора",
+            txtSelected: "вибрано",
+            txtAll: "Всі",
+            txtRemove: "Видалити",
+            txtSearch: "Пошук",
+            height: "300px",
+            Id: "curatorsMultiselect"
+        }
 
-        self.SubscribeEvents();
+        MultiselectDropdown(textNamesOptions);
+        MultiselectDropdown(curatorsOptions);
+
+        //self.SubscribeEvents();
     },
     SubscribeEvents: function () {
         var self = this;
@@ -2325,8 +2372,22 @@ var CatalogueCuratorView = Class.extend({
     SubscribeEvents: function () {
         var self = this;
 
-        $(".curator-box").click(function () {
-            window.location.href = window.location.origin + "/Curator/Revision?id=" + $(this).attr("value");
-        });
+        //$(".curator-box").click(function () {
+        //    window.location.href = window.location.origin + "/Curator/Revision?id=" + $(this).attr("value");
+        //});
+    },
+    ShowDescription: function (el) {
+        var container = $(el).parent().parent().parent();
+        var descriptionContainer = container.find(".curator-content-detailed");
+        if (descriptionContainer.css('display') === 'flex') {
+            descriptionContainer.css('display', 'none');
+        } else {
+            descriptionContainer.css('display', 'flex');
+        }
+    },
+    HideDescription: function (el) {
+        var container = $(el).parent().parent().parent();
+        var descriptionContainer = container.find(".curator-content-detailed");
+        descriptionContainer.css({ display: 'none' });
     }
 })

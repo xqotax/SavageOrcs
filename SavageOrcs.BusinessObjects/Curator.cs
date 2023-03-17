@@ -17,9 +17,13 @@ namespace SavageOrcs.BusinessObjects
 
         public byte[]? Image { get; set; }
 
-        public virtual string UserId { get; set; }
+        //public virtual string UserId { get; set; }
 
-        public virtual User User { get; set; }
+        //public virtual User? User { get; set; }
+
+        public virtual ICollection<Mark> Marks { get; set; } = new HashSet<Mark>();
+
+        public virtual ICollection<Cluster> Clusters { get; set; } = new HashSet<Cluster>();
 
         public virtual ICollection<Text> Texts { get; set; } = new HashSet<Text>();
     }
