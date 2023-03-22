@@ -2,6 +2,8 @@
 using SavageOrcs.DataTransferObjects._Constants;
 using SavageOrcs.DataTransferObjects.Areas;
 using SavageOrcs.DataTransferObjects.Marks;
+using SavageOrcs.DataTransferObjects.Texts;
+using SavageOrcs.DbContext.Migrations;
 using SavageOrcs.Repositories.Interfaces;
 using SavageOrcs.Services.Interfaces;
 using SavageOrcs.UnitOfWork;
@@ -11,17 +13,21 @@ namespace SavageOrcs.Services
     public class MarkService : UnitOfWorkService, IMarkService
     {
         private readonly IRepository<Mark> _markRepository;
+        private readonly IHelperService _helperService;
         private readonly IKeyWordService _keyWordService;
         private readonly IRepository<Image> _imageRepository;
+        private readonly IRepository<PlaceToMark> _placeToMarkRepository;
         private readonly IRepository<TextToMark> _textsToMarksRepository;
 
 
-        public MarkService(IUnitOfWork unitOfWork, IRepository<Mark> markRepository, IRepository<Image> imageRepository, IRepository<TextToMark> textsToMarksRepository, IKeyWordService keyWordService) : base(unitOfWork)
+        public MarkService(IUnitOfWork unitOfWork, IRepository<Mark> markRepository, IRepository<Image> imageRepository, IRepository<TextToMark> textsToMarksRepository, IKeyWordService keyWordService, IHelperService helperService, IRepository<PlaceToMark> placeToMarkRepository) : base(unitOfWork)
         {
             _markRepository = markRepository;
             _imageRepository = imageRepository;
             _textsToMarksRepository = textsToMarksRepository;
             _keyWordService = keyWordService;
+            _helperService = helperService;
+            _placeToMarkRepository = placeToMarkRepository;
         }
 
         public async Task<MarkDto?> GetMarkById(Guid id)
@@ -103,7 +109,6 @@ namespace SavageOrcs.Services
                 Name = mark.Name,
                 Description = mark.Description,
                 DescriptionEng = mark.DescriptionEng,
-                IsApproximate = mark.IsApproximate,
                 Lat = mark.Cluster?.Lat ?? mark.Lat,
                 Lng = mark.Cluster?.Lng ?? mark.Lng,
                 Area = mark.Area is null ? (mark.Cluster?.Area is null ? null : new AreaShortDto
@@ -112,7 +117,7 @@ namespace SavageOrcs.Services
                     Name = mark.Cluster.Area.Name,
                     Region = mark.Cluster.Area.Region,
                     Community = mark.Cluster.Area.Community
-                }): new AreaShortDto
+                }) : new AreaShortDto
                 {
                     Id = mark.Area.Id,
                     Name = mark.Area.Name,
@@ -121,13 +126,29 @@ namespace SavageOrcs.Services
                 },
                 ResourceUrl = mark.ResourceUrl,
                 ResourceName = mark.ResourceName,
-                Images = mark.Images.Select(x => x.Content).ToArray(),
+                ResourceNameEng = mark.ResourceNameEng,
+                Images = mark.Images.Select(x => new ByteContentAndBooIsVisible 
+                { 
+                    Content = x.Content, 
+                    IsVisible = x.IsVisible 
+                }).ToArray(),
                 CreatedDate = mark.CreatedDate,
-                Cluster = mark.Cluster is null ? null: new GuidIdAndStringName
+                Cluster = mark.Cluster is null ? new GuidIdAndStringName() : new GuidIdAndStringName
                 {
                     Id = mark.Cluster.Id,
                     Name = mark.Cluster.Name ?? ""
-                }
+                },
+                Curator = mark.Curator is null ? new GuidIdAndStringName() : new GuidIdAndStringName
+                {
+                    Id = mark.Curator.Id,
+                    Name = mark.Curator.Name ?? ""
+                },
+                Places = mark.PlaceToMarks.Select(x => new GuidIdAndStringNameWithEnglishName
+                {
+                    Id = x.Place.Id,
+                    Name = x.Place.Name,
+                    NameEng = x.Place.NameEng
+                }).ToArray()
             };
         }
 
@@ -152,37 +173,58 @@ namespace SavageOrcs.Services
             mark.Description = markSaveDto.Description;
             mark.AreaId = markSaveDto.AreaId;
             mark.ClusterId = markSaveDto.ClusterId;
+            mark.CuratorId = markSaveDto.CuratorId;
             mark.DescriptionEng = markSaveDto.DescriptionEng;
             mark.ResourceUrl = markSaveDto.ResourceUrl;
-            mark.IsApproximate = markSaveDto.IsApproximate;
-            mark.UserId = markSaveDto.UserId;
+            mark.ResourceName = markSaveDto.ResourceName;
             mark.MapId = markSaveDto.MapId;
             mark.Lat = markSaveDto.Lat;
             mark.Lng = markSaveDto.Lng;
 
 
-            if (markSaveDto.Images is not null)
+            
+            foreach (var image in mark.Images)
             {
-                foreach (var image in mark.Images)
+                if ( markSaveDto.Images.All(x => !x.Content.SequenceEqual(image.Content)))
                 {
-                    if (markSaveDto.Images is not null && markSaveDto.Images.All(x => !x.SequenceEqual(image.Content)))
-                    {
-                        _imageRepository.Delete(image);
-                    }
+                    _imageRepository.Delete(image);
+                }
+            }
+           
+            foreach (var imageDto in markSaveDto.Images)
+            {
+                var image = new Image();
+                if (mark.Images.Any(x => x.Content.SequenceEqual(imageDto.Content)))
+                {
+                    image = mark.Images.First(x => x.Content.SequenceEqual(imageDto.Content));
+                    image.IsVisible = imageDto.IsVisible;
+                    continue;
                 }
 
-                if (markSaveDto.Images != null)
-                    foreach (var imageDto in markSaveDto.Images)
+                image.Mark = mark;
+                image.Content = imageDto.Content;
+                image.IsVisible = imageDto.IsVisible;
+                await _imageRepository.AddAsync(image);
+            }
+
+            foreach(var placeToMark in mark.PlaceToMarks)
+            {
+                if (!markSaveDto.PlaceIds.Contains(placeToMark.PlaceId))
+                    _placeToMarkRepository.Delete(placeToMark);
+            }
+
+
+            foreach (var placeId in markSaveDto.PlaceIds)
+            {
+                var oldPlaceIds = mark.PlaceToMarks.Select(x => x.PlaceId).ToArray();
+
+                if (!oldPlaceIds.Contains(placeId))
+                    _placeToMarkRepository.Add(new PlaceToMark
                     {
-                        var image = new Image();
-                        if (mark.Images.Any(x => x.Content.SequenceEqual(imageDto)))
-                            continue;
-
-
-                        image.Mark = mark;
-                        image.Content = imageDto;
-                        await _imageRepository.AddAsync(image);
-                    }
+                        Id = new Guid(),
+                        MarkId = mark.Id,
+                        PlaceId = placeId
+                    });
             }
 
             await UnitOfWork.SaveChangesAsync();
@@ -218,6 +260,42 @@ namespace SavageOrcs.Services
             }
 
             return true;
+        }
+
+        public async Task<MarkShortDto[]> GetMarksByCuratorIds(Guid curatorId)
+        {
+            var marks = await _markRepository.GetAllAsync();
+
+            return marks.Where(x => x.CuratorId.HasValue && x.CuratorId == curatorId)
+                .Select(x => new MarkShortDto
+                {
+                    Id = x.Id,
+                    Name = x.Name,
+                    Lat = x.Lat,
+                    CuratorName = x.Curator.Name,
+                    Lng = x.Lng,
+                    ResourceUrl = x.ResourceUrl,
+                    Description = x.Description,
+                    DescriptionEng = x.DescriptionEng,
+                    ResourceName = x.ResourceName,
+                    ResourceNameEng = x.ResourceNameEng,
+                    Area = x.Cluster is null ? (x.Area is null ? null : new GuidIdAndStringName
+                    {
+                        Name = x.Area.Name + ", " + x.Area.Community + ", " + x.Area.Region,
+                        Id = x.Area.Id
+                    }) : x.Cluster.Area is null ? null : new GuidIdAndStringName
+                    {
+                        Name = x.Cluster.Area.Name + ", " + x.Cluster.Area.Community + ", " + x.Cluster.Area.Region,
+                        Id = x.Cluster.Area.Id
+                    }
+                    //AreaName = x.Cluster is null ? 
+                    //    (x.Area is null ?
+                    //        "" 
+                    //        : x.Area.Name + ", " + x.Area.Community + ", " + x.Area.Region) 
+                    //    : (x.Cluster.Area is null ?
+                    //        "" : x.Cluster.Area.Name + ", " + x.Cluster.Area.Community + ", " + x.Cluster.Area.Region) 
+                }).ToArray();
+
         }
     }
 }

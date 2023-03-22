@@ -12,5 +12,7 @@ namespace SavageOrcs.Services.Interfaces
         Task<CuratorDto[]> GetCurators();
 
         Task<CuratorDto> GetCuratorById(Guid id);
+
+        Task<CuratorSaveResultDto> SaveCurator(CuratorSaveDto curatorSaveDto);
     }
 }

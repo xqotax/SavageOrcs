@@ -22,18 +22,30 @@ namespace SavageOrcs.Web.Controllers
 
         private readonly IRoleService _roleService;
         private readonly IUserService _userService;
+        private readonly IHelperService _helperService;
 
 
-        public UserController(IUserService userService, IRoleService roleService)
+        public UserController(IUserService userService, IRoleService roleService, IHelperService helperService)
         {
             _userService = userService;
             _roleService = roleService;
+            _helperService = helperService;
         }
 
         [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Catalogue()
         {
-            return View();
+
+            var userDtos = await _userService.GetUsers("", "");
+
+            var userViewModels = userDtos.Select(x => new UserCatalogueViewModel
+            {
+                Id = x.Id,
+                FullName = x.FirstName + " " + x.LastName,
+                Email = x.Email,
+            }).ToArray();
+
+            return View(userViewModels);
         }
 
         [Authorize(Roles = "Global admin")]
@@ -50,14 +62,6 @@ namespace SavageOrcs.Web.Controllers
                 FirstName = userDto.FirstName,
                 LastName = userDto.LastName,
                 Email = userDto.Email,
-                IsCurator = userDto.CuratorDto is not null,
-                CuratorInfo = new CuratorViewModel
-                {
-                    Id = userDto.CuratorDto is not null ? userDto.CuratorDto.Id: null,
-                    DisplayName = userDto.CuratorDto is not null ? userDto.CuratorDto.DisplayName : null,
-                    Description = userDto.CuratorDto is not null ? userDto.CuratorDto.Description : null,
-                    Image = userDto.CuratorDto?.Image is not null ? GetImage(userDto.CuratorDto.Image) : null,
-                }, 
                 AllRoles = allRoleDtos.Select(x => new StringIdAndNameViewModel
                 {
                     Id = x.Id,
@@ -67,6 +71,7 @@ namespace SavageOrcs.Web.Controllers
 
             return View(userViewModel);
         }
+
 
         [HttpPost]
         [Authorize(Roles = "Admin")]
@@ -79,21 +84,12 @@ namespace SavageOrcs.Web.Controllers
                 Id = x.Id,
                 FullName = x.FirstName + " " + x.LastName,
                 Email = x.Email,
-                IsCurator = x.CuratorDto is not null
             }).ToArray();
 
 
             return Json(userViewModels);
         }
 
-        private static byte[] GetBytes(string data)
-        {
-            return Encoding.ASCII.GetBytes(data);
-        }
-        private static string GetImage(byte[] data)
-        {
-            return Encoding.ASCII.GetString(data);
-        }
         [HttpPost]
         [Authorize(Roles = "Global admin")]
         public async Task<JsonResult> SaveUser([FromBody] SaveUserViewModel saveUserViewModel)
@@ -101,15 +97,10 @@ namespace SavageOrcs.Web.Controllers
             var userSaveDto = new UserSaveDto
             {
                 Id = saveUserViewModel.Id,
-                DisplayName = saveUserViewModel.DisplayName,
                 Email = saveUserViewModel.Email,
                 FirstName = saveUserViewModel.FirstName,
                 LastName = saveUserViewModel.LastName,
-                CuratorId = saveUserViewModel.CuratorId,
                 RoleIds = saveUserViewModel.RoleIds,
-                Description = saveUserViewModel.Description,
-                IsCurator = saveUserViewModel.IsCurator,
-                CuratorImage = saveUserViewModel.Image is null ? null : GetBytes(saveUserViewModel.Image)
             };
 
             var result = await _userService.SaveUser(userSaveDto);

@@ -286,6 +286,9 @@ namespace SavageOrcs.DbContext.Migrations
                     b.Property<string>("ResourceName")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("ResourceNameEng")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("ResourceUrl")
                         .HasColumnType("nvarchar(max)");
 
@@ -310,6 +313,9 @@ namespace SavageOrcs.DbContext.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("DescriptionEng")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<byte[]>("Image")
@@ -337,6 +343,9 @@ namespace SavageOrcs.DbContext.Migrations
                     b.Property<byte[]>("Content")
                         .IsRequired()
                         .HasColumnType("varbinary(max)");
+
+                    b.Property<bool>("IsVisible")
+                        .HasColumnType("bit");
 
                     b.Property<Guid>("MarkId")
                         .HasColumnType("uniqueidentifier");
@@ -435,6 +444,9 @@ namespace SavageOrcs.DbContext.Migrations
                     b.Property<string>("ResourceName")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("ResourceNameEng")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("ResourceUrl")
                         .HasColumnType("nvarchar(max)");
 
@@ -442,7 +454,6 @@ namespace SavageOrcs.DbContext.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("UserId")
-                        .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
                     b.HasKey("Id");
@@ -478,6 +489,48 @@ namespace SavageOrcs.DbContext.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Places");
+                });
+
+            modelBuilder.Entity("SavageOrcs.BusinessObjects.PlaceToCluster", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("ClusterId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("PlaceId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ClusterId");
+
+                    b.HasIndex("PlaceId");
+
+                    b.ToTable("PlaceToClusters");
+                });
+
+            modelBuilder.Entity("SavageOrcs.BusinessObjects.PlaceToMark", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("MarkId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("PlaceId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("MarkId");
+
+                    b.HasIndex("PlaceId");
+
+                    b.ToTable("PlaceToMarks");
                 });
 
             modelBuilder.Entity("SavageOrcs.BusinessObjects.Text", b =>
@@ -767,11 +820,9 @@ namespace SavageOrcs.DbContext.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("SavageOrcs.BusinessObjects.User", "User")
+                    b.HasOne("SavageOrcs.BusinessObjects.User", null)
                         .WithMany("Marks")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("UserId");
 
                     b.Navigation("Area");
 
@@ -780,8 +831,44 @@ namespace SavageOrcs.DbContext.Migrations
                     b.Navigation("Curator");
 
                     b.Navigation("Map");
+                });
 
-                    b.Navigation("User");
+            modelBuilder.Entity("SavageOrcs.BusinessObjects.PlaceToCluster", b =>
+                {
+                    b.HasOne("SavageOrcs.BusinessObjects.Cluster", "Cluster")
+                        .WithMany("PlaceToClusters")
+                        .HasForeignKey("ClusterId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("SavageOrcs.BusinessObjects.Place", "Place")
+                        .WithMany("PlaceToClusters")
+                        .HasForeignKey("PlaceId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Cluster");
+
+                    b.Navigation("Place");
+                });
+
+            modelBuilder.Entity("SavageOrcs.BusinessObjects.PlaceToMark", b =>
+                {
+                    b.HasOne("SavageOrcs.BusinessObjects.Mark", "Mark")
+                        .WithMany("PlaceToMarks")
+                        .HasForeignKey("MarkId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("SavageOrcs.BusinessObjects.Place", "Place")
+                        .WithMany("PlaceToMarks")
+                        .HasForeignKey("PlaceId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Mark");
+
+                    b.Navigation("Place");
                 });
 
             modelBuilder.Entity("SavageOrcs.BusinessObjects.Text", b =>
@@ -845,6 +932,8 @@ namespace SavageOrcs.DbContext.Migrations
                 {
                     b.Navigation("Marks");
 
+                    b.Navigation("PlaceToClusters");
+
                     b.Navigation("TextsToClusters");
                 });
 
@@ -868,7 +957,16 @@ namespace SavageOrcs.DbContext.Migrations
                 {
                     b.Navigation("Images");
 
+                    b.Navigation("PlaceToMarks");
+
                     b.Navigation("TextsToMarks");
+                });
+
+            modelBuilder.Entity("SavageOrcs.BusinessObjects.Place", b =>
+                {
+                    b.Navigation("PlaceToClusters");
+
+                    b.Navigation("PlaceToMarks");
                 });
 
             modelBuilder.Entity("SavageOrcs.BusinessObjects.Text", b =>

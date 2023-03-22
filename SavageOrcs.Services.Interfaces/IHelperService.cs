@@ -23,6 +23,12 @@ namespace SavageOrcs.Services.Interfaces
 
         Task<GuidIdAndStringName[]> GetAllKeyWords();
 
-        Task<GuidIdAndStringName[]> GetAllPlaces();
+        Task SaveKeyWords(GuidNullIdAndStringName[] keyWordDtos);
+
+        Task<GuidIdAndStringNameWithEnglishName[]> GetAllPlaces();
+
+        Task<GuidIdAndStringNameWithEnglishName[]> GetPlacesByMarkId(Guid markId);
+
+        Task SavePlaces(GuidNullIdAndStringNameWhitEngName[] placeDtos);
     }
 }

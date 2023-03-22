@@ -21,6 +21,8 @@ namespace SavageOrcs.DataTransferObjects.Clusters
 
         public string? ResourceName{ get; set; }
 
+        public string? ResourceNameEng { get; set; }
+
         public byte[][] Images { get; set; } = Array.Empty<byte[]>();
 
         public AreaShortDto? Area { get; set; }

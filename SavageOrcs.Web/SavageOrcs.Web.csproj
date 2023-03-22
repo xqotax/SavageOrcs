@@ -39,6 +39,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="wwwroot\css\cluster\" />
     <Folder Include="wwwroot\images\flags\" />
   </ItemGroup>
 

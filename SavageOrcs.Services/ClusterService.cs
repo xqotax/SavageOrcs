@@ -1,4 +1,5 @@
 ﻿using SavageOrcs.BusinessObjects;
+using SavageOrcs.DataTransferObjects._Constants;
 using SavageOrcs.DataTransferObjects.Areas;
 using SavageOrcs.DataTransferObjects.Cluster;
 using SavageOrcs.DataTransferObjects.Clusters;
@@ -21,13 +22,15 @@ namespace SavageOrcs.Services
         private readonly IRepository<Mark> _markRepository;
         private readonly IRepository<Image> _imageRepository;
         private readonly IRepository<TextToCluster> _textsToClustersRepository;
+        private readonly IRepository<PlaceToCluster> _placeToClusterRepository;
 
-        public ClusterService(IUnitOfWork unitOfWork, IRepository<Cluster> clusterRepository, IRepository<Image> imageRepository, IRepository<Mark> markRepository, IRepository<TextToCluster> textsToClustersRepository) : base(unitOfWork)
+        public ClusterService(IUnitOfWork unitOfWork, IRepository<Cluster> clusterRepository, IRepository<Image> imageRepository, IRepository<Mark> markRepository, IRepository<TextToCluster> textsToClustersRepository, IRepository<PlaceToCluster> placeToClusterRepository) : base(unitOfWork)
         {
             _clusterRepository = clusterRepository;
             _imageRepository = imageRepository;
             _markRepository = markRepository;
             _textsToClustersRepository = textsToClustersRepository;
+            _placeToClusterRepository = placeToClusterRepository;
         }
 
         public async Task<ClusterDto[]> GetClusters()
@@ -90,10 +93,36 @@ namespace SavageOrcs.Services
             cluster.UpdatedDate = DateTime.Now;
             cluster.Name = clusterSaveDto.Name;
             cluster.Description = clusterSaveDto.Description;
+            cluster.DescriptionEng = clusterSaveDto.DescriptionEng;
+            cluster.ResourceName = clusterSaveDto.ResourceName;
+            cluster.ResourceUrl = clusterSaveDto.ResourceUrl;
             cluster.Lat = clusterSaveDto.Lat;
             cluster.Lng = clusterSaveDto.Lng;
             cluster.MapId = clusterSaveDto.MapId;
             cluster.AreaId = clusterSaveDto.AreaId;
+            cluster.CuratorId = clusterSaveDto.CuratorId;
+
+
+            foreach (var placeToCluster in cluster.PlaceToClusters)
+            {
+                if (!clusterSaveDto.PlaceIds.Contains(placeToCluster.PlaceId))
+                    _placeToClusterRepository.Delete(placeToCluster);
+            }
+
+
+            foreach (var placeId in clusterSaveDto.PlaceIds)
+            {
+                var oldPlaceIds = cluster.PlaceToClusters.Select(x => x.PlaceId).ToArray();
+
+                if (!oldPlaceIds.Contains(placeId))
+                    _placeToClusterRepository.Add(new PlaceToCluster
+                    {
+                        Id = new Guid(),
+                        ClusterId = cluster.Id,
+                        PlaceId = placeId
+                    });
+            }
+
 
             await UnitOfWork.SaveChangesAsync();
 
@@ -115,8 +144,9 @@ namespace SavageOrcs.Services
                 Description = cluster.Description,
                 DescriptionEng = cluster.DescriptionEng,
                 ResourceName = cluster.ResourceName,
+                ResourceNameEng = cluster.ResourceNameEng,
                 ResourceUrl = cluster.ResourceUrl,
-                CuratorName = cluster.Curator?.Name,
+                Curator = cluster.Curator is null? new GuidIdAndStringName { } : new GuidIdAndStringName { Name = cluster.Curator.Name, Id = cluster.Curator.Id },
                 Lat = cluster.Lat,
                 Lng = cluster.Lng,
                 Area = cluster.Area is null ? null : new AreaShortDto
@@ -140,6 +170,12 @@ namespace SavageOrcs.Services
                         Community = x.Area.Community,
                         Region = x.Area.Region
                     }
+                }).ToArray(),
+                Places = cluster.PlaceToClusters.Select(x => new GuidIdAndStringNameWithEnglishName
+                {
+                    Id = x.Place.Id,
+                    Name = x.Place.Name,
+                    NameEng = x.Place.NameEng
                 }).ToArray()
             };
         }

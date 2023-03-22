@@ -12,4 +12,21 @@ namespace SavageOrcs.DataTransferObjects._Constants
 
         public string? Name { get; set; }
     }
+
+    public class GuidIdAndStringNameWithEnglishName: GuidIdAndStringName
+    {
+        public string? NameEng { get; set; }
+    }
+
+    public class GuidNullIdAndStringName
+    {
+        public Guid? Id { get; set; }
+
+        public string? Name { get; set; }
+    }
+
+    public class GuidNullIdAndStringNameWhitEngName : GuidNullIdAndStringName
+    {
+        public string? NameEng { get; set; }
+    }
 }

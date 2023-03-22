@@ -14,6 +14,7 @@ namespace SavageOrcs.Web.ViewModels.Cluster
 
         public string? Description { get; set; }
 
+        public string? DescriptionEng { get; set; }
         public string? Zoom { get; set; }
 
         public bool IsNew { get; set; }
@@ -22,8 +23,24 @@ namespace SavageOrcs.Web.ViewModels.Cluster
 
         public string? AreaName { get; set; }
 
-        public GuidIdAndNameViewModel[]? Areas { get; set; }
+        public Guid? CuratorId { get; set; }
+
+        public string? CuratorName { get; set; }
+
+        public string? ResourceUrl { get; set; }
+
+        public string? ResourceName { get; set; }
+
+        public string? ResourceNameEng{ get; set; }
 
         public bool? ToDelete { get; set; }
+
+        public GuidIdAndNameViewModel[] Areas { get; set; } = new GuidIdAndNameViewModel[0];
+
+        public GuidIdAndNameViewModel[] Curators { get; set; } = new GuidIdAndNameViewModel[0];
+
+        public GuidIdAndNameViewModel[] Places { get; set; } = new GuidIdAndNameViewModel[0];
+
+        public Guid[] SelectedPlaceIds { get; set; } = new Guid[0];
     }
 }

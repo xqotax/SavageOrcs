@@ -117,9 +117,9 @@ var MapMainView = Class.extend({
                 title: element.name,
                 icon: {
                     url: "images/redCircle.png",
-                    scaledSize: new google.maps.Size(20, 20),
+                    scaledSize: new google.maps.Size(10, 10),
                     origin: new google.maps.Point(0, 0),
-                    anchor: new google.maps.Point(10, 10)
+                    anchor: new google.maps.Point(5, 5)
                 }
             });
 
@@ -141,9 +141,9 @@ var MapMainView = Class.extend({
                 title: element.name,
                 icon: {
                     url: "images/redCircle.png",
-                    scaledSize: new google.maps.Size(30, 30),
+                    scaledSize: new google.maps.Size(16, 16),
                     origin: new google.maps.Point(0, 0),
-                    anchor: new google.maps.Point(15, 15)
+                    anchor: new google.maps.Point(8, 8)
                 }
             });
 
@@ -213,7 +213,6 @@ var MarkAddView = Class.extend({
     Lng: null,
     Zoom: null,
     AreaId: null,
-    IsApproximate: null,
 
     Map: null,
     InfoWindow: null,
@@ -229,16 +228,15 @@ var MarkAddView = Class.extend({
     ClusterIds: null,
     ClusterNames: null,
     SearchSelectDropdownClusters: null,
+
+    Curators: null,
+    CuratorIds: null,
+    CuratorNames: null,
+    SearchSelectDropdownCurators: null,
+
     IsInitializate: null,
-    
     OldDataInput: null,
     SearchAreasViewModel: null,
-
-
-    RowAddConstString: "<div class=\"row justify-content-md-around\">",
-    ColAddConstString: "<div class=\"col-md-3\">",
-    DivAddConstString: "</div>",
-
 
     InitializeControls: function () {
         var self = this;
@@ -259,6 +257,20 @@ var MarkAddView = Class.extend({
         if (!self.IsNew) {
             self.SetMark();
         }
+
+        var placesOptions = {
+            placeholder: "������� �������",
+            txtSelected: "�������",
+            txtAll: "��",
+            txtRemove: "��������",
+            txtSearch: "�����",
+            height: "300px",
+            Id: "placesMultiselect",
+            //MaxElementsToShow: 2
+        }
+
+        MultiselectDropdown(placesOptions);
+
 
         self.SearchSelectDropdownAreas = new SearchSelect('#dropdown-input-for-mark', {
             data: [],
@@ -285,6 +297,19 @@ var MarkAddView = Class.extend({
         });
 
         self.InitializeClusters(self.Clusters);
+
+        self.SearchSelectDropdownCurators = new SearchSelect('#dropdown-input-for-curator', {
+            data: [],
+            filter: SearchSelect.FILTER_CONTAINS,
+            sort: undefined,
+            inputClass: 'form-control-Select mobile-field',
+            maxOpenEntries: 9,
+            searchPosition: 'top',
+            onInputClickCallback: null,
+            onInputKeyDownCallback: null,
+        });
+
+        self.InitializeCurators(self.Curators);
 
         if (self.AreaName !== '') {
             var selected = $($("#Area .searchSelect--Result")[0]);
@@ -316,6 +341,20 @@ var MarkAddView = Class.extend({
             $("#dropdown-input-for-cluster").val(self.ClusterName);
         }
 
+        if (self.CuratorName !== '') {
+            var selected = $($("#Curator .searchSelect--Result")[0]);
+            selected.removeClass("#Curator searchSelect--Placeholder");
+            selected.html(self.CuratorName);
+
+            $.each($("#Cluster .searchSelect--Option"), function (index, element) {
+                if ($(element).text() === self.CuratorName) {
+                    $(element).addClass("#Curator searchSelect--Option--selected")
+                }
+            });
+
+            $("#dropdown-input-for-curator").val(self.CuratorName);
+        }
+
         self.SubscribeEvents();
 
         if (self.ToDelete) {
@@ -342,8 +381,8 @@ var MarkAddView = Class.extend({
             self.RemoveImages();
         });
 
-        $('#dropdown-input-for-mark').addClass("display-8-custom");
-        $('#dropdown-input-for-cluster').addClass("display-8-custom");
+        //$('#dropdown-input-for-mark').addClass("display-8-custom");
+        //$('#dropdown-input-for-cluster').addClass("display-8-custom");
         
 
         self.Map.addListener("click", (mapsMouseEvent) => {
@@ -387,6 +426,18 @@ var MarkAddView = Class.extend({
 
         self.SearchSelectDropdownClusters.setData(self.ClusterNames);
     },
+    InitializeCurators: function (data) {
+        var self = this;
+        self.CuratorNames = [];
+        self.CuratorIds = [];
+
+        $.each(data, function (index, element) {
+            self.CuratorNames.push(element.name);
+            self.CuratorIds.push(element.id);
+        });
+
+        self.SearchSelectDropdownCurators.setData(self.CuratorNames);
+    },
     SetMark: function () {
         var self = this;
 
@@ -398,7 +449,7 @@ var MarkAddView = Class.extend({
             map: self.Map,
             title: self.AreaName,
             icon: {
-                url: "../images/markIcon.png",
+                url: "../images/redCircle.png",
                 scaledSize: new google.maps.Size(24, 24),
                 origin: new google.maps.Point(0, 0),
                 anchor: new google.maps.Point(12, 12)
@@ -422,12 +473,18 @@ var MarkAddView = Class.extend({
     },
     
     Save: function () {
+
+        //$("#placesMultiselect").val(null)
+        //$('#Place input[type="checkbox"]').prop('checked', false);
+
         var self = this;
 
         var areaId = self.AreaIds[self.AreaNames.indexOf($("#dropdown-input-for-mark").val())];
         var clusterId = self.ClusterIds[self.ClusterNames.indexOf($("#dropdown-input-for-cluster").val())];
+        var curatorId = self.CuratorIds[self.CuratorNames.indexOf($("#dropdown-input-for-curator").val())];
         areaId = areaId === "" ? null : areaId;
         clusterId = clusterId === "" ? null : clusterId;
+        curatorId = curatorId === "" ? null : curatorId;
 
         var saveMarkViewModel = {
             Id: $("#Id").val() === "" ? null : $("#Id").val(),
@@ -435,16 +492,24 @@ var MarkAddView = Class.extend({
             Lat: $("#Lat").val(),
             AreaId: areaId,
             ClusterId: clusterId,
-            IsApproximate: $("#IsApproximate").is(":checked"),
+            CuratorId: curatorId,
             Name: $("#Name").val(),
             Description: $("#Description").val(),
             DescriptionEng: $("#DescriptionEng").val(),
             ResourceUrl: $("#ResourceUrl").val(),
+            ResourceName: $("#ResourceName").val(),
+            ResourceNameEng: $("#ResourceNameEng").val(),
+            SelectedPlaceIds: $("#placesMultiselect").val(),
             Images: []
         };
 
         $("#imageContainer img").each(function (index, element) {
-            saveMarkViewModel.Images.push(element.src);
+            saveMarkViewModel.Images.push(
+                {
+                    Content: element.src,
+                    IsVisible: $(element).parent().parent().find("input").is(":checked")
+                }
+            );
         });
 
         $.ajax({
@@ -461,12 +526,13 @@ var MarkAddView = Class.extend({
     GetAreas: function () {
         var self = this;
 
+
         if (self.IsInitializate) {
             self.IsInitializate = false;
             return;
         }
 
-        self.SearchAreasViewModel = { Text: $(".form-control-Select-Bar").val() };
+        self.SearchAreasViewModel = { Text: $("#Area .form-control-Select-Bar").val() };
 
         self.OldDataInput = Date.now();
 
@@ -519,25 +585,25 @@ var MarkAddView = Class.extend({
         });
     },
     AddImages: function () {
-        var self = this;
+        //var self = this;
 
-        $.each(self.Images, function (index, element) {
-            var rowCount = $("#imageContainer .row").length;
-            var colCount = $("#imageContainer .col-md-3").length;
+        //$.each(self.Images, function (index, element) {
+        //    var rowCount = $("#imageContainer .row").length;
+        //    var colCount = $("#imageContainer .col-md-3").length;
 
-            $(".popup-content-custom .row #imagePlaceholder").removeAttr('id');
+        //    $(".popup-content-custom .row #imagePlaceholder").removeAttr('id');
 
-            if ((rowCount === 0) || (colCount !== 0 && Math.floor(colCount / rowCount) === 3)) {
-                $("#imageContainer").append(self.RowAddConstString + self.ColAddConstString + "<img src=\"" + element + "\" height=\"200\">" + self.DivAddConstString + self.DivAddConstString);
-            }
-            else {
-                $("#imageContainer .row").last().append(self.ColAddConstString + "<img src=\"" + element + "\" height=\"200\">" + self.DivAddConstString);
-            }
-        });
+        //    if ((rowCount === 0) || (colCount !== 0 && Math.floor(colCount / rowCount) === 3)) {
+        //        $("#imageContainer").append(self.RowAddConstString + self.ColAddConstString + "<img src=\"" + element + "\" height=\"200\">" + self.DivAddConstString + self.DivAddConstString);
+        //    }
+        //    else {
+        //        $("#imageContainer .row").last().append(self.ColAddConstString + "<img src=\"" + element + "\" height=\"200\">" + self.DivAddConstString);
+        //    }
+        //});
 
     },
     RemoveImages: function () {
-        $("#imageContainer .row").empty();
+        $("#imageContainer").empty();
     }
 });
 
@@ -574,24 +640,19 @@ var AddImageView = Class.extend({
         $("#addImagePlaceholder").empty();
     },
     Save: function () {
-        var self = this;
-
-        var rowCount = $("#imageContainer .row").length;
-        var colCount = $("#imageContainer .col-md-3").length;
-
-        $(".popup-content-custom .row #imagePlaceholder").removeAttr('id');
-
         var imageToMove = $(".popup-content-custom .add-image-placeholder-custom").html();
 
-        console.log(imageToMove);
-        debugger;
+        var content = $(imageToMove).attr('src');
+        $.ajax({
+            type: 'POST',
+            url: "/Mark/ImageToInsert",
+            data: JSON.stringify(content),
+            contentType: 'application/json; charset=utf-8',
+            success: function (src) {
+                $("#imageContainer").append(src);
+            }
+        });
 
-        if ((rowCount === 0) || (colCount !== 0 && Math.floor(colCount / rowCount) === 3 )) {
-            $("#imageContainer").append(markAddView.RowAddConstString + markAddView.ColAddConstString + imageToMove + markAddView.DivAddConstString + markAddView.DivAddConstString);
-        }
-        else {
-            $("#imageContainer .row").last().append(markAddView.ColAddConstString + imageToMove + markAddView.DivAddConstString);
-        }
         $("#addImagePlaceholder").empty();
     },
 });
@@ -678,7 +739,8 @@ var CatalogueMarkView = Class.extend({
             txtRemove: "Видалити",
             txtSearch: "Пошук",
             height: "300px",
-            Id: "areasMultiselect"
+            Id: "areasMultiselect",
+            //MaxElementsToShow: 2
         }
 
         var keyWordsAndMarksOptions = {
@@ -688,7 +750,8 @@ var CatalogueMarkView = Class.extend({
             txtRemove: "Видалити",
             txtSearch: "Пошук",
             height: "300px",
-            Id: "namesMultiselect"
+            Id: "namesMultiselect",
+            //MaxElementsToShow: 1
         }
 
         var placesOptions = {
@@ -698,7 +761,8 @@ var CatalogueMarkView = Class.extend({
             txtRemove: "Видалити",
             txtSearch: "Пошук",
             height: "300px",
-            Id: "placesMultiselect"
+            Id: "placesMultiselect",
+            //MaxElementsToShow: 2
         }
 
         MultiselectDropdown(keyWordsAndMarksOptions);
@@ -973,7 +1037,6 @@ var CatalogueUserView = Class.extend({
     TableRowStartConstString: "<div class=\"table-body-catalogue-user-row justify-content-center d-flex\"><div class=\"table-body-catalogue-user-column-number\">",
     TableRowFullNameConstString: "</div><div class=\"table-body-catalogue-user-column-name\">",
     TableRowLinkConstString: "<a class=\"table-body-catalogue-user-column-name-link\" href=\"/User/Revision?id=",
-    TableRowCuratorStatusConstString: "</div><div class=\"table-body-catalogue-user-column-curator-status\">",
     TableRowEmailConstString: "</div><div class=\"table-body-catalogue-user-column-email\">",
     TableRowEndConstString: "</div></div>",
     
@@ -993,7 +1056,6 @@ var CatalogueUserView = Class.extend({
             $("#Name").val('');
             $("#Email").val('');
         });
-
     },
     Search: function () {
         var self = this;
@@ -1023,13 +1085,7 @@ var CatalogueUserView = Class.extend({
                     else {
                         toAdd += element.fullName;
                     }
-                    toAdd += self.TableRowCuratorStatusConstString;
-                    if (element.isCurator) {
-                        toAdd += "Так";
-                    }
-                    else {
-                        toAdd += "Ні";
-                    }
+                    
                     toAdd += self.TableRowEmailConstString + element.email;
                     toAdd += self.TableRowEndConstString;
                 });
@@ -1041,8 +1097,6 @@ var CatalogueUserView = Class.extend({
 })
 var RevisionUserView = Class.extend({
     UserId: null,
-    CuratorId: null,
-    IsCurator: null,
     InitializeControls: function () {
         var self = this;
 
@@ -1051,21 +1105,8 @@ var RevisionUserView = Class.extend({
     SubscribeEvents: function () {
         var self = this;
 
-        $("#saveMark").click(function () {
+        $("#saveUser").click(function () {
             self.Save();
-        });
-
-        $("#addCuratorImage").click(function () {
-            self.AddCuratorImage();
-        });
-
-        $("#IsCurator").change(function () {
-            if (this.checked) {
-                $(".curatorRow").css({ 'visibility': 'visible' });
-            }
-            else {
-                $(".curatorRow").css({ 'visibility': 'hidden' });
-            }
         });
 
         $("#search").click(function () {
@@ -1086,12 +1127,7 @@ var RevisionUserView = Class.extend({
             FirstName: $("#FirstName").val(),
             LastName: $("#LastName").val(),
             Email: $("#Email").val(),
-            IsCurator: $("#IsCurator").is(":checked"),
             RoleIds: [],
-            CuratorId: $("#CuratorInfo_Id").val(),
-            DisplayName: $("#CuratorInfo_DisplayName").val(),
-            Description: $("#CuratorInfo_Description").val(),
-            Image: $("#imagePlaceholder").attr('src')
         }
         $(".check-box-row").each(function (index, element) {
             if ($(element).is(":checked"))
@@ -1107,16 +1143,6 @@ var RevisionUserView = Class.extend({
             contentType: 'application/json; charset=utf-8',
             success: function (result) {
                 ResultPopUp(result.success, result.text, result.url, result.id);
-            }
-        });
-    },
-    AddCuratorImage: function () {
-        $.ajax({
-            type: 'POST',
-            url: "/User/AddCuratorImage",
-            contentType: 'application/json; charset=utf-8',
-            success: function (src) {
-                $('#addImagePlaceholder').html(src);
             }
         });
     }
@@ -1167,14 +1193,30 @@ var AddCuratorImageView = Class.extend({
 var ClusterAddView = Class.extend({
     ToDelete: null,
     IsNew: null,
-    //Images: null,
+
+    Areas: null,
+    AreaIds: null,
+    AreaNames: null,
+    SearchSelectDropdownAreas: null,
+
+    Curators: null,
+    CuratorIds: null,
+    CuratorNames: null,
+    SearchSelectDropdownCurators: null,
+
+
     Areas: null,
     AreaName: null,
+    AreaId: null,
+
+    Curators: null,
+    CuratorName: null,
+    CuratorId: null,
+
     Lat: null,
     Lng: null,
     Zoom: null,
     AreaId: null,
-    //IsApproximate: null,
 
     Map: null,
     InfoWindow: null,
@@ -1182,7 +1224,6 @@ var ClusterAddView = Class.extend({
     LastLng: null,
     AreaIds: null,
     AreaNames: null,
-    SearchSelectDropdown: null,
     IsInitializate: null,
     
     OldDataInput: null,
@@ -1204,7 +1245,20 @@ var ClusterAddView = Class.extend({
             self.SetMark();
         }
 
-        self.SearchSelectDropdown = new SearchSelect('#dropdown-input', {
+        var placesOptions = {
+            placeholder: "������� �������",
+            txtSelected: "�������",
+            txtAll: "��",
+            txtRemove: "��������",
+            txtSearch: "�����",
+            height: "300px",
+            Id: "placesMultiselect",
+            //MaxElementsToShow: 2
+        }
+
+        MultiselectDropdown(placesOptions);
+
+        self.SearchSelectDropdownAreas = new SearchSelect('#dropdown-input-for-area', {
             data: [],
             filter: SearchSelect.FILTER_CONTAINS,
             sort: undefined,
@@ -1217,19 +1271,48 @@ var ClusterAddView = Class.extend({
 
         self.InitializeAreas(self.Areas);
 
+        self.SearchSelectDropdownCurators = new SearchSelect('#dropdown-input-for-curator', {
+            data: [],
+            filter: SearchSelect.FILTER_CONTAINS,
+            sort: undefined,
+            inputClass: 'form-control-Select mobile-field',
+            maxOpenEntries: 9,
+            searchPosition: 'top',
+            onInputClickCallback: null,
+            onInputKeyDownCallback: null,
+        });
+
+        self.InitializeCurators(self.Curators);
+
+
         if (self.AreaName !== '') {
-            var selected = $($(".searchSelect--Result")[0]);
-            selected.removeClass("searchSelect--Placeholder");
+            var selected = $($("#Area .searchSelect--Result")[0]);
+            selected.removeClass("#Area searchSelect--Placeholder");
             selected.html(self.AreaName);
 
-            $.each($(".searchSelect--Option"), function (index, element) {
+
+            $.each($("#Area .searchSelect--Option"), function (index, element) {
                 if ($(element).text() === self.AreaName) {
-                    $(element).addClass("searchSelect--Option--selected")
+                    $(element).addClass("#Area searchSelect--Option--selected")
                 }
             });
 
-            $("#dropdown-input").val(self.AreaName);
-            
+            $("#dropdown-input-for-mark").val(self.AreaName);
+
+        }
+
+        if (self.CuratorName !== '') {
+            var selected = $($("#Curator .searchSelect--Result")[0]);
+            selected.removeClass("#Curator searchSelect--Placeholder");
+            selected.html(self.CuratorName);
+
+            $.each($("#Cluster .searchSelect--Option"), function (index, element) {
+                if ($(element).text() === self.CuratorName) {
+                    $(element).addClass("#Curator searchSelect--Option--selected")
+                }
+            });
+
+            $("#dropdown-input-for-curator").val(self.CuratorName);
         }
 
         self.SubscribeEvents();
@@ -1250,7 +1333,6 @@ var ClusterAddView = Class.extend({
             self.Save();
         });
 
-        $('#dropdown-input').addClass("display-8-custom");
         
         self.Map.addListener("click", (mapsMouseEvent) => {
             self.InfoWindow.close();
@@ -1278,7 +1360,19 @@ var ClusterAddView = Class.extend({
             self.AreaIds.push(element.id);
         });
 
-        self.SearchSelectDropdown.setData(self.AreaNames);
+        self.SearchSelectDropdownAreas.setData(self.AreaNames);
+    },
+    InitializeCurators: function (data) {
+        var self = this;
+        self.CuratorNames = [];
+        self.CuratorIds = [];
+
+        $.each(data, function (index, element) {
+            self.CuratorNames.push(element.name);
+            self.CuratorIds.push(element.id);
+        });
+
+        self.SearchSelectDropdownCurators.setData(self.CuratorNames);
     },
     SetMark: function () {
         var self = this;
@@ -1291,7 +1385,7 @@ var ClusterAddView = Class.extend({
             map: self.Map,
             title: self.AreaName,
             icon: {
-                url: "../images/clusterIcon.png",
+                url: "../images/redCircle.png",
                 scaledSize: new google.maps.Size(24, 24),
                 origin: new google.maps.Point(0, 0),
                 anchor: new google.maps.Point(12, 12)
@@ -1316,16 +1410,24 @@ var ClusterAddView = Class.extend({
     Save: function () {
         var self = this;
 
-        var areaId = self.AreaIds[self.AreaNames.indexOf($("#dropdown-input").val())];
+        var areaId = self.AreaIds[self.AreaNames.indexOf($("#dropdown-input-for-area").val())];
+        var curatorId = self.CuratorIds[self.CuratorNames.indexOf($("#dropdown-input-for-curator").val())];
         areaId = areaId === "" ? null : areaId;
+        curatorId = curatorId === "" ? null : curatorId;
 
         var saveClusterViewModel = {
             Id: $("#Id").val() === "" ? null : $("#Id").val(),
             Lng: $("#Lng").val(),
             Lat: $("#Lat").val(),
             AreaId: areaId,
+            CuratorId: curatorId,
             Name: $("#Name").val(),
             Description: $("#Description").val(),
+            DescriptionEng: $("#DescriptionEng").val(),
+            ResourceUrl: $("#ResourceUrl").val(),
+            ResourceName: $("#ResourceName").val(),
+            ResourceNameEng: $("#ResourceNameEng").val(),
+            SelectedPlaceIds: $("#placesMultiselect").val()
         };
 
         $.ajax({
@@ -1337,7 +1439,7 @@ var ClusterAddView = Class.extend({
                 ResultPopUp(result.success, result.text, result.url, result.id);
             }
         });
-        
+
     },
     GetAreas: function () {
         var self = this;
@@ -1347,7 +1449,7 @@ var ClusterAddView = Class.extend({
             return;
         }
 
-        self.SearchAreasViewModel = { Text: $(".form-control-Select-Bar").val() };
+        self.SearchAreasViewModel = { Text: $("#Area .form-control-Select-Bar").val() };
 
         self.OldDataInput = Date.now();
 
@@ -2391,3 +2493,331 @@ var CatalogueCuratorView = Class.extend({
         descriptionContainer.css({ display: 'none' });
     }
 })
+var CuratorAddView = Class.extend({
+    InitializeControls: function () {
+        var self = this;
+
+        self.SubscribeEvents();
+    },
+    SubscribeEvents: function () {
+        var self = this;
+
+        $('#addImage').on('click', function () {
+            self.AddImage();
+        });
+
+        $('#saveCurator').on('click', function () {
+            self.Save();
+        });
+        $('#delete').on('click', function () {
+            self.Delete();
+        });
+    },
+    Delete: function () {
+        if ($("#Id").val() === "")
+            return;
+        $.ajax({
+            type: 'POST',
+            url: "/Curator/DeleteCurator",
+            contentType: 'application/json; charset=utf-8',
+            success: function (src) {
+                $('#deleteCuratorPlaceholder').html(src);
+            }
+        });
+    },
+
+    AddImage: function () {
+        $.ajax({
+            type: 'POST',
+            url: "/Curator/AddImage",
+            contentType: 'application/json; charset=utf-8',
+            success: function (src) {
+                $('#addImagePlaceholder').html(src);
+            }
+        });
+    },
+    Save: function () {
+        var self = this;
+
+        var saveCuratorViewModel = {
+            Id: $("#Id").val() === "" ? null : $("#Id").val(),
+            DisplayName: $("#DisplayName").val(),
+            Description: $("#Description").val(),
+            DescriptionEng: $("#DescriptionEng").val(),
+            Image: $("#curatorImage").attr('src')
+        };
+
+        
+
+        $.ajax({
+            type: 'POST',
+            url: "/Curator/SaveCurator",
+            data: JSON.stringify(saveCuratorViewModel),
+            contentType: 'application/json; charset=utf-8',
+            success: function (result) {
+                ResultPopUp(result.success, result.text, result.url, result.id);
+            }
+        });
+
+    }
+});
+var AddImageCuratorView = Class.extend({
+    Image: null,
+    ImageInput: null,
+    Reader: null,
+    InitializeControls: function () {
+        var self = this;
+        self.ImageInput = $('#imageInput');
+        self.Reader = new FileReader();
+
+        self.SubscribeEvents();
+    },
+    SubscribeEvents: function () {
+        var self = this;
+
+        self.Reader.addEventListener("load", () => {
+            $("#imagePlaceholder")[0].src = self.Reader.result;
+        }, false);
+
+        self.ImageInput.on('change', function () {
+            self.Reader.readAsDataURL(self.ImageInput[0].files[0]);
+        });
+       
+        $('#addImageCancelButton').on('click', function () {
+            self.Close();
+        });
+        $('#addImageConfirmButton').on('click', function () {
+            self.Save();
+        });
+    },
+    Close: function () {
+        $("#addImagePlaceholder").empty();
+    },
+    Save: function () {
+        var imageToMove = $(".popup-content-custom .add-image-placeholder-custom").html();
+
+        var src = $(imageToMove).attr('src');
+
+
+        $("#curatorImagePlaceholder").empty();
+        $("#curatorImagePlaceholder").html("<img id=\"curatorImage\" src=\"" + src +"\" />")
+
+        $("#addImagePlaceholder").empty();
+    },
+});
+
+
+var DeleteCuratorView = Class.extend({
+    
+    InitializeControls: function () {
+        var self = this;
+        self.SubscribeEvents();
+    },
+    SubscribeEvents: function () {
+        var self = this;
+        $('#deleteCuratorCancelButton').on('click', function () {
+            self.Close();
+        });
+        $('#deleteCuratorConfirmButton').on('click', function () {
+            self.Save();
+        });
+    },
+    Save: function () {
+        var self = this;
+        $.ajax({
+            type: 'POST',
+            url: "/Curator/DeleteConfirm?id=" + $("#Id").val(),
+            contentType: 'application/json; charset=utf-8',
+            success: function (result) {
+                ResultPopUp(result.success, result.text, result.url, result.id);
+
+                self.Close();
+            }
+        });
+    },
+    Close: function () {
+        $("#deleteCuratorPlaceholder").empty();
+    },
+});
+
+
+var KeyWordView = Class.extend({
+    InitializeControls: function () {
+        var self = this;
+
+
+        self.SubscribeEvents();
+    },
+    SubscribeEvents: function () {
+        var self = this;
+
+        $("#addKeyWord").on('click', function () {
+            self.Add();
+        });
+
+        $("#search").on('click', function () {
+            self.Search();
+        });
+
+        $("#save").on('click', function () {
+            self.Save();
+        });
+
+        $("#clear").on('click', function () {
+            self.Clear();
+        });
+    },
+    Add: function () {
+        var text = $("#keyWordToAdd").val();
+        if (text.lenght === 0)
+            return;
+
+        $("#keyWordContainer").prepend("<div class=\"keyWord-row pb-2\"><input type=\"hidden\" value=\"\"><input type=\"text\" class=\"text-box-custom form-control\" value=\"" +
+            text + "\"><button class=\"btn btn-dark-custom\" onclick=\"keyWordView.Remove(this)\">Видалити</button></div>");
+        $("#keyWordToAdd").val("");
+    },
+    Search: function () {
+        var filter = $("#filter").val().toLowerCase();
+
+        $('#keyWordContainer .keyWord-row').each(function (index, element) {
+            var keyWord = $(element).find(".text-box-custom").val().toLowerCase();
+
+            $(element).css({ display: 'flex' });
+            if (keyWord.indexOf(filter) === -1)
+                $(element).css({ display: 'none' });
+        });
+
+    },
+    Save: function () {
+        var self = this;
+        var dataArray = [];
+        $('.keyWord-row').each(function () {
+            var id = $(this).find('input[type="hidden"]').eq(0).val();
+
+            if (id === undefined || id === null)
+                id = "";
+            var name = $(this).find('input[type="text"]').eq(0).val();
+            var obj = {
+                Id: id,
+                Name: name
+            };
+            dataArray.push(obj);
+        });
+
+        $.ajax({
+            type: 'POST',
+            url: "/AdminHelper/SaveKeyWords",
+            data: JSON.stringify(dataArray),
+            contentType: 'application/json; charset=utf-8',
+            success: function (src) {
+                location.reload();
+            }
+        });
+    },
+    Remove: function (el) {
+        var row = $(el).parent();
+        row.remove();
+    },
+    Clear: function () {
+        $('#keyWordContainer .keyWord-row').each(function (index, element) {
+            $(element).css({ display: 'flex' });
+        });
+
+        $("#filter").val("");
+    }
+});
+
+
+var PlaceView = Class.extend({
+    InitializeControls: function () {
+        var self = this;
+
+
+        self.SubscribeEvents();
+    },
+    SubscribeEvents: function () {
+        var self = this;
+
+        $("#addPlace").on('click', function () {
+            self.Add();
+        });
+
+        $("#search").on('click', function () {
+            self.Search();
+        });
+
+        $("#save").on('click', function () {
+            self.Save();
+        });
+
+        $("#clear").on('click', function () {
+            self.Clear();
+        });
+    },
+    Add: function () {
+        var text = $("#placeToAdd").val();
+        var textEng = $("#placeToAddEng").val();
+        if (text.lenght === 0)
+            return;
+
+        $("#placeContainer").prepend("<div class=\"place-row pb-2\"><input type=\"hidden\" value=\"\"><input type=\"text\" class=\"text-box-custom form-control\" value=\"" +
+            text + "\"><input type=\"text\" class=\"text-box-custom form-control\" value=\"" +
+            textEng + "\"><button class=\"btn btn-dark-custom\" onclick=\"placeView.Remove(this)\">Видалити</button></div>");
+        $("#placeToAdd").val("");
+        $("#placeToAddEng").val("");
+    },
+    Search: function () {
+        var filter = $("#filter").val().toLowerCase();
+
+        $('#placeContainer .place-row').each(function (index, element) {
+            var place = $(element).find(".text-box-custom").eq(0).val().toLowerCase();
+            var placeEng = $(element).find(".text-box-custom").eq(1).val().toLowerCase();
+
+            $(element).css({ display: 'flex' });
+            if (place.indexOf(filter) === -1 && placeEng.indexOf(filter) === -1)
+                $(element).css({ display: 'none' });
+        });
+
+    },
+    Save: function () {
+        var self = this;
+        var dataArray = [];
+        $('.place-row').each(function () {
+            var id = $(this).find('input[type="hidden"]').eq(0).val();
+
+            if (id === undefined || id === null)
+                id = "";
+            var name = $(this).find('input[type="text"]').eq(0).val();
+            var nameEng = $(this).find('input[type="text"]').eq(1).val();
+            var obj = {
+                Id: id,
+                Name: name,
+                NameEng: nameEng
+            };
+            dataArray.push(obj);
+            console.log(dataArray);
+        });
+
+        $.ajax({
+            type: 'POST',
+            url: "/AdminHelper/SavePlaces",
+            data: JSON.stringify(dataArray),
+            contentType: 'application/json; charset=utf-8',
+            success: function (src) {
+                location.reload();
+            }
+        });
+    },
+    Remove: function (el) {
+        var row = $(el).parent();
+        row.remove();
+    },
+    Clear: function () {
+        $('#placeContainer .place-row').each(function (index, element) {
+            $(element).css({ display: 'flex' });
+        });
+
+        $("#filter").val("");
+    }
+});
+

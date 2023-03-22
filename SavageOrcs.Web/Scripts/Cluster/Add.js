@@ -1,14 +1,30 @@
 var ClusterAddView = Class.extend({
     ToDelete: null,
     IsNew: null,
-    //Images: null,
+
+    Areas: null,
+    AreaIds: null,
+    AreaNames: null,
+    SearchSelectDropdownAreas: null,
+
+    Curators: null,
+    CuratorIds: null,
+    CuratorNames: null,
+    SearchSelectDropdownCurators: null,
+
+
     Areas: null,
     AreaName: null,
+    AreaId: null,
+
+    Curators: null,
+    CuratorName: null,
+    CuratorId: null,
+
     Lat: null,
     Lng: null,
     Zoom: null,
     AreaId: null,
-    //IsApproximate: null,
 
     Map: null,
     InfoWindow: null,
@@ -16,7 +32,6 @@ var ClusterAddView = Class.extend({
     LastLng: null,
     AreaIds: null,
     AreaNames: null,
-    SearchSelectDropdown: null,
     IsInitializate: null,
     
     OldDataInput: null,
@@ -38,7 +53,20 @@ var ClusterAddView = Class.extend({
             self.SetMark();
         }
 
-        self.SearchSelectDropdown = new SearchSelect('#dropdown-input', {
+        var placesOptions = {
+            placeholder: "Виберіть локацію",
+            txtSelected: "вибрано",
+            txtAll: "Всі",
+            txtRemove: "Видалити",
+            txtSearch: "Пошук",
+            height: "300px",
+            Id: "placesMultiselect",
+            //MaxElementsToShow: 2
+        }
+
+        MultiselectDropdown(placesOptions);
+
+        self.SearchSelectDropdownAreas = new SearchSelect('#dropdown-input-for-area', {
             data: [],
             filter: SearchSelect.FILTER_CONTAINS,
             sort: undefined,
@@ -51,19 +79,48 @@ var ClusterAddView = Class.extend({
 
         self.InitializeAreas(self.Areas);
 
+        self.SearchSelectDropdownCurators = new SearchSelect('#dropdown-input-for-curator', {
+            data: [],
+            filter: SearchSelect.FILTER_CONTAINS,
+            sort: undefined,
+            inputClass: 'form-control-Select mobile-field',
+            maxOpenEntries: 9,
+            searchPosition: 'top',
+            onInputClickCallback: null,
+            onInputKeyDownCallback: null,
+        });
+
+        self.InitializeCurators(self.Curators);
+
+
         if (self.AreaName !== '') {
-            var selected = $($(".searchSelect--Result")[0]);
-            selected.removeClass("searchSelect--Placeholder");
+            var selected = $($("#Area .searchSelect--Result")[0]);
+            selected.removeClass("#Area searchSelect--Placeholder");
             selected.html(self.AreaName);
 
-            $.each($(".searchSelect--Option"), function (index, element) {
+
+            $.each($("#Area .searchSelect--Option"), function (index, element) {
                 if ($(element).text() === self.AreaName) {
-                    $(element).addClass("searchSelect--Option--selected")
+                    $(element).addClass("#Area searchSelect--Option--selected")
                 }
             });
 
-            $("#dropdown-input").val(self.AreaName);
-            
+            $("#dropdown-input-for-mark").val(self.AreaName);
+
+        }
+
+        if (self.CuratorName !== '') {
+            var selected = $($("#Curator .searchSelect--Result")[0]);
+            selected.removeClass("#Curator searchSelect--Placeholder");
+            selected.html(self.CuratorName);
+
+            $.each($("#Cluster .searchSelect--Option"), function (index, element) {
+                if ($(element).text() === self.CuratorName) {
+                    $(element).addClass("#Curator searchSelect--Option--selected")
+                }
+            });
+
+            $("#dropdown-input-for-curator").val(self.CuratorName);
         }
 
         self.SubscribeEvents();
@@ -84,7 +141,6 @@ var ClusterAddView = Class.extend({
             self.Save();
         });
 
-        $('#dropdown-input').addClass("display-8-custom");
         
         self.Map.addListener("click", (mapsMouseEvent) => {
             self.InfoWindow.close();
@@ -112,7 +168,19 @@ var ClusterAddView = Class.extend({
             self.AreaIds.push(element.id);
         });
 
-        self.SearchSelectDropdown.setData(self.AreaNames);
+        self.SearchSelectDropdownAreas.setData(self.AreaNames);
+    },
+    InitializeCurators: function (data) {
+        var self = this;
+        self.CuratorNames = [];
+        self.CuratorIds = [];
+
+        $.each(data, function (index, element) {
+            self.CuratorNames.push(element.name);
+            self.CuratorIds.push(element.id);
+        });
+
+        self.SearchSelectDropdownCurators.setData(self.CuratorNames);
     },
     SetMark: function () {
         var self = this;
@@ -125,7 +193,7 @@ var ClusterAddView = Class.extend({
             map: self.Map,
             title: self.AreaName,
             icon: {
-                url: "../images/clusterIcon.png",
+                url: "../images/redCircle.png",
                 scaledSize: new google.maps.Size(24, 24),
                 origin: new google.maps.Point(0, 0),
                 anchor: new google.maps.Point(12, 12)
@@ -150,16 +218,24 @@ var ClusterAddView = Class.extend({
     Save: function () {
         var self = this;
 
-        var areaId = self.AreaIds[self.AreaNames.indexOf($("#dropdown-input").val())];
+        var areaId = self.AreaIds[self.AreaNames.indexOf($("#dropdown-input-for-area").val())];
+        var curatorId = self.CuratorIds[self.CuratorNames.indexOf($("#dropdown-input-for-curator").val())];
         areaId = areaId === "" ? null : areaId;
+        curatorId = curatorId === "" ? null : curatorId;
 
         var saveClusterViewModel = {
             Id: $("#Id").val() === "" ? null : $("#Id").val(),
             Lng: $("#Lng").val(),
             Lat: $("#Lat").val(),
             AreaId: areaId,
+            CuratorId: curatorId,
             Name: $("#Name").val(),
             Description: $("#Description").val(),
+            DescriptionEng: $("#DescriptionEng").val(),
+            ResourceUrl: $("#ResourceUrl").val(),
+            ResourceName: $("#ResourceName").val(),
+            ResourceNameEng: $("#ResourceNameEng").val(),
+            SelectedPlaceIds: $("#placesMultiselect").val()
         };
 
         $.ajax({
@@ -171,7 +247,7 @@ var ClusterAddView = Class.extend({
                 ResultPopUp(result.success, result.text, result.url, result.id);
             }
         });
-        
+
     },
     GetAreas: function () {
         var self = this;
@@ -181,7 +257,7 @@ var ClusterAddView = Class.extend({
             return;
         }
 
-        self.SearchAreasViewModel = { Text: $(".form-control-Select-Bar").val() };
+        self.SearchAreasViewModel = { Text: $("#Area .form-control-Select-Bar").val() };
 
         self.OldDataInput = Date.now();
 

@@ -26,15 +26,17 @@ namespace SavageOrcs.DataTransferObjects.Marks
 
         public string? ResourceName { get; set; }
 
-        public bool? IsApproximate { get; set; }
+        public string? ResourceNameEng { get; set; }
 
-        public string? CuratorName { get; set; }
+        public GuidIdAndStringName Curator { get; set; } = new GuidIdAndStringName();
 
         public AreaShortDto? Area { get; set; }
 
-        public GuidIdAndStringName? Cluster { get; set; }
+        public GuidIdAndStringName Cluster { get; set; } = new GuidIdAndStringName();
 
-        public byte[][] Images { get; set; } = Array.Empty<byte[]>();
+        public ByteContentAndBooIsVisible[] Images { get; set; } = Array.Empty<ByteContentAndBooIsVisible>();
+
+        public GuidIdAndStringNameWithEnglishName[] Places { get; set; } = Array.Empty<GuidIdAndStringNameWithEnglishName>();
 
         public DateTime CreatedDate { get; set; }
     }
@@ -57,6 +59,10 @@ namespace SavageOrcs.DataTransferObjects.Marks
 
         public string? ResourceName { get; set; }
 
+        public string? ResourceNameEng{ get; set; }
+
         public string? CuratorName { get; set; }
+
+        public GuidIdAndStringName? Area { get; set; }
     }
 }

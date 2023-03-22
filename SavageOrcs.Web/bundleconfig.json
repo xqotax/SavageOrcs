@@ -30,7 +30,13 @@
         "Scripts/Text/Delete.js",
 
         "Scripts/Curator/Revision.js",
-        "Scripts/Curator/Catalogue.js"
+        "Scripts/Curator/Catalogue.js",
+        "Scripts/Curator/Add.js",
+        "Scripts/Curator/AddImage.js",
+        "Scripts/Curator/Delete.js",
+
+        "Scripts/AdminHelper/KeyWord.js",
+        "Scripts/AdminHelper/Place.js"
       ],
       "minify": {
         "enabled": true,

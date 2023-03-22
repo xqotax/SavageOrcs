@@ -1,10 +1,10 @@
 ﻿@using SavageOrcs.Web.ViewModels.Curator
-@model CuratorViewModels
+@model CuratorViewModel[]
 
 <link itemprop="url" rel="stylesheet" href="~/css/curator/curators.css" asp-append-version="true" />
 
 <div class="row"><h2 class="text-white-custom">Інформація про активних кураторів проєкту</h2></div>
-@for (int i = 0; i < Model.Curators.Length; i++)
+@for (int i = 0; i < Model.Length; i++)
 {
     if (i % 3 == 0)
     {
@@ -12,22 +12,22 @@
     }
 
 
-            <div class="curator-box" value="@Model.Curators[i].Id">
+            <div class="curator-box" value="@Model[i].Id">
                 <div class="curator-box-image">
-                    <img class="curator-image" src="@Model.Curators[i].Image">
+                    <img class="curator-image" src="@Model[i].Image">
                 </div>
                 
                 <div class="curator-box-text  text-white-custom">
                     <div class="curator-box-name display-7-custom">
-                        @Model.Curators[i].DisplayName
+                        @Model[i].DisplayName
                     </div>
                     <div class="curator-box-description display-8-custom">
-                        @Model.Curators[i].Description
+                        @Model[i].Description
                     </div>
                 </div>
             </div>
 
-    if (i % 3 == 2 || i + 1 == Model.Curators.Length)
+    if (i % 3 == 2 || i + 1 == Model.Length)
     {
         @:</div>
     }

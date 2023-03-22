@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "ORc7a4T0lVPPUaUrpcBEmyTmIAieqMLbKjtsDBChbVY=",
+  "Hash": "xLbQiLVxX7cpwHhs91Rw6mFqCOYS77pschBHIVSeQhU=",
   "Source": "SavageOrcs.Web",
   "BasePath": "_content/SavageOrcs.Web",
   "Mode": "Default",
@@ -1071,6 +1071,40 @@
       "OriginalItemSpec": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\obj\\Debug\\net6.0\\scopedcss\\projectbundle\\SavageOrcs.Web.bundle.scp.css"
     },
     {
+      "Identity": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\wwwroot\\css\\admin\\AdminMenu.css",
+      "SourceId": "SavageOrcs.Web",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\wwwroot\\",
+      "BasePath": "_content/SavageOrcs.Web",
+      "RelativePath": "css/admin/AdminMenu.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\admin\\AdminMenu.css"
+    },
+    {
+      "Identity": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\wwwroot\\css\\admin\\keyWordAndPlaces.css",
+      "SourceId": "SavageOrcs.Web",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\wwwroot\\",
+      "BasePath": "_content/SavageOrcs.Web",
+      "RelativePath": "css/admin/keyWordAndPlaces.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\admin\\keyWordAndPlaces.css"
+    },
+    {
       "Identity": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\wwwroot\\css\\checkBox.css",
       "SourceId": "SavageOrcs.Web",
       "SourceType": "Discovered",
@@ -1088,40 +1122,6 @@
       "OriginalItemSpec": "wwwroot\\css\\checkBox.css"
     },
     {
-      "Identity": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\wwwroot\\css\\cluster\\clusterCatalogue.css",
-      "SourceId": "SavageOrcs.Web",
-      "SourceType": "Discovered",
-      "ContentRoot": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\wwwroot\\",
-      "BasePath": "_content/SavageOrcs.Web",
-      "RelativePath": "css/cluster/clusterCatalogue.css",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\css\\cluster\\clusterCatalogue.css"
-    },
-    {
-      "Identity": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\wwwroot\\css\\cluster\\clusterRevision.css",
-      "SourceId": "SavageOrcs.Web",
-      "SourceType": "Discovered",
-      "ContentRoot": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\wwwroot\\",
-      "BasePath": "_content/SavageOrcs.Web",
-      "RelativePath": "css/cluster/clusterRevision.css",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\css\\cluster\\clusterRevision.css"
-    },
-    {
       "Identity": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\wwwroot\\css\\curator\\curator.css",
       "SourceId": "SavageOrcs.Web",
       "SourceType": "Discovered",
@@ -1137,6 +1137,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\css\\curator\\curator.css"
+    },
+    {
+      "Identity": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\wwwroot\\css\\curator\\curatorAdmin.css",
+      "SourceId": "SavageOrcs.Web",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\wwwroot\\",
+      "BasePath": "_content/SavageOrcs.Web",
+      "RelativePath": "css/curator/curatorAdmin.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\curator\\curatorAdmin.css"
     },
     {
       "Identity": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\wwwroot\\css\\curator\\curatorRevision.css",
@@ -1190,12 +1207,12 @@
       "OriginalItemSpec": "wwwroot\\css\\mark\\mark.css"
     },
     {
-      "Identity": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\wwwroot\\css\\mark\\tableDetail.css",
+      "Identity": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\wwwroot\\css\\mark\\markAdmin.css",
       "SourceId": "SavageOrcs.Web",
       "SourceType": "Discovered",
       "ContentRoot": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\wwwroot\\",
       "BasePath": "_content/SavageOrcs.Web",
-      "RelativePath": "css/mark/tableDetail.css",
+      "RelativePath": "css/mark/markAdmin.css",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -1204,24 +1221,7 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\css\\mark\\tableDetail.css"
-    },
-    {
-      "Identity": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\wwwroot\\css\\mark\\tableShort.css",
-      "SourceId": "SavageOrcs.Web",
-      "SourceType": "Discovered",
-      "ContentRoot": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\wwwroot\\",
-      "BasePath": "_content/SavageOrcs.Web",
-      "RelativePath": "css/mark/tableShort.css",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\css\\mark\\tableShort.css"
+      "OriginalItemSpec": "wwwroot\\css\\mark\\markAdmin.css"
     },
     {
       "Identity": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\wwwroot\\css\\multiselect.css",
@@ -1358,23 +1358,6 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\css\\text\\textAdd.css"
-    },
-    {
-      "Identity": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\wwwroot\\css\\text\\textCatalogue.css",
-      "SourceId": "SavageOrcs.Web",
-      "SourceType": "Discovered",
-      "ContentRoot": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\wwwroot\\",
-      "BasePath": "_content/SavageOrcs.Web",
-      "RelativePath": "css/text/textCatalogue.css",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\css\\text\\textCatalogue.css"
     },
     {
       "Identity": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\wwwroot\\css\\user\\userCatalogue.css",

@@ -24,6 +24,8 @@ namespace SavageOrcs.BusinessObjects
 
         public string? ResourceName { get; set; }
 
+        public string? ResourceNameEng { get; set; }
+
         public DateTime CreatedDate { get; set; }
 
         public DateTime UpdatedDate { get; set; }
@@ -43,5 +45,7 @@ namespace SavageOrcs.BusinessObjects
         public virtual ICollection<Mark> Marks { get; set; } = new HashSet<Mark>();
 
         public virtual ICollection<TextToCluster> TextsToClusters { get; set; } = new HashSet<TextToCluster>();
+
+        public virtual ICollection<PlaceToCluster> PlaceToClusters { get; set; } = new HashSet<PlaceToCluster>();
     }
 }

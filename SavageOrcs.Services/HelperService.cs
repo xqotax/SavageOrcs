@@ -17,11 +17,13 @@ namespace SavageOrcs.Services
     public class HelperService: UnitOfWorkService, IHelperService
     {
         private readonly IRepository<KeyWord> _keyWordRepository;
-        private readonly IRepository<Place> _placesRepository;
-        public HelperService(IUnitOfWork unitOfWork, IRepository<KeyWord> keyWordRepository, IRepository<Place> placesRepository) : base(unitOfWork)
+        private readonly IRepository<Place> _placeRepository;
+        private readonly IRepository<PlaceToMark> _placeToMarkRepository;
+        public HelperService(IUnitOfWork unitOfWork, IRepository<KeyWord> keyWordRepository, IRepository<Place> placeRepository, IRepository<PlaceToMark> placeToMarkRepository) : base(unitOfWork)
         {
             _keyWordRepository = keyWordRepository;
-            _placesRepository = placesRepository;
+            _placeRepository = placeRepository;
+            _placeToMarkRepository = placeToMarkRepository;
         }
         public byte[] GetBytesForText(string data)
         {
@@ -98,15 +100,117 @@ namespace SavageOrcs.Services
             }).ToArray();
         }
 
-        public async Task<GuidIdAndStringName[]> GetAllPlaces()
+        public async Task<GuidIdAndStringNameWithEnglishName[]> GetAllPlaces()
         {
-            var places = await _placesRepository.GetAllAsync();
+            var places = await _placeRepository.GetAllAsync();
 
-            return places.Select(x => new GuidIdAndStringName
+            return places.Select(x => new GuidIdAndStringNameWithEnglishName
             {
                 Id = x.Id,
-                Name = Thread.CurrentThread.CurrentUICulture.TwoLetterISOLanguageName == "uk" ? x.Name : x.NameEng,
+                Name = x.Name,
+                NameEng = x.NameEng
             }).ToArray();
+        }
+
+        public async Task<GuidIdAndStringNameWithEnglishName[]> GetPlacesByMarkId(Guid markId)
+        {
+            return (await _placeToMarkRepository.GetAllAsync()).Where(x => x.MarkId == markId)
+                .Select(x => new GuidIdAndStringNameWithEnglishName
+            {
+                Id = x.PlaceId,
+                Name = x.Place.Name,
+                NameEng = x.Place.NameEng
+            }).ToArray();
+        }
+
+        public async Task SaveKeyWords(GuidNullIdAndStringName[] keyWordDtos)
+        {
+            var dateTimeNow = DateTime.Now;
+
+            var keyWords = await _keyWordRepository.GetAllAsync();
+
+            var newKeyWordIds = keyWordDtos.Where(x => x.Id.HasValue).Select(x => x.Id).ToArray();
+
+            foreach (var keyWord in keyWords)
+            {
+                if (!newKeyWordIds.Contains(keyWord.Id))
+                    _keyWordRepository.Delete(keyWord);
+            }   
+
+            foreach(var keyWordDto in keyWordDtos)
+            {
+                if (keyWordDto.Id.HasValue)
+                {
+                    var keyWord = keyWords.First(x => x.Id == keyWordDto.Id.Value);
+                    keyWord.UpdatedDate = dateTimeNow;
+                    keyWord.Name = keyWordDto.Name;
+                    keyWord.RegisterIsImportant = false;
+                }
+                else
+                {
+                    var keyWord = new KeyWord
+                    {
+                        Id = new Guid(),
+                        Name = keyWordDto.Name,
+                        CreatedDate = dateTimeNow,
+                        UpdatedDate = dateTimeNow,
+                        RegisterIsImportant = false
+                    };
+
+                    await _keyWordRepository.AddAsync(keyWord);
+                }
+            }
+
+            await UnitOfWork.SaveChangesAsync();
+
+            return;
+        }
+
+        public async Task SavePlaces(GuidNullIdAndStringNameWhitEngName[] placeDtos)
+        {
+            var dateTimeNow = DateTime.Now;
+
+            var places = await _placeRepository.GetAllAsync();
+
+            var newPlaceIds = placeDtos.Where(x => x.Id.HasValue).Select(x => x.Id).ToArray();
+
+            foreach (var place in places)
+            {
+                if (!newPlaceIds.Contains(place.Id))
+                {
+                    var placeToMarks = await _placeToMarkRepository.GetAllAsync(x => x.PlaceId == place.Id);
+
+                    _placeToMarkRepository.DeleteRange(placeToMarks);
+
+                    _placeRepository.Delete(place);
+                }
+            }
+
+            foreach (var placeDto in placeDtos)
+            {
+                if (placeDto.Id.HasValue)
+                {
+                    var place = places.First(x => x.Id == placeDto.Id.Value);
+                    place.Name = placeDto.Name;
+                    place.NameEng = placeDto.NameEng;
+                }
+                else
+                {
+                    var place = new Place
+                    {
+                        Id = new Guid(),
+                        Name = placeDto.Name,
+                        NameEng = placeDto.NameEng,
+                        CreatedDate = dateTimeNow
+                    };
+
+                    await _placeRepository.AddAsync(place);
+                }
+            }
+
+            await UnitOfWork.SaveChangesAsync();
+
+            return;
         }
     }
 }

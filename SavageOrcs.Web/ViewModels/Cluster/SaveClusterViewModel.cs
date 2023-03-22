@@ -14,6 +14,18 @@ namespace SavageOrcs.Web.ViewModels.Cluster
 
         public string? Description { get; set; }
 
+        public string? DescriptionEng { get; set; }
+
+        public string? ResourceName { get; set; }
+
+        public string? ResourceNameEng { get; set; }
+
+        public string? ResourceUrl { get; set; }
+
+        public Guid? CuratorId { get; set; }
+
+        public Guid[] SelectedPlaceIds { get; set; } = new Guid[0];
+
         public Guid? AreaId { get; set; }
     }
 }

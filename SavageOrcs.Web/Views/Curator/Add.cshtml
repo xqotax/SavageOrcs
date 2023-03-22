@@ -1,0 +1,76 @@
+﻿@using SavageOrcs.Web.ViewModels.Curator
+@model AddCuratorViewModel
+
+<div id="addImagePlaceholder"></div>
+<div id="deleteCuratorPlaceholder"></div>
+<div class="wrapper-curator-add">
+    <div class="curator-add-action-row row mt-1 mb-1 display-8-custom  pt-3">
+        <div class="col-md-auto pr-2">
+            <button id="delete" class="btn btn-dark-custom">Видалити</button>
+        </div>
+        <div class="col-md-auto pr-2">
+            <a class="btn btn-dark-custom" href="/Curator/Add">Додати ще одного</a>
+        </div>
+    </div>
+    <hr style="border-top: 3px solid #3c6624">
+    <div class="curator-add-content-row">
+        <div class="curator-add-data-col">
+            <div class="row pb-2">
+                <div class="col-md-4 d-flex align-items-center">
+                    <label>
+                        Ім'я для показу:
+                    </label>
+                </div>
+                <div class="col-md-7">
+                    @Html.TextBoxFor(m => m.DisplayName, new { @class = "text-box-custom form-control"})
+                </div>
+            </div>
+            <div class="row pb-2">
+                <div class="col-md-4 d-flex align-items-center">
+                    <label>
+                        Опис:
+                    </label>
+                </div>
+                <div class="col-md-7">
+                    @Html.TextAreaFor(m => m.Description, new { @class = "text-box-custom form-control area-for-custom"})
+                </div>
+            </div>
+            <div class="row pb-2">
+                <div class="col-md-4 d-flex align-items-center">
+                    <label>
+                        Опис для іноземних:
+                    </label>
+                </div>
+                <div class="col-md-7">
+                    @Html.TextAreaFor(m => m.DescriptionEng, new { @class = "text-box-custom form-control area-for-custom"})
+                </div>
+            </div>
+        </div>
+        <div class="curator-add-image-col">
+            <div class="row">
+                <div id="curatorImagePlaceholder">
+                    @if (Model.Image is not null){
+                        <img id="curatorImage" src="@Model.Image" alt="" />
+                    }
+                </div>
+            </div>
+            <div class="row justify-content-end">
+                <button id="addImage" class="btn btn-dark-custom display-8-custom mt-3">Додати фото</button>
+            </div>
+            <div class="row justify-content-end">
+                <button id="saveCurator" class="btn btn-dark-custom display-8-custom mt-3">Зберегти</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+
+    <script>
+        var curatorAddView = new CuratorAddView();
+
+        $(document).ready(function () {
+            curatorAddView.InitializeControls();
+        });
+    </script>
+}

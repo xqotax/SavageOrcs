@@ -35,7 +35,8 @@
             txtRemove: "Видалити",
             txtSearch: "Пошук",
             height: "300px",
-            Id: "areasMultiselect"
+            Id: "areasMultiselect",
+            //MaxElementsToShow: 2
         }
 
         var keyWordsAndMarksOptions = {
@@ -45,7 +46,8 @@
             txtRemove: "Видалити",
             txtSearch: "Пошук",
             height: "300px",
-            Id: "namesMultiselect"
+            Id: "namesMultiselect",
+            //MaxElementsToShow: 1
         }
 
         var placesOptions = {
@@ -55,7 +57,8 @@
             txtRemove: "Видалити",
             txtSearch: "Пошук",
             height: "300px",
-            Id: "placesMultiselect"
+            Id: "placesMultiselect",
+            //MaxElementsToShow: 2
         }
 
         MultiselectDropdown(keyWordsAndMarksOptions);

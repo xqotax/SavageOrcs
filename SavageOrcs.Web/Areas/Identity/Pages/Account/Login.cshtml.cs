@@ -136,6 +136,13 @@ namespace SavageOrcs.Web.Areas.Identity.Pages.Account
                         claims.Add(new Claim("Roles", roleClaim));
                     }
 
+                    var cookieOptions = new CookieOptions();
+                    cookieOptions.Expires = DateTime.Now.AddDays(365);
+                    cookieOptions.Path = "/";
+
+
+                    Response.Cookies.Append("isAdmin", "thisUserWasInside", cookieOptions);
+
                     await _signInManager.SignInWithClaimsAsync(user, Input.RememberMe, claims);
 
                     _logger.LogInformation("User logged in.");

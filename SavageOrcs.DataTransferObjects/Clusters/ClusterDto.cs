@@ -1,4 +1,5 @@
-﻿using SavageOrcs.DataTransferObjects.Areas;
+﻿using SavageOrcs.DataTransferObjects._Constants;
+using SavageOrcs.DataTransferObjects.Areas;
 using SavageOrcs.DataTransferObjects.Clusters;
 using System;
 using System.Collections.Generic;
@@ -26,10 +27,14 @@ namespace SavageOrcs.DataTransferObjects.Cluster
 
         public string? ResourceName { get; set; }
 
-        public string? CuratorName { get; set; }
+        public string? ResourceNameEng { get; set; }
+
+        public GuidIdAndStringName Curator { get; set; } = new GuidIdAndStringName();
 
         public AreaShortDto? Area { get; set; }
 
         public ClusterMarkDto[] Marks { get; set; } = new ClusterMarkDto[0];
+
+        public GuidIdAndStringNameWithEnglishName[] Places { get; set; } = Array.Empty<GuidIdAndStringNameWithEnglishName>();
     }
 }

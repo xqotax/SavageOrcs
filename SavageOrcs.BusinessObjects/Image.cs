@@ -12,6 +12,8 @@ namespace SavageOrcs.BusinessObjects
 
         public byte[] Content { get; set; }
 
+        public bool IsVisible { get; set; }
+
         public Guid MarkId { get; set; }
 
         public virtual Mark Mark { get; set; }

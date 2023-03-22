@@ -14,8 +14,12 @@
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/css/site-mobile.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/css/curator/curator.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/curator/curatorAdmin.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/css/text/text.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/css/mark/mark.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/mark/markAdmin.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/admin/AdminMenu.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/admin/keyWordAndPlaces.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/css/multiselect.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/css/styles.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/css/tables.css" asp-append-version="true" />
@@ -25,6 +29,7 @@
 </head>
 <body>
     <div id="18PlusPopupPlaceholder"></div>
+    <div id="adminMenu"></div>
     <script>
         if ($.cookie("userSaw18+Message") !== "YES") {
             $.ajax({
@@ -36,6 +41,17 @@
                 }
             });
         }
+        if ($.cookie("isAdmin") === "thisUserWasInside") {
+            $.ajax({
+                type: 'POST',
+                url: "/Mark/NavigationAdmin",
+                contentType: 'application/json; charset=utf-8',
+                success: function (src) {
+                    $("#adminMenu").html(src);
+                }
+            });
+        }
+
     </script>
     <header>
         <nav class="burger">
@@ -96,53 +112,6 @@
             </div>
         </div>
     </footer>
-
-
-    @*    <header>
-    <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-black-custom box-shadow mb-3">
-    <div class="container-fluid">
-    <a class="navbar-brand" asp-area="" asp-controller="Map" asp-action="Main"><img class="logo-image-custom" src="~/images/logo.png" /></a>
-    <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-    <div class="navbar-nav flex-grow-1">
-    <div class="nav-item rounded pt-2 px-2">
-    <div class="dropdown">
-    <a href="#" class="dropdown-toggle display-7-custom" style="color: white" data-bs-toggle="dropdown">Пошук</a>
-    <div class="dropdown-menu">
-    <a class="dropdown-item display-7-custom" style="color: rgb(4 107 28)" href="/Mark/Catalogue">Міток</a>
-    <a class="dropdown-item display-7-custom" style="color: rgb(4 107 28)" href="/Cluster/Catalogue">Скупчень</a>
-    <a class="dropdown-item display-7-custom" style="color: rgb(4 107 28)" href="/Text/Catalogue">Текстів</a>
-    </div>
-    </div>
-    </div>
-    @if (this.User.IsInRole("Admin"))
-    {
-    <div class="nav-item rounded pt-2 px-2">
-    <div class="dropdown">
-    <a href="#" class="dropdown-toggle display-7-custom" style="color: white" data-bs-toggle="dropdown">Адмінка</a>
-    <div class="dropdown-menu">
-    <a class="dropdown-item display-7-custom" style="color: rgb(4 107 28)" href="/Mark/Add">Добавити мітки</a>
-    <a class="dropdown-item display-7-custom" style="color: rgb(4 107 28)" href="/Cluster/Add">Добавити скупчення</a>
-    <a class="dropdown-item display-7-custom" style="color: rgb(4 107 28)" href="/Text/Add">Добавити тексти</a>
-    <a class="dropdown-item display-7-custom" style="color: rgb(4 107 28)" href="/User/Catalogue">Користувачі</a>
-    </div>
-    </div>
-    </div>
-    }
-    <div class="nav-item rounded px-2">
-    <a class="nav-link display-7-custom" style="color: white" asp-area="" asp-controller="Curator" asp-action="Catalogue">Куратори</a>
-    </div>
-    <div class="nav-item rounded px-2">
-    <a class="nav-link display-7-custom" style="color: white" asp-route-culture="en-US" asp-controller="Map" asp-action="ChangeLanguage">@Language.GetKey("EnglishHeaderText")</a>
-    </div>
-    <div class="nav-item rounded px-2">
-    <a class="nav-link display-7-custom" style="color: white" asp-route-culture="uk-UA" asp-controller="Map" asp-action="ChangeLanguage">@Language.GetKey("UkrainianHeaderText")</a>
-    </div>
-    </div>
-    <partial name="_LoginPartial.cshtml" />
-    </div>
-    </div>
-    </nav>
-    </header>*@
 
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>

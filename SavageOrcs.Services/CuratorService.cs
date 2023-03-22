@@ -45,6 +45,7 @@ namespace SavageOrcs.Services
                 Id = curator.Id,
                 DisplayName = curator.Name,
                 Description = curator.Description,
+                DescriptionEng = curator.DescriptionEng,
                 Image = curator.Image,
                 TextDtos = curator.Texts.Select(x => new TextShortDto { 
                     Id = x.Id,
@@ -64,6 +65,45 @@ namespace SavageOrcs.Services
                     ResourceName = x.ResourceName,
                 }).ToArray()
             };
+        }
+
+        public async Task<CuratorSaveResultDto> SaveCurator(CuratorSaveDto curatorSaveDto)
+        {
+            try
+            {
+                var curator = new Curator();
+
+                if (curatorSaveDto.Id is not null)
+                {
+                    curator = await _curatorRepository.GetTAsync(x => x.Id == curatorSaveDto.Id);
+                    curator ??= new Curator();
+                }
+                else
+                {
+                    curator.Id = Guid.NewGuid();
+                    await _curatorRepository.AddAsync(curator);
+                }
+
+                curator.Name = curatorSaveDto.DisplayName;
+                curator.Description = curatorSaveDto.Description;
+                curator.DescriptionEng = curatorSaveDto.DescriptionEng;
+                curator.Image = curatorSaveDto.Image;
+
+                await UnitOfWork.SaveChangesAsync();
+                return new CuratorSaveResultDto()
+                {
+                    Success = true,
+                    Id = curator.Id
+                };
+            }
+            catch
+            {
+                return new CuratorSaveResultDto()
+                {
+                    Success = false,
+                    Id = null
+                };
+            }
         }
     }
 }

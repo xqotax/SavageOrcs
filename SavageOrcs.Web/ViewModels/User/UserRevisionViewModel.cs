@@ -13,13 +13,8 @@ namespace SavageOrcs.Web.ViewModels.User
 
         public string? Email { get; set; }
 
-        public bool IsCurator { get; set; }
-
         public string[]? RoleIds {get; set; }
 
         public StringIdAndNameViewModel[]? AllRoles { get; set; }
-
-        public CuratorViewModel? CuratorInfo { get; set; }
-
     }
 }

@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using SavageOrcs.DataTransferObjects._Constants;
+using SavageOrcs.DataTransferObjects.Texts;
 
 namespace SavageOrcs.Services.Interfaces
 {
@@ -21,5 +22,7 @@ namespace SavageOrcs.Services.Interfaces
         Task<MarkDto?> GetMarkById(Guid id);
 
         Task<bool> DeleteMark(Guid id);
+
+        Task<MarkShortDto[]> GetMarksByCuratorIds(Guid curatorId);
     }
 }

@@ -38,15 +38,31 @@
     @if (this.User.IsInRole("Admin"))
     {
         <div class="row mt-1 mb-1 display-8-custom">
-            <div class="col-md-auto pr-2">
-                <a class="btn btn-dark-custom" href="/Mark/Add?id=@Model.Id">Редагувати</a>
-            </div>
-            <div class="col-md-auto pr-2">
-                <a class="btn btn-dark-custom" href="/Mark/Delete?id=@Model.Id">Видалити</a>
-            </div>
-            <div class="col-md-auto pr-2">
-                <a class="btn btn-dark-custom" href="/Mark/Add">Додати ще одну</a>
-            </div>
+            @if (Model.IsCluster)
+            {
+                <div class="col-md-auto pr-2">
+                    <a class="btn btn-dark-custom" href="/Cluster/Add?id=@Model.Id">Редагувати</a>
+                </div>
+                <div class="col-md-auto pr-2">
+                    <a class="btn btn-dark-custom" href="/Cluster/Delete?id=@Model.Id">Видалити</a>
+                </div>
+                <div class="col-md-auto pr-2">
+                    <a class="btn btn-dark-custom" href="/Cluster/Add">Додати ще один</a>
+                </div>
+            }
+            else
+            {
+                <div class="col-md-auto pr-2">
+                    <a class="btn btn-dark-custom" href="/Mark/Add?id=@Model.Id">Редагувати</a>
+                </div>
+                <div class="col-md-auto pr-2">
+                    <a class="btn btn-dark-custom" href="/Mark/Delete?id=@Model.Id">Видалити</a>
+                </div>
+                <div class="col-md-auto pr-2">
+                    <a class="btn btn-dark-custom" href="/Mark/Add">Додати ще одну</a>
+                </div>
+            }
+            
         </div>
         <hr style="border-top: 3px solid #3c6624">
     }
@@ -59,14 +75,18 @@
             <div class="mark-revision-area">@Model.Area</div>
             @if (!string.IsNullOrEmpty(Model.CuratorName))
             {
-                <div class="mark-revision-curator">@Model.CuratorName</div>
+                <div class="mark-revision-curator">
+                    Автор: <span>@Model.CuratorName</span>
+                </div>
+                
             }
-            @if (!string.IsNullOrEmpty(Model.ResourceUrl)){
+            @if (!string.IsNullOrEmpty(Model.ResourceUrl) && !string.IsNullOrEmpty(Model.ResourceName))
+            {
                 <div class="mark-revision-resources">
-                    Власник фото: <a style="color:white; text-decoration: underline;" href="@Model.ResourceUrl">@Model.ResourceName</a>
+                    Власник фото: <a style="color:white; text-decoration: underline;" target="_blank" href="@Model.ResourceUrl">@Model.ResourceName</a>
                 </div>
             }
-            @if (!Model.IsCluster)
+            @if (!Model.IsCluster && Model.ClusterId is not null)
             {
                 <a class="mark-revision-cluster" href="/Cluster/Revision?id=@Model.ClusterId.ToString()">@Model.ClusterName </a>
             }
@@ -75,10 +95,10 @@
             @if (Model.Images is not null && Model.Images.Length != 0)
             {
                 @await Html.PartialAsync("_CatalogueImage", new RevisionImageViewModel{
-            IsCluster = Model.IsCluster,
-            Images = Model.Images,
-            Id = Model.Id.Value
-            })
+                    IsCluster = Model.IsCluster,
+                    Images = Model.Images,
+                    Id = Model.Id.Value
+                })
             }
             else
             {

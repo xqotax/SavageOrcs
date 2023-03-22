@@ -12,13 +12,17 @@
     color: white;
 }
 
-.multiselect-dropdown-custom span.optext, .multiselect-dropdown-custom span.placeholder {
-    margin-right: 0.5em;
-    margin-bottom: 2px;
-    padding: 1px 0;
-    border-radius: 4px;
-    display: inline-block;
-}
+    .multiselect-dropdown-custom span.optext, .multiselect-dropdown-custom span.placeholder {
+        margin-right: 0.5em;
+        margin-bottom: 2px;
+        padding: 1px 0;
+        border-radius: 4px;
+        display: inline-block;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+        max-width: 100%;
+    }
 
     .multiselect-dropdown-custom span.optext {
         background-color: rgb(16, 17, 16);

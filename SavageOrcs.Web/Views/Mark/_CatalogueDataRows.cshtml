@@ -19,7 +19,14 @@
         <div class="col-item">
             <div class="col-content-item">
                 <div class="col-author-item">
-                    АВТОР НАПЕВНЕ АЛЕ ПОКИ Я ХЗ
+                    @if (!string.IsNullOrEmpty(Model[i - 1].CuratorName))
+                    {
+                        <div>@Model[i - 1].CuratorName</div>
+                    }
+                    @if (!string.IsNullOrEmpty(Model[i - 1].ResourceName))
+                    {
+                        <div>Ресурс @Model[i - 1].ResourceName</div>
+                    }
                 </div>
             </div>
         </div>

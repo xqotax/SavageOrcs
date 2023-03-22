@@ -15,5 +15,9 @@ namespace SavageOrcs.BusinessObjects
         public string? NameEng { get; set; }
 
         public DateTime CreatedDate { get; set; }
+
+        public virtual ICollection<PlaceToMark> PlaceToMarks { get; set; } = new HashSet<PlaceToMark>();
+
+        public virtual ICollection<PlaceToCluster> PlaceToClusters { get; set; } = new HashSet<PlaceToCluster>();
     }
 }

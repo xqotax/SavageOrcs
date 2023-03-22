@@ -23,12 +23,16 @@ namespace SavageOrcs.Web.Controllers
         private readonly IHelperService _imageService;
         private readonly IAreaService _areaService;
         private readonly IClusterService _clusterService;
+        private readonly ICuratorService _curatorService;
+        private readonly IHelperService _helperService;
 
-        public ClusterController(IAreaService areaService, IHelperService imageService, IClusterService clusterService)
+        public ClusterController(IAreaService areaService, IHelperService imageService, IClusterService clusterService, ICuratorService curatorService, IHelperService helperService)
         {
             _clusterService = clusterService;
             _areaService = areaService;
             _imageService = imageService;
+            _curatorService = curatorService;
+            _helperService = helperService;
         }
 
         [Authorize(Roles = "Admin")]
@@ -36,6 +40,9 @@ namespace SavageOrcs.Web.Controllers
         {
             var clusterDto = id.HasValue ? await _clusterService.GetClusterById(id.Value) : null;
             var areaDtos = Array.Empty<AreaShortDto>();
+
+            var curatorDtos = await _curatorService.GetCurators();
+
 
             if (clusterDto is null)
             {
@@ -54,14 +61,35 @@ namespace SavageOrcs.Web.Controllers
                 Zoom = "6",
                 Name = clusterDto?.Name,
                 Description = clusterDto?.Description,
+                DescriptionEng = clusterDto?.DescriptionEng,
+                ResourceName = clusterDto?.ResourceName,    
+                ResourceUrl = clusterDto?.ResourceUrl,
+                CuratorId = clusterDto?.Curator?.Id,
+                CuratorName = clusterDto?.Curator?.Name,
                 AreaId = clusterDto?.Area?.Id,
-                AreaName = clusterDto?.Area?.Name,
+                AreaName = clusterDto?.Area is null ? null : clusterDto.Area.Name + ", " + clusterDto.Area.Community + ", " + clusterDto.Area.Region,
                 IsNew = !id.HasValue,
                 Areas = areaDtos.Select(x => new GuidIdAndNameViewModel
                 {
                     Name = x.Name + ", " + x.Community + ", " + x.Region,
                     Id = x.Id
-                }).OrderBy(x => x.Name).ToArray()
+                }).OrderBy(x => x.Name).ToArray(),
+                Curators = curatorDtos.Select(x => new GuidIdAndNameViewModel
+                {
+                    Id = x.Id,
+                    Name = x.DisplayName
+                }).ToArray(),
+                //Places = markDto is null ? new GuidIdAndNameViewModel[0] : markDto.Places.Select( x => new GuidIdAndNameViewModel
+                //{
+                //    Id = x.Id,
+                //    Name = Thread.CurrentThread.CurrentUICulture.TwoLetterISOLanguageName == "uk" ? x.Name : x.NameEng,
+                //}).ToArray(),
+                Places = (await _helperService.GetAllPlaces()).Select(x => new GuidIdAndNameViewModel
+                {
+                    Id = x.Id,
+                    Name = Thread.CurrentThread.CurrentUICulture.TwoLetterISOLanguageName == "uk" ? x.Name : x.NameEng,
+                }).ToArray(),
+                SelectedPlaceIds = clusterDto is null ? Array.Empty<Guid>() : clusterDto.Places.Select(x => x.Id).ToArray()
             };
 
             return View(addClusterViewModel);
@@ -82,11 +110,17 @@ namespace SavageOrcs.Web.Controllers
             }
 
             clusterSaveDto.Description = saveClusterViewModel.Description;
+            clusterSaveDto.DescriptionEng = saveClusterViewModel.DescriptionEng;
+            clusterSaveDto.ResourceName = saveClusterViewModel.ResourceName;
+            clusterSaveDto.ResourceNameEng = saveClusterViewModel.ResourceNameEng;
+            clusterSaveDto.ResourceUrl = saveClusterViewModel.ResourceUrl;
+            clusterSaveDto.PlaceIds = saveClusterViewModel.SelectedPlaceIds;
             clusterSaveDto.Name = saveClusterViewModel.Name;
             clusterSaveDto.Id = saveClusterViewModel.Id;
             clusterSaveDto.Lat = double.Parse(saveClusterViewModel.Lat, CultureInfo.InvariantCulture);
             clusterSaveDto.Lng = double.Parse(saveClusterViewModel.Lng, CultureInfo.InvariantCulture);
             clusterSaveDto.AreaId = saveClusterViewModel.AreaId;
+            clusterSaveDto.CuratorId = saveClusterViewModel.CuratorId;
             clusterSaveDto.MapId = 1;
 
             var clusterSaveResultDto = await _clusterService.SaveCluster(clusterSaveDto);

@@ -1,12 +1,12 @@
 ﻿@using SavageOrcs.Web.ViewModels.Curator
-@model CuratorViewModels
+@model CuratorViewModel[]
 <div class="wrapper-search-curator">
     <div class="curator-data-col">
         <div class="curator-header-text">
             Автори
         </div>
         <div class="curator-data-row-container">
-            @await Html.PartialAsync("_CatalogueDataRows", Model.Curators)
+            @await Html.PartialAsync("_CatalogueDataRows", Model)
         </div>
     </div>
     <div class="curator-search-col">

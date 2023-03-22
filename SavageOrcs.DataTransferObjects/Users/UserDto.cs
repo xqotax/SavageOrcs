@@ -16,7 +16,5 @@ namespace SavageOrcs.DataTransferObjects.Users
         public string LastName { get; set; }
 
         public string Email { get; set; }
-
-        public CuratorDto? CuratorDto { get; set; }
     }
 }

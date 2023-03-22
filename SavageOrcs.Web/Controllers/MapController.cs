@@ -37,7 +37,6 @@ namespace SavageOrcs.Web.Controllers
             return PartialView("_18PlusPopup");
         }
 
-
         [AllowAnonymous]
         public async Task<IActionResult> Main(string lat = "48.5819022", string lng = "32.0356408", string zoom = "6")
         {

@@ -40,7 +40,7 @@ function MultiselectDropdown(options) {
     document.querySelectorAll("select[multiple]").forEach((el, k) => {
         if ($(el).attr('id') !== options.Id)
             return;
-        var div = newEl('div', { class: 'multiselect-dropdown-custom', style: { width: '100%', minHeight: '44px', padding: '' } });
+        var div = newEl('div', { class: 'multiselect-dropdown-custom', style: { width: '100%', minHeight: '44px', minHeight: '44px', padding: '' } });
         el.style.display = 'none';
         el.parentNode.insertBefore(div, el.nextSibling);
         var listWrap = newEl('div', { class: 'multiselect-dropdown-custom-list-wrapper' });
@@ -105,7 +105,7 @@ function MultiselectDropdown(options) {
             div.refresh = () => {
                 div.querySelectorAll('span.optext, span.multiselect-placeholder').forEach(t => div.removeChild(t));
                 var sels = Array.from(el.selectedOptions);
-                if (sels.length > (el.attributes['multiselect-max-items']?.value ?? 2)) {
+                if (sels.length > (el.attributes['multiselect-max-items']?.value ?? 1)) {
                     div.appendChild(newEl('span', { class: ['optext', 'maxselected'], text: sels.length + ' ' + config.txtSelected }));
                 }
                 else {

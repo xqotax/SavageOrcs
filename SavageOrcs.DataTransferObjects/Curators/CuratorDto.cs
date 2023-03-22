@@ -16,6 +16,8 @@ namespace SavageOrcs.DataTransferObjects.Curators
 
         public string? Description { get; set; }
 
+        public string? DescriptionEng { get; set; }
+
         public byte[]? Image { get; set; }
 
         public TextShortDto[]? TextDtos { get; set; }
