@@ -19,7 +19,8 @@ function MultiselectDropdown(options) {
         txtSelected: options.txtSelected,
         txtAll: options.txtAll,
         txtRemove: options.txtRemove,
-        txtSearch: options.txtSearch
+        txtSearch: options.txtSearch,
+        id: options.Id
     };
     function newEl(tag, attrs) {
         var e = document.createElement(tag);
@@ -38,7 +39,7 @@ function MultiselectDropdown(options) {
 
 
     document.querySelectorAll("select[multiple]").forEach((el, k) => {
-        if ($(el).attr('id') !== options.Id)
+        if ($(el).attr('id') !== config.id)
             return;
         var div = newEl('div', { class: 'multiselect-dropdown-custom', style: { width: '100%', minHeight: '44px', minHeight: '44px', padding: '' } });
         el.style.display = 'none';

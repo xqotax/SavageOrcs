@@ -118,7 +118,7 @@ namespace SavageOrcs.Web.Controllers
             {
                 Id = x.Id,
                 DisplayName = x.DisplayName,
-                Description = Thread.CurrentThread.CurrentUICulture.TwoLetterISOLanguageName == "uk" ? x.Description: x.DescriptionEng,
+                Description = _helperService.GetTranslation(x.Description, x.DescriptionEng),
                 Image = x.Image is not null ? _imageService.GetImage(x.Image) : null
             }).ToArray();
             
@@ -129,10 +129,7 @@ namespace SavageOrcs.Web.Controllers
                     .Select(y => new TextCatalogueViewModel
                     {
                         Id = y.Id,
-                        CreatedDate = Thread.CurrentThread.CurrentUICulture.TwoLetterISOLanguageName == "uk" 
-                        ? y.CreatedDate.ToString("dd MMMM yyyy", CultureInfo.CreateSpecificCulture("uk-UA"))
-                        : y.CreatedDate.ToString("dd/MM/yyyy"),
-
+                        CreatedDate = _helperService.GetTranslation(y.CreatedDate.ToString("dd MMMM yyyy", CultureInfo.CreateSpecificCulture("uk-UA")),y.CreatedDate.ToString("dd/MM/yyyy")),
                         Name = y.Name
                     }).ToArray();
                 curatorViewModel.TextCount = curatorViewModel.Texts.Length;
@@ -141,7 +138,7 @@ namespace SavageOrcs.Web.Controllers
                     {
                         Id = y.Id,
                         Name = y.Name,
-                        ResourceName = Thread.CurrentThread.CurrentUICulture.TwoLetterISOLanguageName == "uk" ? y.ResourceName : y.ResourceNameEng,
+                        ResourceName = _helperService.GetTranslation(y.ResourceName, y.ResourceNameEng),
                         Area = y.Area is null ? new GuidIdAndNameViewModel() : new GuidIdAndNameViewModel
                         {
                             Id = y.Area.Id,

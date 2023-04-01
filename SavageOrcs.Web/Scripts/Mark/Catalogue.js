@@ -48,6 +48,18 @@
     SubscribeEvents: function () {
         var self = this;
 
+        $("#placesMultiselect").on('change', function () {
+            self.OnPlacesChange();
+        });
+
+        $("#areasMultiselect").on('change', function () {
+            self.OnAreasChange();
+        });
+
+        $("#namesMultiselect").on('change', function () {
+            self.OnNamesChange();
+        });
+
         $("#tableDetail").css("display", "none");
         $("#showMore").css("display", "none");
 
@@ -71,18 +83,29 @@
     },
     Search: function () {
         var self = this;
-        
+
+        var names = $('#namesMultiselect').val() || [];
+
+
+
         var filters = {
-            SelectedKeyWordAndMarkIds: $("#keyWordsMultiselect").val(),
+            SelectedKeyWordIds: [],
+            SelectedClusterIds: [],
+            SelectedMarkIds: [],
             SelectedAreaIds: $("#areasMultiselect").val(),
-            //AreaName: $("#AreaName").val(),
-            //MarkName: $("#MarkName").val(),
-            MarkDescription: $("#MarkDescription").val(),
-            NotIncludeCluster: $("#NotIncludeCluster").is(":checked"),
-            FullData: self.DetailedView,
-            From: self.From,
-            Count: self.CountConst
+            SelectedPlaceIds: $("#placesMultiselect").val(),
         };
+
+
+        names.map(function (value) {
+            if (value.startsWith('C')) {
+                filters.SelectedClusterIds.push(value.substr(1));
+            } else if (value.startsWith('M')) {
+                filters.SelectedMarkIds.push(value.substr(1));
+            } else if (value.startsWith('K')) {
+                filters.SelectedKeyWordIds.push(value.substr(1));
+            }
+        });
 
         $.ajax({
             type: 'POST',
@@ -90,89 +113,10 @@
             data: JSON.stringify(filters),
             contentType: 'application/json; charset=utf-8',
             success: function (data) {
-                if (self.DetailedView) {
-                    self.WereDataInShortTable = false;
-                    self.WereDataInDetailedTable = true;
-                    
-                    var toAdd = "";
-
-                    $.each(data, function (index, element) {
-
-                        toAdd += self.TableDetailRowStartConstString + (self.From + index + 1);
-                        toAdd += self.TableDetailRowNameConstString + element.id + "\">" + element.name;
-                        toAdd += self.TableDetailRowDescriptionConstString + element.description;
-                        toAdd += self.TableDetailRowDescriptionEngConstString + element.descriptionEng;
-                        
-                        if (element.area !== null) {
-                            if (element.area.id !== null) {
-                                toAdd += self.TableDetailRowAreaConstString + self.TableDetailRowAreaButtonConstString;
-                                toAdd += element.area.id + "\">" + element.area.name + "</button>";
-                            }
-                        }
-                        else {
-                            toAdd += self.TableDetailRowAreaConstString;
-                        }
-
-                        toAdd += self.TableDetailRowLinkConstString + element.resourceUrl;
-                        toAdd += self.TableDetailRowPhotoConstString + element.images[0]; //NOT COMPLETED
-                        toAdd += self.TableDetailRowEndConstString;
-                    });
-
-                    self.From += self.CountConst;
-
-                    $(".table-body-detail").append(toAdd);
-
-                    $(".button-detail-column-area").click(function () {
-                        $("#KeyWord").val("");
-                        $("#AreaName").val(this.innerText);
-                        self.Search();
-                    });
-
-                    if (self.OnEnglish)
-                        $(".ukr-description").addClass("display-none-custom");
-                    else
-                        $(".eng-description").addClass("display-none-custom");
-                }
-                else {
-                    self.WereDataInShortTable = true;
-                    self.WereDataInDetailedTable = false;
-
-                    self.From = 0;
-
-                    var toAdd = "";
-
-                    $.each(data, function (index, element) {
-                        toAdd += self.TableShortRowStartConstString + (index + 1);
-                        toAdd += self.TableShortRowNameConstString + element.id + "\">" + element.name;
-                        toAdd += self.TableShortRowDescriptionConstString + element.description;
-                        toAdd += self.TableShortRowDescriptionEngConstString + element.descriptionEng;
-                        
-
-                        if (element.area !== null) {
-                            if (element.area.id !== null) {
-                                toAdd += self.TableShortRowAreaConstString + self.TableShortRowAreaButtonConstString;
-                                toAdd += element.area.id + "\">" + element.area.name + "</button>";
-                            }
-                        }
-                        else {
-                            toAdd += self.TableShortRowAreaConstString;
-                        }
-                        toAdd += self.TableShortRowEndConstString;
-                    });
-
-                    $(".table-body-short").append(toAdd);
-
-                    $(".button-short-column-area").click(function () {
-                        $("#KeyWord").val("");
-                        $("#AreaName").val(this.innerText);
-                        self.Search();
-                    });
-
-                    if (self.OnEnglish)
-                        $(".ukr-description").addClass("display-none-custom");
-                    else
-                        $(".eng-description").addClass("display-none-custom");
-                }
+                $(".data-row-container").html(data);
+                var firstElement = $(".data-row-container .data-row")[0];
+                if (firstElement !== undefined)
+                    self.Show(firstElement);
             }
         });
     },
@@ -202,5 +146,19 @@
                 $(".slideshow-container").css({ "margin-top": topToSet +'px' });
             }
         });
-    }
+    },
+    OnPlacesChange: function () {
+        var self = this;
+        self.Search();
+    },
+    OnAreasChange: function () {
+        var self = this;
+        self.Search();
+
+    },
+    OnNamesChange: function () {
+        var self = this;
+        self.Search();
+    },
+    
 });

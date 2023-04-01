@@ -59,8 +59,7 @@
             txtRemove: "Видалити",
             txtSearch: "Пошук",
             height: "300px",
-            Id: "placesMultiselect",
-            //MaxElementsToShow: 2
+            Id: "placesMultiselect"
         }
 
         MultiselectDropdown(placesOptions);
@@ -155,6 +154,11 @@
             self.DeleteMark();
         }
     },
+    OnPlacesChange: function () {
+        var el = $("#placesMultiselect");
+        console.log(el);
+        console.log(el.val());
+    },
     SubscribeEvents: function () {
         var self = this;
 
@@ -178,6 +182,10 @@
 
         $('#removeImages').on('click', function () {
             self.RemoveImages();
+        });
+
+        $("#placesMultiselect").on('change', function () {
+            self.OnPlacesChange();
         });
 
         //$('#dropdown-input-for-mark').addClass("display-8-custom");

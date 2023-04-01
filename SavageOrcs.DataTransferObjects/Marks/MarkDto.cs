@@ -65,6 +65,8 @@ namespace SavageOrcs.DataTransferObjects.Marks
 
         public string? CuratorName { get; set; }
 
+        public string? ClusterName { get; set; }
+
         public bool IsVisible { get; set; }
 
         public AreaShortDto? Area { get; set; }

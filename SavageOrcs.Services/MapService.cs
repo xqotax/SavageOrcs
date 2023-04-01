@@ -30,7 +30,7 @@ namespace SavageOrcs.Services
             return new MapDto
             {
                 Name = map.Name,
-                MapMarkDtos = map.Marks.Where(x => x.ClusterId is null && x.IsVisible).Select(x => new MapMarkDto
+                MapMarkDtos = map.Marks.Where(x => x.IsVisible).Select(x => new MapMarkDto
                 {
                     Lat = x.Lat,
                     Lng = x.Lng,

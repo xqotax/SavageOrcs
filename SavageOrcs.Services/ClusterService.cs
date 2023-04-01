@@ -10,6 +10,7 @@ using SavageOrcs.Services.Interfaces;
 using SavageOrcs.UnitOfWork;
 using System;
 using System.Collections.Generic;
+using System.Drawing.Printing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,17 +21,19 @@ namespace SavageOrcs.Services
     {
         private readonly IRepository<Cluster> _clusterRepository;
         private readonly IRepository<Mark> _markRepository;
+        private readonly IHelperService _helperService;
         private readonly IRepository<Image> _imageRepository;
         private readonly IRepository<TextToCluster> _textsToClustersRepository;
         private readonly IRepository<PlaceToCluster> _placeToClusterRepository;
 
-        public ClusterService(IUnitOfWork unitOfWork, IRepository<Cluster> clusterRepository, IRepository<Image> imageRepository, IRepository<Mark> markRepository, IRepository<TextToCluster> textsToClustersRepository, IRepository<PlaceToCluster> placeToClusterRepository) : base(unitOfWork)
+        public ClusterService(IUnitOfWork unitOfWork, IRepository<Cluster> clusterRepository, IRepository<Image> imageRepository, IRepository<Mark> markRepository, IRepository<TextToCluster> textsToClustersRepository, IRepository<PlaceToCluster> placeToClusterRepository, IHelperService helperService) : base(unitOfWork)
         {
             _clusterRepository = clusterRepository;
             _imageRepository = imageRepository;
             _markRepository = markRepository;
             _textsToClustersRepository = textsToClustersRepository;
             _placeToClusterRepository = placeToClusterRepository;
+            _helperService = helperService;
         }
 
         public async Task<ClusterDto[]> GetClusters()
@@ -40,36 +43,43 @@ namespace SavageOrcs.Services
             return clusters.Select(x => CreateClusterDto(x)).ToArray();
         }
 
-        public async Task<ClusterDto?> GetClusterById(Guid id)
+        public async Task<ClusterDto?> GetClusterById(Guid id, bool withImage)
         {
             var cluster = await _clusterRepository.GetTAsync(x => x.Id == id);
 
-            return cluster is null ? null : CreateClusterDto(cluster);
+            return cluster is null ? null : CreateClusterDto(cluster, withImage);
         }
 
-        public async Task<ClusterDto[]> GetClustersByFilters(string? keyWord, string? clusterName, string? clusterDescription, string? areaName, int? minCountOfMarks)
+        public async Task<ClusterDto[]> GetClustersByFilters(Guid[]? keyWordIds,  Guid[]? clusterIds, Guid[]? placeIds, Guid[]? areaIds)
         {
             var clusters = await _clusterRepository.GetAllAsync();
 
-            if (minCountOfMarks is not null)
+            var keyWords = Array.Empty<string>();
+            var places = Array.Empty<GuidIdAndStringName>();
+
+            var filterByClusterIds = clusterIds is not null && clusterIds.Length > 0;
+            var filterByKeyWordIds = keyWordIds is not null && keyWordIds.Length > 0;
+            var filterByPlaceIds = placeIds is not null && placeIds.Length > 0;
+            var filterByAreaIds = areaIds is not null && areaIds.Length > 0;
+
+            if (filterByKeyWordIds)
             {
-                clusters = clusters.Where(x => x.Marks.Count >= minCountOfMarks);
+                keyWords = (await _helperService.GetAllKeyWords()).Where(x => keyWordIds.Contains(x.Id) && !string.IsNullOrEmpty(x.Name)).Select(x => x.Name).ToArray();
             }
 
-            if (!string.IsNullOrEmpty(clusterName))
+            if (filterByPlaceIds)
             {
-                clusters = clusters.Where(x => x.Name is not null && x.Name.Contains(clusterName));
+                places = (await _helperService.GetAllKeyWords()).Where(x => placeIds.Contains(x.Id) && !string.IsNullOrEmpty(x.Name)).ToArray();
             }
 
-            if (!string.IsNullOrEmpty(clusterDescription))
-            {
-                clusters = clusters.Where(x => x.Description is not null && x.Description.Contains(clusterDescription));
-            }
-
-            if (!string.IsNullOrEmpty(areaName))
-            {
-                clusters = clusters.Where(x => x.Area is not null && x.Area.Name.Contains(areaName));
-            }
+            clusters = clusters.Where(x => (filterByClusterIds && clusterIds.Contains(x.Id))
+            || (filterByAreaIds && x.AreaId.HasValue && areaIds.Contains(x.AreaId.Value))
+            || (filterByKeyWordIds &&
+                (!string.IsNullOrEmpty(x.DescriptionEng) && keyWords.Any(y => y.Contains(x.DescriptionEng)) ||
+                 !string.IsNullOrEmpty(x.Description) && keyWords.Any(y => y.Contains(x.Description)) ||
+                 !string.IsNullOrEmpty(x.Name) && keyWords.Any(y => y.Contains(x.Name))))
+            || (filterByPlaceIds && places.Any(a => x.PlaceToClusters.Select(y => y.PlaceId).Contains(a.Id)))
+            ).ToArray();
 
             return clusters.Select(x => CreateClusterDto(x)).ToArray();
         }
@@ -135,7 +145,7 @@ namespace SavageOrcs.Services
 
 
 
-        private static ClusterDto CreateClusterDto(Cluster cluster)
+        private static ClusterDto CreateClusterDto(Cluster cluster, bool withImage = false)
         {
             return new ClusterDto
             {
@@ -156,13 +166,22 @@ namespace SavageOrcs.Services
                     Region = cluster.Area.Region,
                     Community = cluster.Area.Community
                 },
-                Marks = cluster.Marks.Select(x => new ClusterMarkDto { 
+                Marks = cluster.Marks.Select(x => new ClusterMarkDto
+                { 
                     Id = x.Id,
                     Name = x.Name,
                     Description = x.Description,
-                    Images = x.Images.Select(y => y.Content).ToArray(),
+                    ResourceName = x.ResourceName,
+                    ResourceNameEng= x.ResourceNameEng,
+                    IsVisible = x.IsVisible,
+                    CuratorName = x.Curator?.Name,
                     DescriptionEng = x.DescriptionEng,
                     ResourceUrl = x.ResourceUrl,
+                    Images = withImage ? x.Images.Select( y => new ByteContentAndBooIsVisible
+                    {
+                        IsVisible = y.IsVisible,
+                        Content = y.Content
+                    }).ToArray() : Array.Empty<ByteContentAndBooIsVisible>(),
                     Area = x.Area is null? null : new AreaShortDto
                     {
                         Id = x.Area.Id,

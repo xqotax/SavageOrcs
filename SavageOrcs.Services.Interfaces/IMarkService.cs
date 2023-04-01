@@ -11,7 +11,7 @@ namespace SavageOrcs.Services.Interfaces
 {
     public interface IMarkService
     {
-        Task<MarkDto[]> GetMarksByFilters(string? areaName, Guid[] keyWordIds, Guid[] markIds, Guid[] areaIds, string? markDescription, bool notIncludeCluster = false);
+        Task<MarkShortDto[]> GetMarksByFilters(Guid[]? keyWordIds, Guid[]? markIds, Guid[]? clusterIds, Guid[]? placeIds, Guid[]? areaIds);
 
         Task<MarkDto[]> GetMarks();
 

@@ -38,7 +38,7 @@ namespace SavageOrcs.Services
                     Name = x.Area.Name
                 });
 
-            return areasFromCluster.Concat(areasFromMarks).ToArray();
+            return areasFromCluster.Concat(areasFromMarks).GroupBy(x => x.Id).Select(x => x.First()).OrderBy(x => x.Region).ThenBy(x => x.Name).ToArray();
         }
 
         public async Task<AreaShortDto[]> GetAreasByNameAsync(string name)

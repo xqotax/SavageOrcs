@@ -12,12 +12,12 @@ namespace SavageOrcs.Services.Interfaces
     {
         Task<bool> DeleteCluster(Guid id, bool withMarks);
 
-        Task<ClusterDto?> GetClusterById(Guid id);
+        Task<ClusterDto?> GetClusterById(Guid id, bool withImages = false);
 
         Task<ClusterSaveResultDto> SaveCluster(ClusterSaveDto clusterSaveDto);
 
         Task<ClusterDto[]> GetClusters();
 
-        Task<ClusterDto[]> GetClustersByFilters(string? keyWord, string? clusterName, string? clusterDescription, string? areaName, int? minCountOfMarks);
+        Task<ClusterDto[]> GetClustersByFilters(Guid[]? keyWordIds, Guid[]? clusterIds, Guid[]? placeIds, Guid[]? areaIds);
     }
 }

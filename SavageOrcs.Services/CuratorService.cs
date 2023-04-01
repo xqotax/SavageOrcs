@@ -69,6 +69,7 @@ namespace SavageOrcs.Services
                     Description = x.Description,
                     DescriptionEng = x.DescriptionEng,
                     CuratorName = x.Curator is null ? "" : x.Curator.Name,
+                    ClusterName = x.Cluster?.Name,
                     ResourceUrl = x.ResourceUrl,
                     ResourceName = x.ResourceName,
                 }).ToArray()

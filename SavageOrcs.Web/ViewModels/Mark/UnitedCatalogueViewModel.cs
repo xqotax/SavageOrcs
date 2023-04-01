@@ -8,11 +8,17 @@ namespace SavageOrcs.Web.ViewModels.Mark
         
         public GuidIdAndNameViewModel[] Places { get; set; } = Array.Empty<GuidIdAndNameViewModel>();
 
-        public GuidIdAndNameViewModel[] Names { get; set; } = Array.Empty<GuidIdAndNameViewModel>();
+        public GuidIdAndNameViewModel[] KeyWords { get; set; } = Array.Empty<GuidIdAndNameViewModel>();
 
-        public Guid[]? AreaIds { get; set; }
-        public Guid[]? KeyWordIds { get; set; }
-        public Guid[]? ObjectIds { get; set; }
+        public GuidIdAndNameViewModel[] ClusterNames { get; set; } = Array.Empty<GuidIdAndNameViewModel>();
+
+        public GuidIdAndNameViewModel[] MarkNames { get; set; } = Array.Empty<GuidIdAndNameViewModel>();
+
+        public Guid[]? SelectedAreaIds { get; set; }
+        public Guid[]? SelectedMarkIds { get; set; }
+        public Guid[]? SelectedClusterIds { get; set; }
+        public Guid[]? SelectedKeyWordIds { get; set; }
+        public Guid[]? SelectedPlaceIds { get; set; }
 
         public MarkCatalogueViewModel[] Marks { get; set; } = Array.Empty<MarkCatalogueViewModel>();
     }

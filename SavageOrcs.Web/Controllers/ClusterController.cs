@@ -157,28 +157,6 @@ namespace SavageOrcs.Web.Controllers
             return View("Catalogue", filterCatalogueClusterViewModel);
         }
 
-        [AllowAnonymous]
-        [HttpPost]
-        public async Task<JsonResult> GetClusters([FromBody] FilterCatalogueClusterViewModel filters)
-        {
-            var clusterDtos = await _clusterService.GetClustersByFilters(filters.KeyWord, filters.ClusterName, filters.ClusterDescription, filters.AreaName, filters.MinCountOfMarks);
-
-            var clusterViewModels = clusterDtos.Select(x => new CatalogueClusterViewModel { 
-                Id = x.Id,
-                Name = x.Name,
-                Description = x.Description,
-                Area = x.Area is null? null : new GuidIdAndNameViewModel
-                {
-                    Id = x.Area.Id,
-                    Name = x.Area.Name + ", " + x.Area.Community + ", " + x.Area.Region,
-                },
-                MarkCount = x.Marks is null ? 0 : x.Marks.Length
-            }).ToArray();
-
-            return Json(clusterViewModels);
-        }
-
-
         [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Delete(Guid? id)
         {

@@ -11,10 +11,6 @@ namespace SavageOrcs.Web.ViewModels.Mark
 
         public Guid? Id { get; set; }
 
-        public string? Description { get; set; }
-
-        public string? DescriptionEng { get; set; }
-
         public string? CuratorName { get; set; }
 
         public string? ResourceUrl { get; set; }
@@ -22,6 +18,8 @@ namespace SavageOrcs.Web.ViewModels.Mark
         public string? ResourceName { get; set; }
 
         public bool IsCluster { get; set; } = false;
+
+        public string? ClusterName { get; set; }
 
     }
 }

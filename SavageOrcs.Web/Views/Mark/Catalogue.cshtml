@@ -30,9 +30,17 @@
                 <div class="filter-item">
                     <div class="filter-multiselect-placeholder">
                         <select name="namesMultiselect" id="namesMultiselect" multiple multiselect-search="true" multiselect-select-all="true" multiselect-hide-x="true">
-                            @foreach (var area in Model.Names)
+                            @foreach (var area in Model.KeyWords)
                             {
-                                <option value=@area.Id>@area.Name</option>
+                                <option value=@("K" + area.Id.ToString())>@area.Name</option>
+                            }
+                            @foreach (var area in Model.MarkNames)
+                            {
+                                <option value=@("M" + area.Id.ToString())>@area.Name</option>
+                            }
+                            @foreach (var area in Model.ClusterNames)
+                            {
+                                <option value=@("C" + area.Id.ToString())>@area.Name</option>
                             }
                         </select>
                     </div>

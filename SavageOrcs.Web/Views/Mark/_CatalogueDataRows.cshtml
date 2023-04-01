@@ -27,7 +27,16 @@
         </div>
         <div class="col-item">
             <div class="col-content-item">
-                <div class="col-area-item">@Model[i - 1].Area.Name</div>
+                @if (!string.IsNullOrEmpty(Model[i - 1].Area?.Name)){
+                    <div class="col-area-item">@Model[i - 1].Area.Name</div>
+                }
+                else if (!string.IsNullOrEmpty(Model[i - 1].ClusterName))
+                {
+                    <div class="col-area-item">@Model[i - 1].ClusterName</div>
+                }
+                else {
+                    <div class="col-area-item"></div>
+                }
             </div>
         </div>
         <div class="col-item">
