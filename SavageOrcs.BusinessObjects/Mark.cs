@@ -24,8 +24,6 @@
 
         public DateTime UpdatedDate { get; set; }
 
-        public bool? IsApproximate { get; set; }
-
         public Guid? ClusterId { get; set; }
 
         public virtual Cluster? Cluster { get; set; }
@@ -43,6 +41,8 @@
         public virtual Curator? Curator { get; set; }
 
         public virtual ICollection<Image> Images { get; set; } = new HashSet<Image>();
+
+        public bool IsVisible { get; set; }
 
         public virtual ICollection<TextToMark> TextsToMarks { get; set; } = new HashSet<TextToMark>();
 

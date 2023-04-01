@@ -14,14 +14,6 @@
         <div class="top-row">Пошук</div>
         <div class="image-placeholder">
             <div class="slideshow-container">
-                @if (Model.Marks.Length != 0 && Model.Marks[0].Images is not null && Model.Marks[0].Images.Length != 0)
-                {
-                    @await Html.PartialAsync("_CatalogueImage", new RevisionImageViewModel{
-                        IsCluster = Model.Marks[0].IsCluster,
-                        Images = Model.Marks[0].Images,
-                        Id = Model.Marks[0].Id.Value
-                        })
-                }
             </div>
         </div>
     </div>
@@ -34,6 +26,7 @@
         </div>
         <div class="mark-table">
             <div class="filter-row">
+                <div class="filter-item-small"></div>
                 <div class="filter-item">
                     <div class="filter-multiselect-placeholder">
                         <select name="namesMultiselect" id="namesMultiselect" multiple multiselect-search="true" multiselect-select-all="true" multiselect-hide-x="true">
@@ -132,8 +125,8 @@
         var catalogueMarkView = new CatalogueMarkView();
 
         $(document).ready(function () {
-            $('.data-row:first').css('opacity', '1');
             catalogueMarkView.InitializeControls();
+            $(".data-row-container").css("overflow-x", "hidden");
         });
 
     </script>

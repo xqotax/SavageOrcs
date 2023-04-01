@@ -13,7 +13,7 @@ namespace SavageOrcs.Enums
         Header,
         List,
         CheckList,
-        Raw
-        //Video
+        Raw,
+        Video
     }
 }

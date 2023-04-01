@@ -30,5 +30,7 @@ namespace SavageOrcs.Services.Interfaces
         Task<GuidIdAndStringNameWithEnglishName[]> GetPlacesByMarkId(Guid markId);
 
         Task SavePlaces(GuidNullIdAndStringNameWhitEngName[] placeDtos);
+
+        string? GetTranslation(string? urk, string? eng);
     }
 }

@@ -60,6 +60,7 @@ var MapMainView = Class.extend({
     MapMarks: null,
     MapClusters: null,
     InfoWindow: null,
+    OldZoom: null,
     InitializeControls: function () {
         var self = this;
         const myLatlng = { lat: 50.5077456, lng: 31.018623 };
@@ -78,10 +79,10 @@ var MapMainView = Class.extend({
                 lng: parseFloat(this.Lng)
             },
             zoom: 6,
-            //options: {
-            //    gestureHandling: 'greedy'
-            //},
-            //disableDefaultUI: true,
+            options: {
+                gestureHandling: 'greedy'
+            },
+            disableDefaultUI: true,
             styles: [{ "featureType": "water", "elementType": "geometry.fill", "stylers": [{ "color": "#d3d3d3" }] },
                 { "featureType": "transit", "stylers": [{ "color": "#808080" }, { "visibility": "off" }] },
                 { "featureType": "road.highway", "elementType": "geometry.stroke", "stylers": [{ "visibility": "on" }, { "color": "#b3b3b3" }]},
@@ -102,6 +103,11 @@ var MapMainView = Class.extend({
                 {},
                 { "featureType": "poi", "elementType": "geometry.fill", "stylers": [{ "color": "#dadada" }] }]
         });
+        self.OldZoom = 6;
+        google.maps.event.addListener(map, 'zoom_changed', function () {
+            self.ChangeMarkerSize();
+        });
+
         self.Map = map;
 
         self.MapMarks = [];
@@ -141,9 +147,9 @@ var MapMainView = Class.extend({
                 title: element.name,
                 icon: {
                     url: "images/redCircle.png",
-                    scaledSize: new google.maps.Size(16, 16),
+                    scaledSize: new google.maps.Size(10, 10),
                     origin: new google.maps.Point(0, 0),
-                    anchor: new google.maps.Point(8, 8)
+                    anchor: new google.maps.Point(5, 5)
                 }
             });
 
@@ -154,6 +160,35 @@ var MapMainView = Class.extend({
             self.MapClusters.push({ id: element.id, marker: marker });
         });
         
+    },
+    ChangeMarkerSize: function () {
+        var self = this;
+        var currentZoom = self.Map.getZoom();
+
+        if (!((self.OldZoom <= 15 && currentZoom <= 15) || (self.OldZoom > 15 && currentZoom > 15))) {
+            var iconSize = new google.maps.Size(10, 10);
+            var iconOrigin = new google.maps.Point(0, 0);
+            var iconAnchor = new google.maps.Point(5, 5);
+
+            if (currentZoom > 15) {
+                iconSize = new google.maps.Size(20, 20);
+                iconOrigin = new google.maps.Point(0, 0);
+                iconAnchor = new google.maps.Point(10, 10);
+            }
+
+            for (var i = 0; i < self.MapMarks.length; i++) {
+                var marker = self.MapMarks[i].marker;
+
+                marker.setIcon({
+                    url: marker.getIcon().url,
+                    scaledSize: iconSize,
+                    origin: iconOrigin,
+                    anchor: iconAnchor
+                });
+            }
+        }
+        self.OldZoom = currentZoom;
+
     },
     MarkOnClick: function (marker, element, isCluster = false) {
         var self = this;
@@ -243,7 +278,7 @@ var MarkAddView = Class.extend({
         const myLatlng = { lat: parseFloat(self.Lat), lng: parseFloat(self.Lng) };
 
         this.InfoWindow = new google.maps.InfoWindow({
-            content: "�����, ��� �������� ����������",
+            content: "Нажми, щоб отримати координати",
             position: myLatlng,
         });
 
@@ -259,11 +294,11 @@ var MarkAddView = Class.extend({
         }
 
         var placesOptions = {
-            placeholder: "������� �������",
-            txtSelected: "�������",
-            txtAll: "��",
-            txtRemove: "��������",
-            txtSearch: "�����",
+            placeholder: "Виберіть локацію",
+            txtSelected: "вибрано",
+            txtAll: "Всі",
+            txtRemove: "Видалити",
+            txtSearch: "Пошук",
             height: "300px",
             Id: "placesMultiselect",
             //MaxElementsToShow: 2
@@ -373,9 +408,14 @@ var MarkAddView = Class.extend({
             self.AddImage();
         });
 
-        $('#saveMark').on('click', function () {
+        $('#save').on('click', function () {
             self.Save();
         });
+
+        $('#delete').on('click', function () {
+            self.DeleteMark();
+        });
+
 
         $('#removeImages').on('click', function () {
             self.RemoveImages();
@@ -518,7 +558,12 @@ var MarkAddView = Class.extend({
             data: JSON.stringify(saveMarkViewModel),
             contentType: 'application/json; charset=utf-8',
             success: function (result) {
-                ResultPopUp(result.success, result.text, result.url, result.id);
+                if (result.success) {
+                    window.location.href = 'https://' + window.location.host + '/Mark/Catalogue';
+                }
+                else {
+                    ResultPopUp(result.success, result.text, result.url, result.id);
+                }
             }
         });
         
@@ -602,6 +647,11 @@ var MarkAddView = Class.extend({
         //});
 
     },
+    RemoveImage: function (el) {
+        var row = $(el).parent().parent().parent();
+        console.log(row);
+        row.remove();
+    },
     RemoveImages: function () {
         $("#imageContainer").empty();
     }
@@ -668,72 +718,33 @@ var RevisionMarkView = Class.extend({
     SubscribeEvents: function () {
         var self = this;
 
-        $(".image-revision-mark-custom").click(function () {
-            self.ToFullScreen($(this).attr("src"));
-        });
-
-        $('#flagGB').on('click', function () {
-            $('#flagUA').removeClass("box-shadow-grey-custom");
-            $("#flagGB").addClass("box-shadow-grey-custom");
-
-            $("#textGB").removeClass("display-none-custom");
-            $("#textUA").addClass("display-none-custom");
-           
-        });
-
-        $('#flagUA').on('click', function () {
-            $('#flagGB').removeClass("box-shadow-grey-custom");
-            $("#flagUA").addClass("box-shadow-grey-custom");
-
-            $("#textUA").removeClass("display-none-custom");
-            $("#textGB").addClass("display-none-custom");
-        });
+        $("#back").on('click', () => {
+            window.history.back();
+        })
     },
-    ToFullScreen: function (data) {
-        var self = this;
-        $.ajax({
-            type: 'POST',
-            url: "/Mark/RevisionImage",
-            data: JSON.stringify(data),
-            contentType: 'application/json; charset=utf-8',
-            success: function (html) {
-                $("#imageFullScreenPlaceholder").html(html);
-            }
-        });
-    }
+    //ToFullScreen: function (data) {
+    //    var self = this;
+    //    $.ajax({
+    //        type: 'POST',
+    //        url: "/Mark/RevisionImage",
+    //        data: JSON.stringify(data),
+    //        contentType: 'application/json; charset=utf-8',
+    //        success: function (html) {
+    //            $("#imageFullScreenPlaceholder").html(html);
+    //        }
+    //    });
+    //}
 })
 var CatalogueMarkView = Class.extend({
     Marks: null,
-    DetailedView: false,
-    From: null,
-    CountConst: 4,
-    WereDataInDetailedTable: null,
-    WereDataInShortTable: null,
     OnEnglish: false,
-    
-    TableShortRowStartConstString: "<div class=\"table-body-short-row justify-content-center d-flex\"><div class=\"table-body-short-column-number\">",
-    TableShortRowNameConstString: "</div><div class=\"table-body-short-column-name\"><a href=\"/Mark/Revision?id=",
-    TableShortRowDescriptionConstString: "</a></div><div class=\"table-body-short-column-description ukr-description\">",
-    TableShortRowDescriptionEngConstString: "</div><div class=\"table-body-short-column-description eng-description\">",
-    TableShortRowAreaConstString: "</div><div class=\"table-body-short-column-area\">",
-    TableShortRowAreaButtonConstString: "<button class=\"button-short-column-area\" value=\"",
-    TableShortRowEndConstString: "</div></div>",
 
-    TableDetailRowStartConstString: "<div class=\"table-body-detail-row justify-content-center d-flex\"><div class=\"table-body-detail-column-number flex-container-center-custom\">",
-    TableDetailRowNameConstString: "</div><div class=\"table-body-detail-column-name flex-container-center-custom\"><a href=\"/Mark/Revision?id=",
-    TableDetailRowDescriptionConstString: "</a></div><div class=\"table-body-detail-column-description flex-container-center-custom ukr-description\">",
-    TableDetailRowDescriptionEngConstString: "</div><div class=\"table-body-detail-column-description flex-container-center-custom eng-description\">",
-    TableDetailRowAreaConstString: "</div><div class=\"table-body-detail-column-area flex-container-center-custom\">",
-    TableDetailRowAreaButtonConstString: "<button class=\"button-detail-column-area\" value=\"",
-    TableDetailRowLinkConstString: "</div><div class=\"table-body-detail-column-photo flex-container-center-custom\"><a href=\"",
-    TableDetailRowPhotoConstString: "\"><img class=\"table-body-detail-column-photo-item\" src=\"",
-    TableDetailRowEndConstString: "\"></a></div></div>",
     InitializeControls: function () {
         var self = this;
        
 
         var areasOptions = {
-            placeholder: "Виберіть місце",
+            placeholder: "Місця",
             txtSelected: "вибрано",
             txtAll: "Всі",
             txtRemove: "Видалити",
@@ -744,7 +755,7 @@ var CatalogueMarkView = Class.extend({
         }
 
         var keyWordsAndMarksOptions = {
-            placeholder: "Виберіть ключове слово",
+            placeholder: "Ключові слова",
             txtSelected: "вибрано",
             txtAll: "Всі",
             txtRemove: "Видалити",
@@ -755,7 +766,7 @@ var CatalogueMarkView = Class.extend({
         }
 
         var placesOptions = {
-            placeholder: "Виберіть локацію",
+            placeholder: "Локації",
             txtSelected: "вибрано",
             txtAll: "Всі",
             txtRemove: "Видалити",
@@ -791,63 +802,9 @@ var CatalogueMarkView = Class.extend({
             $("#MarkDescription").val('');
         });
 
-        $("#showMore").click(function () {
-            self.Search();
-        });
-
-        $("#fullData").click(function () {
-            if (self.DetailedView) {
-                self.DetailedView = false;
-
-                $("#tableDetail").css("display", "none");
-                $("#tableShort").css({ 'display': '' });
-                $(".table-body-detail").empty();
-
-                if (self.WereDataInDetailedTable == true) {
-                    self.Search();
-                }
-
-                $("#fullData").text("Ввімкнути детальний перегляд");
-                $("#showMore").css("display", "none");
-            }
-            else {
-                self.DetailedView = true;
-
-                $("#tableShort").css("display", "none");
-                $("#tableDetail").css({ 'display': ''});
-                $(".table-body-short").empty();
-
-                if (self.WereDataInShortTable == true) {
-                    self.Search();
-                }
-
-                $("#fullData").text("Ввімкнути спрощений перегляд");
-                $("#showMore").css({ 'display': '' });
-            }
-            //if (!$("#table").is(':empty')) {
-            //    self.Search();
-            //}
-        });
-
-        $('#flagGB').on('click', function () {
-            self.OnEnglish = true;
-            $('#flagUA').removeClass("box-shadow-grey-custom");
-            $("#flagGB").addClass("box-shadow-grey-custom");
-
-
-            $(".ukr-description").addClass("display-none-custom");
-            $(".eng-description").removeClass("display-none-custom");
-
-        });
-
-        $('#flagUA').on('click', function () {
-            self.OnEnglish = false;
-            $('#flagGB').removeClass("box-shadow-grey-custom");
-            $("#flagUA").addClass("box-shadow-grey-custom");
-
-            $(".eng-description").addClass("display-none-custom");
-            $(".ukr-description").removeClass("display-none-custom");
-        });
+        var firstElement = $(".data-row-container .data-row")[0];
+        if (firstElement !== undefined)
+            self.Show(firstElement);
     },
     Search: function () {
         var self = this;
@@ -959,8 +916,10 @@ var CatalogueMarkView = Class.extend({
     Show: function (el) {
         $('.data-row').each(function (idex, element) {
             $(element).css('opacity', '0.3');
+            $(element).removeClass("data-row-selected");
         });
         $(el).css('opacity', '1');
+        $(el).addClass("data-row-selected");
         var fullId = $(el).find("input:first-child").attr('id')
         id = fullId.substring(fullId.length - 36);
         var index = fullId.substring(0, fullId.length - 36);
@@ -1004,7 +963,13 @@ var DeleteMarkView = Class.extend({
             url: "/Mark/DeleteConfirm?id=" + $("#Id").val(),
             contentType: 'application/json; charset=utf-8',
             success: function (result) {
-                ResultPopUp(result.success, result.text, result.url, result.id);
+                if (result.success) {
+                    var currentUrl = window.location.href;
+                    window.location.href = currentUrl.substring(0, currentUrl.indexOf('/', 8)) + '/Mark/Catalogue';
+                    location.reload();
+                }
+                else
+                    ResultPopUp(result.success, result.text, result.url, result.id);
 
                 self.Close();
             }
@@ -1234,7 +1199,7 @@ var ClusterAddView = Class.extend({
         const myLatlng = { lat: parseFloat(self.Lat), lng: parseFloat(self.Lng) };
 
         this.InfoWindow = new google.maps.InfoWindow({
-            content: "�����, ��� �������� ����������",
+            content: "Нажми, щоб отримати координати",
             position: myLatlng,
         });
 
@@ -1246,11 +1211,11 @@ var ClusterAddView = Class.extend({
         }
 
         var placesOptions = {
-            placeholder: "������� �������",
-            txtSelected: "�������",
-            txtAll: "��",
-            txtRemove: "��������",
-            txtSearch: "�����",
+            placeholder: "Виберіть локацію",
+            txtSelected: "вибрано",
+            txtAll: "Всі",
+            txtRemove: "Видалити",
+            txtSearch: "Пошук",
             height: "300px",
             Id: "placesMultiselect",
             //MaxElementsToShow: 2
@@ -1436,7 +1401,12 @@ var ClusterAddView = Class.extend({
             data: JSON.stringify(saveClusterViewModel),
             contentType: 'application/json; charset=utf-8',
             success: function (result) {
-                ResultPopUp(result.success, result.text, result.url, result.id);
+                if (result.success) {
+                    window.location.href = 'https://' + window.location.host + '/Mark/Catalogue';
+                }
+                else {
+                    ResultPopUp(result.success, result.text, result.url, result.id);
+                }
             }
         });
 
@@ -1719,17 +1689,13 @@ var RevisionTextView = Class.extend({
     },
     SubscribeEvents: function () {
         var self = this;
+
+       
     }
 })
 var CatalogueTextView = Class.extend({
     Curators: null,
     SearchSelectDropdown: null,
-
-    TableTextStartConstString: "<div class=\"table-body-catalogue-text-row justify-content-center d-flex\"><div class=\"table-body-catalogue-text-column-number\">",
-    TableTextNameConstString: "</div><div class=\"table-body-catalogue-text-column-name\"><a href=\"/Text/Revision?id=",
-    TableTextSubjectConstString: "</a></div><div class=\"table-body-catalogue-text-column-subject\">",
-    TableTextCuratorConstString: "</div><div class=\"table-body-catalogue-text-column-curator\"><a href=\"/Curator/Revision?id=",
-    TableTextEndConstString: "</a></div></div>",
 
     InitializeControls: function () {
         var self = this;
@@ -1757,23 +1723,47 @@ var CatalogueTextView = Class.extend({
         MultiselectDropdown(textNamesOptions);
         MultiselectDropdown(curatorsOptions);
 
-        //self.SubscribeEvents();
+        self.SubscribeEvents();
     },
     SubscribeEvents: function () {
         var self = this;
 
-        $('#search').on('click', function () {
-            self.Search();
-        });
+        //$('#search').on('click', function () {
+        //    self.Search();
+        //});
 
 
-        $("#clearFilters").click(function () {
-            //$("#KeyWord").val('');
-            $("#TextName").val('');
-            $("#TextSubject").val('');
-            $('#curatorMultiselect option').attr('selected', 'selected');
-        });
+        //$("#clearFilters").click(function () {
+        //    //$("#KeyWord").val('');
+        //    $("#TextName").val('');
+        //    $("#TextSubject").val('');
+        //    $('#curatorMultiselect option').attr('selected', 'selected');
+        //});
+
+        var firstElement = $(".text-search-data-table .text-data-row")[0];
+        if (firstElement !== undefined)
+            self.Show(firstElement);
         
+    },
+    Show: function (el) {
+        $('.text-data-row').each(function (idex, element) {
+            $(element).css('opacity', '0.3');
+            $(element).removeClass("data-row-selected");
+        });
+        $(el).css('opacity', '1');
+        $(el).addClass("data-row-selected");
+        var fullId = $(el).find("input:first-child").attr('id')
+        id = fullId.substring(fullId.length - 36);
+
+        $("#textContentPlaceholder").empty();
+        $.ajax({
+            type: 'POST',
+            url: "/Text/GetText?id=" + id ,
+            contentType: 'application/json; charset=utf-8',
+            success: function (result) {
+                $("#textContentPlaceholder").html(result);
+            }
+        });
     },
     Search: function () {
         $(".table-body-catalogue-text").empty();
@@ -1815,6 +1805,7 @@ var CatalogueTextView = Class.extend({
 })
 var AddTextView = Class.extend({
     IsNew: null,
+    ToDelete: false,
     CuratorName: null,
     CuratorId: null,
 
@@ -1828,10 +1819,6 @@ var AddTextView = Class.extend({
 
     Editor: null,
     Data: null,
-
-    RowAddConstString: "<div class=\"row justify-content-md-around\">",
-    ColAddConstString: "<div class=\"col-md-3\">",
-    DivAddConstString: "</div>",
 
     InitializeControls: function () {
         var self = this;
@@ -1956,6 +1943,23 @@ var AddTextView = Class.extend({
                         }
                     });
                 }
+
+                if (!IsFind) {
+                    $.each(self.Blocks.videos, function (index, element) {
+                        if (element.index === i) {
+                            self.OldData.blocks.push({
+                                data: {
+                                    src: element.src,
+                                    caption: element.caption
+                                },
+                                id: element.id,
+                                type: "video"
+                            });
+                            IsFind = true;
+                            return false;
+                        }
+                    });
+                }
             }
         }
 
@@ -2008,6 +2012,9 @@ var AddTextView = Class.extend({
 
                 image: {
                     class: SimpleImage
+                },
+                video: {
+                    class: SimpleVideo
                 }
             }
         });
@@ -2021,8 +2028,12 @@ var AddTextView = Class.extend({
     SubscribeEvents: function () {
         var self = this;
 
-        $('#saveText').on('click', function () {
+        $('#save').on('click', function () {
             self.Save();
+        });
+
+        $('#delete').on('click', function () {
+            self.DeleteText();
         });
 
         $('#addPhoto').on('click', function () {
@@ -2043,6 +2054,8 @@ var AddTextView = Class.extend({
 
         $('#dropdown-input-for-curator').addClass("display-8-custom");
     },
+
+
 
     InitializeCurators: function (data) {
         var self = this;
@@ -2077,7 +2090,8 @@ var AddTextView = Class.extend({
                     CheckBoxes: [],
                     Listes: [],
                     Paragraphs: [],
-                    Raws: []
+                    Raws: [],
+                    Videos: []
                 }
             };
 
@@ -2099,6 +2113,14 @@ var AddTextView = Class.extend({
                 }
                 else if (element.type === "image") {
                     saveTextViewModel.Blocks.Images.push({
+                        Id: element.id,
+                        Src: element.data.src,
+                        Caption: element.data.caption,
+                        Index: index
+                    });
+                }
+                else if (element.type === "video") {
+                    saveTextViewModel.Blocks.Videos.push({
                         Id: element.id,
                         Src: element.data.src,
                         Caption: element.data.caption,
@@ -2128,7 +2150,7 @@ var AddTextView = Class.extend({
                     });
                 }
             });
-            debugger;
+
             $.ajax({
                 type: 'POST',
                 url: "/Text/SaveText",
@@ -2148,6 +2170,8 @@ var AddTextView = Class.extend({
     },
 
     DeleteText: function () {
+        if ($("#Id").val() === "")
+            return;
         $.ajax({
             type: 'POST',
             url: "/Text/DeleteText",
@@ -2171,13 +2195,7 @@ var AddTextView = Class.extend({
             }
         });
     },
-    AfterAddingImage: function () {
-        var self = this;
 
-        $("img").click(function () {
-            self.CopyTextToClipboard($(this).attr("src"));
-        });
-    },
     CopyTextToClipboard: function (text) {
         if (!navigator.clipboard) {
             //fallbackCopyTextToClipboard(text);
@@ -2186,7 +2204,7 @@ var AddTextView = Class.extend({
         navigator.clipboard.writeText(text);
     },
     RemoveImages: function () {
-        $("#imageTextContainer .row").empty();
+        $("#imageTextContainer").empty();
     },
 
     AddVideo: function () {
@@ -2197,21 +2215,19 @@ var AddTextView = Class.extend({
             contentType: 'application/json; charset=utf-8',
             success: function (src) {
                 $('#addVideoTextPlaceholder').html(src);
-
-
             }
         });
     },
-    AfterAddingVideo: function () {
-        var self = this;
 
-        $("video").click(function () {
-            self.CopyTextToClipboard($(this).attr("src"));
-        });
-    },
     RemoveVideos: function () {
-        $("#videoTextContainer .row").empty();
+        $("#videoTextContainer").empty();
     },
+
+    CopyTimeId: function (el) {
+        var time = $(el).parent().find("input").val();
+        var self = this;
+        self.CopyTextToClipboard(time);
+    }
 
 });
 
@@ -2245,7 +2261,17 @@ class SimpleImage {
         input.value = this.data && this.data.src ? this.data.src : '';
 
         input.addEventListener('paste', (event) => {
-            this._createImage(event.clipboardData.getData('text'));
+            var time = event.clipboardData.getData('text');
+            var input = $('input').filter(function () {
+                return $(this).val() === time;
+            });
+
+            if (input.length) {
+                var src = input.parent().parent().find('.text-add-image').attr("src");
+                if (!src || !src.length || !src.includes("data") || !src.includes("base64"))
+                    return;
+                this._createImage(src);
+            } 
         });
 
         return this.wrapper;
@@ -2283,6 +2309,84 @@ class SimpleImage {
         }
     }
 }
+
+class SimpleVideo {
+    static get toolbox() {
+        return {
+            title: 'Video',
+            icon: '<img src="/images/icons/video.png" class="editor-video-icon" alt="" />'
+        };
+    }
+    constructor({ data }) {
+        this.data = data;
+        this.wrapper = undefined;
+    }
+    render() {
+        this.wrapper = document.createElement('div');
+        this.wrapper.classList.add('simple-video');
+
+        if (this.data && this.data.src) {
+            this._createVideo(this.data.src, this.data.caption);
+            return this.wrapper;
+        }
+        const input = document.createElement('input');
+
+        this.wrapper.classList.add('simple-image');
+        this.wrapper.appendChild(input);
+
+        input.placeholder = 'Insert copied video';
+        input.value = this.data && this.data.src ? this.data.src : '';
+
+        input.addEventListener('paste', (event) => {
+            var time = event.clipboardData.getData('text');
+            var input = $('input').filter(function () {
+                return $(this).val() === time;
+            });
+
+            if (input.length) {
+                var src = input.parent().parent().find('.text-add-video').attr("src");
+                if (!src || !src.length || !src.includes("data") || !src.includes("base64"))
+                    return;
+                this._createVideo(src);
+            }
+        });
+
+        return this.wrapper;
+    }
+    _createVideo(src, captionText) {
+        const video = document.createElement('video');
+        video.muted = true;
+        video.controls = true;
+        const caption = document.createElement('div');
+
+        video.src = src;
+        caption.contentEditable = true;
+        caption.innerHTML = captionText || '';
+
+        this.wrapper.innerHTML = '';
+        this.wrapper.appendChild(video);
+        this.wrapper.appendChild(caption);
+    }
+
+
+    validate(savedData) {
+        if (!savedData.src.trim()) {
+            return false;
+        }
+
+        return true;
+    }
+
+    save(blockContent) {
+        const video = blockContent.querySelector('video');
+        const caption = blockContent.querySelector('[contenteditable]');
+
+        return {
+            src: video.src,
+            caption: caption.innerHTML || ''
+        }
+    }
+}
 var AddImageTextView = Class.extend({
     Image: null,
     ImageInput: null,
@@ -2316,23 +2420,19 @@ var AddImageTextView = Class.extend({
         $("#addImageTextPlaceholder").empty();
     },
     Save: function () {
-        var self = this;
-
-        var rowCount = $("#imageTextContainer .row").length;
-        var colCount = $("#imageTextContainer .col-md-3").length;
-
-        $(".popup-content-custom .row #imagePlaceholder").removeAttr('id');
-
         var imageToMove = $(".popup-content-custom .add-image-placeholder-custom").html();
 
-        if ((rowCount === 0) || (colCount !== 0 && Math.floor(colCount / rowCount) === 3 )) {
-            $("#imageTextContainer").append(addTextView.RowAddConstString + addTextView.ColAddConstString + imageToMove + addTextView.DivAddConstString + addTextView.DivAddConstString);
-        }
-        else {
-            $("#imageTextContainer .row").last().append(addTextView.ColAddConstString + imageToMove + addTextView.DivAddConstString);
-        }
+        var content = $(imageToMove).attr('src');
+        $.ajax({
+            type: 'POST',
+            url: "/Text/ImageToInsert",
+            data: JSON.stringify(content),
+            contentType: 'application/json; charset=utf-8',
+            success: function (src) {
+                $("#imageTextContainer").append(src);
+            }
+        });
 
-        addTextView.AfterAddingImage();
         $("#addImageTextPlaceholder").empty();
     },
 });
@@ -2371,22 +2471,19 @@ var AddVideoTextView = Class.extend({
         $("#addVideoTextPlaceholder").empty();
     },
     Save: function () {
-        debugger;
-        var rowCount = $("#videoTextContainer .row").length;
-        var colCount = $("#videoTextContainer .col-md-3").length;
-
-        $(".popup-content-custom .row #videoPlaceholder").removeAttr('id');
-
         var videoToMove = $(".popup-content-custom .add-video-placeholder-custom").html();
 
-        if ((rowCount === 0) || (colCount !== 0 && Math.floor(colCount / rowCount) === 3)) {
-            $("#videoTextContainer").append(addTextView.RowAddConstString + addTextView.ColAddConstString + videoToMove + addTextView.DivAddConstString + addTextView.DivAddConstString);
-        }
-        else {
-            $("#videoTextContainer .row").last().append(addTextView.ColAddConstString + videoToMove + addTextView.DivAddConstString);
-        }
+        var content = $(videoToMove).attr('src');
+        $.ajax({
+            type: 'POST',
+            url: "/Text/VideoToInsert",
+            data: JSON.stringify(content),
+            contentType: 'application/json; charset=utf-8',
+            success: function (src) {
+                $("#videoTextContainer").append(src);
+            }
+        });
 
-        addTextView.AfterAddingVideo();
         $("#addVideoTextPlaceholder").empty();
     },
 });
@@ -2555,7 +2652,12 @@ var CuratorAddView = Class.extend({
             data: JSON.stringify(saveCuratorViewModel),
             contentType: 'application/json; charset=utf-8',
             success: function (result) {
-                ResultPopUp(result.success, result.text, result.url, result.id);
+                if (result.success) {
+                    window.location.href = 'https://' + window.location.host + '/Curator/Catalogue';
+                }
+                else {
+                    ResultPopUp(result.success, result.text, result.url, result.id);
+                }
             }
         });
 

@@ -67,7 +67,7 @@
         <hr style="border-top: 3px solid #3c6624">
     }
     <div class="mark-revision-navigation-row">
-        <a href="/Mark/Catalogue"><img src="/images/arrows/leftArrow.png" class="mark-revision-back-button" /></a>
+        <button id="back"><img src="/images/arrows/leftArrow.png" class="mark-revision-back-button" /></button>
     </div>
     <div class="mark-revision-content-row">
         <div class="mark-revision-content-col">
@@ -84,6 +84,11 @@
             {
                 <div class="mark-revision-resources">
                     Власник фото: <a style="color:white; text-decoration: underline;" target="_blank" href="@Model.ResourceUrl">@Model.ResourceName</a>
+                </div>
+            }
+            else if (string.IsNullOrEmpty(Model.ResourceUrl) && !string.IsNullOrEmpty(Model.ResourceName)){
+                <div class="mark-revision-resources">
+                    Власник фото: <span>@Model.ResourceName</span>
                 </div>
             }
             @if (!Model.IsCluster && Model.ClusterId is not null)

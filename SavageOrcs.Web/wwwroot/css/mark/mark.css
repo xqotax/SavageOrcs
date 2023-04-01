@@ -27,11 +27,11 @@
     }
 
     .photo-col {
-        width: 35%;
+        width: 40%;
     }
 
     .table-col {
-        width: 65%;
+        width: 60%;
     }
 
     .top-row {
@@ -89,9 +89,17 @@
         padding-bottom: 33px;
     }
 
+    .filter-item-small {
+        height: 100%;
+        width: 13%;
+        display: flex;
+        flex-direction: column;
+        justify-content: start;
+    }
+
     .filter-item {
         height: 100%;
-        width: 33%;
+        width: 29%;
         display: flex;
         flex-direction: column;
         justify-content: start;
@@ -135,13 +143,23 @@
         width: 100%;
     }
 
+
+    .col-item-red-circle {
+        width: 9%;
+    }
+
+    .col-item-number {
+        width: 4%;
+    }
+
     .col-item {
         position: relative;
-        width: 30%;
+        width: 29%;
         display: flex;
         flex-direction: row;
         justify-content: start;
     }
+
     .col-item-space {
         width: 7%;
     }
@@ -150,6 +168,9 @@
         width: 3%;
     }
 
+    .col-item-for-curator-number .col-content-item {
+        border-top: none;
+    }
 
     .col-content-item {
         position: relative;
@@ -162,6 +183,10 @@
         display: flex;
         flex-direction: row;
         justify-content: space-between;
+    }
+
+    .col-item-red-circle .col-content-item, .col-item-number .col-content-item {
+        border-top: none;
     }
 
     .col-number-item {
@@ -178,12 +203,22 @@
         width: 100%;
     }
 
+    .data-row .red-image-mark-row {
+        opacity: 0;
+    }
+
+    .data-row-selected .red-image-mark-row {
+        opacity: 1;
+    }
+
+
     .text-container-big {
         width: 80%;
     }
 
     .text-container-small {
-        width: 55%;
+        padding-left: 13%;
+        width: 68%;
         color: #0F0F0F;
         font-weight: 400;
         font-size: 14px;
@@ -240,25 +275,33 @@
 }
 
 .mark-revision-navigation-row {
-    height:118px;
+    height: 118px;
 }
 
-.mark-revision-content-col {
-    width: 20%;
-    font-weight: 400;
-    font-size: 14px;
-    line-height: 17px;
-    color: #FFFFFF;
+.mark-revision-navigation-row #back{
+    background: none;
+    border: none;
 }
+
+
+    .mark-revision-content-col {
+        width: 29%;
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 17px;
+        color: #FFFFFF;
+    }
 
 .mark-revision-image-col {
-    width: 70%;
+    width: 65%;
     max-height: 682px;
 }
 
-.mark-revision-description{
+.mark-revision-description {
     padding-bottom: 40px;
+    word-wrap: break-word;
 }
+
 .mark-revision-area,
 .mark-revision-curator,
 .mark-revision-resources {
@@ -266,5 +309,5 @@
     padding-top: 15px;
 }
 
-.mark-revision-curator{
+.mark-revision-curator {
 }

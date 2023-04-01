@@ -115,13 +115,14 @@
         display: flex;
         flex-direction: column;
         justify-content: space-between;
-        font-weight: 400;
         font-size: 10px;
-        line-height: 130%;
+        line-height: 1.38;
     }
 
     .additional-text-info-col {
         width: 100%;
+        font-size: 10px;
+        line-height: 1.38;
     }
 
     .map-container {

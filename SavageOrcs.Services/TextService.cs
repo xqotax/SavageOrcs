@@ -1,18 +1,12 @@
-﻿using Microsoft.EntityFrameworkCore.Query.Internal;
-using SavageOrcs.BusinessObjects;
+﻿using SavageOrcs.BusinessObjects;
 using SavageOrcs.DataTransferObjects._Constants;
 using SavageOrcs.DataTransferObjects.Blocks;
-using SavageOrcs.DataTransferObjects.Marks;
 using SavageOrcs.DataTransferObjects.Texts;
 using SavageOrcs.Enums;
 using SavageOrcs.Repositories.Interfaces;
 using SavageOrcs.Services.Interfaces;
 using SavageOrcs.UnitOfWork;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Text = SavageOrcs.BusinessObjects.Text;
 
 namespace SavageOrcs.Services
 {
@@ -44,10 +38,20 @@ namespace SavageOrcs.Services
             return texts.Select(x => CreateTextDto(x)).ToArray();
         }
 
+        public async Task<TextShortDto[]> GetShortTexts()
+        {
+            var texts = await _textRepository.GetAllAsync();
+            return texts.Select(x => new TextShortDto {
+                Id = x.Id,
+                Name = x.Name,
+                Subject = x.Subject,
+                CreatedDate = x.CreatedDate,
+                Curator = x.CuratorId is not null ? new GuidIdAndStringName { Id = x.CuratorId.Value, Name = x.Curator?.Name } : null,
+            }).ToArray();
+        }
         public async Task<TextDto> GetTextById(Guid id)
         {
             var text = await _textRepository.GetTAsync(x => x.Id == id);
-
             text ??= new Text();
 
             return CreateTextDto(text);

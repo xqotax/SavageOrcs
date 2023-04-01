@@ -1,18 +1,14 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using SavageOrcs.BusinessObjects;
-using SavageOrcs.DbContext;
 using SavageOrcs.Services.Interfaces;
 using SavageOrcs.Web.ViewModels.Constants;
 using SavageOrcs.Web.ViewModels.Mark;
 using System.Globalization;
 using SavageOrcs.DataTransferObjects.Marks;
-using System.Text;
 using SavageOrcs.DataTransferObjects._Constants;
 using SavageOrcs.DataTransferObjects.Areas;
-using System.Linq;
 using Microsoft.AspNetCore.Localization;
 using SavageOrcs.DataTransferObjects.Maps;
 using SavageOrcs.DataTransferObjects.Cluster;
@@ -156,6 +152,7 @@ namespace SavageOrcs.Web.Controllers
                 DescriptionEng = markDto?.DescriptionEng,
                 ResourceUrl = markDto?.ResourceUrl,
                 ResourceName = markDto?.ResourceName,
+                ResourceNameEng = markDto?.ResourceNameEng,
                 Name = markDto?.Name,
                 Images = markDto is null ? Array.Empty<StringAndBoolViewModel>() : markDto.Images.Select(x => new StringAndBoolViewModel
                 {
@@ -293,12 +290,12 @@ namespace SavageOrcs.Web.Controllers
         {
             var unitedCatalogueViewModel = new UnitedCatalogueViewModel();
 
-            var markDtos = await _markService.GetMarks();
+            var markDtos = await _markService.GetShortMarks();
             var clusterDtos = await _clusterService.GetClusters();
 
             if (!User.IsInRole("Admin"))
             {
-                markDtos = markDtos.Where(x => x.Images.Where(y => y.IsVisible).Any()).ToArray();
+                markDtos = markDtos.Where(x => x.IsVisible).ToArray();
                 clusterDtos = clusterDtos.Where(x => x.Marks.Length > 0 && x.Marks.Any(y => y.Images.Any())).ToArray();
             }
 
@@ -329,20 +326,22 @@ namespace SavageOrcs.Web.Controllers
             {
                 Id = x.Id,
                 Name = x.Name,
-                CuratorName = x.Curator.Name,
-                //Description = Thread.CurrentThread.CurrentUICulture.TwoLetterISOLanguageName == "ua" ? x.Description : x.DescriptionEng,
-                Area = x.Area is null ? new GuidIdAndNameViewModel() : new GuidIdAndNameViewModel { Id = x.Area.Id, Name = x.Area.Name },
-                Images = x.Images?.Select(x => _helperService.GetImage(x.Content)).ToArray(),
+                CuratorName = x.CuratorName,
+                ResourceName = _helperService.GetTranslation(x.ResourceName, x.ResourceNameEng),
+                ResourceUrl = x.ResourceUrl,
+                Area = x.Area is null ? new GuidIdAndNameViewModel() : new GuidIdAndNameViewModel { Id = x.Area.Id, Name = x.Area.Name + ", " + x.Area.Community + ", " + x.Area.Region },
             })
                 .Concat(clusterDtos.Select(x => new MarkCatalogueViewModel
                 {
                     Id = x.Id,
                     IsCluster = true,
                     Name = x.Name,
+                    ResourceName = _helperService.GetTranslation(x.ResourceName, x.ResourceNameEng),
+                    ResourceUrl = x.ResourceUrl,
                     CuratorName = x.Curator?.Name,
-                    Area = x.Area is null ? new GuidIdAndNameViewModel() : new GuidIdAndNameViewModel { Id = x.Area.Id, Name = x.Area.Name },
-                    Images = x.Marks?.SelectMany(y => y.Images.Select(a => _helperService.GetImage(a))).ToArray()
+                    Area = x.Area is null ? new GuidIdAndNameViewModel() : new GuidIdAndNameViewModel { Id = x.Area.Id, Name = x.Area.Name + ", " + x.Area.Community + ", " + x.Area.Region },
                 }))
+                .OrderByDescending(x => x.Name)
                 .ToArray();
 
             return View("Catalogue", unitedCatalogueViewModel);
@@ -447,7 +446,6 @@ namespace SavageOrcs.Web.Controllers
                     Description = x.Description,
                     DescriptionEng = x.DescriptionEng,
                     ResourceUrl = x.ResourceUrl,
-                    Images = x.Images.Select(y => _helperService.GetImage(y.Content)).ToArray()
                 }).ToArray();
 
                 if (filter.From.HasValue)

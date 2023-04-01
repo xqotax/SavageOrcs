@@ -85,6 +85,38 @@ namespace SavageOrcs.Services
             return marks.Select(CreateMarkDto).ToArray();
         }
 
+        public async Task<MarkShortDto[]> GetShortMarks()
+        {
+            var marks = await _markRepository.GetAllAsync();
+            return marks.Select(x => new MarkShortDto
+            {
+                Id = x.Id,
+                CuratorName = x.Curator is null ? "" :x.Curator.Name ?? "",
+                Description = x.Description,
+                DescriptionEng = x.DescriptionEng,
+                Lat = x.Lat,
+                Lng = x.Lng,
+                ResourceName = x.ResourceName,
+                ResourceNameEng = x.ResourceNameEng,
+                Name = x.Name,
+                ResourceUrl = x.ResourceUrl,
+                IsVisible = x.IsVisible,
+                Area = x.Area is null ? (x.Cluster?.Area is null ? null : new AreaShortDto
+                {
+                    Id = x.Cluster.Area.Id,
+                    Name = x.Cluster.Area.Name,
+                    Region = x.Cluster.Area.Region,
+                    Community = x.Cluster.Area.Community
+                }) : new AreaShortDto
+                {
+                    Id = x.Area.Id,
+                    Name = x.Area.Name,
+                    Region = x.Area.Region,
+                    Community = x.Area.Community
+                },
+            }).ToArray();
+        }
+
         public async Task<MarkDto[]> GetMarks()
         {
             var marks = await _markRepository.GetAllAsync();
@@ -111,6 +143,7 @@ namespace SavageOrcs.Services
                 DescriptionEng = mark.DescriptionEng,
                 Lat = mark.Cluster?.Lat ?? mark.Lat,
                 Lng = mark.Cluster?.Lng ?? mark.Lng,
+                IsVisible = mark.IsVisible,
                 Area = mark.Area is null ? (mark.Cluster?.Area is null ? null : new AreaShortDto
                 {
                     Id = mark.Cluster.Area.Id,
@@ -180,8 +213,7 @@ namespace SavageOrcs.Services
             mark.MapId = markSaveDto.MapId;
             mark.Lat = markSaveDto.Lat;
             mark.Lng = markSaveDto.Lng;
-
-
+            mark.IsVisible = markSaveDto.Images.Any(x => x.IsVisible);
             
             foreach (var image in mark.Images)
             {
@@ -279,13 +311,18 @@ namespace SavageOrcs.Services
                     DescriptionEng = x.DescriptionEng,
                     ResourceName = x.ResourceName,
                     ResourceNameEng = x.ResourceNameEng,
-                    Area = x.Cluster is null ? (x.Area is null ? null : new GuidIdAndStringName
+                    IsVisible = x.IsVisible,
+                    Area = x.Cluster is null ? (x.Area is null ? null : new AreaShortDto
                     {
-                        Name = x.Area.Name + ", " + x.Area.Community + ", " + x.Area.Region,
+                        Community = x.Area.Community,
+                        Region = x.Area.Region,
+                        Name = x.Area.Name,
                         Id = x.Area.Id
-                    }) : x.Cluster.Area is null ? null : new GuidIdAndStringName
+                    }) : x.Cluster.Area is null ? null : new AreaShortDto
                     {
-                        Name = x.Cluster.Area.Name + ", " + x.Cluster.Area.Community + ", " + x.Cluster.Area.Region,
+                        Community = x.Cluster.Area.Community,
+                        Region = x.Cluster.Area.Region,
+                        Name = x.Cluster.Area.Name,
                         Id = x.Cluster.Area.Id
                     }
                     //AreaName = x.Cluster is null ? 

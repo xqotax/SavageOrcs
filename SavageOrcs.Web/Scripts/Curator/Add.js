@@ -60,7 +60,12 @@
             data: JSON.stringify(saveCuratorViewModel),
             contentType: 'application/json; charset=utf-8',
             success: function (result) {
-                ResultPopUp(result.success, result.text, result.url, result.id);
+                if (result.success) {
+                    window.location.href = 'https://' + window.location.host + '/Curator/Catalogue';
+                }
+                else {
+                    ResultPopUp(result.success, result.text, result.url, result.id);
+                }
             }
         });
 

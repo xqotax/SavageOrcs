@@ -5,9 +5,28 @@
     <div class="data-row" onclick="catalogueMarkView.Show(this)" style="opacity: 0.3">
         @Html.HiddenFor(m => m[i-1].Id, new { id =  i.ToString() + Model[i-1].Id.ToString()})
         @Html.HiddenFor(m => m[i-1].IsCluster, new { id =  i.ToString() + Model[i-1].IsCluster.ToString()})
-        <div class="col-item">
+        <div class="col-item-red-circle">
+            @if (this.User.IsInRole("Admin"))
+            {
+                <a class="col-content-item" href="/Mark/Add?id=@Model[i-1].Id.ToString()">
+                    <img class="red-image-mark-row" src="~/images/redCircle.png">
+                </a>
+            }
+            else
+            {
+                <div class="col-content-item">
+                    <img class="red-image-mark-row" src="~/images/redCircle.png">
+                </div>
+            }
+        </div>
+        <div class="col-item-number">
             <div class="col-content-item">
                 <div class="col-number-item">@i.ToString()</div>
+            </div>
+
+        </div>
+        <div class="col-item">
+            <div class="col-content-item">
                 <div class="col-area-item">@Model[i - 1].Area.Name</div>
             </div>
         </div>
@@ -21,7 +40,7 @@
                 <div class="col-author-item">
                     @if (!string.IsNullOrEmpty(Model[i - 1].CuratorName))
                     {
-                        <div>@Model[i - 1].CuratorName</div>
+                        <div style="padding-bottom: 5px">@Model[i - 1].CuratorName</div>
                     }
                     @if (!string.IsNullOrEmpty(Model[i - 1].ResourceName))
                     {

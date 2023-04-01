@@ -16,9 +16,17 @@ namespace SavageOrcs.Services
     public class CuratorService : UnitOfWorkService, ICuratorService
     {
         private readonly IRepository<Curator> _curatorRepository;
-        public CuratorService(IUnitOfWork unitOfWork, IRepository<Curator> curatorRepositor) : base(unitOfWork)
+        private readonly IRepository<Mark> _markRepository;
+        private readonly IRepository<Cluster> _clusterRepository;
+        private readonly IRepository<Text> _textRepository;
+
+
+        public CuratorService(IUnitOfWork unitOfWork, IRepository<Curator> curatorRepositor, IRepository<Cluster> clusterRepository, IRepository<Mark> markRepository, IRepository<Text> textRepository) : base(unitOfWork)
         {
             _curatorRepository = curatorRepositor;
+            _clusterRepository = clusterRepository;
+            _markRepository = markRepository;
+            _textRepository = textRepository;
         }
 
         public async Task<CuratorDto[]> GetCurators()
@@ -103,6 +111,43 @@ namespace SavageOrcs.Services
                     Success = false,
                     Id = null
                 };
+            }
+        }
+
+        public async Task<bool> DeleteCurator(Guid id)
+        {
+            try
+            {
+                var curator = _curatorRepository.GetT(x => x.Id == id);
+
+                var marks = _markRepository.GetAll(x => x.CuratorId == id);
+                var clusters = _clusterRepository.GetAll(x => x.CuratorId == id);
+                var texts = _textRepository.GetAll(x => x.CuratorId == id);
+
+                foreach (var mark in marks)
+                {
+                    mark.CuratorId = null;
+                }
+
+                foreach (var cluster in clusters)
+                {
+                    cluster.CuratorId = null;
+                }
+
+                foreach (var text in texts)
+                {
+                    text.CuratorId = null;
+                }
+
+                _curatorRepository.Delete(curator);
+
+                await UnitOfWork.SaveChangesAsync();
+
+                return true;
+            }
+            catch
+            {
+                return false;
             }
         }
     }

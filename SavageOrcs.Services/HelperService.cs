@@ -212,5 +212,16 @@ namespace SavageOrcs.Services
 
             return;
         }
+
+        public string? GetTranslation(string? urk, string? eng)
+        {
+            if (string.IsNullOrEmpty(eng))
+                return urk;
+
+            if (string.IsNullOrEmpty(urk))
+                return eng;
+
+            return Thread.CurrentThread.CurrentUICulture.TwoLetterISOLanguageName == "uk" ? urk : eng;
+        }
     }
 }

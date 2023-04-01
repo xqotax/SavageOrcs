@@ -13,18 +13,21 @@
     .popup-red-container{
         height: 800px;
         width: 1324px;
-        background-color: #FF2929;
+        /*background-color: #FF2929;*/
+        background-color: #DEDCDC;
         color: #0F0F0F;
+        display: flex;
+        flex-direction:column;
+        justify-content:center;
+        align-items: center;
     }
 
     .popup-content{
         position:relative;
-        top:139px;
-        left:174px;
         height:417px;
         width: 1031px;
         font-weight: 500;
-        border: 2px solid black;
+        /*border: 2px solid black;*/
     }
 
     .eighteen-block{
@@ -35,6 +38,9 @@
         top:0px;
         font-size: 277.425px;
         line-height: 233px;
+        /*color: #FF2929;*/
+        color: rgba(224, 97, 95, 0.8);
+
     }
 
     .close-info-block{
@@ -45,7 +51,6 @@
         top: 343px;
         font-size: 14px;
         line-height: 17px;
-        cursor: pointer;
     }
 
     .big-text-info{
@@ -73,11 +78,11 @@
 
 </style>
 
-<div class="popup-custom" id="eightPlusPopup">
+<div class="popup-custom" id="eightPlusPopup" onclick="close18Popup()">
     <div class="popup-red-container">
         <div class="popup-content">
             <div class="eighteen-block">18+</div>
-            <div class="close-info-block" onclick="close18Popup()">Натисніть для продовження</div>
+            <div class="close-info-block" >Натисніть для продовження</div>
             <div class="big-text-info">ДЕЯКІ ЗОБРАЖЕННЯ НА САЙТІ МІСТЯТЬ НЕЦЕНЗУРНУ ЛЕКСИКУ ТА МОВУ ВОРОЖНЕЧІ</div>
             <div class="small-text-info">Радимо покинути ресурс, якщо ви неповнолітні або чутливі до агресивних висловів росіян.</div>
         </div>

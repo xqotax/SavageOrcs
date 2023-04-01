@@ -54,7 +54,6 @@ namespace SavageOrcs.Web.Controllers
                     Lat = x.Lat?.ToString().Replace(',', '.'),
                     Lng = x.Lng?.ToString().Replace(',', '.'),
                     Name = x.Name,
-                    IsApproximate = x.IsApproximate is not null && x.IsApproximate.Value
                 }).ToArray(),
                 MapClusterViewModels = mapDto.MapClusterDtos.Select(x => new MapClusterViewModel
                 {

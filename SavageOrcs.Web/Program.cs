@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Localization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using SavageOrcs.BusinessObjects;
@@ -80,7 +81,7 @@ var app = builder.Build();
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {
-    app.UseExceptionHandler("/Home/Error");
+    app.UseExceptionHandler("/Error/ServerError");
     // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
 }
@@ -92,6 +93,7 @@ app.UseRequestLocalization(options.Value);
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 
+
 app.UseRouting();
 app.UseAuthentication();
 
@@ -100,6 +102,11 @@ app.UseAuthorization();
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Map}/{action=Main}");
+app.MapControllerRoute(
+    name: "Error",
+    pattern: "{*val}",
+    defaults: new { controller = "Error", action = "Error"});
+
 app.MapRazorPages();
 
 app.Run();

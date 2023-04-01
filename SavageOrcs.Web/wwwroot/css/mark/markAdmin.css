@@ -7,6 +7,18 @@
     justify-content: start;
     width: 100%;
 }
+
+.mark-add-content-row {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.mark-add-action-row{
+
+}
+
 .mark-add-main-content {
     display: flex;
     flex-direction: row;
@@ -36,7 +48,7 @@
 }
 
 .mark-add-image-row {
-    max-height: 300px;
+    max-height: 400px;
     display: flex;
     flex-direction: row;
     justify-content: left;
@@ -51,11 +63,18 @@
 }
 
 .mark-add-image-content {
-    width: 20%;
-    max-height: 300px;
+    width: 70%;
+    max-height: 400px;
 }
 
 .mark-add-image {
-    max-height: 200px;
+    max-height: 400px;
     max-width: 100%;
+}
+.mark-add-image-check-box{
+    width: 30%;
+    display:flex;
+    flex-direction:row;
+    justify-content:start;
+    align-items:start;
 }

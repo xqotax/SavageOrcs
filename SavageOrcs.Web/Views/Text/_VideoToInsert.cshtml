@@ -1,0 +1,13 @@
+﻿@using SavageOrcs.Web.ViewModels.Constants
+@model StringAndStringViewModel
+
+
+<div class="text-add-video-row">
+    <div class="text-add-video-content">
+        <video class="text-add-video" src="@Model.Name2" alt="" controls />
+    </div>
+    <div class="text-add-video-action">
+        <button class="copy-video-button" onclick="addTextView.CopyTimeId(this)"><img class="copy-video" src="~/images/icons/clone.png" /></button>
+        @Html.HiddenFor(x => x.Name1)
+    </div>
+</div>

@@ -1,35 +1,13 @@
 ﻿var CatalogueMarkView = Class.extend({
     Marks: null,
-    DetailedView: false,
-    From: null,
-    CountConst: 4,
-    WereDataInDetailedTable: null,
-    WereDataInShortTable: null,
     OnEnglish: false,
-    
-    TableShortRowStartConstString: "<div class=\"table-body-short-row justify-content-center d-flex\"><div class=\"table-body-short-column-number\">",
-    TableShortRowNameConstString: "</div><div class=\"table-body-short-column-name\"><a href=\"/Mark/Revision?id=",
-    TableShortRowDescriptionConstString: "</a></div><div class=\"table-body-short-column-description ukr-description\">",
-    TableShortRowDescriptionEngConstString: "</div><div class=\"table-body-short-column-description eng-description\">",
-    TableShortRowAreaConstString: "</div><div class=\"table-body-short-column-area\">",
-    TableShortRowAreaButtonConstString: "<button class=\"button-short-column-area\" value=\"",
-    TableShortRowEndConstString: "</div></div>",
 
-    TableDetailRowStartConstString: "<div class=\"table-body-detail-row justify-content-center d-flex\"><div class=\"table-body-detail-column-number flex-container-center-custom\">",
-    TableDetailRowNameConstString: "</div><div class=\"table-body-detail-column-name flex-container-center-custom\"><a href=\"/Mark/Revision?id=",
-    TableDetailRowDescriptionConstString: "</a></div><div class=\"table-body-detail-column-description flex-container-center-custom ukr-description\">",
-    TableDetailRowDescriptionEngConstString: "</div><div class=\"table-body-detail-column-description flex-container-center-custom eng-description\">",
-    TableDetailRowAreaConstString: "</div><div class=\"table-body-detail-column-area flex-container-center-custom\">",
-    TableDetailRowAreaButtonConstString: "<button class=\"button-detail-column-area\" value=\"",
-    TableDetailRowLinkConstString: "</div><div class=\"table-body-detail-column-photo flex-container-center-custom\"><a href=\"",
-    TableDetailRowPhotoConstString: "\"><img class=\"table-body-detail-column-photo-item\" src=\"",
-    TableDetailRowEndConstString: "\"></a></div></div>",
     InitializeControls: function () {
         var self = this;
        
 
         var areasOptions = {
-            placeholder: "Виберіть місце",
+            placeholder: "Місця",
             txtSelected: "вибрано",
             txtAll: "Всі",
             txtRemove: "Видалити",
@@ -40,7 +18,7 @@
         }
 
         var keyWordsAndMarksOptions = {
-            placeholder: "Виберіть ключове слово",
+            placeholder: "Ключові слова",
             txtSelected: "вибрано",
             txtAll: "Всі",
             txtRemove: "Видалити",
@@ -51,7 +29,7 @@
         }
 
         var placesOptions = {
-            placeholder: "Виберіть локацію",
+            placeholder: "Локації",
             txtSelected: "вибрано",
             txtAll: "Всі",
             txtRemove: "Видалити",
@@ -87,63 +65,9 @@
             $("#MarkDescription").val('');
         });
 
-        $("#showMore").click(function () {
-            self.Search();
-        });
-
-        $("#fullData").click(function () {
-            if (self.DetailedView) {
-                self.DetailedView = false;
-
-                $("#tableDetail").css("display", "none");
-                $("#tableShort").css({ 'display': '' });
-                $(".table-body-detail").empty();
-
-                if (self.WereDataInDetailedTable == true) {
-                    self.Search();
-                }
-
-                $("#fullData").text("Ввімкнути детальний перегляд");
-                $("#showMore").css("display", "none");
-            }
-            else {
-                self.DetailedView = true;
-
-                $("#tableShort").css("display", "none");
-                $("#tableDetail").css({ 'display': ''});
-                $(".table-body-short").empty();
-
-                if (self.WereDataInShortTable == true) {
-                    self.Search();
-                }
-
-                $("#fullData").text("Ввімкнути спрощений перегляд");
-                $("#showMore").css({ 'display': '' });
-            }
-            //if (!$("#table").is(':empty')) {
-            //    self.Search();
-            //}
-        });
-
-        $('#flagGB').on('click', function () {
-            self.OnEnglish = true;
-            $('#flagUA').removeClass("box-shadow-grey-custom");
-            $("#flagGB").addClass("box-shadow-grey-custom");
-
-
-            $(".ukr-description").addClass("display-none-custom");
-            $(".eng-description").removeClass("display-none-custom");
-
-        });
-
-        $('#flagUA').on('click', function () {
-            self.OnEnglish = false;
-            $('#flagGB').removeClass("box-shadow-grey-custom");
-            $("#flagUA").addClass("box-shadow-grey-custom");
-
-            $(".eng-description").addClass("display-none-custom");
-            $(".ukr-description").removeClass("display-none-custom");
-        });
+        var firstElement = $(".data-row-container .data-row")[0];
+        if (firstElement !== undefined)
+            self.Show(firstElement);
     },
     Search: function () {
         var self = this;
@@ -255,8 +179,10 @@
     Show: function (el) {
         $('.data-row').each(function (idex, element) {
             $(element).css('opacity', '0.3');
+            $(element).removeClass("data-row-selected");
         });
         $(el).css('opacity', '1');
+        $(el).addClass("data-row-selected");
         var fullId = $(el).find("input:first-child").attr('id')
         id = fullId.substring(fullId.length - 36);
         var index = fullId.substring(0, fullId.length - 36);

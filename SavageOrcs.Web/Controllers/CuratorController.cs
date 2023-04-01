@@ -87,7 +87,7 @@ namespace SavageOrcs.Web.Controllers
         }
 
         [Authorize(Roles = "Admin")]
-        public IActionResult Delete()
+        public IActionResult DeleteCurator()
         {
             return PartialView("_Delete");
         }
@@ -96,16 +96,15 @@ namespace SavageOrcs.Web.Controllers
         [Authorize(Roles = "Admin")]
         public async Task<JsonResult> DeleteConfirm(Guid id)
         {
-            throw new NotImplementedException();
-            var result = await _markService.DeleteMark(id);
+            var result = await _curatorService.DeleteCurator(id);
 
 
             return Json(new ResultViewModel
             {
                 Id = id,
                 Success = result,
-                Url = "/Mark/Catalogue",
-                Text = result ? "Мітка успішно видалена" : "Помилка, зверніться до адміністратора"
+                Url = "/Curator/Catalogue",
+                Text = result ? "Куратор успішно видалений" : "Помилка, зверніться до адміністратора"
             });
         }
 
@@ -148,7 +147,7 @@ namespace SavageOrcs.Web.Controllers
                             Id = y.Area.Id,
                             Name = y.Area.Name,
                         }
-                    }).ToArray();
+                    }).OrderByDescending(x => x.Name).ToArray();
                 curatorViewModel.MarkCount = curatorViewModel.Marks.Length;
 
 

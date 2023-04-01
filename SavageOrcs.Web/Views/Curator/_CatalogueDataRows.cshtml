@@ -1,27 +1,25 @@
 ﻿@using SavageOrcs.Web.ViewModels.Curator
 @model CuratorViewModel[]
+
+
 @for (int i = 1; i <= Model.Length; i++)
 {
     <div class="curator-data-row">
         <div class="curator-photo-col">
             @if (Model[i - 1].Image is not null)
             {
-                @if (this.User.IsInRole("Admin"))
-                {
-                    <a href="/Curator/Add?id=@Model[i - 1].Id">
-                        <img class="curator-image" src="@Model[i-1].Image" />
-                    </a>
-                }
-                else
-                {
-                    <img class="curator-image" src="@Model[i-1].Image" />
-                }
+                <img class="curator-image" src="@Model[i-1].Image" />
             }
         </div>
         <div class="curator-content-col">
             <div class="curator-content-header">
                 <div class="curator-content-main-row">
-                    <div class="curator-content-name-col">@Model[i-1].DisplayName</div>
+                    @if (this.User.IsInRole("Admin")){
+                        <a href="/Curator/Add?id=@Model[i - 1].Id" class="curator-content-name-col" style="text-decoration: none">@Model[i-1].DisplayName</a>
+                    }
+                    else {
+                        <div class="curator-content-name-col">@Model[i-1].DisplayName</div>
+                    }
                     <div class="curator-content-button-more" onclick="catalogueCuratorView.ShowDescription(this)">
                         <img src="~/images/arrows/bottomArrow.png" />
                     </div>

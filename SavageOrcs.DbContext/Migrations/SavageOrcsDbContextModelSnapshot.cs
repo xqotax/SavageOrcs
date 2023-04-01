@@ -426,7 +426,7 @@ namespace SavageOrcs.DbContext.Migrations
                     b.Property<string>("DescriptionEng")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<bool?>("IsApproximate")
+                    b.Property<bool>("IsVisible")
                         .HasColumnType("bit");
 
                     b.Property<double?>("Lat")

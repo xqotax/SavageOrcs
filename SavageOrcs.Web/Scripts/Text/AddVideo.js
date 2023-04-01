@@ -31,22 +31,19 @@
         $("#addVideoTextPlaceholder").empty();
     },
     Save: function () {
-        debugger;
-        var rowCount = $("#videoTextContainer .row").length;
-        var colCount = $("#videoTextContainer .col-md-3").length;
-
-        $(".popup-content-custom .row #videoPlaceholder").removeAttr('id');
-
         var videoToMove = $(".popup-content-custom .add-video-placeholder-custom").html();
 
-        if ((rowCount === 0) || (colCount !== 0 && Math.floor(colCount / rowCount) === 3)) {
-            $("#videoTextContainer").append(addTextView.RowAddConstString + addTextView.ColAddConstString + videoToMove + addTextView.DivAddConstString + addTextView.DivAddConstString);
-        }
-        else {
-            $("#videoTextContainer .row").last().append(addTextView.ColAddConstString + videoToMove + addTextView.DivAddConstString);
-        }
+        var content = $(videoToMove).attr('src');
+        $.ajax({
+            type: 'POST',
+            url: "/Text/VideoToInsert",
+            data: JSON.stringify(content),
+            contentType: 'application/json; charset=utf-8',
+            success: function (src) {
+                $("#videoTextContainer").append(src);
+            }
+        });
 
-        addTextView.AfterAddingVideo();
         $("#addVideoTextPlaceholder").empty();
     },
 });

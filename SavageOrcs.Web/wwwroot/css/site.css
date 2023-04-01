@@ -1,6 +1,4 @@
 @media (min-width: 900px) {
-
-
     html {
         font-size: 14px;
         position: relative;
@@ -51,10 +49,11 @@
         color: #0F0F0F;
         writing-mode: vertical-rl;
         transform: scale(-1, -1);
+        font-weight: 500;
         /*height: 574px;*/
-        height: 524px;
+        height: 544px;
         width: 60px;
-        top: 185px;
+        top: 105px;
         left: 23px;
         text-transform: uppercase;
         cursor: pointer;
@@ -113,6 +112,7 @@
     .main-text-info {
         width: 530px;
         z-index: 2;
+        font-weight: 500;
         font-size: 48px;
         line-height: 53px;
         color: #FFFFFF;
@@ -123,9 +123,12 @@
         display: flex;
         flex-direction: row;
         justify-content: space-between;
+        font-size: 14px;
+        line-height: 1.21;
     }
 
     .additional-text-info-col {
+        font-weight: 400;
         width: 520px;
         height: 80px;
     }
@@ -162,7 +165,8 @@
     }
 
     .email-container {
-        height: 414px;
+        padding-top:100px;
+        height: 314px;
         padding-left: 64px;
         padding-right: 70px;
     }
@@ -176,6 +180,7 @@
     }
 
     .email-text-info-row {
+        font-weight: 500;
         width: 45%;
         margin-right:5%;
         font-size: 34px;
@@ -332,7 +337,7 @@
     }
 
     .area-for-custom {
-        height: 225px;
+        height: 125px;
     }
 
 

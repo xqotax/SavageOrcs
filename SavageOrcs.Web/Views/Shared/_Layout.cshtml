@@ -2,13 +2,36 @@
 @using SavageOrcs.Web.Resources.Classes
 @inject LanguageService Language
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" prefix="og: http://ogp.me/ns#">
 <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0 maximum-scale=1.0" />
     <meta content="width=device-width, initial-scale=1" name="viewport" />
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/jquery/jquery.cookie.js"></script>
+    <title>@Language.GetKey("Title")</title>
+    <meta name="description" content="@Language.GetKey("Description")">
+
+    <meta name="keywords" content="Війна, Україна, росія, Орки, вандалізм, Гаага, російські злочини, карта з фотографіями, геноцид">
+    <meta name="Author" content="Культурна інституція «Міжвухами»">
+    <meta name="Addres" content="Україна, Київ? Козацька 119 А">
+
+
+    <meta property="og:site_name" content="Настінні докази" />
+    <meta property='og:url' content="https://wallevidence.mizhvukhamy.com/">
+    <meta property='og:title' content="Wall Evidence">
+    <meta property='og:description' content=@Language.GetKey("Description")>
+    <meta property='og:image' content="~/images/redCircle.png">
+    <meta property='og:type' content="website">
+   @* <meta name="robots" content="all">             TO ADD WHILE FINAL DEPLOY*@
+
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="Культурна інституція «Міжвухами»">
+    <meta name="twitter:title" content="Wall Evidence">
+    <meta name="twitter:description" content=@Language.GetKey("Description")>
+    <meta name="twitter:image" content="~/images/redCircle.png">
+    <link rel="icon" href="~/images/icons/redCircle.ico">
+
 
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
@@ -16,16 +39,37 @@
     <link rel="stylesheet" href="~/css/curator/curator.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/css/curator/curatorAdmin.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/css/text/text.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/text/textAdmin.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/css/mark/mark.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/css/mark/markAdmin.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/css/admin/AdminMenu.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/admin/identity.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/css/admin/keyWordAndPlaces.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/css/multiselect.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/css/styles.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/css/tables.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/css/rightScroll.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/SavageOrcs.Web.styles.css" asp-append-version="true" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.18/dist/css/bootstrap-select.min.css">
+    <link rel="stylesheet" href="~/css/font-face.css" asp-append-version="true" />
+    <style>
+        a {
+          color: initial;
+          background-color: initial;
+          border: initial;
+          text-decoration: initial;
+        }
+        a:visited {
+          color: initial;
+          background-color: initial;
+          border: initial;
+          text-decoration: initial;
+        }
+        a:hover {
+          color: initial;
+          background-color: initial;
+          border: initial;
+          text-decoration: initial;
+        }
+    </style>
+    @*<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.18/dist/css/bootstrap-select.min.css">*@
 </head>
 <body>
     <div id="18PlusPopupPlaceholder"></div>

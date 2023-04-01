@@ -10,6 +10,7 @@ namespace SavageOrcs.Services.Interfaces
     public interface ITextService
     {
         Task<TextDto[]> GetTexts();
+        Task<TextShortDto[]> GetShortTexts();
         Task<TextSaveResultDto> SaveText(TextSaveDto textSaveDto);
         Task<TextDto> GetTextById(Guid id);
         Task<TextDto[]> GetTextsByFilters(string? textName, string? textSubject, Guid[]? curatorIds);

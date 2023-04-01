@@ -1,4 +1,4 @@
-var MarkAddView = Class.extend({
+п»їvar MarkAddView = Class.extend({
     IsNew: null,
     Images: null,
     AreaName: null,
@@ -37,7 +37,7 @@ var MarkAddView = Class.extend({
         const myLatlng = { lat: parseFloat(self.Lat), lng: parseFloat(self.Lng) };
 
         this.InfoWindow = new google.maps.InfoWindow({
-            content: "Нажми, щоб отримати координати",
+            content: "РќР°Р¶РјРё, С‰РѕР± РѕС‚СЂРёРјР°С‚Рё РєРѕРѕСЂРґРёРЅР°С‚Рё",
             position: myLatlng,
         });
 
@@ -53,11 +53,11 @@ var MarkAddView = Class.extend({
         }
 
         var placesOptions = {
-            placeholder: "Виберіть локацію",
-            txtSelected: "вибрано",
-            txtAll: "Всі",
-            txtRemove: "Видалити",
-            txtSearch: "Пошук",
+            placeholder: "Р’РёР±РµСЂС–С‚СЊ Р»РѕРєР°С†С–СЋ",
+            txtSelected: "РІРёР±СЂР°РЅРѕ",
+            txtAll: "Р’СЃС–",
+            txtRemove: "Р’РёРґР°Р»РёС‚Рё",
+            txtSearch: "РџРѕС€СѓРє",
             height: "300px",
             Id: "placesMultiselect",
             //MaxElementsToShow: 2
@@ -167,9 +167,14 @@ var MarkAddView = Class.extend({
             self.AddImage();
         });
 
-        $('#saveMark').on('click', function () {
+        $('#save').on('click', function () {
             self.Save();
         });
+
+        $('#delete').on('click', function () {
+            self.DeleteMark();
+        });
+
 
         $('#removeImages').on('click', function () {
             self.RemoveImages();
@@ -312,7 +317,12 @@ var MarkAddView = Class.extend({
             data: JSON.stringify(saveMarkViewModel),
             contentType: 'application/json; charset=utf-8',
             success: function (result) {
-                ResultPopUp(result.success, result.text, result.url, result.id);
+                if (result.success) {
+                    window.location.href = 'https://' + window.location.host + '/Mark/Catalogue';
+                }
+                else {
+                    ResultPopUp(result.success, result.text, result.url, result.id);
+                }
             }
         });
         
@@ -395,6 +405,11 @@ var MarkAddView = Class.extend({
         //    }
         //});
 
+    },
+    RemoveImage: function (el) {
+        var row = $(el).parent().parent().parent();
+        console.log(row);
+        row.remove();
     },
     RemoveImages: function () {
         $("#imageContainer").empty();

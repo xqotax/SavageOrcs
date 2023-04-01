@@ -83,6 +83,13 @@
     flex-direction: row;
     padding-bottom: 13px;
 }
+.text-red-circle {
+    width: 9%;
+}
+.text-red-circle .text-col-content-item {
+    border-top: none;
+}
+
 .text-image-selected-item {
     width: 10%;
 }
@@ -93,4 +100,37 @@
     width: 90%;
     border-top: 2px solid #0F0F0F;
     padding-top: 12px;
+}
+
+
+.text-data-row .red-image-text-row {
+    opacity: 0;
+}
+
+.data-row-selected .red-image-text-row {
+    opacity: 1;
+}
+
+
+
+.textRevisionImage, .textRevisionVideo {
+    max-width: 100%;
+    margin-bottom: 15px;
+    margin-top: 15px;
+    max-height: 400px;
+}
+
+#textRevisionPlaceholder {
+    margin-top: 15px;
+    border-radius: 10px;
+    min-height: 500px;
+    background-color: white;
+}
+
+    #textRevisionPlaceholder a, #textRevisionPlaceholder a:hover, #textRevisionPlaceholder a:active, #textRevisionPlaceholder a:visited {
+        color: rgb(16, 17, 16);
+    }
+
+#editorjs a, #editorjs a:hover, #editorjs a:active, #editorjs a:visited {
+    color: rgb(16, 17, 16);
 }

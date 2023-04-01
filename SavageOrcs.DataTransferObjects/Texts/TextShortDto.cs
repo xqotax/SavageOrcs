@@ -1,4 +1,6 @@
-﻿namespace SavageOrcs.DataTransferObjects.Texts
+﻿using SavageOrcs.DataTransferObjects._Constants;
+
+namespace SavageOrcs.DataTransferObjects.Texts
 {
     public class TextShortDto
     {
@@ -9,5 +11,7 @@
         public string? Subject { get; set; }
 
         public DateTime CreatedDate { get; set; }
+
+        public GuidIdAndStringName? Curator { get; set; }
     }
 }

@@ -8,6 +8,7 @@ namespace SavageOrcs.Web.ViewModels.Text
         {
             Headers = new List<HeaderBlockViewModel>();
             Images = new List<ImageBlockViewModel>();
+            Videos = new List<ImageBlockViewModel>();
             //CheckBoxes = new List<CheckListBlockViewModel>();
             Listes = new List<ListBlockViewModel>();
             Paragraphs = new List<ParagraphBlockViewModel>();
@@ -25,5 +26,7 @@ namespace SavageOrcs.Web.ViewModels.Text
         public List<ParagraphBlockViewModel> Paragraphs { get; set; }
 
         public List<RawBlockViewModel> Raws { get; set; }
+
+        public List<ImageBlockViewModel> Videos { get;  set; }
     }
 }

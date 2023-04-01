@@ -1,0 +1,87 @@
+﻿.wrapper-text-add {
+    padding-bottom: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.text-add-content-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.text-add-left-col {
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+}
+
+.text-add-right-col {
+    width: 55%;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+}
+
+#saveText, #addPhoto, #removePhotos, #addVideo, #removeVideos {
+    width: 100%;
+}
+
+#imageTextContainer, #videoTextContainer {
+    padding-top: 40px;
+    width: 100%;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+}
+
+.text-add-image-row, .text-add-video-row {
+    width: 100%;
+    justify-content: space-between;
+    display: flex;
+    flex-direction: row;
+    padding-bottom: 40px;
+}
+
+.text-add-image-content, .text-add-video-content {
+    max-height: 300px;
+    max-width: 75%;
+}
+
+.text-add-image-action, .text-add-video-action {
+    width: 50px;
+    height: 50px;
+    justify-content: space-around;
+    display: flex;
+    flex-direction: row;
+}
+
+.text-add-image, .text-add-video, .copy-image-button, .copy-video-button, .copy-image, .copy-video {
+    max-height: 100%;
+    max-width: 100%;
+}
+
+.copy-image-button, .copy-video-button {
+    cursor: pointer;
+}
+
+
+#editorjs {
+    border: 2px solid black;
+}
+
+.simple-image img, .simple-video video {
+    max-width: 100%;
+    margin: 0px 0px 15px 10px;
+    max-height: 300px;
+}
+
+
+.editor-video-icon{
+    max-height: 25px;
+    max-width: 25px;
+}

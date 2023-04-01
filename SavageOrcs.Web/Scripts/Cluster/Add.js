@@ -1,4 +1,4 @@
-var ClusterAddView = Class.extend({
+п»їvar ClusterAddView = Class.extend({
     ToDelete: null,
     IsNew: null,
 
@@ -42,7 +42,7 @@ var ClusterAddView = Class.extend({
         const myLatlng = { lat: parseFloat(self.Lat), lng: parseFloat(self.Lng) };
 
         this.InfoWindow = new google.maps.InfoWindow({
-            content: "Нажми, щоб отримати координати",
+            content: "РќР°Р¶РјРё, С‰РѕР± РѕС‚СЂРёРјР°С‚Рё РєРѕРѕСЂРґРёРЅР°С‚Рё",
             position: myLatlng,
         });
 
@@ -54,11 +54,11 @@ var ClusterAddView = Class.extend({
         }
 
         var placesOptions = {
-            placeholder: "Виберіть локацію",
-            txtSelected: "вибрано",
-            txtAll: "Всі",
-            txtRemove: "Видалити",
-            txtSearch: "Пошук",
+            placeholder: "Р’РёР±РµСЂС–С‚СЊ Р»РѕРєР°С†С–СЋ",
+            txtSelected: "РІРёР±СЂР°РЅРѕ",
+            txtAll: "Р’СЃС–",
+            txtRemove: "Р’РёРґР°Р»РёС‚Рё",
+            txtSearch: "РџРѕС€СѓРє",
             height: "300px",
             Id: "placesMultiselect",
             //MaxElementsToShow: 2
@@ -244,7 +244,12 @@ var ClusterAddView = Class.extend({
             data: JSON.stringify(saveClusterViewModel),
             contentType: 'application/json; charset=utf-8',
             success: function (result) {
-                ResultPopUp(result.success, result.text, result.url, result.id);
+                if (result.success) {
+                    window.location.href = 'https://' + window.location.host + '/Mark/Catalogue';
+                }
+                else {
+                    ResultPopUp(result.success, result.text, result.url, result.id);
+                }
             }
         });
 

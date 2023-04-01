@@ -1,0 +1,13 @@
+﻿@using SavageOrcs.Web.ViewModels.Constants
+@model StringAndStringViewModel
+
+
+<div class="text-add-image-row">
+    <div class="text-add-image-content">
+        <img class="text-add-image" src="@Model.Name2" alt="" />
+    </div>
+    <div class="text-add-image-action">
+        <button class="copy-image-button" onclick="addTextView.CopyTimeId(this)"><img class="copy-image" src="~/images/icons/clone.png" /></button>
+        @Html.HiddenFor(x => x.Name1)
+    </div>
+</div>

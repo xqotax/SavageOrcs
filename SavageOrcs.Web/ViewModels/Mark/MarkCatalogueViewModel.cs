@@ -21,8 +21,6 @@ namespace SavageOrcs.Web.ViewModels.Mark
 
         public string? ResourceName { get; set; }
 
-        public string[]? Images { get; set; }
-
         public bool IsCluster { get; set; } = false;
 
     }

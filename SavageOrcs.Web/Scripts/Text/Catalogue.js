@@ -2,12 +2,6 @@
     Curators: null,
     SearchSelectDropdown: null,
 
-    TableTextStartConstString: "<div class=\"table-body-catalogue-text-row justify-content-center d-flex\"><div class=\"table-body-catalogue-text-column-number\">",
-    TableTextNameConstString: "</div><div class=\"table-body-catalogue-text-column-name\"><a href=\"/Text/Revision?id=",
-    TableTextSubjectConstString: "</a></div><div class=\"table-body-catalogue-text-column-subject\">",
-    TableTextCuratorConstString: "</div><div class=\"table-body-catalogue-text-column-curator\"><a href=\"/Curator/Revision?id=",
-    TableTextEndConstString: "</a></div></div>",
-
     InitializeControls: function () {
         var self = this;
 
@@ -34,23 +28,47 @@
         MultiselectDropdown(textNamesOptions);
         MultiselectDropdown(curatorsOptions);
 
-        //self.SubscribeEvents();
+        self.SubscribeEvents();
     },
     SubscribeEvents: function () {
         var self = this;
 
-        $('#search').on('click', function () {
-            self.Search();
-        });
+        //$('#search').on('click', function () {
+        //    self.Search();
+        //});
 
 
-        $("#clearFilters").click(function () {
-            //$("#KeyWord").val('');
-            $("#TextName").val('');
-            $("#TextSubject").val('');
-            $('#curatorMultiselect option').attr('selected', 'selected');
-        });
+        //$("#clearFilters").click(function () {
+        //    //$("#KeyWord").val('');
+        //    $("#TextName").val('');
+        //    $("#TextSubject").val('');
+        //    $('#curatorMultiselect option').attr('selected', 'selected');
+        //});
+
+        var firstElement = $(".text-search-data-table .text-data-row")[0];
+        if (firstElement !== undefined)
+            self.Show(firstElement);
         
+    },
+    Show: function (el) {
+        $('.text-data-row').each(function (idex, element) {
+            $(element).css('opacity', '0.3');
+            $(element).removeClass("data-row-selected");
+        });
+        $(el).css('opacity', '1');
+        $(el).addClass("data-row-selected");
+        var fullId = $(el).find("input:first-child").attr('id')
+        id = fullId.substring(fullId.length - 36);
+
+        $("#textContentPlaceholder").empty();
+        $.ajax({
+            type: 'POST',
+            url: "/Text/GetText?id=" + id ,
+            contentType: 'application/json; charset=utf-8',
+            success: function (result) {
+                $("#textContentPlaceholder").html(result);
+            }
+        });
     },
     Search: function () {
         $(".table-body-catalogue-text").empty();

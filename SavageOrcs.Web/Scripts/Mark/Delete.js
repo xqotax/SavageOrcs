@@ -20,7 +20,13 @@
             url: "/Mark/DeleteConfirm?id=" + $("#Id").val(),
             contentType: 'application/json; charset=utf-8',
             success: function (result) {
-                ResultPopUp(result.success, result.text, result.url, result.id);
+                if (result.success) {
+                    var currentUrl = window.location.href;
+                    window.location.href = currentUrl.substring(0, currentUrl.indexOf('/', 8)) + '/Mark/Catalogue';
+                    location.reload();
+                }
+                else
+                    ResultPopUp(result.success, result.text, result.url, result.id);
 
                 self.Close();
             }

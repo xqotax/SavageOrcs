@@ -4,9 +4,9 @@ namespace SavageOrcs.Repositories.Interfaces
 {
     public interface IRepository<T> where T : class
     {
-        IEnumerable<T> GetAll(Expression<Func<T, bool>>? predicate = null, string? includeProperties = null);
+        IEnumerable<T> GetAll(Expression<Func<T, bool>>? predicate = null);
 
-        T? GetT(Expression<Func<T, bool>>? predicate, string? includeProperties = null);
+        T? GetT(Expression<Func<T, bool>>? predicate);
 
         Task<T?> AddAsync(T? entity);
 
@@ -18,8 +18,8 @@ namespace SavageOrcs.Repositories.Interfaces
 
         void DeleteRange(IEnumerable<T>? entities);
 
-        Task<IEnumerable<T>> GetAllAsync(Expression<Func<T, bool>>? predicate = null, string? includeProperties = null);
+        Task<IEnumerable<T>> GetAllAsync(Expression<Func<T, bool>>? predicate = null);
 
-        Task<T?> GetTAsync(Expression<Func<T, bool>>? predicate, string? includeProperties = null);
+        Task<T?> GetTAsync(Expression<Func<T, bool>>? predicate);
     }
 }

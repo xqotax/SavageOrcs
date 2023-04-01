@@ -79,7 +79,7 @@
     height: 106px;
 }
 .curator-content-name-col {
-    width:50%;
+    width:40%;
     font-weight: 500;
     font-size: 48px;
     line-height: 53px;
@@ -189,4 +189,29 @@
     font-size: 12px;
     line-height: 14px;
     color: #8D8D8D;
+}
+
+
+
+.curator-content-name-col:link {
+    color: black;
+    text-decoration: none;
+}
+
+
+.curator-content-name-col:visited {
+    color: black;
+    text-decoration: none;
+}
+
+
+.curator-content-name-col:hover {
+    color: black;
+    text-decoration: none;
+}
+
+
+.curator-content-name-col:active {
+    color: black;
+    text-decoration: none;
 }

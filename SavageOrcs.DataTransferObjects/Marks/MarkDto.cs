@@ -28,6 +28,8 @@ namespace SavageOrcs.DataTransferObjects.Marks
 
         public string? ResourceNameEng { get; set; }
 
+        public bool IsVisible { get; set; }
+
         public GuidIdAndStringName Curator { get; set; } = new GuidIdAndStringName();
 
         public AreaShortDto? Area { get; set; }
@@ -63,6 +65,8 @@ namespace SavageOrcs.DataTransferObjects.Marks
 
         public string? CuratorName { get; set; }
 
-        public GuidIdAndStringName? Area { get; set; }
+        public bool IsVisible { get; set; }
+
+        public AreaShortDto? Area { get; set; }
     }
 }

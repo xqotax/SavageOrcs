@@ -11,6 +11,7 @@ var MapMainView = Class.extend({
     MapMarks: null,
     MapClusters: null,
     InfoWindow: null,
+    OldZoom: null,
     InitializeControls: function () {
         var self = this;
         const myLatlng = { lat: 50.5077456, lng: 31.018623 };
@@ -29,10 +30,10 @@ var MapMainView = Class.extend({
                 lng: parseFloat(this.Lng)
             },
             zoom: 6,
-            //options: {
-            //    gestureHandling: 'greedy'
-            //},
-            //disableDefaultUI: true,
+            options: {
+                gestureHandling: 'greedy'
+            },
+            disableDefaultUI: true,
             styles: [{ "featureType": "water", "elementType": "geometry.fill", "stylers": [{ "color": "#d3d3d3" }] },
                 { "featureType": "transit", "stylers": [{ "color": "#808080" }, { "visibility": "off" }] },
                 { "featureType": "road.highway", "elementType": "geometry.stroke", "stylers": [{ "visibility": "on" }, { "color": "#b3b3b3" }]},
@@ -53,6 +54,11 @@ var MapMainView = Class.extend({
                 {},
                 { "featureType": "poi", "elementType": "geometry.fill", "stylers": [{ "color": "#dadada" }] }]
         });
+        self.OldZoom = 6;
+        google.maps.event.addListener(map, 'zoom_changed', function () {
+            self.ChangeMarkerSize();
+        });
+
         self.Map = map;
 
         self.MapMarks = [];
@@ -92,9 +98,9 @@ var MapMainView = Class.extend({
                 title: element.name,
                 icon: {
                     url: "images/redCircle.png",
-                    scaledSize: new google.maps.Size(16, 16),
+                    scaledSize: new google.maps.Size(10, 10),
                     origin: new google.maps.Point(0, 0),
-                    anchor: new google.maps.Point(8, 8)
+                    anchor: new google.maps.Point(5, 5)
                 }
             });
 
@@ -105,6 +111,35 @@ var MapMainView = Class.extend({
             self.MapClusters.push({ id: element.id, marker: marker });
         });
         
+    },
+    ChangeMarkerSize: function () {
+        var self = this;
+        var currentZoom = self.Map.getZoom();
+
+        if (!((self.OldZoom <= 15 && currentZoom <= 15) || (self.OldZoom > 15 && currentZoom > 15))) {
+            var iconSize = new google.maps.Size(10, 10);
+            var iconOrigin = new google.maps.Point(0, 0);
+            var iconAnchor = new google.maps.Point(5, 5);
+
+            if (currentZoom > 15) {
+                iconSize = new google.maps.Size(20, 20);
+                iconOrigin = new google.maps.Point(0, 0);
+                iconAnchor = new google.maps.Point(10, 10);
+            }
+
+            for (var i = 0; i < self.MapMarks.length; i++) {
+                var marker = self.MapMarks[i].marker;
+
+                marker.setIcon({
+                    url: marker.getIcon().url,
+                    scaledSize: iconSize,
+                    origin: iconOrigin,
+                    anchor: iconAnchor
+                });
+            }
+        }
+        self.OldZoom = currentZoom;
+
     },
     MarkOnClick: function (marker, element, isCluster = false) {
         var self = this;
