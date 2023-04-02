@@ -64,21 +64,9 @@ namespace SavageOrcs.Services
                 FirstName = user.FirstName,
                 LastName = user.LastName,
                 Email = user.Email,
-                CuratorDto = user.Curators.Any() ? CreateCuratorDto (user.Curators.First()) : null
             };
         }
-
-        private static CuratorDto CreateCuratorDto(Curator curator)
-        {
-            return new CuratorDto
-            {
-                Id = curator.Id,
-                DisplayName = curator.Name,
-                Description = curator.Description,
-                UserId = curator.UserId,
-                Image = curator.Image
-            };
-        }
+        
 
         public async Task<UserSaveResultDto> SaveUser (UserSaveDto userSaveDto)
         {
@@ -93,45 +81,6 @@ namespace SavageOrcs.Services
                 };
             try
             {
-                if (userSaveDto.IsCurator is false && user.Curators.Any())
-                {
-                    var curators = await _curatorRepository.GetAllAsync(x => x.UserId == userSaveDto.Id);
-
-                    if (curators.Any())
-                    {
-                        foreach (var curator in curators)
-                        {
-                            foreach (var text in curator.Texts)
-                            {
-                                text.UpdatedDate = DateTime.Now;
-                                text.CuratorId = null;
-                            }
-                        }
-                        _curatorRepository.DeleteRange(curators);
-                    }
-                }
-                if (userSaveDto.IsCurator is true && user.Curators.Any())
-                {
-                    var curator = user.Curators.First();
-
-                    curator.Name = userSaveDto.DisplayName is null ? "" : userSaveDto.DisplayName;
-                    curator.Description = userSaveDto.Description is null ? "" : userSaveDto.Description;
-                    curator.Image = userSaveDto.CuratorImage;
-                }
-
-                if (userSaveDto.IsCurator is true && !user.Curators.Any())
-                {
-                    var curator = new Curator()
-                    {
-                        Id = new Guid(),
-                        Name = userSaveDto.DisplayName is null ? "" : userSaveDto.DisplayName,
-                        Description = userSaveDto.Description is null ? "" : userSaveDto.Description,
-                        UserId = userSaveDto.Id is null ? "" : userSaveDto.Id,
-                        Image = userSaveDto.CuratorImage
-                    };
-
-                    await _curatorRepository.AddAsync(curator);
-                }
 
                 var oldRoleNames = await _userManager.GetRolesAsync(user);
 
@@ -146,8 +95,8 @@ namespace SavageOrcs.Services
                 //var mainDeveloper = await _userManager.FindByIdAsync("00010001-0001-0001-0001-000100010001");
                 //var allRoleNames = await _userManager.GetRolesAsync(mainDeveloper);
 
-                oldRoleNames.Remove("Global admin");
-                newRoleNames.Remove("Global admin");
+                //oldRoleNames.Remove("Global admin");
+                //newRoleNames.Remove("Global admin");
 
                 foreach (var oldRoleName in oldRoleNames)
                 {

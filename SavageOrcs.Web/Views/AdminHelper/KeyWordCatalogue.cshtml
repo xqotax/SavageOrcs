@@ -1,0 +1,51 @@
+﻿@using SavageOrcs.Web.ViewModels.Constants
+@model GuidIdAndNameViewModel[]
+
+<div class="wrapper-keyWords">
+    <div class="keyWords-header-row">
+        <div class="keyWords-header-text">Ключові слова</div>
+        <div class="keyWords-header-actions">
+            <div class="keyWords-header-action-row">
+                <input type="text" class="text-box-custom form-control keyWordControl" id="filter" placeholder="Пошук">
+                <button id="search" class="btn btn-dark-custom keyWordButton">Пошук</button>
+                <button id="clear" class="btn btn-dark-custom keyWordButton">Очистити фільтр</button>
+            </div>
+            <div class="keyWords-header-action-row">
+                <input type="text" class="text-box-custom form-control keyWordControl" id="keyWordToAdd" placeholder="Введіть ключове слово">
+                <button id="addKeyWord" class="btn btn-dark-custom keyWordButton">Додати</button>
+                <button id="save" class="btn btn-dark-custom keyWordButton">Зберегти</button>
+            </div>
+
+
+
+        </div>
+    </div>
+    <div class="keyWords-content-row">
+        <div class="col-md-1"></div>
+        <div class="col-md-6" id="keyWordContainer">
+            @foreach (var keyWord in Model)
+            {
+                <div class="keyWord-row pb-2">
+                    @Html.HiddenFor(x => keyWord.Id)
+                    <input type="text" class="text-box-custom form-control" value="@keyWord.Name">
+                    <button class="btn btn-dark-custom" onclick="keyWordView.Remove(this)">Видалити</button>
+                </div>
+            }
+        </div>
+        <div class="col-md-4"></div>
+    </div>
+</div>
+
+
+
+@section Scripts{
+
+    <script>
+        var keyWordView = new KeyWordView();
+
+        $(document).ready(function () {
+            keyWordView.InitializeControls();
+        });
+        
+    </script>
+}

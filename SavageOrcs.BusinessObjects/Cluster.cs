@@ -18,6 +18,14 @@ namespace SavageOrcs.BusinessObjects
 
         public string? Description { get; set; }
 
+        public string? DescriptionEng { get; set; }
+
+        public string? ResourceUrl { get; set; }
+
+        public string? ResourceName { get; set; }
+
+        public string? ResourceNameEng { get; set; }
+
         public DateTime CreatedDate { get; set; }
 
         public DateTime UpdatedDate { get; set; }
@@ -30,8 +38,14 @@ namespace SavageOrcs.BusinessObjects
 
         public virtual Area? Area { get; set; }
 
+        public Guid? CuratorId { get; set; }
+
+        public virtual Curator? Curator { get; set; }
+
         public virtual ICollection<Mark> Marks { get; set; } = new HashSet<Mark>();
 
         public virtual ICollection<TextToCluster> TextsToClusters { get; set; } = new HashSet<TextToCluster>();
+
+        public virtual ICollection<PlaceToCluster> PlaceToClusters { get; set; } = new HashSet<PlaceToCluster>();
     }
 }

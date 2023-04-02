@@ -1,166 +1,141 @@
 ﻿@using SavageOrcs.Web.ViewModels.Mark
-@model MarkCatalogueFilter
+@model UnitedCatalogueViewModel
 
-<link itemprop="url" rel="stylesheet" href="~/css/mark/tableShort.css" asp-append-version="true" />
-<link itemprop="url" rel="stylesheet" href="~/css/mark/tableDetail.css" asp-append-version="true" />
-<link itemprop="url" rel="stylesheet" href="~/css/checkBox.css" asp-append-version="true" />
+<style>
+    .slideshow-container {
+        width: 80%;
+        height: 400px;
+        position: relative;
+    }
+</style>
 
-<div class="row">
-    <div class="col-md-2">
-        <select name="keyWordsMultiselect" id="keyWordsMultiselect" multiple multiselect-search="true" multiselect-select-all="true" multiselect-hide-x="true">
-            @foreach (var curator in Model.KeyWords)
-            {
-                <option value=@curator.Id.ToString()>@curator.Name</option>
-            }
-        </select>
-    </div>
-    <div class="col-md-2">
-        @Html.TextBoxFor(m => m.AreaName, new { @class = "text-box-custom form-control display-8-custom", @placeholder = "Назва міста"})
-    </div>
-    <div class="col-md-2">
-        @Html.TextBoxFor(m => m.MarkName, new { @class = "text-box-custom form-control display-8-custom", @placeholder = "Назва мітки"})
-    </div>
-    <div class="col-md-3">
-        @Html.TextBoxFor(m => m.MarkDescription, new { @class = "text-box-custom form-control display-8-custom", @placeholder = "Опис мітки"})
-    </div>
-    <div class="col-md-3">
-        <div class="row justify-content-end">
-            <div class="col-md-auto">
-                <button class="btn btn-dark-custom display-8-custom" id="search">Пошук</button>
-            </div>
-            <div class="col-md-auto">
-                <button class="btn btn-dark-custom display-8-custom" id="clearFilters">Х</button>
+<div class="wrapper-search">
+    <div class="photo-col">
+        <div class="top-row">Пошук</div>
+        <div class="image-placeholder">
+            <div class="slideshow-container">
             </div>
         </div>
     </div>
-    
-</div>
-<div class="row pt-4">
-    <div class="col-md-6">
-        <div class="row justify-content-start align-items-center">
-            <div class="col-md-auto">
-                <label class="text-white-custom display-8-custom">
-                    Тільки поодинокі мітки:
-                </label>
-            </div>
-            <div class="col-md-auto">
-                @Html.CheckBoxFor(m => m.NotIncludeCluster)
+    <div class="table-col">
+        <div class="top-row">
+            <div class="text-container-small">
+                Ваш гід архівом, впорядкований за вмістом написів,
+                географією та обʼєктами, де були знайдені графіті.
             </div>
         </div>
-    </div>
-    
-    <div class="col-md-6">
-        <div class="row justify-content-end align-items-center">
-            <div class="col-md-auto pr-1">
-                <img class="flag-select-custom" id="flagUA" class="box-shadow-grey-custom" src="~/images/flags/UA.png" />
-            </div>
-            <div class="col-md-auto pr-1">
-                <img class="flag-select-custom" id="flagGB" src="~/images/flags/GB.png" />
-            </div>
-            <div class="col-md-auto">
-                <button class="btn btn-dark-custom display-8-custom" id="fullData">Ввімкнути детальний перегляд</button>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="row pt-5">
-    <div class="col-md-12 text-white-custom" id="tableShort">
-        <div class="d-flex text-white-custom display-7-custom table-header-short justify-content-center pb-2">
-            <div class="table-header-short-number">
-                №
-            </div>
-            <div class="table-header-short-name">
-                Назва
-            </div>
-            <div class="table-header-short-description">
-                Опис
-            </div>
-            <div class="table-header-short-area">
-                Місце
-            </div>
-        </div>
-        <div class="table-body-short display-8-custom text-white-custom">
-            @*<div class="table-body-short-row justify-content-center d-flex">
-                <div class="table-body-short-column-number">
-                    1
+        <div class="mark-table">
+            <div class="filter-row">
+                <div class="filter-item-small"></div>
+                <div class="filter-item">
+                    <div class="filter-multiselect-placeholder">
+                        <select name="namesMultiselect" id="namesMultiselect" multiple multiselect-search="true" multiselect-select-all="true" multiselect-hide-x="true">
+                            @foreach (var area in Model.KeyWords)
+                            {
+                                <option value=@("K" + area.Id.ToString())>@area.Name</option>
+                            }
+                            @foreach (var area in Model.MarkNames)
+                            {
+                                <option value=@("M" + area.Id.ToString())>@area.Name</option>
+                            }
+                            @foreach (var area in Model.ClusterNames)
+                            {
+                                <option value=@("C" + area.Id.ToString())>@area.Name</option>
+                            }
+                        </select>
+                    </div>
+                    <div class="filter-big-text-info">Текст напису</div>
+                    <div class="filter-small-text-info">
+                        <div class="text-container-big">Введіть слова, які має містити напис</div>
+                    </div>
                 </div>
-                <div class="table-body-short-column-name">
-                    <a href="/Mark/Revision/">Їхали солдати</a>
+                <div class="filter-item">
+                    <div class="filter-multiselect-placeholder">
+                        <select name="areasMultiselect" id="areasMultiselect" multiple multiselect-search="true" multiselect-select-all="true" multiselect-hide-x="true">
+                            @foreach (var area in Model.Areas)
+                            {
+                                <option value=@area.Id>@area.Name</option>
+                            }
+                        </select>
+                    </div>
+                    <div class="filter-big-text-info">Населений пункт</div>
+                    <div class="filter-small-text-info">
+                        <div class="text-container-big">Почніть вводити назву населеного пункту</div>
+                    </div>
                 </div>
-                <div class="table-body-short-column-description">
-                    Щось дуже велике мало бути тут але мені впадло придумувати що самеЩось дуже велике мало бути тут але мені впадло придумувати що самеЩось дуже велике мало бути тут але мені впадло придумувати що саме
-                </div>
-                <div class="table-body-short-column-area">
-                    Київ, Київська область
+                <div class="filter-item">
+                    <div class="filter-multiselect-placeholder">
+                        <select name="placesMultiselect" id="placesMultiselect" multiple multiselect-search="true" multiselect-select-all="true" multiselect-hide-x="true">
+                            @foreach (var keyWordAndMark in Model.Places)
+                            {
+                                <option value=@keyWordAndMark.Id>@keyWordAndMark.Name</option>
+                            }
+                        </select>
+                    </div>
+                    <div class="filter-big-text-info">Обʼєкт</div>
+                    <div class="filter-small-text-info">
+                        <div class="text-container-big"> Введіть локацію напису: школа, вокзал, магазин…</div>
+                    </div>
                 </div>
             </div>
-            <div class="table-body-short-row justify-content-center d-flex">
-                <div class="table-body-short-column-number">
-                    2
-                </div>
-                <div class="table-body-short-column-name">
-                    Уже не їхали
-                </div>
-                <div class="table-body-short-column-description">
-                    Бо подохли
-                </div>
-                <div class="table-body-short-column-area">
-                    Київ, Київська область
-                </div>
-            </div>*@
-        </div>
-    </div>
-    <div class="col-md-12 text-white-custom" id="tableDetail">
-        <div class="d-flex display-7-custom table-header-detail justify-content-center pb-2">
-            <div class="table-header-detail-number">
-                №
+            <div class="data-row-container">
+                @await Html.PartialAsync("_CatalogueDataRows", Model.Marks)
             </div>
-            <div class="table-header-detail-name">
-                Назва
-            </div>
-            <div class="table-header-detail-description">
-                Опис
-            </div>
-            <div class="table-header-detail-area">
-                Місце
-            </div>
-            <div class="table-header-detail-photo">
-                Фото
-            </div>
-        </div>
-        <div class="table-body-detail display-8-custom">
-            @*<div class="table-body-detail-row justify-content-center d-flex">
-                <div class="table-body-detail-column-number flex-container-center-custom">
-                    1
-                </div>
-                <div class="table-body-detail-column-name flex-container-center-custom">
-                    <a href="">Їхали солдати</a>
-                </div>
-                <div class="table-body-detail-column-description flex-container-center-custom">
-                    Щось дуже велике мало бути тут але мені впадло придумувати що саме
-                </div>
-                <div class="table-body-detail-column-area flex-container-center-custom">
-                    <button class="button-detail-column-area" value="some">Київ, Київська область</button>
-                </div>
-                <div class="table-body-detail-column-photo flex-container-center-custom">
-                    <a href="https://www.hltv.org/matches?event=6586"><img class="table-body-detail-column-photo-item" src="~/images/1.jpg"></a>
-                </div>
-            </div>*@
         </div>
     </div>
 </div>
-<div class="d-flex justify-content-center pt-3">
-    <button class="btn-dark-custom display-8-custom" id="showMore">Показати ще</button>
+<div class="wrapper-search-bottom-text">
+    <div class="bottom-text-row">
+        <div class="bottom-text-col">
+            Маєте матеріали
+            для архіву?
+        </div>
+        <div class="bottom-text-col">Пишіть на скриню:</div>
+    </div>
+    <div class="bottom-text-row">
+        <div class="bottom-text-col"></div>
+        <div class="bottom-text-col">
+            <a style="color: #FF2929" href="mailto:info@mizhvukhamy.com?subject=Application%20for%20joining%20the%20team">
+                info@mizhvukhamy.com
+            </a>
+        </div>
+    </div>
 </div>
 
 
 @section Scripts{
+
+
     <script>
+        let slideIndex = 1;
+        if ($(".mySlides").length) {
+            showSlides(slideIndex);
+        }
+
+        function plusSlides(n) {
+            showSlides(slideIndex += n);
+        }
+
+        function currentSlide(n) {
+            showSlides(slideIndex = n);
+        }
+
+        function showSlides(n) {
+            let i;
+            let slides = document.getElementsByClassName("mySlides");
+            if (n > slides.length) { slideIndex = 1 }
+            if (n < 1) { slideIndex = slides.length }
+            for (i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";
+            }
+            slides[slideIndex - 1].style.display = "block";
+        }
         var catalogueMarkView = new CatalogueMarkView();
 
         $(document).ready(function () {
             catalogueMarkView.InitializeControls();
+            $(".data-row-container").css("overflow-x", "hidden");
         });
-        
+
     </script>
 }

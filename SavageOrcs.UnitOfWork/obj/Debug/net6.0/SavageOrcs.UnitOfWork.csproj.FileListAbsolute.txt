@@ -3,8 +3,10 @@ D:\Навчання\Diploma\SavageOrcs.UnitOfWork\bin\Debug\net6.0\SavageOrcs.Un
 D:\Навчання\Diploma\SavageOrcs.UnitOfWork\bin\Debug\net6.0\SavageOrcs.UnitOfWork.pdb
 D:\Навчання\Diploma\SavageOrcs.UnitOfWork\bin\Debug\net6.0\SavageOrcs.BusinessObjects.dll
 D:\Навчання\Diploma\SavageOrcs.UnitOfWork\bin\Debug\net6.0\SavageOrcs.DbContext.dll
+D:\Навчання\Diploma\SavageOrcs.UnitOfWork\bin\Debug\net6.0\SavageOrcs.Enums.dll
 D:\Навчання\Diploma\SavageOrcs.UnitOfWork\bin\Debug\net6.0\SavageOrcs.DbContext.pdb
 D:\Навчання\Diploma\SavageOrcs.UnitOfWork\bin\Debug\net6.0\SavageOrcs.BusinessObjects.pdb
+D:\Навчання\Diploma\SavageOrcs.UnitOfWork\bin\Debug\net6.0\SavageOrcs.Enums.pdb
 D:\Навчання\Diploma\SavageOrcs.UnitOfWork\obj\Debug\net6.0\SavageOrcs.UnitOfWork.csproj.AssemblyReference.cache
 D:\Навчання\Diploma\SavageOrcs.UnitOfWork\obj\Debug\net6.0\SavageOrcs.UnitOfWork.GeneratedMSBuildEditorConfig.editorconfig
 D:\Навчання\Diploma\SavageOrcs.UnitOfWork\obj\Debug\net6.0\SavageOrcs.UnitOfWork.AssemblyInfoInputs.cache
@@ -15,5 +17,3 @@ D:\Навчання\Diploma\SavageOrcs.UnitOfWork\obj\Debug\net6.0\SavageOrcs.Un
 D:\Навчання\Diploma\SavageOrcs.UnitOfWork\obj\Debug\net6.0\refint\SavageOrcs.UnitOfWork.dll
 D:\Навчання\Diploma\SavageOrcs.UnitOfWork\obj\Debug\net6.0\SavageOrcs.UnitOfWork.pdb
 D:\Навчання\Diploma\SavageOrcs.UnitOfWork\obj\Debug\net6.0\ref\SavageOrcs.UnitOfWork.dll
-D:\Навчання\Diploma\SavageOrcs.UnitOfWork\bin\Debug\net6.0\SavageOrcs.Enums.dll
-D:\Навчання\Diploma\SavageOrcs.UnitOfWork\bin\Debug\net6.0\SavageOrcs.Enums.pdb

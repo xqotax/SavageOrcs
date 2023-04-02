@@ -21,6 +21,10 @@ namespace SavageOrcs.Web.ViewModels.Mark
 
         public string? ClusterName { get; set; }
 
+        public Guid? CuratorId { get; set; }
+
+        public string? CuratorName { get; set; }
+
         public string? Name { get; set; }
 
         public string? Description { get; set; }
@@ -29,19 +33,25 @@ namespace SavageOrcs.Web.ViewModels.Mark
 
         public string? ResourceUrl { get; set; }
 
-        public bool IsApproximate { get; set; }
+        public string? ResourceName { get; set; }
 
-        public string[]? Images { get; set; }
+        public string? ResourceNameEng { get; set; }
 
-        public Guid UserId { get; set; }
-        
+        public StringAndBoolViewModel[] Images { get; set; } = new StringAndBoolViewModel[0];
+
         public bool? IsNew { get; set; }
 
         public bool? ToDelete { get; set; }
 
-        public GuidIdAndNameViewModel[]? Areas { get; set; }
+        public GuidIdAndNameViewModel[] Areas { get; set; } = new GuidIdAndNameViewModel[0];
 
-        public GuidIdAndNameViewModel[]? Clusters { get; set; }
+        public GuidIdAndNameViewModel[] Clusters { get; set; } = new GuidIdAndNameViewModel[0];
+
+        public GuidIdAndNameViewModel[] Curators { get; set; } = new GuidIdAndNameViewModel[0];
+
+        public GuidIdAndNameViewModel[] Places { get; set; } = new GuidIdAndNameViewModel[0];
+
+        public Guid[] SelectedPlaceIds { get; set; } = new Guid[0];
 
     }
 }

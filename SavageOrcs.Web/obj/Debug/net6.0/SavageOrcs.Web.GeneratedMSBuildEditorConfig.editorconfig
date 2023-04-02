@@ -179,6 +179,14 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
+[D:/Навчання/Diploma/SavageOrcs.Web/Views/AdminHelper/KeyWordCatalogue.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5IZWxwZXJcS2V5V29yZENhdGFsb2d1ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Навчання/Diploma/SavageOrcs.Web/Views/AdminHelper/PlaceCatalogue.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5IZWxwZXJcUGxhY2VDYXRhbG9ndWUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [D:/Навчання/Diploma/SavageOrcs.Web/Views/Cluster/Add.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2x1c3RlclxBZGQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
@@ -195,20 +203,48 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2x1c3RlclxfRGVsZXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
+[D:/Навчання/Diploma/SavageOrcs.Web/Views/Curator/Add.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ3VyYXRvclxBZGQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [D:/Навчання/Diploma/SavageOrcs.Web/Views/Curator/Catalogue.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ3VyYXRvclxDYXRhbG9ndWUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Навчання/Diploma/SavageOrcs.Web/Views/Curator/CatalogueOld.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ3VyYXRvclxDYXRhbG9ndWVPbGQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [D:/Навчання/Diploma/SavageOrcs.Web/Views/Curator/Revision.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ3VyYXRvclxSZXZpc2lvbi5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
+[D:/Навчання/Diploma/SavageOrcs.Web/Views/Curator/_AddImage.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ3VyYXRvclxfQWRkSW1hZ2UuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Навчання/Diploma/SavageOrcs.Web/Views/Curator/_CatalogueDataRows.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ3VyYXRvclxfQ2F0YWxvZ3VlRGF0YVJvd3MuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Навчання/Diploma/SavageOrcs.Web/Views/Curator/_Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ3VyYXRvclxfRGVsZXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [D:/Навчання/Diploma/SavageOrcs.Web/Views/Error/NotFound.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRXJyb3JcTm90Rm91bmQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
+[D:/Навчання/Diploma/SavageOrcs.Web/Views/Error/ServerError.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRXJyb3JcU2VydmVyRXJyb3IuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [D:/Навчання/Diploma/SavageOrcs.Web/Views/Map/Main.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWFwXE1haW4uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Навчання/Diploma/SavageOrcs.Web/Views/Map/_18PlusPopup.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWFwXF8xOFBsdXNQb3B1cC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [D:/Навчання/Diploma/SavageOrcs.Web/Views/Mark/Add.cshtml]
@@ -227,8 +263,24 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWFya1xfQWRkSW1hZ2UuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
+[D:/Навчання/Diploma/SavageOrcs.Web/Views/Mark/_CatalogueDataRows.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWFya1xfQ2F0YWxvZ3VlRGF0YVJvd3MuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Навчання/Diploma/SavageOrcs.Web/Views/Mark/_CatalogueForCuratorDataRows.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWFya1xfQ2F0YWxvZ3VlRm9yQ3VyYXRvckRhdGFSb3dzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Навчання/Diploma/SavageOrcs.Web/Views/Mark/_CatalogueImage.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWFya1xfQ2F0YWxvZ3VlSW1hZ2UuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [D:/Навчання/Diploma/SavageOrcs.Web/Views/Mark/_Delete.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWFya1xfRGVsZXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Навчання/Diploma/SavageOrcs.Web/Views/Mark/_ImageToInsert.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWFya1xfSW1hZ2VUb0luc2VydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [D:/Навчання/Diploma/SavageOrcs.Web/Views/Mark/_RevisionImage.cshtml]
@@ -239,8 +291,16 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
+[D:/Навчання/Diploma/SavageOrcs.Web/Views/Shared/NavigationAdmin.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXE5hdmlnYXRpb25BZG1pbi5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [D:/Навчання/Diploma/SavageOrcs.Web/Views/Shared/_LoginPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9Mb2dpblBhcnRpYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Навчання/Diploma/SavageOrcs.Web/Views/Shared/_SideMenu.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9TaWRlTWVudS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [D:/Навчання/Diploma/SavageOrcs.Web/Views/Shared/_ValidationScriptsPartial.cshtml]
@@ -263,8 +323,28 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGV4dFxfQWRkSW1hZ2UuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
+[D:/Навчання/Diploma/SavageOrcs.Web/Views/Text/_AddVideo.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGV4dFxfQWRkVmlkZW8uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Навчання/Diploma/SavageOrcs.Web/Views/Text/_CatalogueDataRows.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGV4dFxfQ2F0YWxvZ3VlRGF0YVJvd3MuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Навчання/Diploma/SavageOrcs.Web/Views/Text/_CatalogueForCuratorDataRows.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGV4dFxfQ2F0YWxvZ3VlRm9yQ3VyYXRvckRhdGFSb3dzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [D:/Навчання/Diploma/SavageOrcs.Web/Views/Text/_Delete.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGV4dFxfRGVsZXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Навчання/Diploma/SavageOrcs.Web/Views/Text/_ImageToInsert.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGV4dFxfSW1hZ2VUb0luc2VydC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Навчання/Diploma/SavageOrcs.Web/Views/Text/_VideoToInsert.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGV4dFxfVmlkZW9Ub0luc2VydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [D:/Навчання/Diploma/SavageOrcs.Web/Views/User/Catalogue.cshtml]

@@ -1,0 +1,38 @@
+﻿@using SavageOrcs.Web.ViewModels.Mark
+@model MarkCatalogueViewModel[]
+@for (int i = 1; i <= Model.Length; i++)
+{
+    <a class="data-row-mark-for-curator"
+   href="@Url.Action("Revision", Model[i-1].IsCluster ? "Cluster": "Mark", new { id = Model[i-1].Id })">
+        @Html.HiddenFor(m => m[i-1].Id, new { id =  i.ToString() + Model[i-1].Id.ToString()})
+        @Html.HiddenFor(m => m[i-1].IsCluster, new { id =  i.ToString() + Model[i-1].IsCluster.ToString()})
+
+        <div class="col-item-for-curator-number">
+            <div class="col-content-item">
+                <div class="col-number-item">@i.ToString()</div>
+            </div>
+        </div>
+        <div class="col-item">
+            <div class="col-content-item">
+                <div class="col-area-item">@Model[i - 1].Area.Name</div>
+            </div>
+        </div>
+        <div class="col-item">
+            <div class="col-content-item">
+                <div class="col-name-item">@Model[i - 1].Name</div>
+            </div>
+        </div>
+        <div class="col-item-space">
+        </div>
+        <div class="col-item">
+            <div class="col-content-item">
+                <div class="col-author-item">
+                    @if (!string.IsNullOrEmpty(Model[i - 1].ResourceName))
+                    {
+                        <div>Ресурс @Model[i - 1].ResourceName</div>
+                    }
+                </div>
+            </div>
+        </div>
+    </a>
+}

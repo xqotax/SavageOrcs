@@ -12,7 +12,7 @@
 
   <ItemGroup>
     <None Include="bundleconfig.json" />
-    <None Include="wwwroot\images\1.jpg" />
+    <None Include="wwwroot\images\rubbish\1.jpg" />
   </ItemGroup>
 
   <ItemGroup>
@@ -39,6 +39,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="wwwroot\css\cluster\" />
     <Folder Include="wwwroot\images\flags\" />
   </ItemGroup>
 

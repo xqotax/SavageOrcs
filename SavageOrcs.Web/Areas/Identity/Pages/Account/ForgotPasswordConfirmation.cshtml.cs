@@ -20,6 +20,7 @@ namespace SavageOrcs.Web.Areas.Identity.Pages.Account
         /// </summary>
         public void OnGet()
         {
+
         }
     }
 }

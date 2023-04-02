@@ -1,0 +1,53 @@
+﻿@using SavageOrcs.Web.ViewModels.Constants
+@model GuidIdAndNameViewModelWithEnglishName[]
+
+<div class="wrapper-places">
+    <div class="places-header-row">
+        <div class="places-header-text">Місця</div>
+        <div class="places-header-actions">
+            <div class="places-header-action-row">
+                <input type="text" class="text-box-custom form-control placeControl" id="filter" placeholder="Пошук">
+                <button id="search" class="btn btn-dark-custom keyWordButton">Пошук</button>
+                <button id="clear" class="btn btn-dark-custom keyWordButton">Очистити фільтр</button>
+            </div>
+            <div class="places-header-action-row">
+                <input type="text" class="text-box-custom form-control placeControlShort" id="placeToAdd" placeholder="Введіть місце українською">
+                <input type="text" class="text-box-custom form-control placeControlShort" id="placeToAddEng" placeholder="Введіть місце англійською">
+                <button id="addPlace" class="btn btn-dark-custom placeButton">Додати</button>
+                <button id="save" class="btn btn-dark-custom placeButton">Зберегти</button>
+            </div>
+        </div>
+    </div>
+    <div class="places-delete-info">
+        Пам'ятайте, якщо ви видалите з системи один чи декілька записів - всі зв'язки в інших об'єктах також втратять цей запис!
+    </div>
+    <div class="places-content-row">
+        <div class="col-md-1"></div>
+        <div class="col-md-6" id="placeContainer">
+            @foreach (var place in Model)
+            {
+                <div class="place-row pb-2">
+                    @Html.HiddenFor(x => place.Id)
+                    <input type="text" class="text-box-custom form-control" value="@place.Name">
+                    <input type="text" class="text-box-custom form-control" value="@place.NameEng">
+                    <button class="btn btn-dark-custom" onclick="placeView.Remove(this)">Видалити</button>
+                </div>
+            }
+        </div>
+        <div class="col-md-4"></div>
+    </div>
+</div>
+
+
+
+@section Scripts{
+
+    <script>
+        var placeView = new PlaceView();
+
+        $(document).ready(function () {
+            placeView.InitializeControls();
+        });
+
+    </script>
+}

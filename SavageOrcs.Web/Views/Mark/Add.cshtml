@@ -2,146 +2,219 @@
 @model AddMarkViewModel
 
 <link itemprop="url" rel="stylesheet" href="~/lib/search-select/search-select.css" />
-<link itemprop="url" rel="stylesheet" href="~/css/checkBox.css" asp-append-version="true" />
 <div id="addImagePlaceholder"></div>
 <div id="deleteMarkPlaceholder"></div>
-<div class="row">
-    <div class="col-md-5">
-        @Html.HiddenFor(m => m.Id)
-        @Html.HiddenFor(m => m.Zoom)
-        <div class="row pb-2">
-            <div class="col-md-4 d-flex align-items-center">
-                <label class="text-white-custom display-8-custom">
-                    Скупчення:
-                </label>
-            </div>
-
-            <div class="col-md-7" id="Cluster">
-                <input id="dropdown-input-for-cluster"
-                       name="dropdown-input-for-cluster"
-                       class="Search-Select--Hidden-Input"
-                       placeholder=""
-                       data-search-placeholder="Знайдіть необхідне скупчення"
-                       hidden />
-            </div>
-        </div>
-        <div class="row pb-2">
-            <div class="col-md-4 d-flex align-items-center">
-                <label class="text-white-custom display-8-custom">
-                    Ширина:
-                </label>
-            </div>
-            <div class="col-md-7">
-                @Html.TextBoxFor(m => m.Lng, new { @class = "text-box-custom form-control display-8-custom"})
-            </div>
-        </div>
-        <div class="row pb-2">
-            <div class="col-md-4 d-flex align-items-center">
-                <label class="text-white-custom  display-8-custom">
-                    Висота:
-                </label>
-            </div>
-            <div class="col-md-7">
-                @Html.TextBoxFor(m => m.Lat, new { @class = "text-box-custom form-control display-8-custom"})
-            </div>
-        </div>
-        <div class="row pb-2">
-            <div class="col-md-4 d-flex align-items-center">
-                <label class="text-white-custom display-8-custom">
-                    Назва:
-                </label>
-            </div>
-            <div class="col-md-7">
-                @Html.TextBoxFor(m => m.Name, new { @class = "text-box-custom form-control display-8-custom"})
-            </div>
-        </div>
-        <div class="row pb-2">
-            <div class="col-md-4 d-flex align-items-center">
-                <label class="text-white-custom display-8-custom">
-                    Опис:
-                </label>
-            </div>
-            <div class="col-md-7">
-                @Html.TextAreaFor(m => m.Description, new { @class = "text-box-custom form-control display-8-custom area-for-custom"})
-            </div>
-        </div>
-        <div class="row pb-2">
-            <div class="col-md-4 d-flex align-items-center">
-                <label class="text-white-custom display-8-custom">
-                    Опис для іноземних користувачів:
-                </label>
-            </div>
-            <div class="col-md-7">
-                @Html.TextAreaFor(m => m.DescriptionEng, new { @class = "text-box-custom form-control display-8-custom area-for-custom"})
-            </div>
-        </div>
-        <div class="row pb-2">
-            <div class="col-md-4 d-flex align-items-center">
-                <label class="text-white-custom display-8-custom">
-                    Місце:
-                </label>
-            </div>
-            <div class="col-md-7"  id="Area">
-                    <input id="dropdown-input-for-mark"
-                       name="dropdown-input-for-mark"
-                           class="Search-Select--Hidden-Input"
-                           placeholder=""
-                           data-search-placeholder="Знайдіть необхідне місто"
-                           hidden />
-            </div>
-        </div>
-
-        
-        <div class="row pb-2">
-            <div class="col-md-4 d-flex align-items-center">
-                <label class="text-white-custom display-8-custom">
-                    Посилання на ресурс:
-                </label>
-            </div>
-            <div class="col-md-7">
-                @Html.TextBoxFor(m => m.ResourceUrl , new { @class = "text-box-custom form-control display-8-custom"})
-            </div>
-        </div>
-        <div class="row pb-2">
-            <div class="col-md-4 d-flex align-items-center">
-                <label class="text-white-custom display-8-custom" for="IsApproximate">
-                    Точні координати:
-                </label>
-            </div>
-            <div class="col-md-6">
-                @Html.CheckBoxFor(m => m.IsApproximate)
+<div class="wrapper-mark-add">
+    <div class="mark-add-action-row">
+        <div class="row mt-1 mb-1 display-8-custom">
+            @if (Model.Id is not null)
+            {
+                <div class="col-md-auto pr-2">
+                    <button class="btn btn-dark-custom" id="delete">Видалити</button>
+                </div>
+                <div class="col-md-auto pr-2">
+                    <a class="btn btn-dark-custom" href="/Mark/Revision?id=@Model.Id.ToString()">Переглянути</a>
+                </div>
+            }
+            <div class="col-md-auto pr-2">
+                <button id="save" class="btn btn-dark-custom">Зберегти</button>
             </div>
         </div>
     </div>
-    <div class="col-md-7">
-        <div class="row">
-            <div id="mapMarkAdd">
+    <hr style="border-top: 3px solid #3c6624">
+
+    <div class="mark-add-content-row">
+        <div class="mark-add-main-content">
+            <div class="mark-add-tool-col">
+                @Html.HiddenFor(m => m.Id)
+                @Html.HiddenFor(m => m.Zoom)
+                <div class="row pb-2">
+                    <div class="col-md-4 d-flex align-items-center">
+                        <label>
+                            Скупчення:
+                        </label>
+                    </div>
+
+                    <div class="col-md-7" id="Cluster">
+                        <input id="dropdown-input-for-cluster"
+                               name="dropdown-input-for-cluster"
+                               class="Search-Select--Hidden-Input"
+                               placeholder=""
+                               data-search-placeholder="Знайдіть необхідне скупчення"
+                               hidden />
+                    </div>
+                </div>
+                <div class="row pb-2">
+                    <div class="col-md-4 d-flex align-items-center">
+                        <label>
+                            Куратор:
+                        </label>
+                    </div>
+
+                    <div class="col-md-7" id="Curator">
+                        <input id="dropdown-input-for-curator"
+                               name="dropdown-input-for-curator"
+                               class="Search-Select--Hidden-Input"
+                               placeholder=""
+                               data-search-placeholder="Виберіть куратора"
+                               hidden />
+                    </div>
+                </div>
+                <div class="row pb-2">
+                    <div class="col-md-4 d-flex align-items-center">
+                        <label>
+                            Ширина:
+                        </label>
+                    </div>
+                    <div class="col-md-7">
+                        @Html.TextBoxFor(m => m.Lng, new { @class = "text-box-custom form-control"})
+                    </div>
+                </div>
+                <div class="row pb-2">
+                    <div class="col-md-4 d-flex align-items-center">
+                        <label>
+                            Висота:
+                        </label>
+                    </div>
+                    <div class="col-md-7">
+                        @Html.TextBoxFor(m => m.Lat, new { @class = "text-box-custom form-control "})
+                    </div>
+                </div>
+                <div class="row pb-2">
+                    <div class="col-md-4 d-flex align-items-center">
+                        <label>
+                            Назва:
+                        </label>
+                    </div>
+                    <div class="col-md-7">
+                        @Html.TextAreaFor(m => m.Name, new { @class = "text-box-custom form-control  area-for-custom"})
+                    </div>
+                </div>
+                <div class="row pb-2">
+                    <div class="col-md-4 d-flex align-items-center">
+                        <label>
+                            Опис:
+                        </label>
+                    </div>
+                    <div class="col-md-7">
+                        @Html.TextAreaFor(m => m.Description, new { @class = "text-box-custom form-control area-for-custom"})
+                    </div>
+                </div>
+                <div class="row pb-2">
+                    <div class="col-md-4 d-flex align-items-center">
+                        <label>
+                            Опис для іноземних користувачів:
+                        </label>
+                    </div>
+                    <div class="col-md-7">
+                        @Html.TextAreaFor(m => m.DescriptionEng, new { @class = "text-box-custom form-control area-for-custom"})
+                    </div>
+                </div>
+                <div class="row pb-2">
+                    <div class="col-md-4 d-flex align-items-center">
+                        <label>
+                            Місце:
+                        </label>
+                    </div>
+                    <div class="col-md-7" id="Area">
+                        <input id="dropdown-input-for-mark"
+                               name="dropdown-input-for-mark"
+                               class="Search-Select--Hidden-Input"
+                               placeholder=""
+                               data-search-placeholder="Знайдіть необхідне місто"
+                               hidden />
+                    </div>
+                </div>
+                <div class="row pb-2">
+                    <div class="col-md-4 d-flex align-items-center">
+                        <label>
+                            Місця:
+                        </label>
+                    </div>
+                    <div class="col-md-7" id="Place">
+                        <select name="placesMultiselect" id="placesMultiselect" multiple multiselect-search="true" multiselect-select-all="true" multiselect-hide-x="true">
+                            @foreach (var keyWordAndMark in Model.Places)
+                            {
+                                @if (Model.SelectedPlaceIds.Contains(keyWordAndMark.Id))
+                                {
+                                    <option selected value=@keyWordAndMark.Id>@keyWordAndMark.Name</option>
+                                }
+                                else
+                                {
+                                    <option value=@keyWordAndMark.Id>@keyWordAndMark.Name</option>
+                                }
+                            }
+                        </select>
+                    </div>
+                </div>
+                <div class="row pb-2">
+                    <div class="col-md-4 d-flex align-items-center">
+                        <label>
+                            Назва ресурсу:
+                        </label>
+                    </div>
+                    <div class="col-md-7">
+                        @Html.TextBoxFor(m => m.ResourceName , new { @class = "text-box-custom form-control"})
+                    </div>
+                </div>
+                <div class="row pb-2">
+                    <div class="col-md-4 d-flex align-items-center">
+                        <label>
+                            Назва ресурсу  для іноземних користувачів:
+                        </label>
+                    </div>
+                    <div class="col-md-7">
+                        @Html.TextBoxFor(m => m.ResourceNameEng , new { @class = "text-box-custom form-control"})
+                    </div>
+                </div>
+                <div class="row pb-2">
+                    <div class="col-md-4 d-flex align-items-center">
+                        <label>
+                            Посилання на ресурс:
+                        </label>
+                    </div>
+                    <div class="col-md-7">
+                        @Html.TextBoxFor(m => m.ResourceUrl , new { @class = "text-box-custom form-control"})
+                    </div>
+                </div>
+            </div>
+            <div class="mark-add-map-col">
+                <div class="row">
+                    <div id="mapMarkAdd">
+                    </div>
+                </div>
+                <div class="row justify-content-end">
+                    <button id="setCoordinates" class="btn btn-dark-custom mt-3">Задати координати</button>
+                </div>
+                
             </div>
         </div>
-        <div class="row justify-content-end">
-            <button id="setCoordinates" class="btn btn-dark-custom display-8-custom mt-3">Задати координати</button>
-        </div>
-        <div class="row justify-content-end">
-            <button id="saveMark" class="btn btn-dark-custom display-8-custom mt-3">Зберегти</button>
+        <div class="mark-add-image-container">
+            <div class="row">
+                <div class="col-md-4 display-6 font-weight-super-bold-custom">Фотографії</div>
+                <div class="col-md-2 offset-md-4">
+                    <button id="addImage" style="width: 90%;" class="btn btn-dark-custom">Додати</button>
+                </div>
+                <div class="col-md-2">
+                    <button id="removeImages" style="width: 100%;" class="btn btn-dark-custom">Видалити всі</button>
+                </div>
+            </div>
+            <div id="imageContainer">
+                @if (Model.Images.Length != 0)
+                {
+                    foreach (var image in Model.Images)
+                    {
+                        @await Html.PartialAsync("_ImageToInsert", image)
+                        ;
+                    }
+                }
+            </div>
         </div>
     </div>
 </div>
 
 
-<div class="row" style="margin-top: 100px; margin-bottom: 30px">
-    <div class="col-md-4 display-6 text-white-custom font-weight-super-bold-custom">Фотографії</div>
-    <div class="col-md-2 offset-md-4">
-        <button id="addImage" style="width: 90%;" class="btn btn-dark-custom display-8-custom">Добавити</button>
-    </div>
-    <div class="col-md-2">
-        <button id="removeImages" style="width: 100%;" class="btn btn-dark-custom display-8-custom">Видалити</button>
-    </div>
-</div>
-<div class="row" id="imageContainer">
-    <div class="row justify-content-md-around">
-       
-    </div>
-</div>
+
 
 
 @section Scripts{
@@ -149,19 +222,21 @@
 
     <script>
         var markAddView = new MarkAddView();
-        markAddView.Lat = '@Html.Raw(Model.Lat)';
-        markAddView.Lng = '@Html.Raw(Model.Lng)';
-        markAddView.Zoom = '@Html.Raw(Model.Zoom)';
+        markAddView.Lat = @Html.Raw(Model.Lat);
+        markAddView.Lng = @Html.Raw(Model.Lng);
+        markAddView.Zoom = @Html.Raw(Model.Zoom);
         markAddView.IsNew = '@Html.Raw(Model.IsNew)' === '@true';
         markAddView.ToDelete = '@Html.Raw(Model.ToDelete)' === '@true';
         markAddView.Images = @Json.Serialize(Model.Images);
         markAddView.Areas = @Json.Serialize(Model.Areas);
         markAddView.Clusters = @Json.Serialize(Model.Clusters);
-        markAddView.AreaName = '@Html.Raw(Model.AreaName)';
-        markAddView.AreaId = '@Html.Raw(Model.AreaId)';
-        markAddView.ClusterName = '@Html.Raw(Model.ClusterName)';
-        markAddView.ClusterId = '@Html.Raw(Model.ClusterId)';
-        markAddView.IsApproximate = '@Html.Raw(Model.IsApproximate)';
+        markAddView.Curators = @Json.Serialize(Model.Curators);
+        markAddView.AreaName = @Json.Serialize(Model.AreaName);
+        markAddView.AreaId = @Json.Serialize(Model.AreaId);
+        markAddView.ClusterName = @Json.Serialize(Model.ClusterName);
+        markAddView.ClusterId = @Json.Serialize(Model.ClusterId);
+        markAddView.CuratorName = @Json.Serialize(Model.CuratorName);
+        markAddView.CuratorId = @Json.Serialize(Model.CuratorId);
 
         $(document).ready(function () {
             markAddView.InitializeControls();

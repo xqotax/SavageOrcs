@@ -11,6 +11,7 @@ var MapMainView = Class.extend({
     MapMarks: null,
     MapClusters: null,
     InfoWindow: null,
+    OldZoom: null,
     InitializeControls: function () {
         var self = this;
         const myLatlng = { lat: 50.5077456, lng: 31.018623 };
@@ -32,8 +33,32 @@ var MapMainView = Class.extend({
             options: {
                 gestureHandling: 'greedy'
             },
-            disableDefaultUI: true
+            disableDefaultUI: true,
+            styles: [{ "featureType": "water", "elementType": "geometry.fill", "stylers": [{ "color": "#d3d3d3" }] },
+                { "featureType": "transit", "stylers": [{ "color": "#808080" }, { "visibility": "off" }] },
+                { "featureType": "road.highway", "elementType": "geometry.stroke", "stylers": [{ "visibility": "on" }, { "color": "#b3b3b3" }]},
+                { "featureType": "road.highway", "elementType": "geometry.fill", "stylers": [{ "color": "#ffffff" }] },
+                { "featureType": "road.local", "elementType": "geometry.fill", "stylers": [{ "visibility": "on" }, { "color": "#ffffff" }, { "weight": 1.8 }] },
+                { "featureType": "road.local", "elementType": "geometry.stroke", "stylers": [{ "color": "#d7d7d7" }] },
+                { "featureType": "poi", "elementType": "geometry.fill", "stylers": [{ "visibility": "on" }, { "color": "#ebebeb" }] },
+                { "featureType": "administrative", "elementType": "geometry", "stylers": [{ "color": "#a7a7a7" }] },
+                { "featureType": "road.arterial", "elementType": "geometry.fill", "stylers": [{ "color": "#ffffff" }] },
+                { "featureType": "road.arterial", "elementType": "geometry.fill", "stylers": [{ "color": "#ffffff" }] },
+                { "featureType": "landscape", "elementType": "geometry.fill", "stylers": [{ "visibility": "on" }, { "color": "#efefef" }] },
+                { "featureType": "road", "elementType": "labels.text.fill", "stylers": [{ "color": "#696969" }] },
+                { "featureType": "administrative", "elementType": "labels.text.fill", "stylers": [{ "visibility": "on" }, { "color": "#737373" }] },
+                { "featureType": "poi", "elementType": "labels.icon", "stylers": [{ "visibility": "off" }] },
+                { "featureType": "poi", "elementType": "labels", "stylers": [{ "visibility": "off" }] },
+                { "featureType": "road.arterial", "elementType": "geometry.stroke", "stylers": [{ "color": "#d6d6d6" }] },
+                { "featureType": "road", "elementType": "labels.icon", "stylers": [{ "visibility": "off" }] },
+                {},
+                { "featureType": "poi", "elementType": "geometry.fill", "stylers": [{ "color": "#dadada" }] }]
         });
+        self.OldZoom = 6;
+        google.maps.event.addListener(map, 'zoom_changed', function () {
+            self.ChangeMarkerSize();
+        });
+
         self.Map = map;
 
         self.MapMarks = [];
@@ -48,10 +73,10 @@ var MapMainView = Class.extend({
                 map: map,
                 title: element.name,
                 icon: {
-                    url: element.isApproximate ? "images/markIconApproximate.png" : "images/markIcon.png",
-                    scaledSize: new google.maps.Size(20, 20),
+                    url: "images/redCircle.png",
+                    scaledSize: new google.maps.Size(10, 10),
                     origin: new google.maps.Point(0, 0),
-                    anchor: new google.maps.Point(10, 10)
+                    anchor: new google.maps.Point(5, 5)
                 }
             });
 
@@ -72,10 +97,10 @@ var MapMainView = Class.extend({
                 map: map,
                 title: element.name,
                 icon: {
-                    url: "images/clusterIcon.png",
-                    scaledSize: new google.maps.Size(30, 30),
+                    url: "images/redCircle.png",
+                    scaledSize: new google.maps.Size(20, 20),
                     origin: new google.maps.Point(0, 0),
-                    anchor: new google.maps.Point(15, 15)
+                    anchor: new google.maps.Point(10, 10)
                 }
             });
 
@@ -86,6 +111,35 @@ var MapMainView = Class.extend({
             self.MapClusters.push({ id: element.id, marker: marker });
         });
         
+    },
+    ChangeMarkerSize: function () {
+        var self = this;
+        var currentZoom = self.Map.getZoom();
+
+        if (!((self.OldZoom <= 15 && currentZoom <= 15) || (self.OldZoom > 15 && currentZoom > 15))) {
+            var iconSize = new google.maps.Size(10, 10);
+            var iconOrigin = new google.maps.Point(0, 0);
+            var iconAnchor = new google.maps.Point(5, 5);
+
+            if (currentZoom > 15) {
+                iconSize = new google.maps.Size(20, 20);
+                iconOrigin = new google.maps.Point(0, 0);
+                iconAnchor = new google.maps.Point(10, 10);
+            }
+
+            for (var i = 0; i < self.MapMarks.length; i++) {
+                var marker = self.MapMarks[i].marker;
+
+                marker.setIcon({
+                    url: marker.getIcon().url,
+                    scaledSize: iconSize,
+                    origin: iconOrigin,
+                    anchor: iconAnchor
+                });
+            }
+        }
+        self.OldZoom = currentZoom;
+
     },
     MarkOnClick: function (marker, element, isCluster = false) {
         var self = this;

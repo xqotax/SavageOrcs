@@ -83,6 +83,10 @@ namespace SavageOrcs.Web.Controllers
             {
                 return "<img class=\"textRevisionImage\" src=\"" + block.Content +"\" title=\"" + block.AdditionParameter?.Replace('"', '\'') +  "\"/>";
             }
+            else if (block.Type == BlockType.Video)
+            {
+                return "<video controls class=\"textRevisionVideo\" src=\"" + block.Content + "\" title=\"" + block.AdditionParameter?.Replace('"', '\'') + "\"/>";
+            }
 
             else return "";
         }
@@ -144,13 +148,14 @@ namespace SavageOrcs.Web.Controllers
                             Index = blockDto.Index,
                             Caption = blockDto.AdditionParameter
                         });
-                    //else if (blockDto.Type == BlockType.CheckList)
-                    //    addTextViewModel.Blocks.CheckBoxes.Add(new CheckListBlockViewModel
-                    //    {
-                    //        Id = blockDto.CustomId,
-                    //        Items = blockDto.Content?.Split("\n_\n"),
-                    //        Index = blockDto.Index,
-                    //    });
+                    else if (blockDto.Type == BlockType.Video)
+                        addTextViewModel.Blocks.Images.Add(new ImageBlockViewModel
+                        {
+                            Id = blockDto.CustomId,
+                            Src = blockDto.Content,
+                            Index = blockDto.Index,
+                            Caption = blockDto.AdditionParameter
+                        });
                     else if (blockDto.Type == BlockType.List)
                         addTextViewModel.Blocks.Listes.Add(new ListBlockViewModel
                         {
@@ -223,6 +228,13 @@ namespace SavageOrcs.Web.Controllers
                     Type = BlockType.Image,
                     Index = x.Index,
                     AdditionParameter = x.Caption
+                })).Concat(saveTextViewModel.Blocks.Videos.Select(x => new BlockDto
+                {
+                    CustomId = x.Id,
+                    Content = x.Src,
+                    Type = BlockType.Video,
+                    Index = x.Index,
+                    AdditionParameter = x.Caption
                 })).Concat(saveTextViewModel.Blocks.Paragraphs.Select(x => new BlockDto
                 {
                     CustomId = x.Id,
@@ -278,25 +290,41 @@ namespace SavageOrcs.Web.Controllers
             });
         }
 
+        [AllowAnonymous]
+        public async Task<JsonResult> GetText(Guid id)
+        {
+            var textDto = await _textService.GetTextById(id);
+            var content = textDto.BlockDtos is null ? "" : string.Join("", textDto.BlockDtos.OrderBy(x => x.Index).Select(x => GetHtmlText(x)).ToArray());
+            return Json(content);
+        }
+
 
         [AllowAnonymous]
         public async Task<IActionResult> Catalogue()
         {
-            var curatorDtos = await _curatorService.GetCurators();
-
-            var filterCatalogueTextViewModel = new FilterCatalogueTextViewModel
+            var unitedTextViewModel = new UnitedCatalogueTextViewModel();
+            var textDtos = await _textService.GetShortTexts();
+            unitedTextViewModel.Curators = (await _curatorService.GetCurators()).Select(x => new GuidIdAndNameViewModel
             {
-                CuratorIds = Array.Empty<Guid>(),
-                TextName = "",
-                TextSubject = "",
-                Curators = curatorDtos.Select(x => new GuidIdAndNameViewModel
-                {
-                    Id = x.Id,
-                    Name = x.DisplayName
-                }).ToArray()
-            };
+                Id = x.Id,
+                Name = x.DisplayName
+            }).ToArray();
 
-            return View(filterCatalogueTextViewModel);
+            unitedTextViewModel.Texts = textDtos.Select(x => new TextRevisionViewModel
+            {
+                Id = x.Id,
+                Name = x.Name,
+                CuratorName = x.Curator?.Name
+            }).ToArray();
+
+
+            unitedTextViewModel.TextNames = textDtos.Select(x => new GuidIdAndNameViewModel
+            {
+                Id = x.Id,
+                Name = x.Name,
+            }).ToArray();
+
+            return View(unitedTextViewModel);
         }
 
         [AllowAnonymous]
@@ -320,6 +348,12 @@ namespace SavageOrcs.Web.Controllers
         public IActionResult AddImage()
         {
             return PartialView("_AddImage");
+        }
+
+        [Authorize(Roles = "Admin")]
+        public IActionResult AddVideo()
+        {
+            return PartialView("_AddVideo");
         }
 
 
@@ -371,13 +405,14 @@ namespace SavageOrcs.Web.Controllers
                             Index = blockDto.Index,
                             Caption = blockDto.AdditionParameter
                         });
-                    //else if (blockDto.Type == BlockType.CheckList)
-                    //    addTextViewModel.Blocks.CheckBoxes.Add(new CheckListBlockViewModel
-                    //    {
-                    //        Id = blockDto.CustomId,
-                    //        Items = blockDto.Content?.Split("\n_\n"),
-                    //        Index = blockDto.Index,
-                    //    });
+                    else if (blockDto.Type == BlockType.Video)
+                        addTextViewModel.Blocks.Images.Add(new ImageBlockViewModel
+                        {
+                            Id = blockDto.CustomId,
+                            Src = blockDto.Content,
+                            Index = blockDto.Index,
+                            Caption = blockDto.AdditionParameter
+                        });
                     else if (blockDto.Type == BlockType.List)
                         addTextViewModel.Blocks.Listes.Add(new ListBlockViewModel
                         {
@@ -424,6 +459,27 @@ namespace SavageOrcs.Web.Controllers
                 Success = result,
                 Url = "/Text/Catalogue",
                 Text = result ? "Текст успішно видалено" : "Помилка, зверніться до адміністратора"
+            });
+        }
+
+        [HttpPost]
+        [Authorize(Roles = "Admin")]
+        public IActionResult ImageToInsert([FromBody] string content)
+        {
+            return PartialView("_ImageToInsert", new StringAndStringViewModel
+            {
+                Name1 = DateTime.Now.ToString("MM/dd/yyyy HH:mm:ss fff"),
+                Name2 = content
+            });
+        }
+        [HttpPost]
+        [Authorize(Roles = "Admin")]
+        public IActionResult VideoToInsert([FromBody] string content)
+        {
+            return PartialView("_VideoToInsert", new StringAndStringViewModel
+            {
+                Name1 = DateTime.Now.ToString("MM/dd/yyyy HH:mm:ss fff"),
+                Name2 = content
             });
         }
 

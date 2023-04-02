@@ -1,5 +1,6 @@
 var AddTextView = Class.extend({
     IsNew: null,
+    ToDelete: false,
     CuratorName: null,
     CuratorId: null,
 
@@ -13,10 +14,6 @@ var AddTextView = Class.extend({
 
     Editor: null,
     Data: null,
-
-    RowAddConstString: "<div class=\"row justify-content-md-around\">",
-    ColAddConstString: "<div class=\"col-md-3\">",
-    DivAddConstString: "</div>",
 
     InitializeControls: function () {
         var self = this;
@@ -141,6 +138,23 @@ var AddTextView = Class.extend({
                         }
                     });
                 }
+
+                if (!IsFind) {
+                    $.each(self.Blocks.videos, function (index, element) {
+                        if (element.index === i) {
+                            self.OldData.blocks.push({
+                                data: {
+                                    src: element.src,
+                                    caption: element.caption
+                                },
+                                id: element.id,
+                                type: "video"
+                            });
+                            IsFind = true;
+                            return false;
+                        }
+                    });
+                }
             }
         }
 
@@ -193,6 +207,9 @@ var AddTextView = Class.extend({
 
                 image: {
                     class: SimpleImage
+                },
+                video: {
+                    class: SimpleVideo
                 }
             }
         });
@@ -206,8 +223,12 @@ var AddTextView = Class.extend({
     SubscribeEvents: function () {
         var self = this;
 
-        $('#saveText').on('click', function () {
+        $('#save').on('click', function () {
             self.Save();
+        });
+
+        $('#delete').on('click', function () {
+            self.DeleteText();
         });
 
         $('#addPhoto').on('click', function () {
@@ -218,8 +239,18 @@ var AddTextView = Class.extend({
             self.RemoveImages();
         });
 
+        $('#addVideo').on('click', function () {
+            self.AddVideo();
+        });
+
+        $('#removeVideos').on('click', function () {
+            self.RemoveVideos();
+        });
+
         $('#dropdown-input-for-curator').addClass("display-8-custom");
     },
+
+
 
     InitializeCurators: function (data) {
         var self = this;
@@ -254,7 +285,8 @@ var AddTextView = Class.extend({
                     CheckBoxes: [],
                     Listes: [],
                     Paragraphs: [],
-                    Raws: []
+                    Raws: [],
+                    Videos: []
                 }
             };
 
@@ -276,6 +308,14 @@ var AddTextView = Class.extend({
                 }
                 else if (element.type === "image") {
                     saveTextViewModel.Blocks.Images.push({
+                        Id: element.id,
+                        Src: element.data.src,
+                        Caption: element.data.caption,
+                        Index: index
+                    });
+                }
+                else if (element.type === "video") {
+                    saveTextViewModel.Blocks.Videos.push({
                         Id: element.id,
                         Src: element.data.src,
                         Caption: element.data.caption,
@@ -305,7 +345,7 @@ var AddTextView = Class.extend({
                     });
                 }
             });
-            debugger;
+
             $.ajax({
                 type: 'POST',
                 url: "/Text/SaveText",
@@ -325,6 +365,8 @@ var AddTextView = Class.extend({
     },
 
     DeleteText: function () {
+        if ($("#Id").val() === "")
+            return;
         $.ajax({
             type: 'POST',
             url: "/Text/DeleteText",
@@ -348,13 +390,7 @@ var AddTextView = Class.extend({
             }
         });
     },
-    AfterAddingImage: function () {
-        var self = this;
 
-        $("img").click(function () {
-            self.CopyTextToClipboard($(this).attr("src"));
-        });
-    },
     CopyTextToClipboard: function (text) {
         if (!navigator.clipboard) {
             //fallbackCopyTextToClipboard(text);
@@ -363,7 +399,29 @@ var AddTextView = Class.extend({
         navigator.clipboard.writeText(text);
     },
     RemoveImages: function () {
-        $("#imageTextContainer .row").empty();
+        $("#imageTextContainer").empty();
+    },
+
+    AddVideo: function () {
+        var self = this;
+        $.ajax({
+            type: 'POST',
+            url: "/Text/AddVideo",
+            contentType: 'application/json; charset=utf-8',
+            success: function (src) {
+                $('#addVideoTextPlaceholder').html(src);
+            }
+        });
+    },
+
+    RemoveVideos: function () {
+        $("#videoTextContainer").empty();
+    },
+
+    CopyTimeId: function (el) {
+        var time = $(el).parent().find("input").val();
+        var self = this;
+        self.CopyTextToClipboard(time);
     }
 
 });
@@ -398,7 +456,17 @@ class SimpleImage {
         input.value = this.data && this.data.src ? this.data.src : '';
 
         input.addEventListener('paste', (event) => {
-            this._createImage(event.clipboardData.getData('text'));
+            var time = event.clipboardData.getData('text');
+            var input = $('input').filter(function () {
+                return $(this).val() === time;
+            });
+
+            if (input.length) {
+                var src = input.parent().parent().find('.text-add-image').attr("src");
+                if (!src || !src.length || !src.includes("data") || !src.includes("base64"))
+                    return;
+                this._createImage(src);
+            } 
         });
 
         return this.wrapper;
@@ -432,6 +500,84 @@ class SimpleImage {
 
         return {
             src: image.src,
+            caption: caption.innerHTML || ''
+        }
+    }
+}
+
+class SimpleVideo {
+    static get toolbox() {
+        return {
+            title: 'Video',
+            icon: '<img src="/images/icons/video.png" class="editor-video-icon" alt="" />'
+        };
+    }
+    constructor({ data }) {
+        this.data = data;
+        this.wrapper = undefined;
+    }
+    render() {
+        this.wrapper = document.createElement('div');
+        this.wrapper.classList.add('simple-video');
+
+        if (this.data && this.data.src) {
+            this._createVideo(this.data.src, this.data.caption);
+            return this.wrapper;
+        }
+        const input = document.createElement('input');
+
+        this.wrapper.classList.add('simple-image');
+        this.wrapper.appendChild(input);
+
+        input.placeholder = 'Insert copied video';
+        input.value = this.data && this.data.src ? this.data.src : '';
+
+        input.addEventListener('paste', (event) => {
+            var time = event.clipboardData.getData('text');
+            var input = $('input').filter(function () {
+                return $(this).val() === time;
+            });
+
+            if (input.length) {
+                var src = input.parent().parent().find('.text-add-video').attr("src");
+                if (!src || !src.length || !src.includes("data") || !src.includes("base64"))
+                    return;
+                this._createVideo(src);
+            }
+        });
+
+        return this.wrapper;
+    }
+    _createVideo(src, captionText) {
+        const video = document.createElement('video');
+        video.muted = true;
+        video.controls = true;
+        const caption = document.createElement('div');
+
+        video.src = src;
+        caption.contentEditable = true;
+        caption.innerHTML = captionText || '';
+
+        this.wrapper.innerHTML = '';
+        this.wrapper.appendChild(video);
+        this.wrapper.appendChild(caption);
+    }
+
+
+    validate(savedData) {
+        if (!savedData.src.trim()) {
+            return false;
+        }
+
+        return true;
+    }
+
+    save(blockContent) {
+        const video = blockContent.querySelector('video');
+        const caption = blockContent.querySelector('[contenteditable]');
+
+        return {
+            src: video.src,
             caption: caption.innerHTML || ''
         }
     }

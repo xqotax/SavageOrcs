@@ -1,37 +1,47 @@
 ﻿@using SavageOrcs.Web.ViewModels.Curator
-@model CuratorViewModels
-
-<link itemprop="url" rel="stylesheet" href="~/css/curator/curators.css" asp-append-version="true" />
-
-<div class="row"><h2 class="text-white-custom">Інформація про активних кураторів проєкту</h2></div>
-@for (int i = 0; i < Model.Curators.Length; i++)
-{
-    if (i % 3 == 0)
-    {
-        @:<div class="d-flex justify-content-around curator-row">
-    }
-
-
-            <div class="curator-box" value="@Model.Curators[i].Id">
-                <div class="curator-box-image">
-                    <img class="curator-image" src="@Model.Curators[i].Image">
-                </div>
-                
-                <div class="curator-box-text  text-white-custom">
-                    <div class="curator-box-name display-7-custom">
-                        @Model.Curators[i].DisplayName
-                    </div>
-                    <div class="curator-box-description display-8-custom">
-                        @Model.Curators[i].Description
-                    </div>
+@model CuratorViewModel[]
+<div class="wrapper-search-curator">
+    <div class="curator-data-col">
+        <div class="curator-header-text">
+            Автори
+        </div>
+        <div class="curator-data-row-container">
+            @await Html.PartialAsync("_CatalogueDataRows", Model)
+        </div>
+    </div>
+    <div class="curator-search-col">
+        <div class="curator-filter-search-text">
+            Експерти, які долучилися
+            до проєкту
+        </div>
+        <div class="curator-filter-row">
+            <div class="curator-filter-item">
+                <div class="curator-filter-multiselect-placeholder">Мультиселект</div>
+                <div class="curator-filter-big-text-info">Автор</div>
+                <div class="curator-filter-small-text-info">
+                    Почніть вводити ім'я автора
                 </div>
             </div>
+        </div>
+    </div>
+</div>
 
-    if (i % 3 == 2 || i + 1 == Model.Curators.Length)
-    {
-        @:</div>
-    }
-}
+<div class="wrapper-search-bottom-text">
+    <div class="bottom-text-row">
+        <div class="bottom-text-col">
+            Долучайтеся до команди авторів
+        </div>
+        <div class="bottom-text-col">Пишіть на скриню:</div>
+    </div>
+    <div class="bottom-text-row">
+        <div class="bottom-text-col"></div>
+        <div class="bottom-text-col">
+            <a style="color: #FF2929" href="mailto:info@mizhvukhamy.com?subject=Application%20for%20joining%20the%20team">
+                info@mizhvukhamy.com
+            </a>
+        </div>
+    </div>
+</div>
 
 @section Scripts{
     <script>
@@ -40,6 +50,6 @@
         $(document).ready(function () {
             catalogueCuratorView.InitializeControls();
         });
-        
+
     </script>
 }

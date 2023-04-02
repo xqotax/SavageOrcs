@@ -1,0 +1,33 @@
+﻿@using SavageOrcs.Web.ViewModels.Text
+@model TextRevisionViewModel[]
+@for (int i = 1; i <= Model.Length; i++)
+{
+    <div class="text-data-row" onclick="catalogueTextView.Show(this)" style="opacity: 0.3">
+        @Html.HiddenFor(m => m[i-1].Id)
+        @*<div class="text-image-selected-item">*@
+        <div class="text-red-circle">
+            @if (this.User.IsInRole("Admin"))
+            {
+                <a class="text-col-content-item" href="/Text/Add?id=@Model[i-1].Id.ToString()">
+                    <img class="red-image-text-row" src="~/images/redCircle.png">
+                </a>
+            }
+            else
+            {
+                <div class="text-col-content-item">
+                    <img class="red-image-text-row" src="~/images/redCircle.png">
+                </div>
+            }
+        </div>
+        <div class="text-col-item">
+            <div class="text-col-content-item">
+                <div class="text-col-name-item">@Model[i - 1].Name</div>
+            </div>
+        </div>
+        <div class="text-col-item">
+            <div class="text-col-content-item">
+                <div class="text-col-curator-name-item">@Model[i - 1].CuratorName</div>
+            </div>
+        </div>
+    </div>
+}

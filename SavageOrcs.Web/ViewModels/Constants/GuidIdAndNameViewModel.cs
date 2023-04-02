@@ -6,4 +6,9 @@
 
         public string? Name { get; set; }
     }
+
+    public class GuidIdAndNameViewModelWithEnglishName : GuidIdAndNameViewModel
+    {
+        public string? NameEng { get; set; }
+    }
 }

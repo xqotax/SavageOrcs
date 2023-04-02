@@ -1,0 +1,57 @@
+﻿@using SavageOrcs.Web.ViewModels.Curator
+@model CuratorViewModel[]
+
+
+@for (int i = 1; i <= Model.Length; i++)
+{
+    <div class="curator-data-row">
+        <div class="curator-photo-col">
+            @if (Model[i - 1].Image is not null)
+            {
+                <img class="curator-image" src="@Model[i-1].Image" />
+            }
+        </div>
+        <div class="curator-content-col">
+            <div class="curator-content-header">
+                <div class="curator-content-main-row">
+                    @if (this.User.IsInRole("Admin")){
+                        <a href="/Curator/Add?id=@Model[i - 1].Id" class="curator-content-name-col" style="text-decoration: none">@Model[i-1].DisplayName</a>
+                    }
+                    else {
+                        <div class="curator-content-name-col">@Model[i-1].DisplayName</div>
+                    }
+                    <div class="curator-content-button-more" onclick="catalogueCuratorView.ShowDescription(this)">
+                        <img src="~/images/arrows/bottomArrow.png" />
+                    </div>
+                </div>
+                <div class="curator-content-count-row">
+                    @if (Model[i - 1].TextCount > 0)
+                    {
+                        <div class="curator-content-count-cell">@Model[i - 1].TextCount.ToString() текст(ів)</div>
+                    }
+                    @if (Model[i - 1].MarkCount > 0)
+                    {
+                        <div class="curator-content-count-cell">@Model[i - 1].MarkCount.ToString() фото</div>
+                    }
+
+                </div>
+            </div>
+            <div class="curator-content-detailed">
+                <div class="curator-content-description">
+                    @Model[i-1].Description
+                </div>
+                <div class="curator-content-marks">
+                    @await Html.PartialAsync("../Mark/_CatalogueForCuratorDataRows", Model[i-1].Marks)
+                </div>
+                <div class="curator-content-texts">
+                    @await Html.PartialAsync("../Text/_CatalogueForCuratorDataRows", Model[i-1].Texts)
+                </div>
+                <div class="curator-content-button-less-row">
+                    <div class="curator-content-button-less" onclick="catalogueCuratorView.HideDescription(this)">
+                        <img src="~/images/arrows/topArrow.png" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}

@@ -31,23 +31,19 @@ var AddImageTextView = Class.extend({
         $("#addImageTextPlaceholder").empty();
     },
     Save: function () {
-        var self = this;
-
-        var rowCount = $("#imageTextContainer .row").length;
-        var colCount = $("#imageTextContainer .col-md-3").length;
-
-        $(".popup-content-custom .row #imagePlaceholder").removeAttr('id');
-
         var imageToMove = $(".popup-content-custom .add-image-placeholder-custom").html();
 
-        if ((rowCount === 0) || (colCount !== 0 && Math.floor(colCount / rowCount) === 3 )) {
-            $("#imageTextContainer").append(addTextView.RowAddConstString + addTextView.ColAddConstString + imageToMove + addTextView.DivAddConstString + addTextView.DivAddConstString);
-        }
-        else {
-            $("#imageTextContainer .row").last().append(addTextView.ColAddConstString + imageToMove + addTextView.DivAddConstString);
-        }
+        var content = $(imageToMove).attr('src');
+        $.ajax({
+            type: 'POST',
+            url: "/Text/ImageToInsert",
+            data: JSON.stringify(content),
+            contentType: 'application/json; charset=utf-8',
+            success: function (src) {
+                $("#imageTextContainer").append(src);
+            }
+        });
 
-        addTextView.AfterAddingImage();
         $("#addImageTextPlaceholder").empty();
     },
 });

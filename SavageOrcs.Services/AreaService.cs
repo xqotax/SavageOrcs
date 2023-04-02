@@ -3,20 +3,42 @@ using SavageOrcs.DataTransferObjects.Areas;
 using SavageOrcs.Repositories.Interfaces;
 using SavageOrcs.Services.Interfaces;
 using SavageOrcs.UnitOfWork;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SavageOrcs.Services
 {
     public class AreaService : UnitOfWorkService, IAreaService
     {
         private readonly IRepository<Area> _areaRepository;
-        public AreaService(IUnitOfWork unitOfWork, IRepository<Area> areaRepository) : base(unitOfWork)
+        private readonly IRepository<Mark> _markRepository;
+        private readonly IRepository<Cluster> _clusterRepository;
+        public AreaService(IUnitOfWork unitOfWork, IRepository<Area> areaRepository, IRepository<Mark> markRepository, IRepository<Cluster> clusterRepository) : base(unitOfWork)
         {
             _areaRepository = areaRepository;
+            _markRepository = markRepository;
+            _clusterRepository = clusterRepository;
+        }
+
+        public async Task<AreaShortDto[]> GetUsedAreasAsync()
+        {
+            var areasFromMarks = (await _markRepository.GetAllAsync(x => x.Area != null))
+                .Select(x => new AreaShortDto
+                {
+                    Community = x.Area.Community,
+                    Id = x.Area.Id,
+                    Region = x.Area.Region,
+                    Name = x.Area.Name
+                });
+
+            var areasFromCluster = (await _clusterRepository.GetAllAsync(x => x.Area != null))
+                .Select(x => new AreaShortDto
+                {
+                    Community = x.Area.Community,
+                    Id = x.Area.Id,
+                    Region = x.Area.Region,
+                    Name = x.Area.Name
+                });
+
+            return areasFromCluster.Concat(areasFromMarks).GroupBy(x => x.Id).Select(x => x.First()).OrderBy(x => x.Region).ThenBy(x => x.Name).ToArray();
         }
 
         public async Task<AreaShortDto[]> GetAreasByNameAsync(string name)
@@ -37,8 +59,6 @@ namespace SavageOrcs.Services
         public async Task<AreaShortDto[]> GetAreasAsync()
         {
             var areas = await _areaRepository.GetAllAsync();
-            if ((areas == null) || (!areas.Any()))
-                throw new NotImplementedException();
 
             return areas.Select(x => new AreaShortDto
             {

@@ -1,7 +1,5 @@
 var RevisionUserView = Class.extend({
     UserId: null,
-    CuratorId: null,
-    IsCurator: null,
     InitializeControls: function () {
         var self = this;
 
@@ -10,21 +8,8 @@ var RevisionUserView = Class.extend({
     SubscribeEvents: function () {
         var self = this;
 
-        $("#saveMark").click(function () {
+        $("#saveUser").click(function () {
             self.Save();
-        });
-
-        $("#addCuratorImage").click(function () {
-            self.AddCuratorImage();
-        });
-
-        $("#IsCurator").change(function () {
-            if (this.checked) {
-                $(".curatorRow").css({ 'visibility': 'visible' });
-            }
-            else {
-                $(".curatorRow").css({ 'visibility': 'hidden' });
-            }
         });
 
         $("#search").click(function () {
@@ -45,12 +30,7 @@ var RevisionUserView = Class.extend({
             FirstName: $("#FirstName").val(),
             LastName: $("#LastName").val(),
             Email: $("#Email").val(),
-            IsCurator: $("#IsCurator").is(":checked"),
             RoleIds: [],
-            CuratorId: $("#CuratorInfo_Id").val(),
-            DisplayName: $("#CuratorInfo_DisplayName").val(),
-            Description: $("#CuratorInfo_Description").val(),
-            Image: $("#imagePlaceholder").attr('src')
         }
         $(".check-box-row").each(function (index, element) {
             if ($(element).is(":checked"))
@@ -66,16 +46,6 @@ var RevisionUserView = Class.extend({
             contentType: 'application/json; charset=utf-8',
             success: function (result) {
                 ResultPopUp(result.success, result.text, result.url, result.id);
-            }
-        });
-    },
-    AddCuratorImage: function () {
-        $.ajax({
-            type: 'POST',
-            url: "/User/AddCuratorImage",
-            contentType: 'application/json; charset=utf-8',
-            success: function (src) {
-                $('#addImagePlaceholder').html(src);
             }
         });
     }

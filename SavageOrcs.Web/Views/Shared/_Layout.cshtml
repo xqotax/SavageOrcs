@@ -1,88 +1,211 @@
-﻿<!DOCTYPE html>
-<html lang="en">
+﻿@using SavageOrcs.Web.Resources
+@using SavageOrcs.Web.Resources.Classes
+@inject LanguageService Language
+<!DOCTYPE html>
+<html lang="en" prefix="og: http://ogp.me/ns#">
 <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - SavageOrcs.Web</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0 maximum-scale=1.0" />
+    <meta content="width=device-width, initial-scale=1" name="viewport" />
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/jquery/jquery.cookie.js"></script>
+    <title>@Language.GetKey("Title")</title>
+    <meta name="description" content="@Language.GetKey("Description")">
+
+    <meta name="keywords" content="Війна, Україна, росія, Орки, вандалізм, Гаага, російські злочини, карта з фотографіями, геноцид">
+    <meta name="Author" content="Культурна інституція «Міжвухами»">
+    <meta name="Addres" content="Україна, Київ? Козацька 119 А">
+
+
+    <meta property="og:site_name" content="Настінні докази" />
+    <meta property='og:url' content="https://wallevidence.mizhvukhamy.com/">
+    <meta property='og:title' content="Wall Evidence">
+    <meta property='og:description' content=@Language.GetKey("Description")>
+    <meta property='og:image' content="~/images/redCircle.png">
+    <meta property='og:type' content="website">
+   @* <meta name="robots" content="all">             TO ADD WHILE FINAL DEPLOY*@
+
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="Культурна інституція «Міжвухами»">
+    <meta name="twitter:title" content="Wall Evidence">
+    <meta name="twitter:description" content=@Language.GetKey("Description")>
+    <meta name="twitter:image" content="~/images/redCircle.png">
+    <link rel="icon" href="~/images/icons/redCircle.ico">
+
+
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/site-mobile.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/curator/curator.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/curator/curatorAdmin.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/text/text.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/text/textAdmin.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/mark/mark.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/mark/markAdmin.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/admin/AdminMenu.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/admin/identity.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/admin/keyWordAndPlaces.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/css/multiselect.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/css/styles.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/css/tables.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/css/rightScroll.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/SavageOrcs.Web.styles.css" asp-append-version="true" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.18/dist/css/bootstrap-select.min.css">
-    
+    <link rel="stylesheet" href="~/css/font-face.css" asp-append-version="true" />
+    <style>
+        a {
+          color: initial;
+          background-color: initial;
+          border: initial;
+          text-decoration: initial;
+        }
+        a:visited {
+          color: initial;
+          background-color: initial;
+          border: initial;
+          text-decoration: initial;
+        }
+        a:hover {
+          color: initial;
+          background-color: initial;
+          border: initial;
+          text-decoration: initial;
+        }
+    </style>
+    @*<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.18/dist/css/bootstrap-select.min.css">*@
 </head>
 <body>
-    <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-black-custom box-shadow mb-3">
-            <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Map" asp-action="Main"><img class="logo-image-custom" src="~/images/logo.png"/></a>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <div class="navbar-nav flex-grow-1">
-                        <div class="nav-item rounded pt-2 px-2">
-                            <div class="dropdown">
-                                <a href="#" class="dropdown-toggle display-7-custom" style="color: white" data-bs-toggle="dropdown">Пошук</a>
-                                <div class="dropdown-menu">
-                                    <a class="dropdown-item display-7-custom" style="color: rgb(4 107 28)" href="/Mark/Catalogue">Міток</a>
-                                    <a class="dropdown-item display-7-custom" style="color: rgb(4 107 28)" href="/Cluster/Catalogue">Скупчень</a>
-                                    <a class="dropdown-item display-7-custom" style="color: rgb(4 107 28)" href="/Text/Catalogue">Текстів</a>
-                                </div>
-                            </div>
-                        </div>
-                        @if (this.User.IsInRole("Admin"))
-                        {
-                            <div class="nav-item rounded pt-2 px-2">
-                                <div class="dropdown">
-                                    <a href="#" class="dropdown-toggle display-7-custom" style="color: white" data-bs-toggle="dropdown">Адмінка</a>
-                                    <div class="dropdown-menu">
-                                        <a class="dropdown-item display-7-custom" style="color: rgb(4 107 28)" href="/Mark/Add">Добавити мітки</a>
-                                        <a class="dropdown-item display-7-custom" style="color: rgb(4 107 28)" href="/Cluster/Add">Добавити скупчення</a>
-                                        <a class="dropdown-item display-7-custom" style="color: rgb(4 107 28)" href="/Text/Add">Добавити тексти</a>
-                                        <a class="dropdown-item display-7-custom" style="color: rgb(4 107 28)" href="/User/Catalogue">Користувачі</a>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                        }
-                        <div class="nav-item rounded px-2">
-                            <a class="nav-link display-7-custom" style="color: white" asp-area="" asp-controller="Curator" asp-action="Catalogue">Куратори</a>
-                        </div>
-                    </div>
-                    <partial name="_LoginPartial.cshtml" />
-                </div>
-            </div>
-        </nav>
-    </header>
-    <div class="container">
-        <main role="main" class="pb-3 wraper-custom">
-            @RenderBody()
-        </main>
-    </div>
+    <div id="18PlusPopupPlaceholder"></div>
+    <div id="adminMenu"></div>
+    <script>
+        if ($.cookie("userSaw18+Message") !== "YES") {
+            $.ajax({
+                type: 'POST',
+                url: "/Map/Get18PlusPopup",
+                contentType: 'application/json; charset=utf-8',
+                success: function (src) {
+                    $("#18PlusPopupPlaceholder").html(src);
+                }
+            });
+        }
+        if ($.cookie("isAdmin") === "thisUserWasInside") {
+            $.ajax({
+                type: 'POST',
+                url: "/Mark/NavigationAdmin",
+                contentType: 'application/json; charset=utf-8',
+                success: function (src) {
+                    $("#adminMenu").html(src);
+                }
+            });
+        }
 
-    <footer class="border-top footer text-muted footer-custom">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-6">
-                    &copy; 2022 - SavageOrcs.Web - <a href="//localhost:7093">Посилання на сайт</a>
+    </script>
+    <header>
+        <nav class="burger">
+            <div class="menu-line horisontal-line"></div>
+            <div class="menu-line horisontal-line"></div>
+        </nav>
+        <nav class="cross">
+            <img src="~/images/main/cross.svg" alt="cross" />
+        </nav>
+        <a class="logo-text" style="color: #0F0F0F; text-decoration: none" asp-controller="Map" asp-action="Main">Настінні докази</a>
+        <partial name="_SideMenu.cshtml" />
+    </header>
+    <main role="main" class="container-custom">
+        @RenderBody()
+    </main>
+    <footer>
+        <div class="d-flex justify-content-between-lg footer-text">
+            <div class="footer-main-text">
+                СЛІДКУЙТЕ ЗА НАШИМ ПРОЄКТОМ В
+                <a href="https://www.instagram.com/xqotax/" style="color: #FF2929">
+                    INSTAGRAM
+                </a>
+            </div>
+            <div class="footer-copy-text">Всі права захищено &copy; 2023</div>
+        </div>
+        <div class="d-flex justify-content-between footer-refernce">
+            <div class="teams">
+                <div class="team-text">
+                    Архів створено командою
+                    культурної інституції
+                    «Міжвухами»
                 </div>
-                <div class="col-md-6">
-                    Розробник сайту - <a href="https://www.instagram.com/xqotax/">Юрій</a>
+                <div class="reference-images">
+                    <a href="https://www.facebook.com/mizhvukhamyfb">
+                        <img src="~/images/main/mizhvuhamu.png" alt="Mizhvuhamu" />
+                    </a>
+                </div>
+               
+            </div>
+            <div class="teams">
+                <div class="team-text">
+                    Проєкт створено за підтримки програми
+                </div>
+                <div class="reference-images">
+                    <a href="https://www.iwm.at/program/documenting-ukraine">
+                        <img src="~/images/main/documentingUkraine.png" alt="Documenting Ukraine" />
+                    </a>
                 </div>
             </div>
-            @*<div class="row">
-                <div class="col-md-12">
-                    Запропонувати новину - <a href="https://t.me/olexiian">Куратор</a>
+            <div class="teams">
+                <div class="team-text">
+                    Інформаційний партнер
                 </div>
-            </div>*@
+                <div class="reference-images">
+                    <img src="~/images/main/Ukraine.png" alt="Ukraine" />
+
+                </div>
+            </div>
         </div>
     </footer>
+
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     <script src="~/lib/multiselect/multiselect-dropdown.js" asp-append-version="true"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.18/dist/js/bootstrap-select.min.js"></script>
+
+    <script>
+        $(function () {
+            var state = true;
+            $(".cross, .burger").on("click", function () {
+                if (state) {
+                    var clientWidth = window.innerWidth;
+                    if (clientWidth > 900){
+                        $(".hidden-menu").animate({
+                            width: window.innerWidth - 116
+                        }, 400);
+                    }
+                    else if (clientWidth < 450) {
+                        $(".hidden-menu").animate({
+                            height: (window.innerHeight - 140) * 0.75
+                        }, 400);
+                    }
+                    $(".burger").css({ display: 'none' });
+                    $(".cross").css({ display: 'flex' });
+                    $(".hidden-menu").css({ display: 'flex' });
+                    
+                } else {
+                    var clientWidth = window.innerWidth;
+                    if (clientWidth > 900) {
+                        $(".hidden-menu").animate({
+                            width: 0
+                        }, 400);
+                    }
+                    else if (clientWidth < 450) {
+                        $(".hidden-menu").animate({
+                            height: 200
+                        }, 400);
+                    }
+
+                    $(".burger").css({ display: 'flex' });
+                    $(".cross").css({ display: 'none' });
+                    
+                    setTimeout(function () {
+                        $(".hidden-menu").css({ display: 'none' });
+                    }, 400);
+                }
+                state = !state;
+            });
+        });
+    </script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

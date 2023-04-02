@@ -1,0 +1,80 @@
+﻿.wrapper-mark-add {
+    padding-left: 64px;
+    padding-right: 70px;
+    padding-top: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    width: 100%;
+}
+
+.mark-add-content-row {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.mark-add-action-row{
+
+}
+
+.mark-add-main-content {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    padding-bottom: 25px;
+}
+
+.mark-add-tool-col {
+    width: 49%;
+}
+.mark-add-map-col{
+    width: 50%;
+}
+
+.mark-add-image-container {
+    border-top: 2px solid rgb(4 107 28);
+    padding-top: 10px;
+}
+
+#imageContainer{
+    display: flex;
+    flex-direction: column;
+    justify-content:start;
+    width: 100%;
+    padding-bottom: 100px;
+}
+
+.mark-add-image-row {
+    max-height: 400px;
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+    width: 100%;
+    padding-top: 20px;
+}
+.mark-add-image-action {
+    width: 40%;
+    display:flex;
+    flex-direction:row;
+    justify-content: space-around;
+}
+
+.mark-add-image-content {
+    width: 70%;
+    max-height: 400px;
+}
+
+.mark-add-image {
+    max-height: 400px;
+    max-width: 100%;
+}
+.mark-add-image-check-box{
+    width: 30%;
+    display:flex;
+    flex-direction:row;
+    justify-content:start;
+    align-items:start;
+}

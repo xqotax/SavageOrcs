@@ -19,9 +19,21 @@ namespace SavageOrcs.DataTransferObjects.Cluster
 
         public string? Description { get; set; }
 
-        public int? MapId { get; set; }
+        public string? DescriptionEng { get; set; }
 
-        public Guid? AreaId { get; set; } 
+        public string? ResourceName { get; set; }
+
+        public string? ResourceNameEng { get; set; }
+
+        public string? ResourceUrl { get; set; }
+
+        public Guid? CuratorId { get; set; }
+
+        public Guid[] PlaceIds { get; set; } = new Guid[0];
+
+        public Guid? AreaId { get; set; }
+
+        public int? MapId { get; set; }
 
         public AreaShortDto? Area { get; set; }
     }

@@ -12,17 +12,6 @@ namespace SavageOrcs.Web.ViewModels.User
 
         public string? Email { get; set; }
 
-        public bool IsCurator { get; set; }
-
         public string[]? RoleIds { get; set; }
-
-        public string? CuratorId { get; set; }
-
-        public string? DisplayName { get; set; }
-
-        public string? Description { get; set; }
-
-        public string? Image { get; set; }
-
     }
 }

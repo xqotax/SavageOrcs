@@ -11,6 +11,8 @@ namespace SavageOrcs.Services.Interfaces
     {
         Task<AreaShortDto[]> GetAreasAsync();
 
+        Task<AreaShortDto[]> GetUsedAreasAsync();
+
         Task<AreaShortDto[]> GetAreasByNameAsync(string name);
     }
 }

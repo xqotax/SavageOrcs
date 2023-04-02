@@ -1,0 +1,99 @@
+﻿@{
+    Layout = null;
+}
+
+<style>
+    .popup-custom{
+        display:flex;
+        flex-direction:column;
+        align-items:center;
+        justify-content:center;
+    }
+
+    .popup-red-container{
+        height: 800px;
+        width: 1324px;
+        /*background-color: #FF2929;*/
+        background-color: #DEDCDC;
+        color: #0F0F0F;
+        display: flex;
+        flex-direction:column;
+        justify-content:center;
+        align-items: center;
+    }
+
+    .popup-content{
+        position:relative;
+        height:417px;
+        width: 1031px;
+        font-weight: 500;
+        /*border: 2px solid black;*/
+    }
+
+    .eighteen-block{
+        width: 417px;
+        height: 333px;
+        position: absolute;
+        left:0px;
+        top:0px;
+        font-size: 277.425px;
+        line-height: 233px;
+        /*color: #FF2929;*/
+        color: rgba(224, 97, 95, 0.8);
+
+    }
+
+    .close-info-block{
+        width: 417px;
+        height: 333px;
+        position: absolute;
+        left: 44px;
+        top: 343px;
+        font-size: 14px;
+        line-height: 17px;
+    }
+
+    .big-text-info{
+        font-size: 38px;
+        line-height: 120%;
+        left: 552px;
+        top: 53px;
+        font-size: 38px;
+        line-height: 120%;
+        letter-spacing: 0.05em;
+        position: absolute;
+        width: 479px;
+        height: 184px;
+    }
+
+    .small-text-info{
+        top: 343px;
+        left: 552px;
+        font-size: 14px;
+        line-height: 17px;
+        position: absolute;
+        width: 371px;
+        height: 84px;
+    }
+
+</style>
+
+<div class="popup-custom" id="eightPlusPopup" onclick="close18Popup()">
+    <div class="popup-red-container">
+        <div class="popup-content">
+            <div class="eighteen-block">18+</div>
+            <div class="close-info-block" >Натисніть для продовження</div>
+            <div class="big-text-info">ДЕЯКІ ЗОБРАЖЕННЯ НА САЙТІ МІСТЯТЬ НЕЦЕНЗУРНУ ЛЕКСИКУ ТА МОВУ ВОРОЖНЕЧІ</div>
+            <div class="small-text-info">Радимо покинути ресурс, якщо ви неповнолітні або чутливі до агресивних висловів росіян.</div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function close18Popup() {
+        //var date = new Date();
+        //date.setTime(date.getTime() + (60 * 1000 * 60 * 24));
+        $.cookie("userSaw18+Message", 'YES', { path: '/', expires: 10000 });
+        $("#eightPlusPopup").css({display: "none"});
+    }
+</script>

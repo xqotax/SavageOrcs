@@ -1,11 +1,3 @@
-D:\Навчання\Diploma\SavageOrcs.Web\obj\Debug\net6.0\SavageOrcs.Web.csproj.AssemblyReference.cache
-D:\Навчання\Diploma\SavageOrcs.Web\obj\Debug\net6.0\SavageOrcs.Web.GeneratedMSBuildEditorConfig.editorconfig
-D:\Навчання\Diploma\SavageOrcs.Web\obj\Debug\net6.0\SavageOrcs.Web.AssemblyInfoInputs.cache
-D:\Навчання\Diploma\SavageOrcs.Web\obj\Debug\net6.0\SavageOrcs.Web.AssemblyInfo.cs
-D:\Навчання\Diploma\SavageOrcs.Web\obj\Debug\net6.0\SavageOrcs.Web.csproj.CoreCompileInputs.cache
-D:\Навчання\Diploma\SavageOrcs.Web\obj\Debug\net6.0\SavageOrcs.Web.MvcApplicationPartsAssemblyInfo.cache
-D:\Навчання\Diploma\SavageOrcs.Web\obj\Debug\net6.0\SavageOrcs.Web.RazorAssemblyInfo.cache
-D:\Навчання\Diploma\SavageOrcs.Web\obj\Debug\net6.0\SavageOrcs.Web.RazorAssemblyInfo.cs
 D:\Навчання\Diploma\SavageOrcs.Web\bin\Debug\net6.0\appsettings.Development.json
 D:\Навчання\Diploma\SavageOrcs.Web\bin\Debug\net6.0\appsettings.json
 D:\Навчання\Diploma\SavageOrcs.Web\bin\Debug\net6.0\SavageOrcs.Web.staticwebassets.runtime.json
@@ -14,6 +6,8 @@ D:\Навчання\Diploma\SavageOrcs.Web\bin\Debug\net6.0\SavageOrcs.Web.deps.
 D:\Навчання\Diploma\SavageOrcs.Web\bin\Debug\net6.0\SavageOrcs.Web.runtimeconfig.json
 D:\Навчання\Diploma\SavageOrcs.Web\bin\Debug\net6.0\SavageOrcs.Web.dll
 D:\Навчання\Diploma\SavageOrcs.Web\bin\Debug\net6.0\SavageOrcs.Web.pdb
+D:\Навчання\Diploma\SavageOrcs.Web\bin\Debug\net6.0\en-US\SavageOrcs.Web.resources.dll
+D:\Навчання\Diploma\SavageOrcs.Web\bin\Debug\net6.0\uk-UA\SavageOrcs.Web.resources.dll
 D:\Навчання\Diploma\SavageOrcs.Web\bin\Debug\net6.0\Castle.Core.dll
 D:\Навчання\Diploma\SavageOrcs.Web\bin\Debug\net6.0\Humanizer.dll
 D:\Навчання\Diploma\SavageOrcs.Web\bin\Debug\net6.0\MessagePack.dll
@@ -262,6 +256,7 @@ D:\Навчання\Diploma\SavageOrcs.Web\bin\Debug\net6.0\runtimes\win\lib\net
 D:\Навчання\Diploma\SavageOrcs.Web\bin\Debug\net6.0\SavageOrcs.BusinessObjects.dll
 D:\Навчання\Diploma\SavageOrcs.Web\bin\Debug\net6.0\SavageOrcs.DataTransferObjects.dll
 D:\Навчання\Diploma\SavageOrcs.Web\bin\Debug\net6.0\SavageOrcs.DbContext.dll
+D:\Навчання\Diploma\SavageOrcs.Web\bin\Debug\net6.0\SavageOrcs.Enums.dll
 D:\Навчання\Diploma\SavageOrcs.Web\bin\Debug\net6.0\SavageOrcs.Repositories.dll
 D:\Навчання\Diploma\SavageOrcs.Web\bin\Debug\net6.0\SavageOrcs.Repositories.Interfaces.dll
 D:\Навчання\Diploma\SavageOrcs.Web\bin\Debug\net6.0\SavageOrcs.Services.dll
@@ -275,7 +270,21 @@ D:\Навчання\Diploma\SavageOrcs.Web\bin\Debug\net6.0\SavageOrcs.Services.
 D:\Навчання\Diploma\SavageOrcs.Web\bin\Debug\net6.0\SavageOrcs.Services.pdb
 D:\Навчання\Diploma\SavageOrcs.Web\bin\Debug\net6.0\SavageOrcs.UnitOfWork.pdb
 D:\Навчання\Diploma\SavageOrcs.Web\bin\Debug\net6.0\SavageOrcs.DataTransferObjects.pdb
+D:\Навчання\Diploma\SavageOrcs.Web\bin\Debug\net6.0\SavageOrcs.Enums.pdb
+D:\Навчання\Diploma\SavageOrcs.Web\obj\Debug\net6.0\SavageOrcs.Web.csproj.AssemblyReference.cache
+D:\Навчання\Diploma\SavageOrcs.Web\obj\Debug\net6.0\SavageOrcs.Web.Resources.MainResource.en-US.resources
+D:\Навчання\Diploma\SavageOrcs.Web\obj\Debug\net6.0\SavageOrcs.Web.Resources.MainResource.uk-UA.resources
+D:\Навчання\Diploma\SavageOrcs.Web\obj\Debug\net6.0\SavageOrcs.Web.csproj.GenerateResource.cache
+D:\Навчання\Diploma\SavageOrcs.Web\obj\Debug\net6.0\SavageOrcs.Web.GeneratedMSBuildEditorConfig.editorconfig
+D:\Навчання\Diploma\SavageOrcs.Web\obj\Debug\net6.0\SavageOrcs.Web.AssemblyInfoInputs.cache
+D:\Навчання\Diploma\SavageOrcs.Web\obj\Debug\net6.0\SavageOrcs.Web.AssemblyInfo.cs
+D:\Навчання\Diploma\SavageOrcs.Web\obj\Debug\net6.0\SavageOrcs.Web.csproj.CoreCompileInputs.cache
 D:\Навчання\Diploma\SavageOrcs.Web\obj\Debug\net6.0\SavageOrcs.Web.MvcApplicationPartsAssemblyInfo.cs
+D:\Навчання\Diploma\SavageOrcs.Web\obj\Debug\net6.0\SavageOrcs.Web.MvcApplicationPartsAssemblyInfo.cache
+D:\Навчання\Diploma\SavageOrcs.Web\obj\Debug\net6.0\SavageOrcs.Web.RazorAssemblyInfo.cache
+D:\Навчання\Diploma\SavageOrcs.Web\obj\Debug\net6.0\SavageOrcs.Web.RazorAssemblyInfo.cs
+D:\Навчання\Diploma\SavageOrcs.Web\obj\Debug\net6.0\en-US\SavageOrcs.Web.resources.dll
+D:\Навчання\Diploma\SavageOrcs.Web\obj\Debug\net6.0\uk-UA\SavageOrcs.Web.resources.dll
 D:\Навчання\Diploma\SavageOrcs.Web\obj\Debug\net6.0\staticwebassets.build.json
 D:\Навчання\Diploma\SavageOrcs.Web\obj\Debug\net6.0\staticwebassets.development.json
 D:\Навчання\Diploma\SavageOrcs.Web\obj\Debug\net6.0\scopedcss\Views\Shared\_Layout.cshtml.rz.scp.css
@@ -287,5 +296,3 @@ D:\Навчання\Diploma\SavageOrcs.Web\obj\Debug\net6.0\refint\SavageOrcs.We
 D:\Навчання\Diploma\SavageOrcs.Web\obj\Debug\net6.0\SavageOrcs.Web.pdb
 D:\Навчання\Diploma\SavageOrcs.Web\obj\Debug\net6.0\SavageOrcs.Web.genruntimeconfig.cache
 D:\Навчання\Diploma\SavageOrcs.Web\obj\Debug\net6.0\ref\SavageOrcs.Web.dll
-D:\Навчання\Diploma\SavageOrcs.Web\bin\Debug\net6.0\SavageOrcs.Enums.dll
-D:\Навчання\Diploma\SavageOrcs.Web\bin\Debug\net6.0\SavageOrcs.Enums.pdb

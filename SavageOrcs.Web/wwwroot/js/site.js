@@ -60,6 +60,7 @@ var MapMainView = Class.extend({
     MapMarks: null,
     MapClusters: null,
     InfoWindow: null,
+    OldZoom: null,
     InitializeControls: function () {
         var self = this;
         const myLatlng = { lat: 50.5077456, lng: 31.018623 };
@@ -81,8 +82,32 @@ var MapMainView = Class.extend({
             options: {
                 gestureHandling: 'greedy'
             },
-            disableDefaultUI: true
+            disableDefaultUI: true,
+            styles: [{ "featureType": "water", "elementType": "geometry.fill", "stylers": [{ "color": "#d3d3d3" }] },
+                { "featureType": "transit", "stylers": [{ "color": "#808080" }, { "visibility": "off" }] },
+                { "featureType": "road.highway", "elementType": "geometry.stroke", "stylers": [{ "visibility": "on" }, { "color": "#b3b3b3" }]},
+                { "featureType": "road.highway", "elementType": "geometry.fill", "stylers": [{ "color": "#ffffff" }] },
+                { "featureType": "road.local", "elementType": "geometry.fill", "stylers": [{ "visibility": "on" }, { "color": "#ffffff" }, { "weight": 1.8 }] },
+                { "featureType": "road.local", "elementType": "geometry.stroke", "stylers": [{ "color": "#d7d7d7" }] },
+                { "featureType": "poi", "elementType": "geometry.fill", "stylers": [{ "visibility": "on" }, { "color": "#ebebeb" }] },
+                { "featureType": "administrative", "elementType": "geometry", "stylers": [{ "color": "#a7a7a7" }] },
+                { "featureType": "road.arterial", "elementType": "geometry.fill", "stylers": [{ "color": "#ffffff" }] },
+                { "featureType": "road.arterial", "elementType": "geometry.fill", "stylers": [{ "color": "#ffffff" }] },
+                { "featureType": "landscape", "elementType": "geometry.fill", "stylers": [{ "visibility": "on" }, { "color": "#efefef" }] },
+                { "featureType": "road", "elementType": "labels.text.fill", "stylers": [{ "color": "#696969" }] },
+                { "featureType": "administrative", "elementType": "labels.text.fill", "stylers": [{ "visibility": "on" }, { "color": "#737373" }] },
+                { "featureType": "poi", "elementType": "labels.icon", "stylers": [{ "visibility": "off" }] },
+                { "featureType": "poi", "elementType": "labels", "stylers": [{ "visibility": "off" }] },
+                { "featureType": "road.arterial", "elementType": "geometry.stroke", "stylers": [{ "color": "#d6d6d6" }] },
+                { "featureType": "road", "elementType": "labels.icon", "stylers": [{ "visibility": "off" }] },
+                {},
+                { "featureType": "poi", "elementType": "geometry.fill", "stylers": [{ "color": "#dadada" }] }]
         });
+        self.OldZoom = 6;
+        google.maps.event.addListener(map, 'zoom_changed', function () {
+            self.ChangeMarkerSize();
+        });
+
         self.Map = map;
 
         self.MapMarks = [];
@@ -97,10 +122,10 @@ var MapMainView = Class.extend({
                 map: map,
                 title: element.name,
                 icon: {
-                    url: element.isApproximate ? "images/markIconApproximate.png" : "images/markIcon.png",
-                    scaledSize: new google.maps.Size(20, 20),
+                    url: "images/redCircle.png",
+                    scaledSize: new google.maps.Size(10, 10),
                     origin: new google.maps.Point(0, 0),
-                    anchor: new google.maps.Point(10, 10)
+                    anchor: new google.maps.Point(5, 5)
                 }
             });
 
@@ -121,10 +146,10 @@ var MapMainView = Class.extend({
                 map: map,
                 title: element.name,
                 icon: {
-                    url: "images/clusterIcon.png",
-                    scaledSize: new google.maps.Size(30, 30),
+                    url: "images/redCircle.png",
+                    scaledSize: new google.maps.Size(20, 20),
                     origin: new google.maps.Point(0, 0),
-                    anchor: new google.maps.Point(15, 15)
+                    anchor: new google.maps.Point(10, 10)
                 }
             });
 
@@ -135,6 +160,35 @@ var MapMainView = Class.extend({
             self.MapClusters.push({ id: element.id, marker: marker });
         });
         
+    },
+    ChangeMarkerSize: function () {
+        var self = this;
+        var currentZoom = self.Map.getZoom();
+
+        if (!((self.OldZoom <= 15 && currentZoom <= 15) || (self.OldZoom > 15 && currentZoom > 15))) {
+            var iconSize = new google.maps.Size(10, 10);
+            var iconOrigin = new google.maps.Point(0, 0);
+            var iconAnchor = new google.maps.Point(5, 5);
+
+            if (currentZoom > 15) {
+                iconSize = new google.maps.Size(20, 20);
+                iconOrigin = new google.maps.Point(0, 0);
+                iconAnchor = new google.maps.Point(10, 10);
+            }
+
+            for (var i = 0; i < self.MapMarks.length; i++) {
+                var marker = self.MapMarks[i].marker;
+
+                marker.setIcon({
+                    url: marker.getIcon().url,
+                    scaledSize: iconSize,
+                    origin: iconOrigin,
+                    anchor: iconAnchor
+                });
+            }
+        }
+        self.OldZoom = currentZoom;
+
     },
     MarkOnClick: function (marker, element, isCluster = false) {
         var self = this;
@@ -194,7 +248,6 @@ var MarkAddView = Class.extend({
     Lng: null,
     Zoom: null,
     AreaId: null,
-    IsApproximate: null,
 
     Map: null,
     InfoWindow: null,
@@ -210,23 +263,22 @@ var MarkAddView = Class.extend({
     ClusterIds: null,
     ClusterNames: null,
     SearchSelectDropdownClusters: null,
+
+    Curators: null,
+    CuratorIds: null,
+    CuratorNames: null,
+    SearchSelectDropdownCurators: null,
+
     IsInitializate: null,
-    
     OldDataInput: null,
     SearchAreasViewModel: null,
-
-
-    RowAddConstString: "<div class=\"row justify-content-md-around\">",
-    ColAddConstString: "<div class=\"col-md-3\">",
-    DivAddConstString: "</div>",
-
 
     InitializeControls: function () {
         var self = this;
         const myLatlng = { lat: parseFloat(self.Lat), lng: parseFloat(self.Lng) };
 
         this.InfoWindow = new google.maps.InfoWindow({
-            content: "�����, ��� �������� ����������",
+            content: "Нажми, щоб отримати координати",
             position: myLatlng,
         });
 
@@ -240,6 +292,19 @@ var MarkAddView = Class.extend({
         if (!self.IsNew) {
             self.SetMark();
         }
+
+        var placesOptions = {
+            placeholder: "Виберіть локацію",
+            txtSelected: "вибрано",
+            txtAll: "Всі",
+            txtRemove: "Видалити",
+            txtSearch: "Пошук",
+            height: "300px",
+            Id: "placesMultiselect"
+        }
+
+        MultiselectDropdown(placesOptions);
+
 
         self.SearchSelectDropdownAreas = new SearchSelect('#dropdown-input-for-mark', {
             data: [],
@@ -266,6 +331,19 @@ var MarkAddView = Class.extend({
         });
 
         self.InitializeClusters(self.Clusters);
+
+        self.SearchSelectDropdownCurators = new SearchSelect('#dropdown-input-for-curator', {
+            data: [],
+            filter: SearchSelect.FILTER_CONTAINS,
+            sort: undefined,
+            inputClass: 'form-control-Select mobile-field',
+            maxOpenEntries: 9,
+            searchPosition: 'top',
+            onInputClickCallback: null,
+            onInputKeyDownCallback: null,
+        });
+
+        self.InitializeCurators(self.Curators);
 
         if (self.AreaName !== '') {
             var selected = $($("#Area .searchSelect--Result")[0]);
@@ -297,11 +375,30 @@ var MarkAddView = Class.extend({
             $("#dropdown-input-for-cluster").val(self.ClusterName);
         }
 
+        if (self.CuratorName !== '') {
+            var selected = $($("#Curator .searchSelect--Result")[0]);
+            selected.removeClass("#Curator searchSelect--Placeholder");
+            selected.html(self.CuratorName);
+
+            $.each($("#Cluster .searchSelect--Option"), function (index, element) {
+                if ($(element).text() === self.CuratorName) {
+                    $(element).addClass("#Curator searchSelect--Option--selected")
+                }
+            });
+
+            $("#dropdown-input-for-curator").val(self.CuratorName);
+        }
+
         self.SubscribeEvents();
 
         if (self.ToDelete) {
             self.DeleteMark();
         }
+    },
+    OnPlacesChange: function () {
+        var el = $("#placesMultiselect");
+        console.log(el);
+        console.log(el.val());
     },
     SubscribeEvents: function () {
         var self = this;
@@ -315,16 +412,25 @@ var MarkAddView = Class.extend({
             self.AddImage();
         });
 
-        $('#saveMark').on('click', function () {
+        $('#save').on('click', function () {
             self.Save();
         });
+
+        $('#delete').on('click', function () {
+            self.DeleteMark();
+        });
+
 
         $('#removeImages').on('click', function () {
             self.RemoveImages();
         });
 
-        $('#dropdown-input-for-mark').addClass("display-8-custom");
-        $('#dropdown-input-for-cluster').addClass("display-8-custom");
+        $("#placesMultiselect").on('change', function () {
+            self.OnPlacesChange();
+        });
+
+        //$('#dropdown-input-for-mark').addClass("display-8-custom");
+        //$('#dropdown-input-for-cluster').addClass("display-8-custom");
         
 
         self.Map.addListener("click", (mapsMouseEvent) => {
@@ -368,6 +474,18 @@ var MarkAddView = Class.extend({
 
         self.SearchSelectDropdownClusters.setData(self.ClusterNames);
     },
+    InitializeCurators: function (data) {
+        var self = this;
+        self.CuratorNames = [];
+        self.CuratorIds = [];
+
+        $.each(data, function (index, element) {
+            self.CuratorNames.push(element.name);
+            self.CuratorIds.push(element.id);
+        });
+
+        self.SearchSelectDropdownCurators.setData(self.CuratorNames);
+    },
     SetMark: function () {
         var self = this;
 
@@ -379,7 +497,7 @@ var MarkAddView = Class.extend({
             map: self.Map,
             title: self.AreaName,
             icon: {
-                url: "../images/markIcon.png",
+                url: "../images/redCircle.png",
                 scaledSize: new google.maps.Size(24, 24),
                 origin: new google.maps.Point(0, 0),
                 anchor: new google.maps.Point(12, 12)
@@ -403,12 +521,18 @@ var MarkAddView = Class.extend({
     },
     
     Save: function () {
+
+        //$("#placesMultiselect").val(null)
+        //$('#Place input[type="checkbox"]').prop('checked', false);
+
         var self = this;
 
         var areaId = self.AreaIds[self.AreaNames.indexOf($("#dropdown-input-for-mark").val())];
         var clusterId = self.ClusterIds[self.ClusterNames.indexOf($("#dropdown-input-for-cluster").val())];
+        var curatorId = self.CuratorIds[self.CuratorNames.indexOf($("#dropdown-input-for-curator").val())];
         areaId = areaId === "" ? null : areaId;
         clusterId = clusterId === "" ? null : clusterId;
+        curatorId = curatorId === "" ? null : curatorId;
 
         var saveMarkViewModel = {
             Id: $("#Id").val() === "" ? null : $("#Id").val(),
@@ -416,16 +540,24 @@ var MarkAddView = Class.extend({
             Lat: $("#Lat").val(),
             AreaId: areaId,
             ClusterId: clusterId,
-            IsApproximate: $("#IsApproximate").is(":checked"),
+            CuratorId: curatorId,
             Name: $("#Name").val(),
             Description: $("#Description").val(),
             DescriptionEng: $("#DescriptionEng").val(),
             ResourceUrl: $("#ResourceUrl").val(),
+            ResourceName: $("#ResourceName").val(),
+            ResourceNameEng: $("#ResourceNameEng").val(),
+            SelectedPlaceIds: $("#placesMultiselect").val(),
             Images: []
         };
 
         $("#imageContainer img").each(function (index, element) {
-            saveMarkViewModel.Images.push(element.src);
+            saveMarkViewModel.Images.push(
+                {
+                    Content: element.src,
+                    IsVisible: $(element).parent().parent().find("input").is(":checked")
+                }
+            );
         });
 
         $.ajax({
@@ -434,7 +566,12 @@ var MarkAddView = Class.extend({
             data: JSON.stringify(saveMarkViewModel),
             contentType: 'application/json; charset=utf-8',
             success: function (result) {
-                ResultPopUp(result.success, result.text, result.url, result.id);
+                if (result.success) {
+                    window.location.href = 'https://' + window.location.host + '/Mark/Catalogue';
+                }
+                else {
+                    ResultPopUp(result.success, result.text, result.url, result.id);
+                }
             }
         });
         
@@ -442,12 +579,13 @@ var MarkAddView = Class.extend({
     GetAreas: function () {
         var self = this;
 
+
         if (self.IsInitializate) {
             self.IsInitializate = false;
             return;
         }
 
-        self.SearchAreasViewModel = { Text: $(".form-control-Select-Bar").val() };
+        self.SearchAreasViewModel = { Text: $("#Area .form-control-Select-Bar").val() };
 
         self.OldDataInput = Date.now();
 
@@ -500,25 +638,30 @@ var MarkAddView = Class.extend({
         });
     },
     AddImages: function () {
-        var self = this;
+        //var self = this;
 
-        $.each(self.Images, function (index, element) {
-            var rowCount = $("#imageContainer .row").length;
-            var colCount = $("#imageContainer .col-md-3").length;
+        //$.each(self.Images, function (index, element) {
+        //    var rowCount = $("#imageContainer .row").length;
+        //    var colCount = $("#imageContainer .col-md-3").length;
 
-            $(".popup-content-custom .row #imagePlaceholder").removeAttr('id');
+        //    $(".popup-content-custom .row #imagePlaceholder").removeAttr('id');
 
-            if ((rowCount === 0) || (colCount !== 0 && Math.floor(colCount / rowCount) === 3)) {
-                $("#imageContainer").append(self.RowAddConstString + self.ColAddConstString + "<img src=\"" + element + "\" height=\"200\">" + self.DivAddConstString + self.DivAddConstString);
-            }
-            else {
-                $("#imageContainer .row").last().append(self.ColAddConstString + "<img src=\"" + element + "\" height=\"200\">" + self.DivAddConstString);
-            }
-        });
+        //    if ((rowCount === 0) || (colCount !== 0 && Math.floor(colCount / rowCount) === 3)) {
+        //        $("#imageContainer").append(self.RowAddConstString + self.ColAddConstString + "<img src=\"" + element + "\" height=\"200\">" + self.DivAddConstString + self.DivAddConstString);
+        //    }
+        //    else {
+        //        $("#imageContainer .row").last().append(self.ColAddConstString + "<img src=\"" + element + "\" height=\"200\">" + self.DivAddConstString);
+        //    }
+        //});
 
     },
+    RemoveImage: function (el) {
+        var row = $(el).parent().parent().parent();
+        console.log(row);
+        row.remove();
+    },
     RemoveImages: function () {
-        $("#imageContainer .row").empty();
+        $("#imageContainer").empty();
     }
 });
 
@@ -555,21 +698,19 @@ var AddImageView = Class.extend({
         $("#addImagePlaceholder").empty();
     },
     Save: function () {
-        var self = this;
-
-        var rowCount = $("#imageContainer .row").length;
-        var colCount = $("#imageContainer .col-md-3").length;
-
-        $(".popup-content-custom .row #imagePlaceholder").removeAttr('id');
-
         var imageToMove = $(".popup-content-custom .add-image-placeholder-custom").html();
 
-        if ((rowCount === 0) || (colCount !== 0 && Math.floor(colCount / rowCount) === 3 )) {
-            $("#imageContainer").append(markAddView.RowAddConstString + markAddView.ColAddConstString + imageToMove + markAddView.DivAddConstString + markAddView.DivAddConstString);
-        }
-        else {
-            $("#imageContainer .row").last().append(markAddView.ColAddConstString + imageToMove + markAddView.DivAddConstString);
-        }
+        var content = $(imageToMove).attr('src');
+        $.ajax({
+            type: 'POST',
+            url: "/Mark/ImageToInsert",
+            data: JSON.stringify(content),
+            contentType: 'application/json; charset=utf-8',
+            success: function (src) {
+                $("#imageContainer").append(src);
+            }
+        });
+
         $("#addImagePlaceholder").empty();
     },
 });
@@ -585,86 +726,84 @@ var RevisionMarkView = Class.extend({
     SubscribeEvents: function () {
         var self = this;
 
-        $(".image-revision-mark-custom").click(function () {
-            self.ToFullScreen($(this).attr("src"));
-        });
-
-        $('#flagGB').on('click', function () {
-            $('#flagUA').removeClass("box-shadow-grey-custom");
-            $("#flagGB").addClass("box-shadow-grey-custom");
-
-            $("#textGB").removeClass("display-none-custom");
-            $("#textUA").addClass("display-none-custom");
-           
-        });
-
-        $('#flagUA').on('click', function () {
-            $('#flagGB').removeClass("box-shadow-grey-custom");
-            $("#flagUA").addClass("box-shadow-grey-custom");
-
-            $("#textUA").removeClass("display-none-custom");
-            $("#textGB").addClass("display-none-custom");
-        });
+        $("#back").on('click', () => {
+            window.history.back();
+        })
     },
-    ToFullScreen: function (data) {
-        var self = this;
-        $.ajax({
-            type: 'POST',
-            url: "/Mark/RevisionImage",
-            data: JSON.stringify(data),
-            contentType: 'application/json; charset=utf-8',
-            success: function (html) {
-                $("#imageFullScreenPlaceholder").html(html);
-            }
-        });
-    }
+    //ToFullScreen: function (data) {
+    //    var self = this;
+    //    $.ajax({
+    //        type: 'POST',
+    //        url: "/Mark/RevisionImage",
+    //        data: JSON.stringify(data),
+    //        contentType: 'application/json; charset=utf-8',
+    //        success: function (html) {
+    //            $("#imageFullScreenPlaceholder").html(html);
+    //        }
+    //    });
+    //}
 })
 var CatalogueMarkView = Class.extend({
     Marks: null,
-    DetailedView: false,
-    From: null,
-    CountConst: 4,
-    WereDataInDetailedTable: null,
-    WereDataInShortTable: null,
     OnEnglish: false,
-    
-    TableShortRowStartConstString: "<div class=\"table-body-short-row justify-content-center d-flex\"><div class=\"table-body-short-column-number\">",
-    TableShortRowNameConstString: "</div><div class=\"table-body-short-column-name\"><a href=\"/Mark/Revision?id=",
-    TableShortRowDescriptionConstString: "</a></div><div class=\"table-body-short-column-description ukr-description\">",
-    TableShortRowDescriptionEngConstString: "</div><div class=\"table-body-short-column-description eng-description\">",
-    TableShortRowAreaConstString: "</div><div class=\"table-body-short-column-area\">",
-    TableShortRowAreaButtonConstString: "<button class=\"button-short-column-area\" value=\"",
-    TableShortRowEndConstString: "</div></div>",
 
-    TableDetailRowStartConstString: "<div class=\"table-body-detail-row justify-content-center d-flex\"><div class=\"table-body-detail-column-number flex-container-center-custom\">",
-    TableDetailRowNameConstString: "</div><div class=\"table-body-detail-column-name flex-container-center-custom\"><a href=\"/Mark/Revision?id=",
-    TableDetailRowDescriptionConstString: "</a></div><div class=\"table-body-detail-column-description flex-container-center-custom ukr-description\">",
-    TableDetailRowDescriptionEngConstString: "</div><div class=\"table-body-detail-column-description flex-container-center-custom eng-description\">",
-    TableDetailRowAreaConstString: "</div><div class=\"table-body-detail-column-area flex-container-center-custom\">",
-    TableDetailRowAreaButtonConstString: "<button class=\"button-detail-column-area\" value=\"",
-    TableDetailRowLinkConstString: "</div><div class=\"table-body-detail-column-photo flex-container-center-custom\"><a href=\"",
-    TableDetailRowPhotoConstString: "\"><img class=\"table-body-detail-column-photo-item\" src=\"",
-    TableDetailRowEndConstString: "\"></a></div></div>",
     InitializeControls: function () {
         var self = this;
        
 
-        var options = {
-            placeholder: "Виберіть ключове слово",
+        var areasOptions = {
+            placeholder: "Місця",
             txtSelected: "вибрано",
             txtAll: "Всі",
             txtRemove: "Видалити",
             txtSearch: "Пошук",
             height: "300px",
-            Id: "keyWordsMultiselect"
+            Id: "areasMultiselect",
+            //MaxElementsToShow: 2
         }
 
-        MultiselectDropdown(options);
+        var keyWordsAndMarksOptions = {
+            placeholder: "Ключові слова",
+            txtSelected: "вибрано",
+            txtAll: "Всі",
+            txtRemove: "Видалити",
+            txtSearch: "Пошук",
+            height: "300px",
+            Id: "namesMultiselect",
+            //MaxElementsToShow: 1
+        }
+
+        var placesOptions = {
+            placeholder: "Локації",
+            txtSelected: "вибрано",
+            txtAll: "Всі",
+            txtRemove: "Видалити",
+            txtSearch: "Пошук",
+            height: "300px",
+            Id: "placesMultiselect",
+            //MaxElementsToShow: 2
+        }
+
+        MultiselectDropdown(keyWordsAndMarksOptions);
+        MultiselectDropdown(placesOptions);
+        MultiselectDropdown(areasOptions);
 
         self.SubscribeEvents();
     },
     SubscribeEvents: function () {
         var self = this;
+
+        $("#placesMultiselect").on('change', function () {
+            self.OnPlacesChange();
+        });
+
+        $("#areasMultiselect").on('change', function () {
+            self.OnAreasChange();
+        });
+
+        $("#namesMultiselect").on('change', function () {
+            self.OnNamesChange();
+        });
 
         $("#tableDetail").css("display", "none");
         $("#showMore").css("display", "none");
@@ -683,77 +822,35 @@ var CatalogueMarkView = Class.extend({
             $("#MarkDescription").val('');
         });
 
-        $("#showMore").click(function () {
-            self.Search();
-        });
-
-        $("#fullData").click(function () {
-            if (self.DetailedView) {
-                self.DetailedView = false;
-
-                $("#tableDetail").css("display", "none");
-                $("#tableShort").css({ 'display': '' });
-                $(".table-body-detail").empty();
-
-                if (self.WereDataInDetailedTable == true) {
-                    self.Search();
-                }
-
-                $("#fullData").text("Ввімкнути детальний перегляд");
-                $("#showMore").css("display", "none");
-            }
-            else {
-                self.DetailedView = true;
-
-                $("#tableShort").css("display", "none");
-                $("#tableDetail").css({ 'display': ''});
-                $(".table-body-short").empty();
-
-                if (self.WereDataInShortTable == true) {
-                    self.Search();
-                }
-
-                $("#fullData").text("Ввімкнути спрощений перегляд");
-                $("#showMore").css({ 'display': '' });
-            }
-            //if (!$("#table").is(':empty')) {
-            //    self.Search();
-            //}
-        });
-
-        $('#flagGB').on('click', function () {
-            self.OnEnglish = true;
-            $('#flagUA').removeClass("box-shadow-grey-custom");
-            $("#flagGB").addClass("box-shadow-grey-custom");
-
-
-            $(".ukr-description").addClass("display-none-custom");
-            $(".eng-description").removeClass("display-none-custom");
-
-        });
-
-        $('#flagUA').on('click', function () {
-            self.OnEnglish = false;
-            $('#flagGB').removeClass("box-shadow-grey-custom");
-            $("#flagUA").addClass("box-shadow-grey-custom");
-
-            $(".eng-description").addClass("display-none-custom");
-            $(".ukr-description").removeClass("display-none-custom");
-        });
+        var firstElement = $(".data-row-container .data-row")[0];
+        if (firstElement !== undefined)
+            self.Show(firstElement);
     },
     Search: function () {
         var self = this;
-        
+
+        var names = $('#namesMultiselect').val() || [];
+
+
+
         var filters = {
-            KeyWordIds: $("#keyWordsMultiselect").val(),
-            AreaName: $("#AreaName").val(),
-            MarkName: $("#MarkName").val(),
-            MarkDescription: $("#MarkDescription").val(),
-            NotIncludeCluster: $("#NotIncludeCluster").is(":checked"),
-            FullData: self.DetailedView,
-            From: self.From,
-            Count: self.CountConst
+            SelectedKeyWordIds: [],
+            SelectedClusterIds: [],
+            SelectedMarkIds: [],
+            SelectedAreaIds: $("#areasMultiselect").val(),
+            SelectedPlaceIds: $("#placesMultiselect").val(),
         };
+
+
+        names.map(function (value) {
+            if (value.startsWith('C')) {
+                filters.SelectedClusterIds.push(value.substr(1));
+            } else if (value.startsWith('M')) {
+                filters.SelectedMarkIds.push(value.substr(1));
+            } else if (value.startsWith('K')) {
+                filters.SelectedKeyWordIds.push(value.substr(1));
+            }
+        });
 
         $.ajax({
             type: 'POST',
@@ -761,92 +858,54 @@ var CatalogueMarkView = Class.extend({
             data: JSON.stringify(filters),
             contentType: 'application/json; charset=utf-8',
             success: function (data) {
-                if (self.DetailedView) {
-                    self.WereDataInShortTable = false;
-                    self.WereDataInDetailedTable = true;
-                    
-                    var toAdd = "";
-
-                    $.each(data, function (index, element) {
-
-                        toAdd += self.TableDetailRowStartConstString + (self.From + index + 1);
-                        toAdd += self.TableDetailRowNameConstString + element.id + "\">" + element.name;
-                        toAdd += self.TableDetailRowDescriptionConstString + element.description;
-                        toAdd += self.TableDetailRowDescriptionEngConstString + element.descriptionEng;
-                        
-                        if (element.area !== null) {
-                            if (element.area.id !== null) {
-                                toAdd += self.TableDetailRowAreaConstString + self.TableDetailRowAreaButtonConstString;
-                                toAdd += element.area.id + "\">" + element.area.name + "</button>";
-                            }
-                        }
-                        else {
-                            toAdd += self.TableDetailRowAreaConstString;
-                        }
-
-                        toAdd += self.TableDetailRowLinkConstString + element.resourceUrl;
-                        toAdd += self.TableDetailRowPhotoConstString + element.images[0]; //NOT COMPLETED
-                        toAdd += self.TableDetailRowEndConstString;
-                    });
-
-                    self.From += self.CountConst;
-
-                    $(".table-body-detail").append(toAdd);
-
-                    $(".button-detail-column-area").click(function () {
-                        $("#KeyWord").val("");
-                        $("#AreaName").val(this.innerText);
-                        self.Search();
-                    });
-
-                    if (self.OnEnglish)
-                        $(".ukr-description").addClass("display-none-custom");
-                    else
-                        $(".eng-description").addClass("display-none-custom");
-                }
-                else {
-                    self.WereDataInShortTable = true;
-                    self.WereDataInDetailedTable = false;
-
-                    self.From = 0;
-
-                    var toAdd = "";
-
-                    $.each(data, function (index, element) {
-                        toAdd += self.TableShortRowStartConstString + (index + 1);
-                        toAdd += self.TableShortRowNameConstString + element.id + "\">" + element.name;
-                        toAdd += self.TableShortRowDescriptionConstString + element.description;
-                        toAdd += self.TableShortRowDescriptionEngConstString + element.descriptionEng;
-                        
-
-                        if (element.area !== null) {
-                            if (element.area.id !== null) {
-                                toAdd += self.TableShortRowAreaConstString + self.TableShortRowAreaButtonConstString;
-                                toAdd += element.area.id + "\">" + element.area.name + "</button>";
-                            }
-                        }
-                        else {
-                            toAdd += self.TableShortRowAreaConstString;
-                        }
-                        toAdd += self.TableShortRowEndConstString;
-                    });
-
-                    $(".table-body-short").append(toAdd);
-
-                    $(".button-short-column-area").click(function () {
-                        $("#KeyWord").val("");
-                        $("#AreaName").val(this.innerText);
-                        self.Search();
-                    });
-
-                    if (self.OnEnglish)
-                        $(".ukr-description").addClass("display-none-custom");
-                    else
-                        $(".eng-description").addClass("display-none-custom");
-                }
+                $(".data-row-container").html(data);
+                var firstElement = $(".data-row-container .data-row")[0];
+                if (firstElement !== undefined)
+                    self.Show(firstElement);
             }
         });
-    }
+    },
+    Show: function (el) {
+        $('.data-row').each(function (idex, element) {
+            $(element).css('opacity', '0.3');
+            $(element).removeClass("data-row-selected");
+        });
+        $(el).css('opacity', '1');
+        $(el).addClass("data-row-selected");
+        var fullId = $(el).find("input:first-child").attr('id')
+        id = fullId.substring(fullId.length - 36);
+        var index = fullId.substring(0, fullId.length - 36);
+        var isCluster = $(el).find("input").eq(1).val() == 'True';
+        
+
+        $(".slideshow-container").empty();
+        $.ajax({
+            type: 'POST',
+            url: "/Mark/GetImages?id=" + id + "&isCluster=" + isCluster + "&index=" + index,
+            contentType: 'application/json; charset=utf-8',
+            success: function (result) {
+                $(".slideshow-container").html(result);
+                var containerTop = $(".data-row-container").offset().top;
+                var rowTop = $(el).offset().top;
+                var topToSet = rowTop - containerTop;
+                $(".slideshow-container").css({ "margin-top": topToSet +'px' });
+            }
+        });
+    },
+    OnPlacesChange: function () {
+        var self = this;
+        self.Search();
+    },
+    OnAreasChange: function () {
+        var self = this;
+        self.Search();
+
+    },
+    OnNamesChange: function () {
+        var self = this;
+        self.Search();
+    },
+    
 });
 var DeleteMarkView = Class.extend({
     
@@ -870,7 +929,13 @@ var DeleteMarkView = Class.extend({
             url: "/Mark/DeleteConfirm?id=" + $("#Id").val(),
             contentType: 'application/json; charset=utf-8',
             success: function (result) {
-                ResultPopUp(result.success, result.text, result.url, result.id);
+                if (result.success) {
+                    var currentUrl = window.location.href;
+                    window.location.href = currentUrl.substring(0, currentUrl.indexOf('/', 8)) + '/Mark/Catalogue';
+                    location.reload();
+                }
+                else
+                    ResultPopUp(result.success, result.text, result.url, result.id);
 
                 self.Close();
             }
@@ -903,7 +968,6 @@ var CatalogueUserView = Class.extend({
     TableRowStartConstString: "<div class=\"table-body-catalogue-user-row justify-content-center d-flex\"><div class=\"table-body-catalogue-user-column-number\">",
     TableRowFullNameConstString: "</div><div class=\"table-body-catalogue-user-column-name\">",
     TableRowLinkConstString: "<a class=\"table-body-catalogue-user-column-name-link\" href=\"/User/Revision?id=",
-    TableRowCuratorStatusConstString: "</div><div class=\"table-body-catalogue-user-column-curator-status\">",
     TableRowEmailConstString: "</div><div class=\"table-body-catalogue-user-column-email\">",
     TableRowEndConstString: "</div></div>",
     
@@ -923,7 +987,6 @@ var CatalogueUserView = Class.extend({
             $("#Name").val('');
             $("#Email").val('');
         });
-
     },
     Search: function () {
         var self = this;
@@ -953,13 +1016,7 @@ var CatalogueUserView = Class.extend({
                     else {
                         toAdd += element.fullName;
                     }
-                    toAdd += self.TableRowCuratorStatusConstString;
-                    if (element.isCurator) {
-                        toAdd += "Так";
-                    }
-                    else {
-                        toAdd += "Ні";
-                    }
+                    
                     toAdd += self.TableRowEmailConstString + element.email;
                     toAdd += self.TableRowEndConstString;
                 });
@@ -971,8 +1028,6 @@ var CatalogueUserView = Class.extend({
 })
 var RevisionUserView = Class.extend({
     UserId: null,
-    CuratorId: null,
-    IsCurator: null,
     InitializeControls: function () {
         var self = this;
 
@@ -981,21 +1036,8 @@ var RevisionUserView = Class.extend({
     SubscribeEvents: function () {
         var self = this;
 
-        $("#saveMark").click(function () {
+        $("#saveUser").click(function () {
             self.Save();
-        });
-
-        $("#addCuratorImage").click(function () {
-            self.AddCuratorImage();
-        });
-
-        $("#IsCurator").change(function () {
-            if (this.checked) {
-                $(".curatorRow").css({ 'visibility': 'visible' });
-            }
-            else {
-                $(".curatorRow").css({ 'visibility': 'hidden' });
-            }
         });
 
         $("#search").click(function () {
@@ -1016,12 +1058,7 @@ var RevisionUserView = Class.extend({
             FirstName: $("#FirstName").val(),
             LastName: $("#LastName").val(),
             Email: $("#Email").val(),
-            IsCurator: $("#IsCurator").is(":checked"),
             RoleIds: [],
-            CuratorId: $("#CuratorInfo_Id").val(),
-            DisplayName: $("#CuratorInfo_DisplayName").val(),
-            Description: $("#CuratorInfo_Description").val(),
-            Image: $("#imagePlaceholder").attr('src')
         }
         $(".check-box-row").each(function (index, element) {
             if ($(element).is(":checked"))
@@ -1037,16 +1074,6 @@ var RevisionUserView = Class.extend({
             contentType: 'application/json; charset=utf-8',
             success: function (result) {
                 ResultPopUp(result.success, result.text, result.url, result.id);
-            }
-        });
-    },
-    AddCuratorImage: function () {
-        $.ajax({
-            type: 'POST',
-            url: "/User/AddCuratorImage",
-            contentType: 'application/json; charset=utf-8',
-            success: function (src) {
-                $('#addImagePlaceholder').html(src);
             }
         });
     }
@@ -1097,14 +1124,30 @@ var AddCuratorImageView = Class.extend({
 var ClusterAddView = Class.extend({
     ToDelete: null,
     IsNew: null,
-    //Images: null,
+
+    Areas: null,
+    AreaIds: null,
+    AreaNames: null,
+    SearchSelectDropdownAreas: null,
+
+    Curators: null,
+    CuratorIds: null,
+    CuratorNames: null,
+    SearchSelectDropdownCurators: null,
+
+
     Areas: null,
     AreaName: null,
+    AreaId: null,
+
+    Curators: null,
+    CuratorName: null,
+    CuratorId: null,
+
     Lat: null,
     Lng: null,
     Zoom: null,
     AreaId: null,
-    //IsApproximate: null,
 
     Map: null,
     InfoWindow: null,
@@ -1112,7 +1155,6 @@ var ClusterAddView = Class.extend({
     LastLng: null,
     AreaIds: null,
     AreaNames: null,
-    SearchSelectDropdown: null,
     IsInitializate: null,
     
     OldDataInput: null,
@@ -1123,7 +1165,7 @@ var ClusterAddView = Class.extend({
         const myLatlng = { lat: parseFloat(self.Lat), lng: parseFloat(self.Lng) };
 
         this.InfoWindow = new google.maps.InfoWindow({
-            content: "�����, ��� �������� ����������",
+            content: "Нажми, щоб отримати координати",
             position: myLatlng,
         });
 
@@ -1134,7 +1176,20 @@ var ClusterAddView = Class.extend({
             self.SetMark();
         }
 
-        self.SearchSelectDropdown = new SearchSelect('#dropdown-input', {
+        var placesOptions = {
+            placeholder: "Виберіть локацію",
+            txtSelected: "вибрано",
+            txtAll: "Всі",
+            txtRemove: "Видалити",
+            txtSearch: "Пошук",
+            height: "300px",
+            Id: "placesMultiselect",
+            //MaxElementsToShow: 2
+        }
+
+        MultiselectDropdown(placesOptions);
+
+        self.SearchSelectDropdownAreas = new SearchSelect('#dropdown-input-for-area', {
             data: [],
             filter: SearchSelect.FILTER_CONTAINS,
             sort: undefined,
@@ -1147,19 +1202,48 @@ var ClusterAddView = Class.extend({
 
         self.InitializeAreas(self.Areas);
 
+        self.SearchSelectDropdownCurators = new SearchSelect('#dropdown-input-for-curator', {
+            data: [],
+            filter: SearchSelect.FILTER_CONTAINS,
+            sort: undefined,
+            inputClass: 'form-control-Select mobile-field',
+            maxOpenEntries: 9,
+            searchPosition: 'top',
+            onInputClickCallback: null,
+            onInputKeyDownCallback: null,
+        });
+
+        self.InitializeCurators(self.Curators);
+
+
         if (self.AreaName !== '') {
-            var selected = $($(".searchSelect--Result")[0]);
-            selected.removeClass("searchSelect--Placeholder");
+            var selected = $($("#Area .searchSelect--Result")[0]);
+            selected.removeClass("#Area searchSelect--Placeholder");
             selected.html(self.AreaName);
 
-            $.each($(".searchSelect--Option"), function (index, element) {
+
+            $.each($("#Area .searchSelect--Option"), function (index, element) {
                 if ($(element).text() === self.AreaName) {
-                    $(element).addClass("searchSelect--Option--selected")
+                    $(element).addClass("#Area searchSelect--Option--selected")
                 }
             });
 
-            $("#dropdown-input").val(self.AreaName);
-            
+            $("#dropdown-input-for-mark").val(self.AreaName);
+
+        }
+
+        if (self.CuratorName !== '') {
+            var selected = $($("#Curator .searchSelect--Result")[0]);
+            selected.removeClass("#Curator searchSelect--Placeholder");
+            selected.html(self.CuratorName);
+
+            $.each($("#Cluster .searchSelect--Option"), function (index, element) {
+                if ($(element).text() === self.CuratorName) {
+                    $(element).addClass("#Curator searchSelect--Option--selected")
+                }
+            });
+
+            $("#dropdown-input-for-curator").val(self.CuratorName);
         }
 
         self.SubscribeEvents();
@@ -1180,7 +1264,6 @@ var ClusterAddView = Class.extend({
             self.Save();
         });
 
-        $('#dropdown-input').addClass("display-8-custom");
         
         self.Map.addListener("click", (mapsMouseEvent) => {
             self.InfoWindow.close();
@@ -1208,7 +1291,19 @@ var ClusterAddView = Class.extend({
             self.AreaIds.push(element.id);
         });
 
-        self.SearchSelectDropdown.setData(self.AreaNames);
+        self.SearchSelectDropdownAreas.setData(self.AreaNames);
+    },
+    InitializeCurators: function (data) {
+        var self = this;
+        self.CuratorNames = [];
+        self.CuratorIds = [];
+
+        $.each(data, function (index, element) {
+            self.CuratorNames.push(element.name);
+            self.CuratorIds.push(element.id);
+        });
+
+        self.SearchSelectDropdownCurators.setData(self.CuratorNames);
     },
     SetMark: function () {
         var self = this;
@@ -1221,7 +1316,7 @@ var ClusterAddView = Class.extend({
             map: self.Map,
             title: self.AreaName,
             icon: {
-                url: "../images/clusterIcon.png",
+                url: "../images/redCircle.png",
                 scaledSize: new google.maps.Size(24, 24),
                 origin: new google.maps.Point(0, 0),
                 anchor: new google.maps.Point(12, 12)
@@ -1246,16 +1341,24 @@ var ClusterAddView = Class.extend({
     Save: function () {
         var self = this;
 
-        var areaId = self.AreaIds[self.AreaNames.indexOf($("#dropdown-input").val())];
+        var areaId = self.AreaIds[self.AreaNames.indexOf($("#dropdown-input-for-area").val())];
+        var curatorId = self.CuratorIds[self.CuratorNames.indexOf($("#dropdown-input-for-curator").val())];
         areaId = areaId === "" ? null : areaId;
+        curatorId = curatorId === "" ? null : curatorId;
 
         var saveClusterViewModel = {
             Id: $("#Id").val() === "" ? null : $("#Id").val(),
             Lng: $("#Lng").val(),
             Lat: $("#Lat").val(),
             AreaId: areaId,
+            CuratorId: curatorId,
             Name: $("#Name").val(),
             Description: $("#Description").val(),
+            DescriptionEng: $("#DescriptionEng").val(),
+            ResourceUrl: $("#ResourceUrl").val(),
+            ResourceName: $("#ResourceName").val(),
+            ResourceNameEng: $("#ResourceNameEng").val(),
+            SelectedPlaceIds: $("#placesMultiselect").val()
         };
 
         $.ajax({
@@ -1264,10 +1367,15 @@ var ClusterAddView = Class.extend({
             data: JSON.stringify(saveClusterViewModel),
             contentType: 'application/json; charset=utf-8',
             success: function (result) {
-                ResultPopUp(result.success, result.text, result.url, result.id);
+                if (result.success) {
+                    window.location.href = 'https://' + window.location.host + '/Mark/Catalogue';
+                }
+                else {
+                    ResultPopUp(result.success, result.text, result.url, result.id);
+                }
             }
         });
-        
+
     },
     GetAreas: function () {
         var self = this;
@@ -1277,7 +1385,7 @@ var ClusterAddView = Class.extend({
             return;
         }
 
-        self.SearchAreasViewModel = { Text: $(".form-control-Select-Bar").val() };
+        self.SearchAreasViewModel = { Text: $("#Area .form-control-Select-Bar").val() };
 
         self.OldDataInput = Date.now();
 
@@ -1547,50 +1655,81 @@ var RevisionTextView = Class.extend({
     },
     SubscribeEvents: function () {
         var self = this;
+
+       
     }
 })
 var CatalogueTextView = Class.extend({
     Curators: null,
     SearchSelectDropdown: null,
 
-    TableTextStartConstString: "<div class=\"table-body-catalogue-text-row justify-content-center d-flex\"><div class=\"table-body-catalogue-text-column-number\">",
-    TableTextNameConstString: "</div><div class=\"table-body-catalogue-text-column-name\"><a href=\"/Text/Revision?id=",
-    TableTextSubjectConstString: "</a></div><div class=\"table-body-catalogue-text-column-subject\">",
-    TableTextCuratorConstString: "</div><div class=\"table-body-catalogue-text-column-curator\"><a href=\"/Curator/Revision?id=",
-    TableTextEndConstString: "</a></div></div>",
-
     InitializeControls: function () {
         var self = this;
 
-        var options = {
-            placeholder: "Виберіть куратора",
+        var textNamesOptions = {
+            placeholder: "Виберіть назву",
             txtSelected: "вибрано",
             txtAll: "Всі",
             txtRemove: "Видалити",
             txtSearch: "Пошук",
             height: "300px",
-            Id: "curatorMultiselect"
+            Id: "textNamesMultiselect"
         }
 
-        MultiselectDropdown(options);
+        var curatorsOptions = {
+            placeholder: "Виберіть автора",
+            txtSelected: "вибрано",
+            txtAll: "Всі",
+            txtRemove: "Видалити",
+            txtSearch: "Пошук",
+            height: "300px",
+            Id: "curatorsMultiselect"
+        }
+
+        MultiselectDropdown(textNamesOptions);
+        MultiselectDropdown(curatorsOptions);
 
         self.SubscribeEvents();
     },
     SubscribeEvents: function () {
         var self = this;
 
-        $('#search').on('click', function () {
-            self.Search();
-        });
+        //$('#search').on('click', function () {
+        //    self.Search();
+        //});
 
 
-        $("#clearFilters").click(function () {
-            //$("#KeyWord").val('');
-            $("#TextName").val('');
-            $("#TextSubject").val('');
-            $('#curatorMultiselect option').attr('selected', 'selected');
-        });
+        //$("#clearFilters").click(function () {
+        //    //$("#KeyWord").val('');
+        //    $("#TextName").val('');
+        //    $("#TextSubject").val('');
+        //    $('#curatorMultiselect option').attr('selected', 'selected');
+        //});
+
+        var firstElement = $(".text-search-data-table .text-data-row")[0];
+        if (firstElement !== undefined)
+            self.Show(firstElement);
         
+    },
+    Show: function (el) {
+        $('.text-data-row').each(function (idex, element) {
+            $(element).css('opacity', '0.3');
+            $(element).removeClass("data-row-selected");
+        });
+        $(el).css('opacity', '1');
+        $(el).addClass("data-row-selected");
+        var fullId = $(el).find("input:first-child").attr('id')
+        id = fullId.substring(fullId.length - 36);
+
+        $("#textContentPlaceholder").empty();
+        $.ajax({
+            type: 'POST',
+            url: "/Text/GetText?id=" + id ,
+            contentType: 'application/json; charset=utf-8',
+            success: function (result) {
+                $("#textContentPlaceholder").html(result);
+            }
+        });
     },
     Search: function () {
         $(".table-body-catalogue-text").empty();
@@ -1632,6 +1771,7 @@ var CatalogueTextView = Class.extend({
 })
 var AddTextView = Class.extend({
     IsNew: null,
+    ToDelete: false,
     CuratorName: null,
     CuratorId: null,
 
@@ -1645,10 +1785,6 @@ var AddTextView = Class.extend({
 
     Editor: null,
     Data: null,
-
-    RowAddConstString: "<div class=\"row justify-content-md-around\">",
-    ColAddConstString: "<div class=\"col-md-3\">",
-    DivAddConstString: "</div>",
 
     InitializeControls: function () {
         var self = this;
@@ -1773,6 +1909,23 @@ var AddTextView = Class.extend({
                         }
                     });
                 }
+
+                if (!IsFind) {
+                    $.each(self.Blocks.videos, function (index, element) {
+                        if (element.index === i) {
+                            self.OldData.blocks.push({
+                                data: {
+                                    src: element.src,
+                                    caption: element.caption
+                                },
+                                id: element.id,
+                                type: "video"
+                            });
+                            IsFind = true;
+                            return false;
+                        }
+                    });
+                }
             }
         }
 
@@ -1825,6 +1978,9 @@ var AddTextView = Class.extend({
 
                 image: {
                     class: SimpleImage
+                },
+                video: {
+                    class: SimpleVideo
                 }
             }
         });
@@ -1838,8 +1994,12 @@ var AddTextView = Class.extend({
     SubscribeEvents: function () {
         var self = this;
 
-        $('#saveText').on('click', function () {
+        $('#save').on('click', function () {
             self.Save();
+        });
+
+        $('#delete').on('click', function () {
+            self.DeleteText();
         });
 
         $('#addPhoto').on('click', function () {
@@ -1850,8 +2010,18 @@ var AddTextView = Class.extend({
             self.RemoveImages();
         });
 
+        $('#addVideo').on('click', function () {
+            self.AddVideo();
+        });
+
+        $('#removeVideos').on('click', function () {
+            self.RemoveVideos();
+        });
+
         $('#dropdown-input-for-curator').addClass("display-8-custom");
     },
+
+
 
     InitializeCurators: function (data) {
         var self = this;
@@ -1886,7 +2056,8 @@ var AddTextView = Class.extend({
                     CheckBoxes: [],
                     Listes: [],
                     Paragraphs: [],
-                    Raws: []
+                    Raws: [],
+                    Videos: []
                 }
             };
 
@@ -1908,6 +2079,14 @@ var AddTextView = Class.extend({
                 }
                 else if (element.type === "image") {
                     saveTextViewModel.Blocks.Images.push({
+                        Id: element.id,
+                        Src: element.data.src,
+                        Caption: element.data.caption,
+                        Index: index
+                    });
+                }
+                else if (element.type === "video") {
+                    saveTextViewModel.Blocks.Videos.push({
                         Id: element.id,
                         Src: element.data.src,
                         Caption: element.data.caption,
@@ -1937,7 +2116,7 @@ var AddTextView = Class.extend({
                     });
                 }
             });
-            debugger;
+
             $.ajax({
                 type: 'POST',
                 url: "/Text/SaveText",
@@ -1957,6 +2136,8 @@ var AddTextView = Class.extend({
     },
 
     DeleteText: function () {
+        if ($("#Id").val() === "")
+            return;
         $.ajax({
             type: 'POST',
             url: "/Text/DeleteText",
@@ -1980,13 +2161,7 @@ var AddTextView = Class.extend({
             }
         });
     },
-    AfterAddingImage: function () {
-        var self = this;
 
-        $("img").click(function () {
-            self.CopyTextToClipboard($(this).attr("src"));
-        });
-    },
     CopyTextToClipboard: function (text) {
         if (!navigator.clipboard) {
             //fallbackCopyTextToClipboard(text);
@@ -1995,7 +2170,29 @@ var AddTextView = Class.extend({
         navigator.clipboard.writeText(text);
     },
     RemoveImages: function () {
-        $("#imageTextContainer .row").empty();
+        $("#imageTextContainer").empty();
+    },
+
+    AddVideo: function () {
+        var self = this;
+        $.ajax({
+            type: 'POST',
+            url: "/Text/AddVideo",
+            contentType: 'application/json; charset=utf-8',
+            success: function (src) {
+                $('#addVideoTextPlaceholder').html(src);
+            }
+        });
+    },
+
+    RemoveVideos: function () {
+        $("#videoTextContainer").empty();
+    },
+
+    CopyTimeId: function (el) {
+        var time = $(el).parent().find("input").val();
+        var self = this;
+        self.CopyTextToClipboard(time);
     }
 
 });
@@ -2030,7 +2227,17 @@ class SimpleImage {
         input.value = this.data && this.data.src ? this.data.src : '';
 
         input.addEventListener('paste', (event) => {
-            this._createImage(event.clipboardData.getData('text'));
+            var time = event.clipboardData.getData('text');
+            var input = $('input').filter(function () {
+                return $(this).val() === time;
+            });
+
+            if (input.length) {
+                var src = input.parent().parent().find('.text-add-image').attr("src");
+                if (!src || !src.length || !src.includes("data") || !src.includes("base64"))
+                    return;
+                this._createImage(src);
+            } 
         });
 
         return this.wrapper;
@@ -2068,6 +2275,84 @@ class SimpleImage {
         }
     }
 }
+
+class SimpleVideo {
+    static get toolbox() {
+        return {
+            title: 'Video',
+            icon: '<img src="/images/icons/video.png" class="editor-video-icon" alt="" />'
+        };
+    }
+    constructor({ data }) {
+        this.data = data;
+        this.wrapper = undefined;
+    }
+    render() {
+        this.wrapper = document.createElement('div');
+        this.wrapper.classList.add('simple-video');
+
+        if (this.data && this.data.src) {
+            this._createVideo(this.data.src, this.data.caption);
+            return this.wrapper;
+        }
+        const input = document.createElement('input');
+
+        this.wrapper.classList.add('simple-image');
+        this.wrapper.appendChild(input);
+
+        input.placeholder = 'Insert copied video';
+        input.value = this.data && this.data.src ? this.data.src : '';
+
+        input.addEventListener('paste', (event) => {
+            var time = event.clipboardData.getData('text');
+            var input = $('input').filter(function () {
+                return $(this).val() === time;
+            });
+
+            if (input.length) {
+                var src = input.parent().parent().find('.text-add-video').attr("src");
+                if (!src || !src.length || !src.includes("data") || !src.includes("base64"))
+                    return;
+                this._createVideo(src);
+            }
+        });
+
+        return this.wrapper;
+    }
+    _createVideo(src, captionText) {
+        const video = document.createElement('video');
+        video.muted = true;
+        video.controls = true;
+        const caption = document.createElement('div');
+
+        video.src = src;
+        caption.contentEditable = true;
+        caption.innerHTML = captionText || '';
+
+        this.wrapper.innerHTML = '';
+        this.wrapper.appendChild(video);
+        this.wrapper.appendChild(caption);
+    }
+
+
+    validate(savedData) {
+        if (!savedData.src.trim()) {
+            return false;
+        }
+
+        return true;
+    }
+
+    save(blockContent) {
+        const video = blockContent.querySelector('video');
+        const caption = blockContent.querySelector('[contenteditable]');
+
+        return {
+            src: video.src,
+            caption: caption.innerHTML || ''
+        }
+    }
+}
 var AddImageTextView = Class.extend({
     Image: null,
     ImageInput: null,
@@ -2101,24 +2386,71 @@ var AddImageTextView = Class.extend({
         $("#addImageTextPlaceholder").empty();
     },
     Save: function () {
-        var self = this;
-
-        var rowCount = $("#imageTextContainer .row").length;
-        var colCount = $("#imageTextContainer .col-md-3").length;
-
-        $(".popup-content-custom .row #imagePlaceholder").removeAttr('id');
-
         var imageToMove = $(".popup-content-custom .add-image-placeholder-custom").html();
 
-        if ((rowCount === 0) || (colCount !== 0 && Math.floor(colCount / rowCount) === 3 )) {
-            $("#imageTextContainer").append(addTextView.RowAddConstString + addTextView.ColAddConstString + imageToMove + addTextView.DivAddConstString + addTextView.DivAddConstString);
-        }
-        else {
-            $("#imageTextContainer .row").last().append(addTextView.ColAddConstString + imageToMove + addTextView.DivAddConstString);
-        }
+        var content = $(imageToMove).attr('src');
+        $.ajax({
+            type: 'POST',
+            url: "/Text/ImageToInsert",
+            data: JSON.stringify(content),
+            contentType: 'application/json; charset=utf-8',
+            success: function (src) {
+                $("#imageTextContainer").append(src);
+            }
+        });
 
-        addTextView.AfterAddingImage();
         $("#addImageTextPlaceholder").empty();
+    },
+});
+
+
+var AddVideoTextView = Class.extend({
+    Video: null,
+    VideoInput: null,
+    Reader: null,
+    InitializeControls: function () {
+        var self = this;
+        self.VideoInput = $('#videoInput');
+        self.Reader = new FileReader();
+
+        self.SubscribeEvents();
+    },
+    SubscribeEvents: function () {
+        var self = this;
+
+        self.Reader.addEventListener("load", () => {
+            $("#videoPlaceholder")[0].src = self.Reader.result;
+        }, false);
+
+        self.VideoInput.on('change', function () {
+            self.Reader.readAsDataURL(self.VideoInput[0].files[0]);
+        });
+
+        $('#addVideoCancelButton').on('click', function () {
+            self.Close();
+        });
+        $('#addVideoConfirmButton').on('click', function () {
+            self.Save();
+        });
+    },
+    Close: function () {
+        $("#addVideoTextPlaceholder").empty();
+    },
+    Save: function () {
+        var videoToMove = $(".popup-content-custom .add-video-placeholder-custom").html();
+
+        var content = $(videoToMove).attr('src');
+        $.ajax({
+            type: 'POST',
+            url: "/Text/VideoToInsert",
+            data: JSON.stringify(content),
+            contentType: 'application/json; charset=utf-8',
+            success: function (src) {
+                $("#videoTextContainer").append(src);
+            }
+        });
+
+        $("#addVideoTextPlaceholder").empty();
     },
 });
 
@@ -2205,8 +2537,355 @@ var CatalogueCuratorView = Class.extend({
     SubscribeEvents: function () {
         var self = this;
 
-        $(".curator-box").click(function () {
-            window.location.href = window.location.origin + "/Curator/Revision?id=" + $(this).attr("value");
-        });
+        //$(".curator-box").click(function () {
+        //    window.location.href = window.location.origin + "/Curator/Revision?id=" + $(this).attr("value");
+        //});
+    },
+    ShowDescription: function (el) {
+        var container = $(el).parent().parent().parent();
+        var descriptionContainer = container.find(".curator-content-detailed");
+        if (descriptionContainer.css('display') === 'flex') {
+            descriptionContainer.css('display', 'none');
+        } else {
+            descriptionContainer.css('display', 'flex');
+        }
+    },
+    HideDescription: function (el) {
+        var container = $(el).parent().parent().parent();
+        var descriptionContainer = container.find(".curator-content-detailed");
+        descriptionContainer.css({ display: 'none' });
     }
 })
+var CuratorAddView = Class.extend({
+    InitializeControls: function () {
+        var self = this;
+
+        self.SubscribeEvents();
+    },
+    SubscribeEvents: function () {
+        var self = this;
+
+        $('#addImage').on('click', function () {
+            self.AddImage();
+        });
+
+        $('#saveCurator').on('click', function () {
+            self.Save();
+        });
+        $('#delete').on('click', function () {
+            self.Delete();
+        });
+    },
+    Delete: function () {
+        if ($("#Id").val() === "")
+            return;
+        $.ajax({
+            type: 'POST',
+            url: "/Curator/DeleteCurator",
+            contentType: 'application/json; charset=utf-8',
+            success: function (src) {
+                $('#deleteCuratorPlaceholder').html(src);
+            }
+        });
+    },
+
+    AddImage: function () {
+        $.ajax({
+            type: 'POST',
+            url: "/Curator/AddImage",
+            contentType: 'application/json; charset=utf-8',
+            success: function (src) {
+                $('#addImagePlaceholder').html(src);
+            }
+        });
+    },
+    Save: function () {
+        var self = this;
+
+        var saveCuratorViewModel = {
+            Id: $("#Id").val() === "" ? null : $("#Id").val(),
+            DisplayName: $("#DisplayName").val(),
+            Description: $("#Description").val(),
+            DescriptionEng: $("#DescriptionEng").val(),
+            Image: $("#curatorImage").attr('src')
+        };
+
+        
+
+        $.ajax({
+            type: 'POST',
+            url: "/Curator/SaveCurator",
+            data: JSON.stringify(saveCuratorViewModel),
+            contentType: 'application/json; charset=utf-8',
+            success: function (result) {
+                if (result.success) {
+                    window.location.href = 'https://' + window.location.host + '/Curator/Catalogue';
+                }
+                else {
+                    ResultPopUp(result.success, result.text, result.url, result.id);
+                }
+            }
+        });
+
+    }
+});
+var AddImageCuratorView = Class.extend({
+    Image: null,
+    ImageInput: null,
+    Reader: null,
+    InitializeControls: function () {
+        var self = this;
+        self.ImageInput = $('#imageInput');
+        self.Reader = new FileReader();
+
+        self.SubscribeEvents();
+    },
+    SubscribeEvents: function () {
+        var self = this;
+
+        self.Reader.addEventListener("load", () => {
+            $("#imagePlaceholder")[0].src = self.Reader.result;
+        }, false);
+
+        self.ImageInput.on('change', function () {
+            self.Reader.readAsDataURL(self.ImageInput[0].files[0]);
+        });
+       
+        $('#addImageCancelButton').on('click', function () {
+            self.Close();
+        });
+        $('#addImageConfirmButton').on('click', function () {
+            self.Save();
+        });
+    },
+    Close: function () {
+        $("#addImagePlaceholder").empty();
+    },
+    Save: function () {
+        var imageToMove = $(".popup-content-custom .add-image-placeholder-custom").html();
+
+        var src = $(imageToMove).attr('src');
+
+
+        $("#curatorImagePlaceholder").empty();
+        $("#curatorImagePlaceholder").html("<img id=\"curatorImage\" src=\"" + src +"\" />")
+
+        $("#addImagePlaceholder").empty();
+    },
+});
+
+
+var DeleteCuratorView = Class.extend({
+    
+    InitializeControls: function () {
+        var self = this;
+        self.SubscribeEvents();
+    },
+    SubscribeEvents: function () {
+        var self = this;
+        $('#deleteCuratorCancelButton').on('click', function () {
+            self.Close();
+        });
+        $('#deleteCuratorConfirmButton').on('click', function () {
+            self.Save();
+        });
+    },
+    Save: function () {
+        var self = this;
+        $.ajax({
+            type: 'POST',
+            url: "/Curator/DeleteConfirm?id=" + $("#Id").val(),
+            contentType: 'application/json; charset=utf-8',
+            success: function (result) {
+                ResultPopUp(result.success, result.text, result.url, result.id);
+
+                self.Close();
+            }
+        });
+    },
+    Close: function () {
+        $("#deleteCuratorPlaceholder").empty();
+    },
+});
+
+
+var KeyWordView = Class.extend({
+    InitializeControls: function () {
+        var self = this;
+
+
+        self.SubscribeEvents();
+    },
+    SubscribeEvents: function () {
+        var self = this;
+
+        $("#addKeyWord").on('click', function () {
+            self.Add();
+        });
+
+        $("#search").on('click', function () {
+            self.Search();
+        });
+
+        $("#save").on('click', function () {
+            self.Save();
+        });
+
+        $("#clear").on('click', function () {
+            self.Clear();
+        });
+    },
+    Add: function () {
+        var text = $("#keyWordToAdd").val();
+        if (text.lenght === 0)
+            return;
+
+        $("#keyWordContainer").prepend("<div class=\"keyWord-row pb-2\"><input type=\"hidden\" value=\"\"><input type=\"text\" class=\"text-box-custom form-control\" value=\"" +
+            text + "\"><button class=\"btn btn-dark-custom\" onclick=\"keyWordView.Remove(this)\">Видалити</button></div>");
+        $("#keyWordToAdd").val("");
+    },
+    Search: function () {
+        var filter = $("#filter").val().toLowerCase();
+
+        $('#keyWordContainer .keyWord-row').each(function (index, element) {
+            var keyWord = $(element).find(".text-box-custom").val().toLowerCase();
+
+            $(element).css({ display: 'flex' });
+            if (keyWord.indexOf(filter) === -1)
+                $(element).css({ display: 'none' });
+        });
+
+    },
+    Save: function () {
+        var self = this;
+        var dataArray = [];
+        $('.keyWord-row').each(function () {
+            var id = $(this).find('input[type="hidden"]').eq(0).val();
+
+            if (id === undefined || id === null)
+                id = "";
+            var name = $(this).find('input[type="text"]').eq(0).val();
+            var obj = {
+                Id: id,
+                Name: name
+            };
+            dataArray.push(obj);
+        });
+
+        $.ajax({
+            type: 'POST',
+            url: "/AdminHelper/SaveKeyWords",
+            data: JSON.stringify(dataArray),
+            contentType: 'application/json; charset=utf-8',
+            success: function (src) {
+                location.reload();
+            }
+        });
+    },
+    Remove: function (el) {
+        var row = $(el).parent();
+        row.remove();
+    },
+    Clear: function () {
+        $('#keyWordContainer .keyWord-row').each(function (index, element) {
+            $(element).css({ display: 'flex' });
+        });
+
+        $("#filter").val("");
+    }
+});
+
+
+var PlaceView = Class.extend({
+    InitializeControls: function () {
+        var self = this;
+
+
+        self.SubscribeEvents();
+    },
+    SubscribeEvents: function () {
+        var self = this;
+
+        $("#addPlace").on('click', function () {
+            self.Add();
+        });
+
+        $("#search").on('click', function () {
+            self.Search();
+        });
+
+        $("#save").on('click', function () {
+            self.Save();
+        });
+
+        $("#clear").on('click', function () {
+            self.Clear();
+        });
+    },
+    Add: function () {
+        var text = $("#placeToAdd").val();
+        var textEng = $("#placeToAddEng").val();
+        if (text.lenght === 0)
+            return;
+
+        $("#placeContainer").prepend("<div class=\"place-row pb-2\"><input type=\"hidden\" value=\"\"><input type=\"text\" class=\"text-box-custom form-control\" value=\"" +
+            text + "\"><input type=\"text\" class=\"text-box-custom form-control\" value=\"" +
+            textEng + "\"><button class=\"btn btn-dark-custom\" onclick=\"placeView.Remove(this)\">Видалити</button></div>");
+        $("#placeToAdd").val("");
+        $("#placeToAddEng").val("");
+    },
+    Search: function () {
+        var filter = $("#filter").val().toLowerCase();
+
+        $('#placeContainer .place-row').each(function (index, element) {
+            var place = $(element).find(".text-box-custom").eq(0).val().toLowerCase();
+            var placeEng = $(element).find(".text-box-custom").eq(1).val().toLowerCase();
+
+            $(element).css({ display: 'flex' });
+            if (place.indexOf(filter) === -1 && placeEng.indexOf(filter) === -1)
+                $(element).css({ display: 'none' });
+        });
+
+    },
+    Save: function () {
+        var self = this;
+        var dataArray = [];
+        $('.place-row').each(function () {
+            var id = $(this).find('input[type="hidden"]').eq(0).val();
+
+            if (id === undefined || id === null)
+                id = "";
+            var name = $(this).find('input[type="text"]').eq(0).val();
+            var nameEng = $(this).find('input[type="text"]').eq(1).val();
+            var obj = {
+                Id: id,
+                Name: name,
+                NameEng: nameEng
+            };
+            dataArray.push(obj);
+            console.log(dataArray);
+        });
+
+        $.ajax({
+            type: 'POST',
+            url: "/AdminHelper/SavePlaces",
+            data: JSON.stringify(dataArray),
+            contentType: 'application/json; charset=utf-8',
+            success: function (src) {
+                location.reload();
+            }
+        });
+    },
+    Remove: function (el) {
+        var row = $(el).parent();
+        row.remove();
+    },
+    Clear: function () {
+        $('#placeContainer .place-row').each(function (index, element) {
+            $(element).css({ display: 'flex' });
+        });
+
+        $("#filter").val("");
+    }
+});
+

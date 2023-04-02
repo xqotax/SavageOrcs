@@ -1,4 +1,4 @@
-var MarkAddView = Class.extend({
+﻿var MarkAddView = Class.extend({
     IsNew: null,
     Images: null,
     AreaName: null,
@@ -7,7 +7,6 @@ var MarkAddView = Class.extend({
     Lng: null,
     Zoom: null,
     AreaId: null,
-    IsApproximate: null,
 
     Map: null,
     InfoWindow: null,
@@ -23,23 +22,22 @@ var MarkAddView = Class.extend({
     ClusterIds: null,
     ClusterNames: null,
     SearchSelectDropdownClusters: null,
+
+    Curators: null,
+    CuratorIds: null,
+    CuratorNames: null,
+    SearchSelectDropdownCurators: null,
+
     IsInitializate: null,
-    
     OldDataInput: null,
     SearchAreasViewModel: null,
-
-
-    RowAddConstString: "<div class=\"row justify-content-md-around\">",
-    ColAddConstString: "<div class=\"col-md-3\">",
-    DivAddConstString: "</div>",
-
 
     InitializeControls: function () {
         var self = this;
         const myLatlng = { lat: parseFloat(self.Lat), lng: parseFloat(self.Lng) };
 
         this.InfoWindow = new google.maps.InfoWindow({
-            content: "�����, ��� �������� ����������",
+            content: "Нажми, щоб отримати координати",
             position: myLatlng,
         });
 
@@ -53,6 +51,19 @@ var MarkAddView = Class.extend({
         if (!self.IsNew) {
             self.SetMark();
         }
+
+        var placesOptions = {
+            placeholder: "Виберіть локацію",
+            txtSelected: "вибрано",
+            txtAll: "Всі",
+            txtRemove: "Видалити",
+            txtSearch: "Пошук",
+            height: "300px",
+            Id: "placesMultiselect"
+        }
+
+        MultiselectDropdown(placesOptions);
+
 
         self.SearchSelectDropdownAreas = new SearchSelect('#dropdown-input-for-mark', {
             data: [],
@@ -79,6 +90,19 @@ var MarkAddView = Class.extend({
         });
 
         self.InitializeClusters(self.Clusters);
+
+        self.SearchSelectDropdownCurators = new SearchSelect('#dropdown-input-for-curator', {
+            data: [],
+            filter: SearchSelect.FILTER_CONTAINS,
+            sort: undefined,
+            inputClass: 'form-control-Select mobile-field',
+            maxOpenEntries: 9,
+            searchPosition: 'top',
+            onInputClickCallback: null,
+            onInputKeyDownCallback: null,
+        });
+
+        self.InitializeCurators(self.Curators);
 
         if (self.AreaName !== '') {
             var selected = $($("#Area .searchSelect--Result")[0]);
@@ -110,11 +134,30 @@ var MarkAddView = Class.extend({
             $("#dropdown-input-for-cluster").val(self.ClusterName);
         }
 
+        if (self.CuratorName !== '') {
+            var selected = $($("#Curator .searchSelect--Result")[0]);
+            selected.removeClass("#Curator searchSelect--Placeholder");
+            selected.html(self.CuratorName);
+
+            $.each($("#Cluster .searchSelect--Option"), function (index, element) {
+                if ($(element).text() === self.CuratorName) {
+                    $(element).addClass("#Curator searchSelect--Option--selected")
+                }
+            });
+
+            $("#dropdown-input-for-curator").val(self.CuratorName);
+        }
+
         self.SubscribeEvents();
 
         if (self.ToDelete) {
             self.DeleteMark();
         }
+    },
+    OnPlacesChange: function () {
+        var el = $("#placesMultiselect");
+        console.log(el);
+        console.log(el.val());
     },
     SubscribeEvents: function () {
         var self = this;
@@ -128,16 +171,25 @@ var MarkAddView = Class.extend({
             self.AddImage();
         });
 
-        $('#saveMark').on('click', function () {
+        $('#save').on('click', function () {
             self.Save();
         });
+
+        $('#delete').on('click', function () {
+            self.DeleteMark();
+        });
+
 
         $('#removeImages').on('click', function () {
             self.RemoveImages();
         });
 
-        $('#dropdown-input-for-mark').addClass("display-8-custom");
-        $('#dropdown-input-for-cluster').addClass("display-8-custom");
+        $("#placesMultiselect").on('change', function () {
+            self.OnPlacesChange();
+        });
+
+        //$('#dropdown-input-for-mark').addClass("display-8-custom");
+        //$('#dropdown-input-for-cluster').addClass("display-8-custom");
         
 
         self.Map.addListener("click", (mapsMouseEvent) => {
@@ -181,6 +233,18 @@ var MarkAddView = Class.extend({
 
         self.SearchSelectDropdownClusters.setData(self.ClusterNames);
     },
+    InitializeCurators: function (data) {
+        var self = this;
+        self.CuratorNames = [];
+        self.CuratorIds = [];
+
+        $.each(data, function (index, element) {
+            self.CuratorNames.push(element.name);
+            self.CuratorIds.push(element.id);
+        });
+
+        self.SearchSelectDropdownCurators.setData(self.CuratorNames);
+    },
     SetMark: function () {
         var self = this;
 
@@ -192,7 +256,7 @@ var MarkAddView = Class.extend({
             map: self.Map,
             title: self.AreaName,
             icon: {
-                url: "../images/markIcon.png",
+                url: "../images/redCircle.png",
                 scaledSize: new google.maps.Size(24, 24),
                 origin: new google.maps.Point(0, 0),
                 anchor: new google.maps.Point(12, 12)
@@ -216,12 +280,18 @@ var MarkAddView = Class.extend({
     },
     
     Save: function () {
+
+        //$("#placesMultiselect").val(null)
+        //$('#Place input[type="checkbox"]').prop('checked', false);
+
         var self = this;
 
         var areaId = self.AreaIds[self.AreaNames.indexOf($("#dropdown-input-for-mark").val())];
         var clusterId = self.ClusterIds[self.ClusterNames.indexOf($("#dropdown-input-for-cluster").val())];
+        var curatorId = self.CuratorIds[self.CuratorNames.indexOf($("#dropdown-input-for-curator").val())];
         areaId = areaId === "" ? null : areaId;
         clusterId = clusterId === "" ? null : clusterId;
+        curatorId = curatorId === "" ? null : curatorId;
 
         var saveMarkViewModel = {
             Id: $("#Id").val() === "" ? null : $("#Id").val(),
@@ -229,16 +299,24 @@ var MarkAddView = Class.extend({
             Lat: $("#Lat").val(),
             AreaId: areaId,
             ClusterId: clusterId,
-            IsApproximate: $("#IsApproximate").is(":checked"),
+            CuratorId: curatorId,
             Name: $("#Name").val(),
             Description: $("#Description").val(),
             DescriptionEng: $("#DescriptionEng").val(),
             ResourceUrl: $("#ResourceUrl").val(),
+            ResourceName: $("#ResourceName").val(),
+            ResourceNameEng: $("#ResourceNameEng").val(),
+            SelectedPlaceIds: $("#placesMultiselect").val(),
             Images: []
         };
 
         $("#imageContainer img").each(function (index, element) {
-            saveMarkViewModel.Images.push(element.src);
+            saveMarkViewModel.Images.push(
+                {
+                    Content: element.src,
+                    IsVisible: $(element).parent().parent().find("input").is(":checked")
+                }
+            );
         });
 
         $.ajax({
@@ -247,7 +325,12 @@ var MarkAddView = Class.extend({
             data: JSON.stringify(saveMarkViewModel),
             contentType: 'application/json; charset=utf-8',
             success: function (result) {
-                ResultPopUp(result.success, result.text, result.url, result.id);
+                if (result.success) {
+                    window.location.href = 'https://' + window.location.host + '/Mark/Catalogue';
+                }
+                else {
+                    ResultPopUp(result.success, result.text, result.url, result.id);
+                }
             }
         });
         
@@ -255,12 +338,13 @@ var MarkAddView = Class.extend({
     GetAreas: function () {
         var self = this;
 
+
         if (self.IsInitializate) {
             self.IsInitializate = false;
             return;
         }
 
-        self.SearchAreasViewModel = { Text: $(".form-control-Select-Bar").val() };
+        self.SearchAreasViewModel = { Text: $("#Area .form-control-Select-Bar").val() };
 
         self.OldDataInput = Date.now();
 
@@ -313,24 +397,29 @@ var MarkAddView = Class.extend({
         });
     },
     AddImages: function () {
-        var self = this;
+        //var self = this;
 
-        $.each(self.Images, function (index, element) {
-            var rowCount = $("#imageContainer .row").length;
-            var colCount = $("#imageContainer .col-md-3").length;
+        //$.each(self.Images, function (index, element) {
+        //    var rowCount = $("#imageContainer .row").length;
+        //    var colCount = $("#imageContainer .col-md-3").length;
 
-            $(".popup-content-custom .row #imagePlaceholder").removeAttr('id');
+        //    $(".popup-content-custom .row #imagePlaceholder").removeAttr('id');
 
-            if ((rowCount === 0) || (colCount !== 0 && Math.floor(colCount / rowCount) === 3)) {
-                $("#imageContainer").append(self.RowAddConstString + self.ColAddConstString + "<img src=\"" + element + "\" height=\"200\">" + self.DivAddConstString + self.DivAddConstString);
-            }
-            else {
-                $("#imageContainer .row").last().append(self.ColAddConstString + "<img src=\"" + element + "\" height=\"200\">" + self.DivAddConstString);
-            }
-        });
+        //    if ((rowCount === 0) || (colCount !== 0 && Math.floor(colCount / rowCount) === 3)) {
+        //        $("#imageContainer").append(self.RowAddConstString + self.ColAddConstString + "<img src=\"" + element + "\" height=\"200\">" + self.DivAddConstString + self.DivAddConstString);
+        //    }
+        //    else {
+        //        $("#imageContainer .row").last().append(self.ColAddConstString + "<img src=\"" + element + "\" height=\"200\">" + self.DivAddConstString);
+        //    }
+        //});
 
     },
+    RemoveImage: function (el) {
+        var row = $(el).parent().parent().parent();
+        console.log(row);
+        row.remove();
+    },
     RemoveImages: function () {
-        $("#imageContainer .row").empty();
+        $("#imageContainer").empty();
     }
 });

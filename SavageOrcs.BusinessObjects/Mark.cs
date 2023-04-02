@@ -16,11 +16,13 @@
 
         public string? ResourceUrl { get; set; }
 
+        public string? ResourceName { get; set; }
+
+        public string? ResourceNameEng { get; set; }
+
         public DateTime CreatedDate { get; set; }
 
         public DateTime UpdatedDate { get; set; }
-
-        public bool? IsApproximate { get; set; }
 
         public Guid? ClusterId { get; set; }
 
@@ -30,16 +32,20 @@
 
         public virtual Area? Area { get; set; }
 
-        public string UserId { get; set; }
-
-        public virtual User User { get; set; }
-
         public int MapId { get; set; }
 
         public virtual Map Map { get; set;  }
 
+        public Guid? CuratorId { get; set; }
+
+        public virtual Curator? Curator { get; set; }
+
         public virtual ICollection<Image> Images { get; set; } = new HashSet<Image>();
 
+        public bool IsVisible { get; set; }
+
         public virtual ICollection<TextToMark> TextsToMarks { get; set; } = new HashSet<TextToMark>();
+
+        public virtual ICollection<PlaceToMark> PlaceToMarks { get; set; } = new HashSet<PlaceToMark>();
     }
 }

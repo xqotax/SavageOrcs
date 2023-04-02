@@ -10,6 +10,8 @@ namespace SavageOrcs.Web.ViewModels.Text
 
         public string? Subject { get; set; }
 
+        public string? CreatedDate { get; set; }  
+
         public GuidIdAndNameViewModel? Curator { get; set; }
     }
 }

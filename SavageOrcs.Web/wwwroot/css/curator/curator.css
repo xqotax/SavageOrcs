@@ -1,0 +1,217 @@
+﻿.wrapper-search-curator {
+    padding-left: 64px;
+    padding-right: 70px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    padding-top: 32px;
+}
+
+.curator-data-col,
+.curator-search-col{
+    display:flex;
+    flex-direction:column;
+    justify-content:start;
+}
+.curator-data-col{
+    width:75%
+}
+.curator-search-col{
+    width:18%;
+}
+.curator-header-text,
+.curator-filter-search-text {
+    height: 190px;
+    width: 80%;
+    position: relative;
+}
+.curator-header-text {
+    font-weight: 500;
+    font-size: 48px;
+    line-height: 60px;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    color: #0F0F0F;
+}
+.curator-filter-search-text {
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 17px;
+    color: #0F0F0F;
+}
+.curator-data-row-container,
+.curator-filter-row {
+    width: 100%;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+}
+.curator-data-row {
+    width: 100%;
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding-bottom: 110px;
+}
+.curator-photo-col{
+    width: 15%;
+}
+.curator-content-col {
+    width: 75%;
+}
+.curator-image{
+    max-width: 100%;
+    max-height: 160px;
+}
+.curator-content-header {
+    height: 160px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.curator-content-main-row {
+    display:flex;
+    flex-direction:row;
+    justify-content:space-between;
+    height: 106px;
+}
+.curator-content-name-col {
+    width:40%;
+    font-weight: 500;
+    font-size: 48px;
+    line-height: 53px;
+    color: #000000;
+}
+.curator-content-count-row {
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 26px;
+    color: #0F0F0F;
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+}
+.curator-content-button-more {
+    cursor: pointer;
+    width: 50px;
+}
+.curator-content-count-cell{
+    position:relative;
+    width: 300px;
+    padding-right: 10%;
+}
+.curator-content-detailed{
+    padding-top: 41px;
+    display: none; /*HERE JS WORKING*/
+    flex-direction: column;
+    width: 100%;
+}
+.curator-content-description {
+    width: 75%;
+    font-weight: 300;
+    font-size: 14px;
+    line-height: 18px;
+    color: #363636;
+    padding-bottom: 70px;
+}
+.curator-content-marks,
+.curator-content-texts {
+    width: 100%;
+}
+.curator-content-button-less-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: end;
+    width: 100%;
+}
+.curator-content-button-less {
+    cursor: pointer;
+    width: 50px;
+}
+
+.curator-text-data-row {
+    cursor: pointer;
+    padding-top: 12px;
+    padding-bottom: 33px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.col-curator-text, .col-curator-text-double {
+    border-top: 1px solid #0F0F0F;
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+}
+.col-curator-text{
+    width: 30%;
+}
+.col-curator-text-double{
+    width: 63%;
+}
+.col-curator-text-item {
+    padding-top: 12px;
+    position: relative;
+    width: 90%;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 17px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.col-curator-text-name, .col-curator-text-date {
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 17px;
+    color: #363636;
+}
+.col-curator-text-name {
+    width: 60%;
+}
+
+.curator-filter-big-text-info {
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 22px;
+    color: #0F0F0F;
+    height: 25px;
+}
+.curator-filter-small-text-info {
+    padding-top: 8px;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 14px;
+    color: #8D8D8D;
+}
+
+
+
+.curator-content-name-col:link {
+    color: black;
+    text-decoration: none;
+}
+
+
+.curator-content-name-col:visited {
+    color: black;
+    text-decoration: none;
+}
+
+
+.curator-content-name-col:hover {
+    color: black;
+    text-decoration: none;
+}
+
+
+.curator-content-name-col:active {
+    color: black;
+    text-decoration: none;
+}

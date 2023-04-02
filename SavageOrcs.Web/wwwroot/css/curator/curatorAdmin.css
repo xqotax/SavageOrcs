@@ -1,0 +1,34 @@
+﻿.wrapper-curator-add {
+    padding-left: 64px;
+    padding-right: 70px;
+    padding-top: 15px;
+    padding-bottom: 45px;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    width: 100%;
+}
+.curator-add-content-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+}
+.curator-add-data-col {
+    width: 40%;
+}
+.curator-add-image-col {
+    width: 55%;
+}
+
+#curatorImagePlaceholder{
+    max-height: 400px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding-bottom: 30px;
+}
+#curatorImage {
+    max-height: 100%;
+}

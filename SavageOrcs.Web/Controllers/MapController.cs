@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Mvc;
 using SavageOrcs.BusinessObjects;
 using SavageOrcs.Services.Interfaces;
@@ -19,6 +20,24 @@ namespace SavageOrcs.Web.Controllers
         }
 
         [AllowAnonymous]
+        public IActionResult ChangeLanguage(string culture)
+        {
+            //var a = Thread.CurrentThread.CurrentUICulture.TwoLetterISOLanguageName;
+
+            Response.Cookies.Append(CookieRequestCultureProvider.DefaultCookieName,
+                CookieRequestCultureProvider.MakeCookieValue(new RequestCulture(culture)),
+                new CookieOptions() { Expires = DateTimeOffset.UtcNow.AddYears(1) });
+            return Redirect(Request.Headers["Referer"].ToString());
+        }
+
+        [AllowAnonymous]
+        [HttpPost]
+        public IActionResult Get18PlusPopup()
+        {
+            return PartialView("_18PlusPopup");
+        }
+
+        [AllowAnonymous]
         public async Task<IActionResult> Main(string lat = "48.5819022", string lng = "32.0356408", string zoom = "6")
         {
             var mapDto = await _mapService.GetMap(1);
@@ -35,7 +54,6 @@ namespace SavageOrcs.Web.Controllers
                     Lat = x.Lat?.ToString().Replace(',', '.'),
                     Lng = x.Lng?.ToString().Replace(',', '.'),
                     Name = x.Name,
-                    IsApproximate = x.IsApproximate is not null && x.IsApproximate.Value
                 }).ToArray(),
                 MapClusterViewModels = mapDto.MapClusterDtos.Select(x => new MapClusterViewModel
                 {

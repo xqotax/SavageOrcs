@@ -1,80 +1,122 @@
 ﻿@using SavageOrcs.Web.ViewModels.Mark
 @model RevisionMarkViewModel
+<script>
+    function plusSlides(n) {
+        showSlides(slideIndex += n);
+    }
+
+    function currentSlide(n) {
+        showSlides(slideIndex = n);
+    }
+
+    function showSlides(n) {
+        let i;
+        let slides = document.getElementsByClassName("mySlides");
+        if (n > slides.length) { slideIndex = 1 }
+        if (n < 1) { slideIndex = slides.length }
+        for (i = 0; i < slides.length; i++) {
+            slides[i].style.display = "none";
+        }
+        slides[slideIndex - 1].style.display = "block";
+    }
+    //var catalogueMarkView = new CatalogueMarkView();
+
+    $(document).ready(function () {
+        $('.data-row:first').css('opacity', '1');
+        //catalogueMarkView.InitializeControls();
+    });
+
+    let slideIndex = 1;
+    if ($(".mySlides").length) {
+        showSlides(slideIndex);
+    }
 
 
+
+</script>
 <div id="imageFullScreenPlaceholder"></div>
-<div class="row">
+<div class="wrapper-mark-revision">
     @if (this.User.IsInRole("Admin"))
     {
         <div class="row mt-1 mb-1 display-8-custom">
-            <div class="col-md-auto pr-2">
-                <a class="btn btn-dark-custom" href="/Mark/Add?id=@Model.Id">Редагувати</a>
-            </div>
-            <div class="col-md-auto pr-2">
-                <a class="btn btn-dark-custom" href="/Mark/Delete?id=@Model.Id">Видалити</a>
-            </div>
-            <div class="col-md-auto pr-2">
-                <a class="btn btn-dark-custom" href="/Mark/Add">Додати ще одну</a>
-            </div>
+            @if (Model.IsCluster)
+            {
+                <div class="col-md-auto pr-2">
+                    <a class="btn btn-dark-custom" href="/Cluster/Add?id=@Model.Id">Редагувати</a>
+                </div>
+                <div class="col-md-auto pr-2">
+                    <a class="btn btn-dark-custom" href="/Cluster/Delete?id=@Model.Id">Видалити</a>
+                </div>
+                <div class="col-md-auto pr-2">
+                    <a class="btn btn-dark-custom" href="/Cluster/Add">Додати ще один</a>
+                </div>
+            }
+            else
+            {
+                <div class="col-md-auto pr-2">
+                    <a class="btn btn-dark-custom" href="/Mark/Add?id=@Model.Id">Редагувати</a>
+                </div>
+                <div class="col-md-auto pr-2">
+                    <a class="btn btn-dark-custom" href="/Mark/Delete?id=@Model.Id">Видалити</a>
+                </div>
+                <div class="col-md-auto pr-2">
+                    <a class="btn btn-dark-custom" href="/Mark/Add">Додати ще одну</a>
+                </div>
+            }
+            
         </div>
         <hr style="border-top: 3px solid #3c6624">
     }
-    <div class="col-md-6  mt-3">
-        @Html.HiddenFor(m => m.Id)
-        <div class="row mb-4">
-            <div class="col-md-12 text-white-custom display-6">
-                @Model.Name
-            </div>
-        </div>
-        <div class="row mb-2">
-            <div class="col-md-1" >
-                <img class="flag-select-custom" id="flagUA" class="box-shadow-grey-custom" src="~/images/flags/UA.png" />
-            </div>
-            <div class="col-md-1">
-                <img class="flag-select-custom" id="flagGB" src="~/images/flags/GB.png" />
-            </div>
-        </div>
-        <div class="row mb-4">
-            <div class="col-md-12 text-white-custom display-8-custom" id="textUA">
-                @Model.Description
-            </div>
-            <div class="col-md-12 text-white-custom display-8-custom display-none-custom" id="textGB">
-                @Model.DescriptionEng
-            </div>
-        </div>
-        <div class="row mb-4">
-            <div class="col-md-12 text-white-custom display-8-custom">
-                @Model.Area
-            </div>
-        </div>
-        <div class="row mb-4">
-            <div class="col-md-auto text-white-custom display-8-custom">
-                <a class="btn btn-dark-custom" href="@Model.ResourceUrl">Посилання на ресурс</a>
-            </div>
-            @if (Model.ClusterId is not null)
+    <div class="mark-revision-navigation-row">
+        <button id="back"><img src="/images/arrows/leftArrow.png" class="mark-revision-back-button" /></button>
+    </div>
+    <div class="mark-revision-content-row">
+        <div class="mark-revision-content-col">
+            <div class="mark-revision-description">@Model.Description</div>
+            <div class="mark-revision-area">@Model.Area</div>
+            @if (!string.IsNullOrEmpty(Model.CuratorName))
             {
-                <div class="col-md-auto text-white-custom display-8-custom">
-                    <a class="btn btn-dark-custom" href="/Cluster/Revision?id=@Model.ClusterId">Перейти до скупчення</a>
+                <div class="mark-revision-curator">
+                    Автор: <span>@Model.CuratorName</span>
+                </div>
+                
+            }
+            @if (!string.IsNullOrEmpty(Model.ResourceUrl) && !string.IsNullOrEmpty(Model.ResourceName))
+            {
+                <div class="mark-revision-resources">
+                    Власник фото: <a style="color:white; text-decoration: underline;" target="_blank" href="@Model.ResourceUrl">@Model.ResourceName</a>
                 </div>
             }
-        </div>
-
-        
-    </div>
-    <div class="col-md-6 d-flex justify-content-space-around flex-column">
-        @{
-            if (Model.Images is not null){
-                foreach (var image in Model.Images)
-                {
-                    <div class="row mb-4">
-                        <div class="col-md-12 text-white-custom display-8-custom">
-                            <img class="image-revision-mark-custom" src="@image" />
-                        </div>
-                    </div>
-                }
+            else if (string.IsNullOrEmpty(Model.ResourceUrl) && !string.IsNullOrEmpty(Model.ResourceName)){
+                <div class="mark-revision-resources">
+                    Власник фото: <span>@Model.ResourceName</span>
+                </div>
             }
-        }
+            @if (!Model.IsCluster && Model.ClusterId is not null)
+            {
+                <a class="mark-revision-cluster" style="color:white; text-decoration: underline;" href="/Cluster/Revision?id=@Model.ClusterId.ToString()">@Model.ClusterName </a>
+            }
+            @if (Model.IsCluster){
+                <a class="mark-revision-cluster" style="color:white; text-decoration: underline;" href="/Mark/Catalogue?clusterId=@Model.Id.ToString()">Переглянути більше схожих фото</a>
+            }
+        </div>
+        <div class="mark-revision-image-col">
+            @if (Model.Images is not null && Model.Images.Length != 0)
+            {
+                @await Html.PartialAsync("_CatalogueImage", new RevisionImageViewModel{
+                    IsCluster = Model.IsCluster,
+                    Images = Model.Images,
+                    Id = Model.Id.Value,
+                    IsRevision = true
+                })
+            }
+            else
+            {
+                <div>Фото з тих, чи інших причин приховане автором, або взагалі відсутнє.</div>
+            }
+        </div>
     </div>
+    
 </div>
 
 @section Scripts{

@@ -1,4 +1,5 @@
-﻿using SavageOrcs.DataTransferObjects.Texts;
+﻿using SavageOrcs.DataTransferObjects._Constants;
+using SavageOrcs.DataTransferObjects.Texts;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,5 +20,17 @@ namespace SavageOrcs.Services.Interfaces
         string GetStringForText(byte[] data);
 
         UrlDto? FindOurUrl(string url, out string anotherText);
+
+        Task<GuidIdAndStringName[]> GetAllKeyWords();
+
+        Task SaveKeyWords(GuidNullIdAndStringName[] keyWordDtos);
+
+        Task<GuidIdAndStringNameWithEnglishName[]> GetAllPlaces();
+
+        Task<GuidIdAndStringNameWithEnglishName[]> GetPlacesByMarkId(Guid markId);
+
+        Task SavePlaces(GuidNullIdAndStringNameWhitEngName[] placeDtos);
+
+        string? GetTranslation(string? urk, string? eng);
     }
 }

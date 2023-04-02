@@ -4,7 +4,6 @@
     TableRowStartConstString: "<div class=\"table-body-catalogue-user-row justify-content-center d-flex\"><div class=\"table-body-catalogue-user-column-number\">",
     TableRowFullNameConstString: "</div><div class=\"table-body-catalogue-user-column-name\">",
     TableRowLinkConstString: "<a class=\"table-body-catalogue-user-column-name-link\" href=\"/User/Revision?id=",
-    TableRowCuratorStatusConstString: "</div><div class=\"table-body-catalogue-user-column-curator-status\">",
     TableRowEmailConstString: "</div><div class=\"table-body-catalogue-user-column-email\">",
     TableRowEndConstString: "</div></div>",
     
@@ -24,7 +23,6 @@
             $("#Name").val('');
             $("#Email").val('');
         });
-
     },
     Search: function () {
         var self = this;
@@ -54,13 +52,7 @@
                     else {
                         toAdd += element.fullName;
                     }
-                    toAdd += self.TableRowCuratorStatusConstString;
-                    if (element.isCurator) {
-                        toAdd += "Так";
-                    }
-                    else {
-                        toAdd += "Ні";
-                    }
+                    
                     toAdd += self.TableRowEmailConstString + element.email;
                     toAdd += self.TableRowEndConstString;
                 });

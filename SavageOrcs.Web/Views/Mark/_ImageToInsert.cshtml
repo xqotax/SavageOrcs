@@ -1,0 +1,16 @@
+﻿@using SavageOrcs.Web.ViewModels.Constants
+@model StringAndBoolViewModel
+
+
+<div class="mark-add-image-row">
+    <div class="mark-add-image-content">
+        <img class="mark-add-image" src="@Model.Content" alt="" />
+    </div>
+    <div class="mark-add-image-action">
+        <div class="mark-add-image-check-box">
+            <div style="padding-right: 10px;">Показувати фото:</div>
+            <div>@Html.CheckBoxFor(x => x.IsVisible)</div>
+        </div>
+        <div class="mark-add-image-delete"><button class="btn btn-dark-custom" onclick="markAddView.RemoveImage(this)">Видалити</button></div>
+    </div>
+</div>

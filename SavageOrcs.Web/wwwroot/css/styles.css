@@ -29,6 +29,10 @@
     font-size: 20px;
 }
 
+.btn-dark-custom:visited {
+    color: white;
+}
+
 .btn-dark-custom {
     background-color: rgb(16, 17, 16);
     color: white;
@@ -52,29 +56,8 @@
 }
 
 input[type="checkbox"] {
-    height: 34px;
-    width: 34px;
+    height: 20px;
+    width: 20px;
     accent-color: rgb(16, 17, 16);
 }
 
-.textRevisionImage {
-    max-width: 100%;
-    margin-bottom: 15px;
-    margin-top: 15px;
-    max-height: 600px;
-}
-
-#textRevisionPlaceholder {
-    margin-top: 15px;
-    border-radius: 10px;
-    min-height: 500px;
-    background-color: white;
-}
-
-#textRevisionPlaceholder a, #textRevisionPlaceholder a:hover, #textRevisionPlaceholder a:active, #textRevisionPlaceholder a:visited {
-    color: rgb(16, 17, 16);
-}
-
-#editorjs a, #editorjs a:hover, #editorjs a:active, #editorjs a:visited {
-    color: rgb(16, 17, 16);
-}

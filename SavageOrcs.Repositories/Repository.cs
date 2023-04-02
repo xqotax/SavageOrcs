@@ -52,59 +52,43 @@ namespace SavageOrcs.Repositories
             _context.Set<T>().RemoveRange(entities);
         }
 
-        public IEnumerable<T> GetAll(Expression<Func<T, bool>>? predicate = null, string? includeProperties = null)
+        public IEnumerable<T> GetAll(Expression<Func<T, bool>>? predicate = null)
         {
             IQueryable<T> query = _context.Set<T>();
             if (predicate != null)
             {
                 query = query.Where(predicate);
             }
-            if (includeProperties != null)
-            {
-
-            }
-            return query.ToList();
+            return query;
         }
 
-        public async Task<IEnumerable<T>> GetAllAsync(Expression<Func<T, bool>>? predicate = null, string? includeProperties = null)
+        public async Task<IEnumerable<T>> GetAllAsync(Expression<Func<T, bool>>? predicate = null)
         {
             IQueryable<T> query = _context.Set<T>();
             if (predicate != null)
             {
                 query = query.Where(predicate);
             }
-            if (includeProperties != null)
-            {
-
-            }
-            return await query.ToListAsync();
+            return query;
         }
 
-        public T? GetT(Expression<Func<T, bool>>? predicate, string? includeProperties = null)
+        public T? GetT(Expression<Func<T, bool>>? predicate)
         {
             IQueryable<T> query = _context.Set<T>();
             if (predicate != null)
             {
                 query = query.Where(predicate);
-            }
-            if (includeProperties != null)
-            {
-
             }
 
             return query.FirstOrDefault();
         }
 
-        public async Task<T?> GetTAsync(Expression<Func<T, bool>>? predicate, string? includeProperties = null)
+        public async Task<T?> GetTAsync(Expression<Func<T, bool>>? predicate)
         {
             IQueryable<T> query = _context.Set<T>();
             if (predicate != null)
             {
                 query = query.Where(predicate);
-            }
-            if (includeProperties != null)
-            {
-
             }
 
             return await query.FirstOrDefaultAsync();
