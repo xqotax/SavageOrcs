@@ -238,9 +238,12 @@ namespace SavageOrcs.Services
                 {
                     foreach (var mark in cluster.Marks)
                     {
-                        mark.Lat = cluster.Lat;
-                        mark.Lng = cluster.Lng;
-                        mark.AreaId = cluster.AreaId;
+                        if (mark.Lat is null)
+                            mark.Lat = cluster.Lat;
+                        if (mark.Lng is null)
+                            mark.Lng = cluster.Lng;
+                        if (mark.AreaId is null)
+                            mark.AreaId = cluster.AreaId;
                         mark.ClusterId = null;
                     }
                 }

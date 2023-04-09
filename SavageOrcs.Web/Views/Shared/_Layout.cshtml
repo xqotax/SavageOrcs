@@ -134,6 +134,12 @@
                     $(".multiselect-dropdown-custom-list").css({"height": "200px"});
                 }
             }, 200);
+            var url = window.location.href;
+
+            if (url.indexOf('Revision') !== -1) {
+                var footer = document.querySelector('footer');
+                footer.style.display = 'none';
+            }
         });
     </script>
     

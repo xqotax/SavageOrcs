@@ -4,6 +4,23 @@
 <link itemprop="url" rel="stylesheet" href="~/lib/search-select/search-select.css" />
 <div id="deleteClusterPlaceholder"></div>
 <div class="wrapper-mark-add">
+    <div class="mark-add-action-row">
+        <div class="row mt-1 mb-1 display-8-custom">
+            @if (Model.Id is not null)
+            {
+                <div class="col-md-auto pr-2">
+                    <button class="btn btn-dark-custom" id="delete">Видалити</button>
+                </div>
+                <div class="col-md-auto pr-2">
+                    <a class="btn btn-dark-custom" href="/Mark/Revision?id=@(Model.Id.ToString())&isCluster=true">Переглянути</a>
+                </div>
+            }
+            <div class="col-md-auto pr-2">
+                <button id="save" class="btn btn-dark-custom">Зберегти</button>
+            </div>
+        </div>
+    </div>
+    <hr style="border-top: 3px solid #3c6624">
     <div class="mark-add-main-content">
         <div class="mark-add-tool-col">
             @Html.HiddenFor(m => m.Id)

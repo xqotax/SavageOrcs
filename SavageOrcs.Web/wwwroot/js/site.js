@@ -80,7 +80,6 @@ var MapMainView = Class.extend({
             position: myLatlng,
         });
         
-        console.log(window.innerWidth);
         var areasOptions = {
             placeholder: self.AreaTextPlaceholder.value,
             txtSelected: self.SelectedText.value,
@@ -1209,7 +1208,6 @@ var AddCuratorImageView = Class.extend({
     },
 });
 var ClusterAddView = Class.extend({
-    ToDelete: null,
     IsNew: null,
 
     Areas: null,
@@ -1334,13 +1332,13 @@ var ClusterAddView = Class.extend({
         }
 
         self.SubscribeEvents();
-
-        if (self.ToDelete) {
-            self.DeleteCluster();
-        }
     },
     SubscribeEvents: function () {
         var self = this;
+
+        $('#delete').on('click', function () {
+            self.DeleteCluster();
+        });
 
         $("#setCoordinates").click(function () {
             $("#Lng").val(self.LastLng);

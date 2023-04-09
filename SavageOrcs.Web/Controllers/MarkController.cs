@@ -18,6 +18,7 @@ using System.Drawing.Printing;
 using SavageOrcs.DataTransferObjects.Texts;
 using System.Xml.Linq;
 using NuGet.Packaging;
+using Microsoft.VisualBasic;
 
 namespace SavageOrcs.Web.Controllers
 {
@@ -211,7 +212,7 @@ namespace SavageOrcs.Web.Controllers
                 markSaveDto.PlaceIds = saveMarkViewModel.SelectedPlaceIds;
 
                 ClusterDto? clusterDto = null;
-                if (saveMarkViewModel.ClusterId is not null)
+                if (saveMarkViewModel.ClusterId is not null && saveMarkViewModel.ClusterId != _Constants.EmptySelect)
                 {
                     clusterDto = await _clusterService.GetClusterById(saveMarkViewModel.ClusterId.Value);
 

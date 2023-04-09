@@ -36,7 +36,7 @@
 </script>
 <div id="imageFullScreenPlaceholder"></div>
 <div class="wrapper-mark-revision">
-    @if (this.User.IsInRole("Admin"))
+    @if (User.IsInRole("Admin"))
     {
         <div class="row mt-1 mb-1 display-8-custom">
             @if (Model.IsCluster)
@@ -44,7 +44,7 @@
                 <div class="col-md-auto pr-2">
                     <a class="btn btn-dark-custom" href="/Cluster/Add?id=@Model.Id">Редагувати</a>
                 </div>
-               @* <div class="col-md-auto pr-2">
+                @*<div class="col-md-auto pr-2">
                     <a class="btn btn-dark-custom" href="/Cluster/Delete?id=@Model.Id">Видалити</a>
                 </div>*@
                 <div class="col-md-auto pr-2">

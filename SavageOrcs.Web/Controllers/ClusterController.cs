@@ -147,19 +147,19 @@ namespace SavageOrcs.Web.Controllers
         }
 
         [AllowAnonymous]
-        public IActionResult Catalogue()
-        {
-            var filterCatalogueClusterViewModel = new FilterCatalogueClusterViewModel()
-            {
-                AreaName = "",
-                KeyWord = "",
-                ClusterDescription = "",
-                ClusterName = "",
-                MinCountOfMarks = null
-            };
+        //public IActionResult Catalogue()
+        //{
+        //    var filterCatalogueClusterViewModel = new FilterCatalogueClusterViewModel()
+        //    {
+        //        AreaName = "",
+        //        KeyWord = "",
+        //        ClusterDescription = "",
+        //        ClusterName = "",
+        //        MinCountOfMarks = null
+        //    };
 
-            return View("Catalogue", filterCatalogueClusterViewModel);
-        }
+        //    return View("Catalogue", filterCatalogueClusterViewModel);
+        //}
 
         //[Authorize(Roles = "Admin")]
         //public async Task<IActionResult> Delete(Guid? id)
@@ -210,7 +210,7 @@ namespace SavageOrcs.Web.Controllers
             {
                 Id = id,
                 Success = result,
-                Url = "/Cluster/Catalogue",
+                Url = "/Mark/Catalogue",
                 Text = result ? "Кластер успішно видалено" : "Помилка, зверніться до адміністратора"
             });
         }

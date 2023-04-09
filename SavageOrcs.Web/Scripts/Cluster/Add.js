@@ -1,5 +1,4 @@
 ﻿var ClusterAddView = Class.extend({
-    ToDelete: null,
     IsNew: null,
 
     Areas: null,
@@ -124,13 +123,13 @@
         }
 
         self.SubscribeEvents();
-
-        if (self.ToDelete) {
-            self.DeleteCluster();
-        }
     },
     SubscribeEvents: function () {
         var self = this;
+
+        $('#delete').on('click', function () {
+            self.DeleteCluster();
+        });
 
         $("#setCoordinates").click(function () {
             $("#Lng").val(self.LastLng);
