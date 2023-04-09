@@ -31,7 +31,6 @@ var MapMainView = Class.extend({
             position: myLatlng,
         });
         
-        console.log(window.innerWidth);
         var areasOptions = {
             placeholder: self.AreaTextPlaceholder.value,
             txtSelected: self.SelectedText.value,

@@ -97,21 +97,14 @@
 }
 
 #filter-big-text-info {
+    margin-top: 60.6px;
+    border-top: 2px solid #0F0F0F;
     padding-top: 9px;
     line-height: 21.6px;
     color: #0F0F0F;
     font-size: 18px;
     font-weight: 500;
     cursor: pointer;
-}
-
-.filter-small-text-info {
-    height: 60.6px;
-    line-height: 14.4px;
-    font-size: 12px;
-    font-weight: 400;
-    color: #8D8D8D;
-    border-bottom: 2px solid #0F0F0F;
 }
 
 .map-filter-container {
@@ -279,6 +272,14 @@ footer {
     height: 150px;
 }
 
+.uncertain-point {
+    position: absolute;
+    left: 60%;
+    top: 300px;
+    width: 35px;
+    height: 35px;
+}
+
 @media (min-width: 1500px) {
     .info-container {
         min-height: 711px;
@@ -294,8 +295,7 @@ footer {
     }
     .info-container {
         min-height: 710px;
-        background-image: url("../../images/main/yourHouse-OurHouse-mob.png");
-        background-position: top;
+        
     }
 
     .additional-text-info, .map-container, .email-container, .info-container, footer {

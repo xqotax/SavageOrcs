@@ -79,7 +79,7 @@ var MapMainView = Class.extend({
             content: "�������",
             position: myLatlng,
         });
-        console.log(window.innerWidth < 700 ? "150px" : "300px");
+        
         console.log(window.innerWidth);
         var areasOptions = {
             placeholder: self.AreaTextPlaceholder.value,
