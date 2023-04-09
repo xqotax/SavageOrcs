@@ -1,0 +1,9 @@
+﻿@media (max-width: 700px) {
+    .multiselect-dropdown-custom-list-wrapper .multiselect-dropdown-custom-search{
+        padding-right: 0px;
+    }
+    .filter-multiselect-placeholder {
+        height: 60px;
+        width: 100%;
+    }
+}

@@ -1,0 +1,33 @@
+﻿@{
+    Layout = null;
+}
+@using SavageOrcs.Web.Resources
+@using SavageOrcs.Web.Resources.Classes
+@inject LanguageService Language
+<div class="popup-custom" id="eightPlusPopup" onclick="close18Popup()">
+    <div class="popup-red-container">
+        <div class="popup-content">
+            <div class="popup-main-row">
+                <div class="eighteen-block">18+</div>
+                <div class="big-text-info">
+                    <p>@Language.GetMainKey("Warning")</p>
+                    <p>@Language.GetMainKey("EighteenPlusPopupBigText")</p>
+                </div>
+            </div>
+            <div class="popup-additional-row">
+                <div class="close-info-block">@Language.GetMainKey("EighteenPlusPopupClickHere")</div>
+                <div class="small-text-info">@Language.GetMainKey("EighteenPlusPopupSmallText")</div>
+            </div>
+            
+        </div>
+    </div>
+</div>
+
+<script>
+    function close18Popup() {
+        //var date = new Date();
+        //date.setTime(date.getTime() + (60 * 1000 * 60 * 24));
+        $.cookie("userSaw18+Message", 'YES', { path: '/', expires: 10000 });
+        $("#eightPlusPopup").css({ display: "none" });
+    }
+</script>

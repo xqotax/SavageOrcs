@@ -4,178 +4,86 @@
 @{
     Layout = null;
 }
-<style>
-    @@media (min-width: 900px) {
-        .hidden-menu {
-            position:fixed;
-            display: none;
-            width: 0px;
-            /*width: -webkit-calc(100% - 116px);
-            width: -moz-calc(100% - 116px);
-            width: calc(100% - 116px);*/
-            left: 116px;
-            height: 100%;
-            flex-direction: row;
-            /*background-color: rgba(255, 41, 41, 0.4);*/
-            background-color: #DEDCDC;
-            color: #0F0F0F;
-            top: 0px;
-        }
-
-        .hide-menu-col {
-            position:relative;
-            width: 28%;
-            height: 100%;
-            border-left: 1px solid #0F0F0F;
-            display: flex;
-            flex-direction:column;
-            justify-content :center;
-        }
-
-        .lng-col {
-            width: 16%;
-            padding-top: 37px;
-            display: flex;
-            flex-direction: row;
-            justify-content: space-around;
-        }
-
-        .lng-col a {
-            font-weight: 500;
-            font-size: 18px;
-            line-height: 22px;
-        }
-
-        .lng-col a:hover {
-            color: #0F0F0F;
-            text-decoration-line: underline;
-        }
-
-        .hide-menu-small-text{
-            position:relative;
-            font-weight: 400;
-            font-size: 14px;
-            line-height: 17px;
-            height: 200px;
-            width: 80%;
-            left: 10%;
-        }
-
-        .hide-menu-big-text{
-            font-weight: 500;
-            font-size: 60px;
-            line-height: 60px;
-            writing-mode: vertical-rl;
-            transform: scale(-1, -1);
-            text-align:left;
-            height: 300px;
-            width: 70%;
-            left: 10%;
-            position: relative;
-        }
-    }
-    @@media (max-width: 450px) {
-        .hidden-menu {
-            position:absolute;
-            display: none;
-            width: 100%;
-            /*width: -webkit-calc(100% - 116px);
-            width: -moz-calc(100% - 116px);
-            width: calc(100% - 116px);*/
-            top: 59px;
-/*            height: -webkit-calc(100% - 60px);
-            height: -moz-calc(100% - 60px);
-            height:  calc(100% - 60px);*/
-            flex-direction: column;
-            background-color: #FF2929;
-            color: #0F0F0F;
-            padding-left:16px;
-            padding-right:16px;
-        }
-
-        .hide-menu-col {
-            position:relative;
-            width: 100%;
-            height: -webkit-calc((100% -  135px)/3);
-            height: -moz-calc((100% -  135px)/3);
-            height:  calc((100% - 135px)/3);
-            display: flex;
-            flex-direction:row-reverse;
-            justify-content:space-between;
-            border-top: 1px solid #0F0F0F;
-        }
-
-        .hide-menu-small-text{
-            position:relative;
-            font-weight: 400;
-            font-size: 9px;
-            line-height: 130%;
-            width: 40%;
-            align-self: flex-end;
-            padding-bottom:16px;
-        }
-
-        .hide-menu-big-text{
-            font-weight: 500;
-            font-size: 24px;
-            line-height: 24px;
-            letter-spacing: 0.03em;
-            writing-mode: horizontal-tb;
-            transform: scale(1, 1);
-            text-align:left;
-            width: 40%;
-            position: relative;
-            padding-top:16px;
-        }
-        .hide-menu-big-text{
-            color: #0F0F0F;
-            text-decoration-line: underline;
-        }
-
-
-        .lng-col {
-            height: 103px;
-            padding-top: 37px;
-            width: 30%;
-            border-top: 0px solid #0F0F0F;
-            display: flex;
-            flex-direction: row;
-            justify-content: space-between;
-        }
-
-        .lng-col a{
-            font-weight: 500;
-            font-size: 18px;
-            line-height: 22px;
-        }
-
-        .lng-col a:hover{
-            color: #0F0F0F;
-            text-decoration-line: underline;
-        }
-    }
-</style>
 <div class="hidden-menu">
     <div class="hide-menu-col lng-col">
-        <a style="color: #0F0F0F; text-decoration-line: underline" asp-route-culture="en-US" asp-controller="Map" asp-action="ChangeLanguage">@Language.GetKey("EnglishHeaderText")</a>
-        <a style="color: #0F0F0F; text-decoration-line: underline" asp-route-culture="uk-UA" asp-controller="Map" asp-action="ChangeLanguage">@Language.GetKey("UkrainianHeaderText")</a>
+        <a id="uk" style="color: #0F0F0F;" asp-route-culture="uk-UA" asp-controller="Map" asp-action="ChangeLanguage">УКР</a>
+        <a id="en" style="color: #0F0F0F;" asp-route-culture="en-US" asp-controller="Map" asp-action="ChangeLanguage">ENG</a>
     </div>
     <div class="hide-menu-col">
         <div class="hide-menu-small-text">
-            Ваш гід архівом, впорядкований за вмістом написів, географією та обʼєктами, де були знайдені графіті
+            @Language.GetMainKey("SideMenuSearchLabel")
         </div>
-        <a class="hide-menu-big-text" style="color: #0F0F0F; text-decoration-line: none" href="/Mark/Catalogue">ПОШУК</a>
+        <a class="hide-menu-big-text" style="color: #0F0F0F; text-decoration-line: none" href="/Mark/Catalogue">@Language.GetMainKey("SideMenuSearchButton")</a>
     </div>
     <div class="hide-menu-col">
         <div class="hide-menu-small-text">
-            Аналітика та рефлексії на базі матеріалів архіву
+            @Language.GetMainKey("SideMenuTextsLabel")
         </div>
-        <a class="hide-menu-big-text" style="color: #0F0F0F; text-decoration-line: none" href="/Text/Catalogue">ТЕКСТИ</a>
+        <a class="hide-menu-big-text" style="color: #0F0F0F; text-decoration-line: none" href="/Text/Catalogue">@Language.GetMainKey("SideMenuTextsButton")</a>
     </div>
     <div class="hide-menu-col">
         <div class="hide-menu-small-text">
-            Експерти, які долучилися до проєкту
+            @Language.GetMainKey("SideMenuContributorsLabel")
         </div>
-        <a class="hide-menu-big-text" style="color: #0F0F0F; text-decoration-line: none" asp-area="" asp-controller="Curator" asp-action="Catalogue">АВТОРИ</a>
+        <a class="hide-menu-big-text" style="color: #0F0F0F; text-decoration-line: none" asp-area="" asp-controller="Curator" asp-action="Catalogue">@Language.GetMainKey("SideMenuContributorsButton")</a>
     </div>
 </div>
+
+<script>
+    $(function () {
+        var state = true;
+        $(".cross, .burger").on("click", function () {
+            if (state) {
+                var clientWidth = window.innerWidth;
+                if (clientWidth >= 700) {
+                    $(".hidden-menu").animate({
+                        height: window.innerHeight
+                    }, 300);
+                }
+                else if (clientWidth < 700 && clientWidth >= 460) {
+                    $(".hidden-menu").animate({
+                        height: (window.innerHeight - 80)
+                    }, 300);
+                }
+                else if (clientWidth < 460) {
+                    $(".hidden-menu").animate({
+                        height: (window.innerHeight - 60) //outerHeight
+                    }, 300);
+                }
+                $(".burger").css({ display: 'none' });
+                $(".cross").css({ display: 'flex' });
+                $(".hidden-menu").css({ display: 'flex' });
+
+            } else {
+                var clientWidth = window.innerWidth;
+                if (clientWidth >= 700) {
+                    $(".hidden-menu").animate({
+                        height: 0
+                    }, 400);
+                }
+                else if (clientWidth < 700) {
+                    $(".hidden-menu").animate({
+                        height: 200
+                    }, 400);
+                }
+
+                $(".burger").css({ display: 'flex' });
+                $(".cross").css({ display: 'none' });
+
+                setTimeout(function () {
+                    $(".hidden-menu").css({ display: 'none' });
+                }, 350);
+            }
+            state = !state;
+        });
+    });
+
+    $(document).ready(function () {
+        if ($.cookie(".AspNetCore.Culture").includes("en-US")) {
+            $("#en").css({"text-decoration": "underline"});
+        }
+        else if ($.cookie(".AspNetCore.Culture").includes("uk-UA")) {
+            $("#uk").css({ "text-decoration": "underline" });
+        }
+    });
+</script>

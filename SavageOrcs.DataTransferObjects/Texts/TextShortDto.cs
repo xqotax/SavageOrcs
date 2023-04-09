@@ -10,6 +10,8 @@ namespace SavageOrcs.DataTransferObjects.Texts
 
         public string? Subject { get; set; }
 
+        public bool EnglisVersion { get; set; }
+
         public DateTime CreatedDate { get; set; }
 
         public GuidIdAndStringName? Curator { get; set; }

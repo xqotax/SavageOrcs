@@ -1,6 +1,8 @@
 ﻿@using SavageOrcs.Web.ViewModels.Curator
+@using Microsoft.Extensions.Localization
+@using SavageOrcs.Web.Resources.Classes
+@inject LanguageService Language
 @model CuratorViewModel[]
-
 
 @for (int i = 1; i <= Model.Length; i++)
 {
@@ -21,17 +23,18 @@
                         <div class="curator-content-name-col">@Model[i-1].DisplayName</div>
                     }
                     <div class="curator-content-button-more" onclick="catalogueCuratorView.ShowDescription(this)">
-                        <img src="~/images/arrows/bottomArrow.png" />
+                        <img src="~/images/arrows/bottomArrow.png" class="bottomArrow" />
+                        <img src="~/images/arrows/topArrow.png" class="topArrow" style="display: none" />
                     </div>
                 </div>
                 <div class="curator-content-count-row">
                     @if (Model[i - 1].TextCount > 0)
                     {
-                        <div class="curator-content-count-cell">@Model[i - 1].TextCount.ToString() текст(ів)</div>
+                        <div class="curator-content-count-cell">@Model[i - 1].TextCount.ToString() @Language.GetCuratorKey("SearchTextCount")</div>
                     }
                     @if (Model[i - 1].MarkCount > 0)
                     {
-                        <div class="curator-content-count-cell">@Model[i - 1].MarkCount.ToString() фото</div>
+                        <div class="curator-content-count-cell">@Model[i - 1].MarkCount.ToString() @Language.GetCuratorKey("SearchPhotoCount")</div>
                     }
 
                 </div>
@@ -46,11 +49,11 @@
                 <div class="curator-content-texts">
                     @await Html.PartialAsync("../Text/_CatalogueForCuratorDataRows", Model[i-1].Texts)
                 </div>
-                <div class="curator-content-button-less-row">
+                @*<div class="curator-content-button-less-row">
                     <div class="curator-content-button-less" onclick="catalogueCuratorView.HideDescription(this)">
                         <img src="~/images/arrows/topArrow.png" />
                     </div>
-                </div>
+                </div>*@
             </div>
         </div>
     </div>

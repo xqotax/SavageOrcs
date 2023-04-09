@@ -545,11 +545,17 @@ namespace SavageOrcs.DbContext.Migrations
                     b.Property<Guid?>("CuratorId")
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<bool>("EnglishVersion")
+                        .HasColumnType("bit");
+
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Subject")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid?>("UkrTextId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime>("UpdatedDate")
                         .HasColumnType("datetime2");

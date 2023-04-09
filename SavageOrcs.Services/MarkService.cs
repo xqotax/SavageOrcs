@@ -34,49 +34,58 @@ namespace SavageOrcs.Services
             return mark is null ? null : CreateMarkDto(mark);
         }
 
-        public async Task<MarkShortDto[]> GetMarksByFilters(Guid[]? keyWordIds, Guid[]? markIds, Guid[]? clusterIds, Guid[]? placeIds, Guid[]? areaIds)
+        public async Task<MarkShortDto[]> GetMarksByFilters(Guid[]? keyWordIds, Guid[]? markIds, Guid[]? clusterIds, Guid[]? areaIds)
         {
 
             var marks = await _markRepository.GetAllAsync();
 
-            var keyWords = Array.Empty<string>();
-            var places = Array.Empty<GuidIdAndStringName>();
-            var filteredMarks = Array.Empty<Mark>();
+            var resultMarks = new List<Mark>();
 
             var filterByMarkIds = markIds is not null && markIds.Length > 0;
             var filterByClusterIds = clusterIds is not null && clusterIds.Length > 0;
             var filterByKeyWordIds = keyWordIds is not null && keyWordIds.Length > 0;
-            var filterByPlaceIds = placeIds is not null && placeIds.Length > 0;
             var filterByAreaIds = areaIds is not null && areaIds.Length > 0;
+
+            if (!filterByMarkIds && !filterByClusterIds && !filterByKeyWordIds && !filterByAreaIds)
+                return marks.Select(CreateMarkShortDto).ToArray();
 
             if (filterByKeyWordIds)
             {
-                keyWords = (await _helperService.GetAllKeyWords()).Where(x => keyWordIds.Contains(x.Id) && !string.IsNullOrEmpty(x.Name)).Select(x => x.Name).ToArray();
-            }
+                var keyWords = (await _helperService.GetAllKeyWords()).Where(x => keyWordIds.Contains(x.Id) && !string.IsNullOrEmpty(x.Name)).Select(x => x.Name).ToArray();
 
-            if (filterByPlaceIds)
-            {
-                places = (await _helperService.GetAllKeyWords()).Where(x => placeIds.Contains(x.Id) && !string.IsNullOrEmpty(x.Name)).ToArray();
+                resultMarks.AddRange(marks
+                    .Where(x => 
+                        !string.IsNullOrEmpty(x.DescriptionEng) 
+                        && keyWords.Any(y => 
+                            y.Contains(x.DescriptionEng, StringComparison.OrdinalIgnoreCase)) ||
+                            !string.IsNullOrEmpty(x.Description) 
+                        && keyWords.Any(y => 
+                            y.Contains(x.Description, StringComparison.OrdinalIgnoreCase)) ||
+                            !string.IsNullOrEmpty(x.Name) 
+                        && keyWords.Any(y => 
+                            y.Contains(x.Name, StringComparison.OrdinalIgnoreCase)))
+                    .ToList());
             }
+            
 
             if (filterByMarkIds)
             {
-                filteredMarks = marks.Where(x => markIds.Contains(x.Id)).ToArray();
+                resultMarks.AddRange(marks.Where(x => markIds.Contains(x.Id)).ToList());
             }
 
+            if (filterByClusterIds)
+            {
+                resultMarks.AddRange(marks.Where(x => x.ClusterId.HasValue && markIds.Contains(x.ClusterId.Value)).ToList());
+            }
 
-            marks = marks.Where(x => (filterByMarkIds && markIds.Contains(x.Id))
-            || (!string.IsNullOrEmpty(x.Name) && filteredMarks.Any(y => y.Name == x.Name))
-            || (filterByClusterIds && x.ClusterId.HasValue && markIds.Contains(x.ClusterId.Value))
-            || (filterByAreaIds && x.AreaId.HasValue && areaIds.Contains(x.AreaId.Value))
-            || (filterByKeyWordIds &&
-                (!string.IsNullOrEmpty(x.DescriptionEng) && keyWords.Any(y => y.Contains(x.DescriptionEng)) ||
-                 !string.IsNullOrEmpty(x.Description) && keyWords.Any(y => y.Contains(x.Description)) ||
-                 !string.IsNullOrEmpty(x.Name) && keyWords.Any(y => y.Contains(x.Name))))
-            || (filterByPlaceIds && places.Any(a => x.PlaceToMarks.Select(y => y.PlaceId).Contains(a.Id)))
-            ).ToArray();
+            if (filterByAreaIds)
+            {
+                resultMarks.AddRange(marks.Where(x => x.AreaId.HasValue && areaIds.Contains(x.AreaId.Value)).ToList());
+            }
 
-            return marks.Select(CreateMarkShortDto).ToArray();
+            resultMarks = resultMarks.GroupBy(x => x.Id).Select(x => x.First()).ToList();
+
+            return resultMarks.Select(CreateMarkShortDto).ToArray();
         }
 
         public async Task<MarkShortDto[]> GetShortMarks()
@@ -204,9 +213,22 @@ namespace SavageOrcs.Services
             mark.UpdatedDate = DateTime.Now;
             mark.Name = markSaveDto.Name;
             mark.Description = markSaveDto.Description;
-            mark.AreaId = markSaveDto.AreaId;
-            mark.ClusterId = markSaveDto.ClusterId;
-            mark.CuratorId = markSaveDto.CuratorId;
+
+            if (markSaveDto.AreaId == _Constants.EmptySelect)
+                mark.AreaId = null;
+            else
+                mark.AreaId = markSaveDto.AreaId;
+
+            if (markSaveDto.ClusterId == _Constants.EmptySelect)
+                mark.ClusterId = null;
+            else
+                mark.ClusterId = markSaveDto.ClusterId; 
+
+            if (markSaveDto.CuratorId == _Constants.EmptySelect)
+                mark.CuratorId = null;
+            else
+                mark.CuratorId = markSaveDto.CuratorId;
+
             mark.DescriptionEng = markSaveDto.DescriptionEng;
             mark.ResourceUrl = markSaveDto.ResourceUrl;
             mark.ResourceName = markSaveDto.ResourceName;

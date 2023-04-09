@@ -27,12 +27,38 @@
             @Html.HiddenFor(m => m.Id)
             <div class="row pb-2">
                 <div class="col-md-4 d-flex align-items-center">
+                    <label>
+                        Англійська версія:
+                    </label>
+                </div>
+                <div class="col-md-8">
+                    @Html.CheckBoxFor(m => m.EnglishVersion, new { @class = "text-box-custom form-control"})
+                </div>
+            </div>
+            <div class="row pb-2 " id="ukrTextRow">
+                <div class="col-md-4 d-flex align-items-center">
+                    <label>
+                        Українська версія:
+                    </label>
+                </div>
+
+                <div class="col-md-8" id="ukrText">
+                    <input id="dropdown-input-for-ukrText"
+                           name="dropdown-input-for-ukrText"
+                           class="Search-Select--Hidden-Input"
+                           placeholder=""
+                           data-search-placeholder="Виберіть українську версію тексту"
+                           hidden />
+                </div>
+            </div>
+            <div class="row pb-2">
+                <div class="col-md-4 d-flex align-items-center">
                     <label >
                         Назва:
                     </label>
                 </div>
                 <div class="col-md-8">
-                    @Html.TextBoxFor(m => m.Name, new { @class = "text-box-custom form-control "})
+                    @Html.TextAreaFor(m => m.Name, new { @class = "text-box-custom form-control area-for-custom"})
                 </div>
             </div>
             <div class="row pb-2">
@@ -61,7 +87,6 @@
                            hidden />
                 </div>
             </div>
-            
             <div class="row pb-2">
                 <div class="col-md-5">
                     <button id="addPhoto" class="btn btn-dark-custom  mt-3">Додати фото</button>
@@ -118,6 +143,10 @@
         addTextView.Curators = @Json.Serialize(Model.Curators);
         addTextView.CuratorName = @Json.Serialize(Model.CuratorName);
         addTextView.CuratorId = @Json.Serialize(Model.CuratorId);
+
+        addTextView.UkrTexts = @Json.Serialize(Model.UkrTexts);
+        addTextView.UkrTextName = @Json.Serialize(Model.UkrTextName);
+        addTextView.UkrTextId = @Json.Serialize(Model.UkrTextId);
 
         $(document).ready(function () {
             addTextView.InitializeControls();

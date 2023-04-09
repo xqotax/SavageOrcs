@@ -223,5 +223,14 @@ namespace SavageOrcs.Services
 
             return Thread.CurrentThread.CurrentUICulture.TwoLetterISOLanguageName == "uk" ? urk : eng;
         }
+
+        public GuidIdAndStringName GetEmptySelect()
+        {
+            return new GuidIdAndStringName
+            {
+                Id = _Constants.EmptySelect,
+                Name = "НЕМАЄ ЗНАЧЕННЯ -> ###"
+            };
+        }
     }
 }

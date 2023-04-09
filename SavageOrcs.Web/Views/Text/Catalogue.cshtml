@@ -1,16 +1,19 @@
 ﻿@using SavageOrcs.Web.ViewModels.Text
+@using Microsoft.Extensions.Localization
+@using SavageOrcs.Web.Resources.Classes
+@inject LanguageService Language
 @model UnitedCatalogueTextViewModel
 
 <div class="wrapper-text-search">
     <div class="text-content-col">
-        <div class="header-text-search-row">ТЕКСТИ</div>
+        <div class="header-text-search-row">@Language.GetTextKey("SearchHeader")</div>
         <div class="text-content-row">
             <div id="textContentPlaceholder"></div>
         </div>
     </div>
     <div class="text-data-col">
         <div class="description-header-text-search-row">
-            Аналітика та рефлексії на базі матеріалів архіву
+            @Language.GetTextKey("SearchDescription")
         </div>
         <div class="text-search-filter-row">
             <div class="text-search-filter-item">
@@ -22,10 +25,6 @@
                         }
                     </select>
                 </div>
-                <div class="text-search-filter-big-text-info">Текст</div>
-                <div class="text-search-filter-small-text-info">
-                    <div class="text-container-big">Почність вводити назву матеріалу</div>
-                </div>
             </div>
             <div class="text-search-filter-item">
                 <div class="text-search-filter-multiselect-placeholder">
@@ -35,10 +34,6 @@
                             <option value=@area.Id>@area.Name</option>
                         }
                     </select>
-                </div>
-                <div class="text-search-filter-big-text-info">Автор</div>
-                <div class="text-search-filter-small-text-info">
-                    <div class="text-search-text-container-big">Почніть вводити ім'я автора</div>
                 </div>
             </div>
         </div>
@@ -50,9 +45,9 @@
 <div class="wrapper-search-bottom-text">
     <div class="bottom-text-row">
         <div class="bottom-text-col">
-            Бажаєте опублікувати власні роботи?
+            @Language.GetTextKey("SearchAreYouHaveMaterials")
         </div>
-        <div class="bottom-text-col">Пишіть на скриню:</div>
+        <div class="bottom-text-col">@Language.GetMainKey("MainContactUs")</div>
     </div>
     <div class="bottom-text-row">
         <div class="bottom-text-col"></div>
@@ -67,6 +62,14 @@
 @section Scripts{
     <script>
         var catalogueTextView = new CatalogueTextView();
+        catalogueTextView.SelectedText = @Json.Serialize(Language.GetMainKey("MultiselectSelectedText"));
+        catalogueTextView.MultiselectAll = @Json.Serialize(Language.GetMainKey("MultiselectAll"));
+
+        catalogueTextView.CuratorTextPlaceholder = @Json.Serialize(Language.GetTextKey("MultiselectCuratorTextPlaceholder"));
+        catalogueTextView.NameTextPlaceholder = @Json.Serialize(Language.GetTextKey("MultiselectNameTextPlaceholder"));
+        catalogueTextView.SearchTextName = @Json.Serialize(Language.GetTextKey("MultiselectSearchTextName"));
+        catalogueTextView.SearchTextCurator = @Json.Serialize(Language.GetTextKey("MultiselectSearchTextCurator"));
+
 
         $(document).ready(function () {
             catalogueTextView.InitializeControls();

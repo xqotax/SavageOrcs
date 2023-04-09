@@ -9,6 +9,11 @@ function ArrayToMultiselectOptions(arr) {
     return str;
 };
 
+function ClearMultiSelect(selectId) {
+    if (!($('#' + selectId).next().find('.multiselect-dropdown-custom-all-selector input[type="checkbox"]').is(":checked")))
+        $('#' + selectId).next().find('.multiselect-dropdown-custom-all-selector').trigger('click');
+    $('#' + selectId).next().find('.multiselect-dropdown-custom-all-selector').trigger('click');
+}
 
 
 function MultiselectDropdown(options) {
@@ -46,7 +51,7 @@ function MultiselectDropdown(options) {
         el.parentNode.insertBefore(div, el.nextSibling);
         var listWrap = newEl('div', { class: 'multiselect-dropdown-custom-list-wrapper' });
         var list = newEl('div', { class: 'multiselect-dropdown-custom-list', style: { height: config.height } });
-        var search = newEl('input', { class: ['multiselect-dropdown-custom-search'].concat(['form-control-multiselect']), style: { width: '100%', display: el.attributes['multiselect-search']?.value === 'true' ? 'block' : 'none' }, placeholder: config.txtSearch });
+        var search = newEl('textarea', { class: ['multiselect-dropdown-custom-search'], style: { width: '100%', display: el.attributes['multiselect-search']?.value === 'true' ? 'block' : 'none' }, placeholder: config.txtSearch });
         listWrap.appendChild(search);
         div.appendChild(listWrap);
         listWrap.appendChild(list);
@@ -68,16 +73,31 @@ function MultiselectDropdown(options) {
                     list.querySelectorAll(":scope > div:not(.multiselect-dropdown-custom-all-selector)")
                         .forEach(i => { if (i.style.display !== 'none') { i.querySelector("input").checked = ch; i.optEl.selected = ch } });
 
+                    document.getElementById(config.id).parentNode.querySelector('.multiselect-dropdown-custom-search').value = '';
+                    list.querySelectorAll(":scope div:not(.multiselect-dropdown-custom-all-selector)").forEach(d => {
+                        var txt = d.querySelector("label").innerText.toUpperCase();
+                        d.style.display = txt.includes(search.value.toUpperCase()) ? 'block' : 'none';
+                    });
                     el.dispatchEvent(new Event('change'));
                 });
                 ic.addEventListener('click', (ev) => {
                     ic.checked = !ic.checked;
+                    document.getElementById(config.id).parentNode.querySelector('.multiselect-dropdown-custom-search').value = '';
+                    list.querySelectorAll(":scope div:not(.multiselect-dropdown-custom-all-selector)").forEach(d => {
+                        var txt = d.querySelector("label").innerText.toUpperCase();
+                        d.style.display = txt.includes(search.value.toUpperCase()) ? 'block' : 'none';
+                    });
                 });
                 el.addEventListener('change', (ev) => {
                     let itms = Array.from(list.querySelectorAll(":scope > div:not(.multiselect-dropdown-custom-all-selector)")).filter(e => e.style.display !== 'none')
                     let existsNotSelected = itms.find(i => !i.querySelector("input").checked);
                     if (ic.checked && existsNotSelected) ic.checked = false;
                     else if (ic.checked == false && existsNotSelected === undefined) ic.checked = true;
+                    document.getElementById(config.id).parentNode.querySelector('.multiselect-dropdown-custom-search').value = '';
+                    list.querySelectorAll(":scope div:not(.multiselect-dropdown-custom-all-selector)").forEach(d => {
+                        var txt = d.querySelector("label").innerText.toUpperCase();
+                        d.style.display = txt.includes(search.value.toUpperCase()) ? 'block' : 'none';
+                    });
                 });
 
                 list.appendChild(op);
@@ -118,7 +138,7 @@ function MultiselectDropdown(options) {
                         div.appendChild(c);
                     });
                 }
-                if (0 == el.selectedOptions.length) div.appendChild(newEl('span', { class: 'multiselect-placeholder', text: el.attributes['placeholder']?.value ?? config.placeholder }));
+                div.appendChild(newEl('span', { class: 'multiselect-placeholder', text: el.attributes['placeholder']?.value ?? config.placeholder }));
             };
             div.refresh();
         }
@@ -132,14 +152,19 @@ function MultiselectDropdown(options) {
         });
 
         div.addEventListener('click', () => {
-            div.listEl.style.display = 'block';
+            var searchWrap = listWrap.querySelector('.multiselect-dropdown-custom-list');
+            searchWrap.style.display = 'block';
+            searchWrap.style.zIndex = 4;
             search.focus();
             search.select();
         });
 
         document.addEventListener('click', function (event) {
             if (!div.contains(event.target)) {
-                listWrap.style.display = 'none';
+                var searchWrap = listWrap.querySelector('.multiselect-dropdown-custom-list');
+                searchWrap.style.display = 'none';
+                searchWrap.style.zIndex = 2;
+                /*listWrap.style.display = 'none';*/
                 div.refresh();
             }
         });

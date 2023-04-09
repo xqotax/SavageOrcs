@@ -1,6 +1,9 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using SavageOrcs.DataTransferObjects.Cluster;
 using SavageOrcs.DataTransferObjects.Curators;
+using SavageOrcs.DataTransferObjects.Texts;
+using SavageOrcs.DbContext.Migrations;
 using SavageOrcs.Services;
 using SavageOrcs.Services.Interfaces;
 using SavageOrcs.Web.ViewModels.Cluster;
@@ -15,16 +18,14 @@ namespace SavageOrcs.Web.Controllers
 {
     public class CuratorController : Controller
     {
-        private readonly IHelperService _imageService;
         private readonly ICuratorService _curatorService;
         private readonly ITextService _textService;
         private readonly IMarkService _markService;
         private readonly IHelperService _helperService;
 
-        public CuratorController(ICuratorService curatorService, IHelperService imageService, ITextService textService, IMarkService markService, IHelperService helperService)
+        public CuratorController(ICuratorService curatorService, ITextService textService, IMarkService markService, IHelperService helperService)
         {
             _curatorService = curatorService;
-            _imageService = imageService;
             _textService = textService;
             _markService = markService;
             _helperService = helperService;
@@ -119,13 +120,22 @@ namespace SavageOrcs.Web.Controllers
                 Id = x.Id,
                 DisplayName = x.DisplayName,
                 Description = _helperService.GetTranslation(x.Description, x.DescriptionEng),
-                Image = x.Image is not null ? _imageService.GetImage(x.Image) : null
+                Image = x.Image is not null ? _helperService.GetImage(x.Image) : null
             }).ToArray();
             
 
             foreach (var curatorViewModel in curators)
             {
-                curatorViewModel.Texts = (await _textService.GetTextsByCuratorIds(curatorViewModel.Id.Value))
+                var textDtos = await _textService.GetTextsByCuratorIds(curatorViewModel.Id.Value);
+                if (!User.IsInRole("Admin"))
+                {
+                    if (Thread.CurrentThread.CurrentUICulture.TwoLetterISOLanguageName == "uk")
+                        textDtos = textDtos.Where(x => !x.EnglisVersion).ToArray();
+                    else
+                        textDtos = textDtos.Where(x => x.EnglisVersion).ToArray();
+                }
+
+                curatorViewModel.Texts = textDtos
                     .Select(y => new TextCatalogueViewModel
                     {
                         Id = y.Id,
@@ -133,7 +143,12 @@ namespace SavageOrcs.Web.Controllers
                         Name = y.Name
                     }).ToArray();
                 curatorViewModel.TextCount = curatorViewModel.Texts.Length;
-                curatorViewModel.Marks = (await _markService.GetMarksByCuratorIds(curatorViewModel.Id.Value))
+
+                var markDtos = await _markService.GetMarksByCuratorIds(curatorViewModel.Id.Value);
+                if (!User.IsInRole("Admin"))
+                    markDtos = markDtos.Where(x => x.IsVisible).ToArray();
+
+                curatorViewModel.Marks = markDtos
                     .Select(y => new MarkCatalogueViewModel
                     {
                         Id = y.Id,
@@ -142,44 +157,102 @@ namespace SavageOrcs.Web.Controllers
                         Area = y.Area is null ? new GuidIdAndNameViewModel() : new GuidIdAndNameViewModel
                         {
                             Id = y.Area.Id,
-                            Name = y.Area.Name,
+                            Name = y.Area.Name + ", " + y.Area.Community + ", " + y.Area.Region,
                         }
                     }).OrderByDescending(x => x.Name).ToArray();
                 curatorViewModel.MarkCount = curatorViewModel.Marks.Length;
-
-
             }
 
             return View("Catalogue", curators);
         }
 
+
         [AllowAnonymous]
-        public async Task<IActionResult> Revision(Guid id)
+        [HttpPost]
+        public async Task<ActionResult> GetCurators([FromBody] Guid[] curatorIds)
         {
-            var curatorDto = await _curatorService.GetCuratorById(id);
+            var curatorDtos = new List<CuratorDto>();
+            if (curatorIds is null)
+                return PartialView("_CatalogueDataRows", Array.Empty<CuratorViewModel>());
 
-            var curatorRevisionViewModel = new RevisionCuratorViewModel
+            if (curatorIds.Length == 0)
+                curatorDtos = (await _curatorService.GetCurators()).ToList();
+            else
+                foreach (var curatorId in curatorIds)
+                {
+                    var curatorDto = await _curatorService.GetCuratorById(curatorId);
+                    if (curatorDto is not null)
+                        curatorDtos.Add(curatorDto);
+                }
+
+
+            var curatorViewModels = curatorDtos.Select(x => new CuratorViewModel
             {
-                Id = curatorDto.Id,
-                DisplayName = curatorDto.DisplayName,
-                Description = Thread.CurrentThread.CurrentUICulture.TwoLetterISOLanguageName == "uk" ? curatorDto.Description: curatorDto.DescriptionEng,
-                Image = curatorDto.Image is not null ? _imageService.GetImage(curatorDto.Image) : null,
-                Texts = curatorDto.TextDtos?.Select(x => new RevisionCuratorTextsViewModel {
-                    Id = x.Id,
-                    Name = x.Name,
-                    Subject = x.Subject
-                }).ToArray()
-            };
-            return View(curatorRevisionViewModel);
+                Id = x.Id,
+                DisplayName = x.DisplayName,
+                Description = _helperService.GetTranslation(x.Description, x.DescriptionEng),
+                Image = x.Image is not null ? _helperService.GetImage(x.Image) : null
+            }).ToArray();
+
+            foreach (var curatorViewModel in curatorViewModels)
+            {
+                var textDtos = await _textService.GetTextsByCuratorIds(curatorViewModel.Id.Value);
+                if (!User.IsInRole("Admin"))
+                {
+                    if (Thread.CurrentThread.CurrentUICulture.TwoLetterISOLanguageName == "uk")
+                        textDtos = textDtos.Where(x => !x.EnglisVersion).ToArray();
+                    else
+                        textDtos = textDtos.Where(x => x.EnglisVersion).ToArray();
+                }
+
+                curatorViewModel.Texts = textDtos
+                    .Select(y => new TextCatalogueViewModel
+                    {
+                        Id = y.Id,
+                        CreatedDate = _helperService.GetTranslation(y.CreatedDate.ToString("dd MMMM yyyy", CultureInfo.CreateSpecificCulture("uk-UA")), y.CreatedDate.ToString("dd/MM/yyyy")),
+                        Name = y.Name
+                    }).ToArray();
+                curatorViewModel.TextCount = curatorViewModel.Texts.Length;
+
+                var markDtos = await _markService.GetMarksByCuratorIds(curatorViewModel.Id.Value);
+                if (!User.IsInRole("Admin"))
+                    markDtos = markDtos.Where(x => x.IsVisible).ToArray();
+
+                curatorViewModel.Marks = markDtos
+                    .Select(y => new MarkCatalogueViewModel
+                    {
+                        Id = y.Id,
+                        Name = y.Name,
+                        ResourceName = _helperService.GetTranslation(y.ResourceName, y.ResourceNameEng),
+                        Area = y.Area is null ? new GuidIdAndNameViewModel() : new GuidIdAndNameViewModel
+                        {
+                            Id = y.Area.Id,
+                            Name = y.Area.Name + ", " + y.Area.Community + ", " + y.Area.Region,
+                        }
+                    }).OrderByDescending(x => x.Name).ToArray();
+                curatorViewModel.MarkCount = curatorViewModel.Marks.Length;
+            }
+
+            return PartialView("_CatalogueDataRows", curatorViewModels);
         }
-
-
-        //[Authorize(Roles = "Global admin")]
-        //public async Task<IActionResult> Edit(Guid id)
+        //[AllowAnonymous]
+        //public async Task<IActionResult> Revision(Guid id)
         //{
         //    var curatorDto = await _curatorService.GetCuratorById(id);
 
-        //    return RedirectToAction("Revision", "User", new { id = curatorDto.UserId });
+        //    var curatorRevisionViewModel = new RevisionCuratorViewModel
+        //    {
+        //        Id = curatorDto.Id,
+        //        DisplayName = curatorDto.DisplayName,
+        //        Description = Thread.CurrentThread.CurrentUICulture.TwoLetterISOLanguageName == "uk" ? curatorDto.Description: curatorDto.DescriptionEng,
+        //        Image = curatorDto.Image is not null ? _helperService.GetImage(curatorDto.Image) : null,
+        //        Texts = curatorDto.TextDtos?.Select(x => new RevisionCuratorTextsViewModel {
+        //            Id = x.Id,
+        //            Name = x.Name,
+        //            Subject = x.Subject
+        //        }).ToArray()
+        //    };
+        //    return View(curatorRevisionViewModel);
         //}
     }
 }

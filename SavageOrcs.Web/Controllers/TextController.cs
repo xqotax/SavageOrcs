@@ -1,21 +1,13 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using NuGet.Packaging;
-using SavageOrcs.DataTransferObjects.Areas;
 using SavageOrcs.DataTransferObjects.Blocks;
-using SavageOrcs.DataTransferObjects.Marks;
 using SavageOrcs.DataTransferObjects.Texts;
 using SavageOrcs.Enums;
-using SavageOrcs.Services;
 using SavageOrcs.Services.Interfaces;
-using SavageOrcs.Web.ViewModels.Cluster;
 using SavageOrcs.Web.ViewModels.Constants;
 using SavageOrcs.Web.ViewModels.Mark;
 using SavageOrcs.Web.ViewModels.Text;
 using SavageOrcs.Web.ViewModels.Text.Blocks;
-using System.ComponentModel.Design;
-using System.Globalization;
-using System.Text.RegularExpressions;
 
 namespace SavageOrcs.Web.Controllers
 {
@@ -33,7 +25,8 @@ namespace SavageOrcs.Web.Controllers
         }
 
         [AllowAnonymous]
-        public async Task<IActionResult> Revision(Guid id) { 
+        public async Task<IActionResult> Revision(Guid id)
+        {
 
             var textDto = await _textService.GetTextById(id);
 
@@ -81,7 +74,7 @@ namespace SavageOrcs.Web.Controllers
             }
             else if (block.Type == BlockType.Image)
             {
-                return "<img class=\"textRevisionImage\" src=\"" + block.Content +"\" title=\"" + block.AdditionParameter?.Replace('"', '\'') +  "\"/>";
+                return "<img class=\"textRevisionImage\" src=\"" + block.Content + "\" title=\"" + block.AdditionParameter?.Replace('"', '\'') + "\"/>";
             }
             else if (block.Type == BlockType.Video)
             {
@@ -94,7 +87,7 @@ namespace SavageOrcs.Web.Controllers
         private string ArrayToLi(string[] items)
         {
             var stringToReturn = "";
-            foreach(var item in items)
+            foreach (var item in items)
             {
                 stringToReturn += "<li>" + item?.Replace('"', '\'') + "</li>";
             };
@@ -105,11 +98,20 @@ namespace SavageOrcs.Web.Controllers
         public async Task<IActionResult> Add(Guid? id)
         {
             TextDto? textDto = null;
+            var emptySelect = _helperService.GetEmptySelect();
+            var emptySelectArr = new GuidIdAndNameViewModel[] {
+                new GuidIdAndNameViewModel
+                {
+                    Id = emptySelect.Id,
+                    Name = emptySelect.Name
+                }
+            };
 
             if (id is not null)
                 textDto = await _textService.GetTextById(id.Value);
 
             var curatorDtos = await _curatorService.GetCurators();
+            var ukrTexts = (await _textService.GetTexts()).Where(x => !x.EnglishVersion).ToList();
 
             var addTextViewModel = new AddTextViewModel()
             {
@@ -118,16 +120,32 @@ namespace SavageOrcs.Web.Controllers
                 Subject = textDto?.Subject,
                 CuratorId = textDto?.Curator?.Id,
                 CuratorName = textDto?.Curator?.Name,
-                Curators = curatorDtos.Select(x => new GuidIdAndNameViewModel
+                EnglishVersion = textDto is not null && textDto.EnglishVersion,
+                Curators = emptySelectArr.Concat(curatorDtos.Select(x => new GuidIdAndNameViewModel
                 {
                     Id = x.Id,
                     Name = x.DisplayName
-                }).ToArray(),
+                })).ToArray(),
+                UkrTexts = emptySelectArr.Concat(ukrTexts.Select(x => new GuidIdAndNameViewModel
+                {
+                    Id = x.Id,
+                    Name = x.Name + x.CreatedDate.ToString("MM/dd/yyyy HH:mm")
+                })).ToArray(),
                 ToDelete = false,
                 IsNew = textDto is null,
                 Blocks = null
-                
             };
+            if (addTextViewModel.EnglishVersion && textDto?.UkrTextId is not null)
+            {
+                var ukrText = await _textService.GetTextById(textDto.UkrTextId.Value);
+                if (ukrText is not null)
+                {
+                    addTextViewModel.UkrTextId = ukrText.Id;
+                    addTextViewModel.UkrTextName = ukrText.Name + ukrText.CreatedDate.ToString("MM/dd/yyyy HH:mm");
+                }
+            }
+
+
             if (textDto?.BlockDtos is not null)
             {
                 addTextViewModel.Blocks = new TextBlockViewModel();
@@ -194,6 +212,8 @@ namespace SavageOrcs.Web.Controllers
                 Subject = saveTextViewModel?.Subject,
                 Name = saveTextViewModel?.Name,
                 CuratorId = saveTextViewModel?.CuratorId,
+                UkrTextId = saveTextViewModel?.UkrTextId,
+                EnglishVersion = saveTextViewModel is not null && saveTextViewModel.EnglishVersion,
                 BlockDtos = saveTextViewModel?.Blocks?.Headers.Select(x => new BlockDto
                 {
                     CustomId = x.Id,
@@ -276,7 +296,7 @@ namespace SavageOrcs.Web.Controllers
                     Text = "У посиланнях виникла помилка"
                 });
             }
-            
+
             textSaveDto.UrlDtos = urlDtos.ToArray();
 
             var result = await _textService.SaveText(textSaveDto);
@@ -300,10 +320,18 @@ namespace SavageOrcs.Web.Controllers
 
 
         [AllowAnonymous]
-        public async Task<IActionResult> Catalogue()
+        public async Task<IActionResult> Catalogue(Guid? textId)
         {
             var unitedTextViewModel = new UnitedCatalogueTextViewModel();
             var textDtos = await _textService.GetShortTexts();
+            if (!User.IsInRole("Admin"))
+            {
+                if (Thread.CurrentThread.CurrentUICulture.TwoLetterISOLanguageName == "uk")
+                    textDtos = textDtos.Where(x => !x.EnglisVersion).ToArray();
+                else
+                    textDtos = textDtos.Where(x => x.EnglisVersion).ToArray();
+            }
+
             unitedTextViewModel.Curators = (await _curatorService.GetCurators()).Select(x => new GuidIdAndNameViewModel
             {
                 Id = x.Id,
@@ -314,9 +342,22 @@ namespace SavageOrcs.Web.Controllers
             {
                 Id = x.Id,
                 Name = x.Name,
-                CuratorName = x.Curator?.Name
-            }).ToArray();
+                CuratorName = x.Curator?.Name,
+                CreatedDate = x.CreatedDate
+            }).OrderByDescending(x => x.CreatedDate).ToArray();
 
+            if (textId.HasValue)
+            {
+                var firstText = unitedTextViewModel.Texts.FirstOrDefault(x => x.Id == textId.Value);
+                var textList = unitedTextViewModel.Texts.ToList();
+
+                if (firstText != null)
+                {
+                    textList.Remove(firstText);
+                    textList.Insert(0, firstText);
+                    unitedTextViewModel.Texts = textList.ToArray();
+                }
+            }
 
             unitedTextViewModel.TextNames = textDtos.Select(x => new GuidIdAndNameViewModel
             {
@@ -329,18 +370,29 @@ namespace SavageOrcs.Web.Controllers
 
         [AllowAnonymous]
         [HttpPost]
-        public async Task<JsonResult> GetTexts([FromBody] FilterCatalogueTextViewModel filters)
+        public async Task<ActionResult> GetTexts([FromBody] UnitedCatalogueTextViewModel filters)
         {
-            var textDtos = await _textService.GetTextsByFilters(filters.TextName, filters.TextSubject, filters.CuratorIds);
+            var textDtos = await _textService.GetTextsByFilters(filters.TextIds, filters.CuratorIds);
 
-            var textCatalogueViewModel = textDtos.Select(x => new TextCatalogueViewModel { 
+            if (!User.IsInRole("Admin"))
+            {
+                if (Thread.CurrentThread.CurrentUICulture.TwoLetterISOLanguageName == "uk")
+                    textDtos = textDtos.Where(x => !x.EnglisVersion).ToArray();
+                else
+                    textDtos = textDtos.Where(x => x.EnglisVersion).ToArray();
+            }
+
+            var textCatalogueViewModel = textDtos.Select(x => new TextRevisionViewModel
+            {
                 Id = x.Id,
                 Subject = x.Subject,
                 Name = x.Name,
-                Curator = x.Curator is null ? null: new GuidIdAndNameViewModel { Id = x.Curator.Id, Name = x.Curator.Name} 
-            }).ToArray();
+                CuratorId = x.Curator?.Id,
+                CuratorName = x.Curator?.Name,
+                CreatedDate = x.CreatedDate
+            }).OrderByDescending(x => x.CreatedDate).ToArray();
 
-            return Json(textCatalogueViewModel);
+            return PartialView("_CatalogueDataRows", textCatalogueViewModel);
         }
 
 
@@ -367,6 +419,7 @@ namespace SavageOrcs.Web.Controllers
                 textDto = await _textService.GetTextById(id.Value);
 
             var curatorDtos = await _curatorService.GetCurators();
+            var ukrTexts = (await _textService.GetTexts()).Where(x => !x.EnglishVersion).ToList();
 
             var addTextViewModel = new AddTextViewModel()
             {
@@ -375,6 +428,12 @@ namespace SavageOrcs.Web.Controllers
                 Subject = textDto?.Subject,
                 CuratorId = textDto?.Curator?.Id,
                 CuratorName = textDto?.Curator?.Name,
+                EnglishVersion = textDto is not null && textDto.EnglishVersion,
+                UkrTexts = ukrTexts.Select(x => new GuidIdAndNameViewModel
+                {
+                    Id = x.Id,
+                    Name = x.Name + x.CreatedDate.ToString("MM/dd/yyyy HH:mm")
+                }).ToArray(),
                 Curators = curatorDtos.Select(x => new GuidIdAndNameViewModel
                 {
                     Id = x.Id,
@@ -385,6 +444,16 @@ namespace SavageOrcs.Web.Controllers
                 Blocks = null
 
             };
+            if (addTextViewModel.EnglishVersion && textDto?.UkrTextId is not null)
+            {
+                var ukrText = await _textService.GetTextById(textDto.UkrTextId.Value);
+                if (ukrText is not null)
+                {
+                    addTextViewModel.UkrTextId = ukrText.Id;
+                    addTextViewModel.UkrTextName = ukrText.Name + ukrText.CreatedDate.ToString("MM/dd/yyyy HH:mm");
+                }
+            }
+
             if (textDto?.BlockDtos is not null)
             {
                 addTextViewModel.Blocks = new TextBlockViewModel();
@@ -451,7 +520,7 @@ namespace SavageOrcs.Web.Controllers
         [Authorize(Roles = "Admin")]
         public async Task<JsonResult> DeleteConfirm(Guid id)
         {
-            var result = await _textService.DeleteCluster(id);
+            var result = await _textService.DeleteText(id);
 
             return Json(new ResultViewModel
             {

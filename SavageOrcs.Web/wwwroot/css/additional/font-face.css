@@ -1,0 +1,37 @@
+﻿body {
+    font-family: 'Mizhvukhamy', 'Mizhvukhamy Alternative';
+    font-weight: 400;
+}
+
+@font-face {
+    font-family: 'Mizhvukhamy';
+    src: url('../../text/Mizhvukhamy-Thin.ttf') format('truetype');
+    font-weight: 100, 200;
+}
+@font-face {
+    font-family: 'Mizhvukhamy';
+    src: url('../../text/Mizhvukhamy-Light.ttf') format('truetype');
+    font-weight: 300;
+}
+@font-face {
+    font-family: 'Mizhvukhamy';
+    src: url('../../text/Mizhvukhamy-Regular.ttf') format('truetype');
+    font-weight: 400;
+}
+@font-face {
+    font-family: 'Mizhvukhamy';
+    src: url('../../text/Mizhvukhamy-Medium.ttf') format('truetype');
+    font-weight: 500;
+}
+@font-face {
+    font-family: 'Mizhvukhamy';
+    src: url('../../text/Mizhvukhamy-Bold.ttf') format('truetype');
+    font-weight: 700;
+}
+@font-face {
+    font-family: 'Mizhvukhamy Alternative';
+    src: url('../../text/Mizhvukhamy-Alternate.ttf') format('truetype');
+    font-weight: 400;
+}
+
+

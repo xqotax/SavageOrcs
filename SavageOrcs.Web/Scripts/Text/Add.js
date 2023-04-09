@@ -4,6 +4,9 @@ var AddTextView = Class.extend({
     CuratorName: null,
     CuratorId: null,
 
+    UkrTextName: null,
+    UkrTextId: null,
+
     Blocks: null,
     OldData: null,
 
@@ -11,6 +14,11 @@ var AddTextView = Class.extend({
     CuratorIds: null,
     CuratorNames: null,
     SearchSelectDropdownCurators: null,
+
+    UkrTexts: null,
+    UkrTextIds: null,
+    UkrTextNames: null,
+    SearchSelectDropdownUkrTexts: null,
 
     Editor: null,
     Data: null,
@@ -46,6 +54,35 @@ var AddTextView = Class.extend({
 
             $("#dropdown-input-for-curator").val(self.CuratorName);
         }
+
+        self.SearchSelectDropdownUkrTexts = new SearchSelect('#dropdown-input-for-ukrText', {
+            data: [],
+            filter: SearchSelect.FILTER_CONTAINS,
+            sort: undefined,
+            inputClass: 'form-control-Select mobile-field',
+            maxOpenEntries: 5,
+            searchPosition: 'top',
+            onInputClickCallback: null,
+            onInputKeyDownCallback: null,
+        });
+
+        self.InitializeUkrTexts(self.UkrTexts);
+
+        if (self.UkrTextName !== '') {
+            var selected = $($("#ukrText .searchSelect--Result")[0]);
+            selected.removeClass("#ukrText searchSelect--Placeholder");
+            selected.html(self.UkrTextName);
+
+            $.each($("#ukrText .searchSelect--Option"), function (index, element) {
+                if ($(element).text() === self.UkrTextName) {
+                    $(element).addClass("#ukrText searchSelect--Option--selected")
+                }
+            });
+
+            $("#dropdown-input-for-ukrText").val(self.UkrTextName);
+        }
+
+
 
         self.OldData = {
             time: Date.now(),
@@ -191,7 +228,8 @@ var AddTextView = Class.extend({
                             "#8BC34A",
                             "#CDDC39",
                             "#FFF",
-                            "#000000"
+                            "#000000",
+                            "#DEDCDC"
                         ],
                         defaultColor: "#FF1300",
                         type: "text"
@@ -200,11 +238,30 @@ var AddTextView = Class.extend({
                 Marker: {
                     class: window.ColorPlugin,
                     config: {
+                        colorCollections: [
+                            "#FF1300",
+                            "#EC7878",
+                            "#9C27B0",
+                            "#673AB7",
+                            "#3F51B5",
+                            "#0070FF",
+                            "#03A9F4",
+                            "#00BCD4",
+                            "#4CAF50",
+                            "#8BC34A",
+                            "#CDDC39",
+                            "#FFF",
+                            "#000000",
+                            "#DEDCDC"
+                        ],
                         defaultColor: '#FFBF00',
                         type: 'marker',
                     }
                 },
-
+                clearStyles: {
+                    class: ClearStylesTool,
+                    inlineToolbar: true,
+                },
                 image: {
                     class: SimpleImage
                 },
@@ -247,10 +304,21 @@ var AddTextView = Class.extend({
             self.RemoveVideos();
         });
 
-        $('#dropdown-input-for-curator').addClass("display-8-custom");
+        $('#EnglishVersion').change(function () {
+            self.ChangeUkrRow();
+        });
+        self.ChangeUkrRow();
+
+        //$('#dropdown-input-for-curator').addClass("display-8-custom");
     },
 
-
+    ChangeUkrRow: function () {
+        if ($("#EnglishVersion").is(":checked")) {
+            $('#ukrTextRow').show();
+        } else {
+            $('#ukrTextRow').hide();
+        }
+    },
 
     InitializeCurators: function (data) {
         var self = this;
@@ -264,6 +332,18 @@ var AddTextView = Class.extend({
 
         self.SearchSelectDropdownCurators.setData(self.CuratorNames);
     },
+    InitializeUkrTexts: function (data) {
+        var self = this;
+        self.UkrTextNames = [];
+        self.UkrTextIds = [];
+
+        $.each(data, function (index, element) {
+            self.UkrTextNames.push(element.name);
+            self.UkrTextIds.push(element.id);
+        });
+
+        self.SearchSelectDropdownUkrTexts.setData(self.UkrTextNames);
+    },
 
     Save: function () {
         var self = this;
@@ -274,9 +354,14 @@ var AddTextView = Class.extend({
             var curatorId = self.CuratorIds[self.CuratorNames.indexOf($("#dropdown-input-for-curator").val())];
             curatorId = curatorId === "" ? null : curatorId;
 
+            var ukrTextId = self.UkrTextIds[self.UkrTextNames.indexOf($("#dropdown-input-for-ukrText").val())];
+            ukrTextId = ukrTextId === "" ? null : ukrTextId;
+
             var saveTextViewModel = {
                 Id: $("#Id").val() === "" ? null : $("#Id").val(),
                 CuratorId: curatorId,
+                UkrTextId: ukrTextId,
+                EnglishVersion: $('#EnglishVersion').is(":checked"),
                 Name: $("#Name").val(),
                 Subject: $("#Subject").val(),
                 Blocks: {
@@ -356,11 +441,11 @@ var AddTextView = Class.extend({
                 }
             });
         }).catch((error) => {
-            
+
         });
 
 
-        
+
 
     },
 
@@ -466,7 +551,7 @@ class SimpleImage {
                 if (!src || !src.length || !src.includes("data") || !src.includes("base64"))
                     return;
                 this._createImage(src);
-            } 
+            }
         });
 
         return this.wrapper;
@@ -580,5 +665,50 @@ class SimpleVideo {
             src: video.src,
             caption: caption.innerHTML || ''
         }
+    }
+}
+
+class ClearStylesTool {
+    static get isInline() {
+        return true;
+    }
+
+    static get title() {
+        return "Clear Styles";
+    }
+
+    static get icon() {
+        return '<svg width="12" height="12" viewBox="0 0 12 12" xmlns="http://www.w3.org/2000/svg"><path d="M9.5 2C9.5 1.17157 8.82843 0.5 8 0.5H4C3.17157 0.5 2.5 1.17157 2.5 2V2.5H0.5V3.5H2.5V10.5H3.5V3.5H5.5V2.5H3.5V2C3.5 1.72386 3.72386 1.5 4 1.5H8C8.27614 1.5 8.5 1.72386 8.5 2V2.5H9.5V2ZM7.5 3.5V10.5H4.5V3.5H7.5Z"/></svg>';
+    }
+
+    //surround(range) {
+    //    const element = this.selection.findParentTag(this.tag);
+    //    if (element) {
+    //        element.outerHTML = element.innerHTML;
+    //    }
+    //}
+
+    surround(range) {
+        const selectedText = range.extractContents();
+        const span = document.createElement("span");
+        span.textContent = selectedText.textContent;
+        range.insertNode(span);
+    }
+
+    checkState() { }
+
+    render() {
+        this.button = document.createElement("div");
+        this.button.classList.add("color-fire-btn");
+        this.button.innerHTML = this.constructor.icon;
+        this.button.title = this.constructor.title;
+        this.button.addEventListener("click", () => {
+            const selection = window.getSelection();
+            if (selection.rangeCount > 0) {
+                const range = selection.getRangeAt(0);
+                this.surround(range);
+            }
+        });
+        return this.button;
     }
 }

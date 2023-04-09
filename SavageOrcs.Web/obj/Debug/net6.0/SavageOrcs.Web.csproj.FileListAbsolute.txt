@@ -296,3 +296,9 @@ D:\Навчання\Diploma\SavageOrcs.Web\obj\Debug\net6.0\refint\SavageOrcs.We
 D:\Навчання\Diploma\SavageOrcs.Web\obj\Debug\net6.0\SavageOrcs.Web.pdb
 D:\Навчання\Diploma\SavageOrcs.Web\obj\Debug\net6.0\SavageOrcs.Web.genruntimeconfig.cache
 D:\Навчання\Diploma\SavageOrcs.Web\obj\Debug\net6.0\ref\SavageOrcs.Web.dll
+D:\Навчання\Diploma\SavageOrcs.Web\obj\Debug\net6.0\SavageOrcs.Web.Resources.MarkResource.en-US.resources
+D:\Навчання\Diploma\SavageOrcs.Web\obj\Debug\net6.0\SavageOrcs.Web.Resources.MarkResource.uk-UA.resources
+D:\Навчання\Diploma\SavageOrcs.Web\obj\Debug\net6.0\SavageOrcs.Web.Resources.TextResource.en-US.resources
+D:\Навчання\Diploma\SavageOrcs.Web\obj\Debug\net6.0\SavageOrcs.Web.Resources.TextResource.uk-UA.resources
+D:\Навчання\Diploma\SavageOrcs.Web\obj\Debug\net6.0\SavageOrcs.Web.Resources.CuratorResource.en-US.resources
+D:\Навчання\Diploma\SavageOrcs.Web\obj\Debug\net6.0\SavageOrcs.Web.Resources.CuratorResource.uk-UA.resources

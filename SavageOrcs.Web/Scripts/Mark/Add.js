@@ -156,8 +156,6 @@
     },
     OnPlacesChange: function () {
         var el = $("#placesMultiselect");
-        console.log(el);
-        console.log(el.val());
     },
     SubscribeEvents: function () {
         var self = this;

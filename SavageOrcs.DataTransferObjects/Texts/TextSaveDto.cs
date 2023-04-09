@@ -13,6 +13,10 @@ namespace SavageOrcs.DataTransferObjects.Texts
 
         public Guid? CuratorId { get; set; }
 
+        public Guid? UkrTextId { get; set; }
+
+        public bool EnglishVersion { get; set; }
+
         public string? Name { get; set; }
 
         public string? Subject { get; set; }

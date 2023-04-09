@@ -6,8 +6,6 @@ namespace SavageOrcs.Web.ViewModels.Mark
     {
         public GuidIdAndNameViewModel[] Areas { get; set; } = Array.Empty<GuidIdAndNameViewModel>();
         
-        public GuidIdAndNameViewModel[] Places { get; set; } = Array.Empty<GuidIdAndNameViewModel>();
-
         public GuidIdAndNameViewModel[] KeyWords { get; set; } = Array.Empty<GuidIdAndNameViewModel>();
 
         public GuidIdAndNameViewModel[] ClusterNames { get; set; } = Array.Empty<GuidIdAndNameViewModel>();
@@ -18,8 +16,6 @@ namespace SavageOrcs.Web.ViewModels.Mark
         public Guid[]? SelectedMarkIds { get; set; }
         public Guid[]? SelectedClusterIds { get; set; }
         public Guid[]? SelectedKeyWordIds { get; set; }
-        public Guid[]? SelectedPlaceIds { get; set; }
-
         public MarkCatalogueViewModel[] Marks { get; set; } = Array.Empty<MarkCatalogueViewModel>();
     }
 }

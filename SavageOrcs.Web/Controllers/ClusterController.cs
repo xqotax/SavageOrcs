@@ -41,6 +41,15 @@ namespace SavageOrcs.Web.Controllers
             var clusterDto = id.HasValue ? await _clusterService.GetClusterById(id.Value) : null;
             var areaDtos = Array.Empty<AreaShortDto>();
 
+            var emptySelect = _helperService.GetEmptySelect();
+            var emptySelectArr = new GuidIdAndNameViewModel[] {
+                new GuidIdAndNameViewModel
+                {
+                    Id = emptySelect.Id,
+                    Name = emptySelect.Name
+                }
+            };
+
             var curatorDtos = await _curatorService.GetCurators();
 
 
@@ -69,21 +78,16 @@ namespace SavageOrcs.Web.Controllers
                 AreaId = clusterDto?.Area?.Id,
                 AreaName = clusterDto?.Area is null ? null : clusterDto.Area.Name + ", " + clusterDto.Area.Community + ", " + clusterDto.Area.Region,
                 IsNew = !id.HasValue,
-                Areas = areaDtos.Select(x => new GuidIdAndNameViewModel
+                Areas = emptySelectArr.Concat(areaDtos.Select(x => new GuidIdAndNameViewModel
                 {
                     Name = x.Name + ", " + x.Community + ", " + x.Region,
                     Id = x.Id
-                }).OrderBy(x => x.Name).ToArray(),
-                Curators = curatorDtos.Select(x => new GuidIdAndNameViewModel
+                })).OrderBy(x => x.Name).ToArray(),
+                Curators = emptySelectArr.Concat(curatorDtos.Select(x => new GuidIdAndNameViewModel
                 {
                     Id = x.Id,
                     Name = x.DisplayName
-                }).ToArray(),
-                //Places = markDto is null ? new GuidIdAndNameViewModel[0] : markDto.Places.Select( x => new GuidIdAndNameViewModel
-                //{
-                //    Id = x.Id,
-                //    Name = Thread.CurrentThread.CurrentUICulture.TwoLetterISOLanguageName == "uk" ? x.Name : x.NameEng,
-                //}).ToArray(),
+                })).ToArray(),
                 Places = (await _helperService.GetAllPlaces()).Select(x => new GuidIdAndNameViewModel
                 {
                     Id = x.Id,
@@ -157,38 +161,38 @@ namespace SavageOrcs.Web.Controllers
             return View("Catalogue", filterCatalogueClusterViewModel);
         }
 
-        [Authorize(Roles = "Admin")]
-        public async Task<IActionResult> Delete(Guid? id)
-        {
-            var clusterDto = id.HasValue ? await _clusterService.GetClusterById(id.Value) : null;
+        //[Authorize(Roles = "Admin")]
+        //public async Task<IActionResult> Delete(Guid? id)
+        //{
+        //    var clusterDto = id.HasValue ? await _clusterService.GetClusterById(id.Value) : null;
 
-            if (clusterDto is null)
-            {
-                return NotFound();
-            }
-            var areaDtos = await _areaService.GetAreasByNameAsync(clusterDto.Area is null ? "Херсон" : clusterDto.Area.Name);
+        //    if (clusterDto is null)
+        //    {
+        //        return NotFound();
+        //    }
+        //    var areaDtos = await _areaService.GetAreasByNameAsync(clusterDto.Area is null ? "Херсон" : clusterDto.Area.Name);
 
-            var addClusterViewModel = new AddClusterViewModel
-            {
-                Id = clusterDto?.Id,
-                Lat = clusterDto is null ? "48.6125528" : clusterDto.Lat.ToString(CultureInfo.InvariantCulture),
-                Lng = clusterDto is null ? "31.0275809" : clusterDto.Lng.ToString(CultureInfo.InvariantCulture),
-                Zoom = "6",
-                Name = clusterDto?.Name,
-                Description = clusterDto?.Description,
-                AreaId = clusterDto?.Area?.Id,
-                AreaName = clusterDto?.Area?.Name,
-                IsNew = !id.HasValue,
-                Areas = areaDtos.Select(x => new GuidIdAndNameViewModel
-                {
-                    Name = x.Name + ", " + x.Community + ", " + x.Region,
-                    Id = x.Id
-                }).OrderBy(x => x.Name).ToArray(),
-                ToDelete = true
-            };
+        //    var addClusterViewModel = new AddClusterViewModel
+        //    {
+        //        Id = clusterDto?.Id,
+        //        Lat = clusterDto is null ? "48.6125528" : clusterDto.Lat.ToString(CultureInfo.InvariantCulture),
+        //        Lng = clusterDto is null ? "31.0275809" : clusterDto.Lng.ToString(CultureInfo.InvariantCulture),
+        //        Zoom = "6",
+        //        Name = clusterDto?.Name,
+        //        Description = clusterDto?.Description,
+        //        AreaId = clusterDto?.Area?.Id,
+        //        AreaName = clusterDto?.Area?.Name,
+        //        IsNew = !id.HasValue,
+        //        Areas = areaDtos.Select(x => new GuidIdAndNameViewModel
+        //        {
+        //            Name = x.Name + ", " + x.Community + ", " + x.Region,
+        //            Id = x.Id
+        //        }).OrderBy(x => x.Name).ToArray(),
+        //        ToDelete = true
+        //    };
 
-            return View("Add", addClusterViewModel);
-        }
+        //    return View("Add", addClusterViewModel);
+        //}
 
         [Authorize(Roles = "Admin")]
         public IActionResult DeleteCluster()

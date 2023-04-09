@@ -1,42 +1,78 @@
 ﻿@using SavageOrcs.Web.ViewModels.Map
+@using Microsoft.Extensions.Localization
+@using SavageOrcs.Web.Resources
+@using SavageOrcs.Web.Resources.Classes
+@inject LanguageService Language
 @model MapCoordinatesViewModel
-<style>
-    @@media (min-width: 900px) {
-        #mapRow {
-            padding-bottom: 37px
-        }
-    }
-</style>
+
 <div class="wrapper-custom">
-    <img class="main-image" src="~/images/main/yourHouse-OurHouse.jpg" />
-    <img class="main-image-mob" src="~/images/main/yourHouse-OurHouse-mob.png" />
+    @*<img class="main-image" src="~/images/main/yourHouse-OurHouse.jpg" />*@
+   @* <img class="main-image-mob" src="~/images/main/yourHouse-OurHouse-mob.png" />*@
     <div class="info-container">
         <div class="main-photo-info">
-            <p>Джерело:</p>
-            <p>Власник фото</p>
-            <p>Your house is our house</p>
+            <p>@Language.GetMainKey("MainPhotoResourceName")</p>
+            <p>@Language.GetMainKey("MainPhotoResourceDescription")</p>
+            <p>@Language.GetMainKey("MainPhotoResourceArea")</p>
         </div>
-        <div class="main-text-info">Відкритий архів написів російських окупантів</div>
-        <div class="additional-text-info">
-            <div class="additional-text-info-col">
-                Перед вами архів написів, які залишили російські
-                військові під час окупації територій України з лютого 2022 року.
-                Тут ви знайдете красномовні свідчення про російську культуру,
-                з якої походить військова агресія, а також докази воєнних злочинів росіян.
-            </div>
-            <div class="additional-text-info-col" style="margin-right: 40px">
-                Базу даних збирає команда культурної інституції «Міжвухами».
-                Для цього ми їздимо в експедиції деокупованими територіями та моніторимо відкриті джерела.
-                Архів відкритий для користування дослідників, митців та всіх, хто працює задля перемоги України.
-            </div>
+        <div class="main-text-info">@Language.GetMainKey("MainPhotoBigText")</div>
+    </div>
+    <div class="additional-text-info">
+        <div class="additional-text-info-col">
+            @Language.GetMainKey("MainLeftColProjectDescription")
+        </div>
+        <div class="additional-text-info-col" style="margin-right: 40px">
+            @Language.GetMainKey("MainRightColProjectDescription")
         </div>
     </div>
     <div class="map-container">
-        <div class="row" id="mapRow">
-            <h1>МАПА</h1>
+        <div class="map-row">
+            <div class="map-header-col">
+                <h1>@Language.GetMainKey("MainMapLabel")</h1>
+            </div>
+            <div class="clear-button-col">
+                <button id="clear-button">@Language.GetMainKey("ButtonClear")</button>
+                <div class="clear-button-img">
+                    <img src="~/images/icons/clear.png" alt="" />
+                </div>
+            </div>
         </div>
-        <div class="d-flex justify-content-between filter-container">
-            <div class="filter-col">
+        <div class="d-flex justify-content-between map-filter-container">
+            <div class="filter-item">
+                <div class="filter-multiselect-placeholder">
+                    <select name="namesMultiselect" id="namesMultiselect" multiple multiselect-search="true" multiselect-select-all="true" multiselect-hide-x="true">
+                        @foreach (var area in Model.KeyWords)
+                        {
+                            <option value=@("K" + area.Id.ToString())>@area.Name</option>
+                        }
+                        @foreach (var area in Model.MarkNames)
+                        {
+                            <option value=@("M" + area.Id.ToString())>@area.Name</option>
+                        }
+                        @foreach (var area in Model.ClusterNames)
+                        {
+                            <option value=@("C" + area.Id.ToString())>@area.Name</option>
+                        }
+                    </select>
+                </div>
+
+            </div>
+            <div class="filter-item">
+                <div class="filter-multiselect-placeholder">
+                    <select name="areasMultiselect" id="areasMultiselect" multiple multiselect-search="true" multiselect-select-all="true" multiselect-hide-x="true">
+                        @foreach (var area in Model.Areas)
+                        {
+                            <option value=@area.Id>@area.Name</option>
+                        }
+                    </select>
+                </div>
+
+            </div>
+            <div class="filter-item-search">
+                <div class="filter-small-text-info">
+                </div>
+                <div id="filter-big-text-info">@Language.GetMainKey("ButtonSearch")</div>
+            </div>
+            @*<div class="filter-col">
                 <div class="filter-line mb-2"></div>
                 <div class="filter-text">01 &nbsp;&nbsp;&nbsp; Ключові слова</div>
             </div>
@@ -47,24 +83,21 @@
             <div class="filter-col">
                 <div class="filter-line mb-2"></div>
                 <div class="filter-text">03 &nbsp;&nbsp;&nbsp; Локація</div>
-            </div>
+            </div>*@
         </div>
         <div class="row-lg">
             <div id="map"></div>
         </div>
     </div>
     <div class="email-container">
-        <div class="email-col">
+        <div class="email-col email-first-col">
             <div class="email-text-info-row">
-                ЯКЩО БАЖАЄТЕ ДОЛУЧИТИСЬ
-            </div>
-            <div class="email-text-info-row mr-lg-2">
-                ДО ПРОЄКТУ АРХІВУ
+                @Language.GetMainKey("MainContactsOffer")
             </div>
         </div>
         <div class="email-col">
             <div class="email-text-info-row">
-                ПИШІТЬ НА СКРИНЮ:
+                @Language.GetMainKey("MainContactUs")
             </div>
             <div class="email-text-info-row mr-lg-2">
                 <a href="mailto:info@mizhvukhamy.com?subject=Application%20for%20joining%20the%20team">
@@ -78,13 +111,18 @@
 @section Scripts{
     <script>
         var mapMainView = new MapMainView();
-        mapMainView.Lat = '@Html.Raw(Model.Lat)';
-        mapMainView.Lng = '@Html.Raw(Model.Lng)';
+        mapMainView.Lat = @Json.Serialize(Model.Lat);
+        mapMainView.Lng = @Json.Serialize(Model.Lng);
         mapMainView.Marks = @Json.Serialize(Model.MapMarkViewModels);
         mapMainView.Clusters = @Json.Serialize(Model.MapClusterViewModels);
-        mapMainView.MapId = '@Html.Raw(Model.Id)';
-        mapMainView.MapName = '@Html.Raw(Model.Name)';
-
+        mapMainView.MapId = @Json.Serialize(Model.Id);
+        mapMainView.MapName = @Json.Serialize(Model.Name);
+        mapMainView.SelectedText = @Json.Serialize(Language.GetMainKey("MultiselectSelectedText"));
+        mapMainView.AreaTextPlaceholder = @Json.Serialize(Language.GetMarkKey("MultiselectAreaTextPlaceholder"));
+        mapMainView.MultiselectAll = @Json.Serialize(Language.GetMainKey("MultiselectAll"));
+        mapMainView.SearchTextName = @Json.Serialize(Language.GetMarkKey("MultiselectSearchTextName"));
+        mapMainView.SearchTextArea = @Json.Serialize(Language.GetMarkKey("MultiselectSearchTextArea"));
+        mapMainView.NameTextPlaceholder = @Json.Serialize(Language.GetMarkKey("MultiselectNameTextPlaceholder"));
 
         $(document).ready(function () {
             mapMainView.InitializeControls();

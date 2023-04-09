@@ -17,6 +17,7 @@ using static Microsoft.Extensions.Logging.EventSource.LoggingEventSource;
 using System.Drawing.Printing;
 using SavageOrcs.DataTransferObjects.Texts;
 using System.Xml.Linq;
+using NuGet.Packaging;
 
 namespace SavageOrcs.Web.Controllers
 {
@@ -30,7 +31,7 @@ namespace SavageOrcs.Web.Controllers
 
         private readonly UserManager<User> _userManager;
 
-        public MarkController(UserManager<User> userManager, IAreaService areaService, IMarkService markService, IClusterService clusterService,  IHelperService helperService, ICuratorService curatorService)
+        public MarkController(UserManager<User> userManager, IAreaService areaService, IMarkService markService, IClusterService clusterService, IHelperService helperService, ICuratorService curatorService)
         {
             _userManager = userManager;
             _areaService = areaService;
@@ -53,7 +54,7 @@ namespace SavageOrcs.Web.Controllers
                 {
                     Id = clusterDto.Id,
                     Name = clusterDto.Name,
-                    Description = _helperService.GetTranslation(clusterDto.Description,clusterDto.DescriptionEng),
+                    Description = _helperService.GetTranslation(clusterDto.Description, clusterDto.DescriptionEng),
                     CuratorName = clusterDto.Curator?.Name,
                     Area = clusterDto.Area is null ? "" : clusterDto.Area.Name + ", " + clusterDto.Area.Community + ", " + clusterDto.Area.Region,
                     Images = User.IsInRole("Admin") ? clusterDto.Marks.SelectMany(x => x.Images).Select(x => _helperService.GetImage(x.Content)).ToArray() :
@@ -77,7 +78,7 @@ namespace SavageOrcs.Web.Controllers
                 {
                     Id = markDto.Id,
                     Name = markDto.Name,
-                    Description = _helperService.GetTranslation(markDto.Description,markDto.DescriptionEng),
+                    Description = _helperService.GetTranslation(markDto.Description, markDto.DescriptionEng),
                     ResourceUrl = markDto.ResourceUrl,
                     ResourceName = _helperService.GetTranslation(markDto.ResourceName, markDto.ResourceNameEng),
                     CuratorName = markDto.Curator.Name,
@@ -102,6 +103,14 @@ namespace SavageOrcs.Web.Controllers
         public async Task<IActionResult> Add(Guid? id)
         {
             MarkDto? markDto = null;
+            var emptySelect = _helperService.GetEmptySelect();
+            var emptySelectArr = new GuidIdAndNameViewModel[] {
+                new GuidIdAndNameViewModel
+                {
+                    Id = emptySelect.Id,
+                    Name = emptySelect.Name
+                }
+            };
 
             if (id is not null)
             {
@@ -147,21 +156,21 @@ namespace SavageOrcs.Web.Controllers
                     IsVisible = x.IsVisible
                 }).ToArray(),
                 IsNew = markDto is null,
-                Areas = areaDtos.Select(x => new GuidIdAndNameViewModel
+                Areas = emptySelectArr.Concat(areaDtos.Select(x => new GuidIdAndNameViewModel
                 {
                     Name = x.Name + ", " + x.Community + ", " + x.Region,
                     Id = x.Id
-                }).OrderBy(x => x.Name).ToArray(),
-                Clusters = clusterDtos.Select(x => new GuidIdAndNameViewModel
+                })).OrderBy(x => x.Name).ToArray(),
+                Clusters = emptySelectArr.Concat(clusterDtos.Select(x => new GuidIdAndNameViewModel
                 {
                     Id = x.Id,
                     Name = x.Name
-                }).ToArray(),
-                Curators = curatorDtos.Select(x => new GuidIdAndNameViewModel
+                })).ToArray(),
+                Curators = emptySelectArr.Concat(curatorDtos.Select(x => new GuidIdAndNameViewModel
                 {
                     Id = x.Id,
                     Name = x.DisplayName
-                }).ToArray(),
+                })).ToArray(),
                 Places = (await _helperService.GetAllPlaces()).Select(x => new GuidIdAndNameViewModel
                 {
                     Id = x.Id,
@@ -215,8 +224,8 @@ namespace SavageOrcs.Web.Controllers
                             Text = "Вибраного скупчення не існує"
                         });
                 }
-               
-                if  ((saveMarkViewModel.Lng is null || saveMarkViewModel.Lat is null) && (clusterDto is null))
+
+                if ((saveMarkViewModel.Lng is null || saveMarkViewModel.Lat is null) && (clusterDto is null))
                     return Json(new SaveMarkResultViewModel
                     {
                         Id = null,
@@ -297,28 +306,28 @@ namespace SavageOrcs.Web.Controllers
                 Id = x.Id,
                 Name = x.Name
             }).OrderBy(x => x.Name).ToArray();
-            unitedCatalogueViewModel.MarkNames = markDtos.Select(x => new GuidIdAndNameViewModel
-            {
-                Id = x.Id.Value,
-                Name = x.Name
-            }).ToArray();
+            //unitedCatalogueViewModel.MarkNames = markDtos.Select(x => new GuidIdAndNameViewModel
+            //{
+            //    Id = x.Id.Value,
+            //    Name = x.Name
+            //}).ToArray();
             unitedCatalogueViewModel.MarkNames = markDtos.Select(x => new GuidIdAndNameViewModel
             {
                 Id = x.Id.Value,
                 Name = x.Name
             }).Where(x => !unitedCatalogueViewModel.KeyWords
-                    .Any(y => x.Name is not null && y.Name is not null && x.Name.Contains(y.Name)))
+                    .Any(y => x.Name is not null && y.Name is not null && x.Name.Contains(y.Name, StringComparison.OrdinalIgnoreCase)))
                 .GroupBy(x => x.Name)
                 .Select(x => x.First())
                 .OrderBy(x => x.Name)
                 .ToArray();
 
 
-            unitedCatalogueViewModel.Places = (await _helperService.GetAllPlaces()).Select(x => new GuidIdAndNameViewModel
-            {
-                Id = x.Id,
-                Name = _helperService.GetTranslation(x.Name,x.NameEng),
-            }).ToArray();
+            //unitedCatalogueViewModel.Places = (await _helperService.GetAllPlaces()).Select(x => new GuidIdAndNameViewModel
+            //{
+            //    Id = x.Id,
+            //    Name = _helperService.GetTranslation(x.Name,x.NameEng),
+            //}).ToArray();
 
             unitedCatalogueViewModel.Areas = (await _areaService.GetUsedAreasAsync()).Select(x => new GuidIdAndNameViewModel
             {
@@ -326,7 +335,8 @@ namespace SavageOrcs.Web.Controllers
                 Name = x.Name + ", " + x.Community + ", " + x.Region,
             }).ToArray();
 
-            if (clusterId is not null && (await _clusterService.GetClusterById(clusterId.Value) is not null)) {
+            if (clusterId is not null && (await _clusterService.GetClusterById(clusterId.Value) is not null))
+            {
                 var clusterDto = clusterDtos.FirstOrDefault(x => x.Id == clusterId.Value);
                 if (clusterDto is null)
                     return RedirectToAction("Error");
@@ -396,14 +406,14 @@ namespace SavageOrcs.Web.Controllers
             };
             return PartialView("_CatalogueImage", revisionImageViewModel);
         }
-        
+
 
         [HttpPost]
         [AllowAnonymous]
         public async Task<IActionResult> GetMarks([FromBody] UnitedCatalogueViewModel filter)
         {
-            var markDtos = await _markService.GetMarksByFilters(filter.SelectedKeyWordIds, filter.SelectedMarkIds, filter.SelectedClusterIds, filter.SelectedPlaceIds, filter.SelectedAreaIds);
-            var clusterDtos = await _clusterService.GetClustersByFilters(filter.SelectedKeyWordIds, filter.SelectedClusterIds, filter.SelectedPlaceIds, filter.SelectedAreaIds);
+            var markDtos = await _markService.GetMarksByFilters(filter.SelectedKeyWordIds, filter.SelectedMarkIds, filter.SelectedClusterIds, filter.SelectedAreaIds);
+            var clusterDtos = await _clusterService.GetClustersByFilters(filter.SelectedKeyWordIds, filter.SelectedClusterIds, filter.SelectedAreaIds);
 
             var markCatalogueViewModel = markDtos.Select(x => new MarkCatalogueViewModel
             {
@@ -415,6 +425,17 @@ namespace SavageOrcs.Web.Controllers
                 ClusterName = x.ClusterName,
                 Area = x.Area is null ? new GuidIdAndNameViewModel() : new GuidIdAndNameViewModel { Id = x.Area.Id, Name = x.Area.Name + ", " + x.Area.Community + ", " + x.Area.Region },
             }).ToArray();
+
+            markCatalogueViewModel = markCatalogueViewModel.Concat(clusterDtos.Select(x => new MarkCatalogueViewModel
+            {
+                Id = x.Id,
+                Name = x.Name,
+                CuratorName = x.Curator.Name,
+                ResourceName = _helperService.GetTranslation(x.ResourceName, x.ResourceNameEng),
+                ResourceUrl = x.ResourceUrl,
+                IsCluster = true,
+                Area = x.Area is null ? new GuidIdAndNameViewModel() : new GuidIdAndNameViewModel { Id = x.Area.Id, Name = x.Area.Name + ", " + x.Area.Community + ", " + x.Area.Region },
+            })).ToArray();
 
             return PartialView("_CatalogueDataRows", markCatalogueViewModel);
         }
@@ -432,48 +453,57 @@ namespace SavageOrcs.Web.Controllers
             return PartialView("~/Views/Shared/NavigationAdmin.cshtml");
         }
 
-        [Authorize(Roles = "Admin")]
-        public async Task<IActionResult> Delete(Guid? id)
-        {
-            MarkDto? markDto = null;
+        //[Authorize(Roles = "Admin")]
+        //public async Task<IActionResult> Delete(Guid? id)
+        //{
+        //    MarkDto? markDto = null;
+        //    var emptySelect = _helperService.GetEmptySelect();
+        //    var emptySelectArr = new GuidIdAndNameViewModel[] {
+        //        new GuidIdAndNameViewModel
+        //        {
+        //            Id = emptySelect.Id,
+        //            Name = emptySelect.Name
+        //        }
+        //    };
 
-            if (id is not null)
-            {
-                markDto = await _markService.GetMarkById(id.Value);
-            }
 
-            if (markDto is null)
-                return RedirectToAction("NotFound", "Error", new { info = "Mark" });
+        //    if (id is not null)
+        //    {
+        //        markDto = await _markService.GetMarkById(id.Value);
+        //    }
 
-            var areaDtos = await _areaService.GetAreasByNameAsync(markDto.Area is null ? "Херсон" : markDto.Area.Name);
+        //    if (markDto is null)
+        //        return RedirectToAction("NotFound", "Error", new { info = "Mark" });
 
-            var addMarkViewModel = new AddMarkViewModel()
-            {
-                Lat = markDto.Lat?.ToString(CultureInfo.InvariantCulture),
-                Lng = markDto.Lng?.ToString(CultureInfo.InvariantCulture),
-                Zoom = "9",
-                AreaId = markDto.Area?.Id,
-                AreaName = markDto.Area is null ? null : markDto.Area.Name + ", " + markDto.Area.Community + ", " + markDto.Area.Region,
-                Description = markDto.Description,
-                DescriptionEng = markDto.DescriptionEng,
-                ResourceUrl = markDto.ResourceUrl,
-                Name = markDto.Name,
-                Images = markDto.Images.Select(x => new StringAndBoolViewModel
-                {
-                    Content = _helperService.GetImage(x.Content),
-                    IsVisible = x.IsVisible
-                }).ToArray(),
-                IsNew = false,
-                Areas = areaDtos.Select(x => new GuidIdAndNameViewModel
-                {
-                    Name = x.Name + ", " + x.Community + ", " + x.Region,
-                    Id = x.Id
-                }).OrderBy(x => x.Name).ToArray(),
-                ToDelete = true
-            };
+        //    var areaDtos = await _areaService.GetAreasByNameAsync(markDto.Area is null ? "Херсон" : markDto.Area.Name);
 
-            return View("Add", addMarkViewModel);
-        }
+        //    var addMarkViewModel = new AddMarkViewModel()
+        //    {
+        //        Lat = markDto.Lat?.ToString(CultureInfo.InvariantCulture),
+        //        Lng = markDto.Lng?.ToString(CultureInfo.InvariantCulture),
+        //        Zoom = "9",
+        //        AreaId = markDto.Area?.Id,
+        //        AreaName = markDto.Area is null ? null : markDto.Area.Name + ", " + markDto.Area.Community + ", " + markDto.Area.Region,
+        //        Description = markDto.Description,
+        //        DescriptionEng = markDto.DescriptionEng,
+        //        ResourceUrl = markDto.ResourceUrl,
+        //        Name = markDto.Name,
+        //        Images = markDto.Images.Select(x => new StringAndBoolViewModel
+        //        {
+        //            Content = _helperService.GetImage(x.Content),
+        //            IsVisible = x.IsVisible
+        //        }).ToArray(),
+        //        IsNew = false,
+        //        Areas = areaDtos.Select(x => new GuidIdAndNameViewModel
+        //        {
+        //            Name = x.Name + ", " + x.Community + ", " + x.Region,
+        //            Id = x.Id
+        //        }).OrderBy(x => x.Name).ToArray(),
+        //        ToDelete = true
+        //    };
+
+        //    return View("Add", addMarkViewModel);
+        //}
 
         [Authorize(Roles = "Admin")]
         public IActionResult DeleteMark()

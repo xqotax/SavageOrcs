@@ -1,11 +1,13 @@
 ﻿using SavageOrcs.BusinessObjects;
 using SavageOrcs.DataTransferObjects._Constants;
 using SavageOrcs.DataTransferObjects.Blocks;
+using SavageOrcs.DataTransferObjects.Cluster;
 using SavageOrcs.DataTransferObjects.Texts;
 using SavageOrcs.Enums;
 using SavageOrcs.Repositories.Interfaces;
 using SavageOrcs.Services.Interfaces;
 using SavageOrcs.UnitOfWork;
+using System.Linq;
 using Text = SavageOrcs.BusinessObjects.Text;
 
 namespace SavageOrcs.Services
@@ -35,7 +37,7 @@ namespace SavageOrcs.Services
         {
             var texts = await _textRepository.GetAllAsync();
 
-            return texts.Select(x => CreateTextDto(x)).ToArray();
+            return texts.Select(x => CreateTextDto(x)).OrderByDescending(x => x.CreatedDate).ToArray();
         }
 
         public async Task<TextShortDto[]> GetShortTexts()
@@ -46,8 +48,9 @@ namespace SavageOrcs.Services
                 Name = x.Name,
                 Subject = x.Subject,
                 CreatedDate = x.CreatedDate,
+                EnglisVersion = x.EnglishVersion,
                 Curator = x.CuratorId is not null ? new GuidIdAndStringName { Id = x.CuratorId.Value, Name = x.Curator?.Name } : null,
-            }).ToArray();
+            }).OrderByDescending(x => x.CreatedDate).ToArray();
         }
         public async Task<TextDto> GetTextById(Guid id)
         {
@@ -67,7 +70,8 @@ namespace SavageOrcs.Services
                     Id = x.Id,
                     Name = x.Name,
                     Subject = x.Subject,
-                    CreatedDate = x.CreatedDate
+                    CreatedDate = x.CreatedDate,
+                    EnglisVersion = x.EnglishVersion
                 }).ToArray();
 
         }
@@ -79,6 +83,9 @@ namespace SavageOrcs.Services
                 Id = text.Id,
                 Name = text.Name,
                 Subject = text.Subject,
+                EnglishVersion = text.EnglishVersion,
+                UkrTextId = text.UkrTextId,
+                CreatedDate = text.CreatedDate,
                 Curator = text.CuratorId is not null?  new GuidIdAndStringName { Id = text.CuratorId.Value, Name = text.Curator?.Name }:null,
                 BlockDtos = text.Blocks.Select(x => new BlockDto
                 {
@@ -111,9 +118,20 @@ namespace SavageOrcs.Services
             text.UpdatedDate = DateTime.Now;
             text.Name = textSaveDto.Name;
             text.Subject = textSaveDto.Subject;
-            text.CuratorId = textSaveDto.CuratorId;
 
-            foreach(var block in text.Blocks)
+            if (textSaveDto.CuratorId == _Constants.EmptySelect)
+                text.CuratorId = null;
+            else
+                text.CuratorId = textSaveDto.CuratorId;
+
+            text.EnglishVersion = textSaveDto.EnglishVersion;
+
+            if (textSaveDto.UkrTextId == _Constants.EmptySelect)
+                text.UkrTextId = null;
+            else
+                text.UkrTextId = textSaveDto.UkrTextId;
+
+            foreach (var block in text.Blocks)
             {
                 _blockRepository.Delete(block);
             }
@@ -190,33 +208,46 @@ namespace SavageOrcs.Services
             };
         }
 
-        public async Task<TextDto[]> GetTextsByFilters(string? textName, string? textSubject, Guid[]? curatorIds)
+        public async Task<TextShortDto[]> GetTextsByFilters(Guid[]? textIds, Guid[]? curatorIds)
         {
 
             var texts = await _textRepository.GetAllAsync();
 
-            if (!string.IsNullOrEmpty(textName))
+            if (textIds is not null && textIds.Length > 0)
             {
-                texts = texts.Where(x => x.Name is not null && x.Name.Contains(textName, StringComparison.OrdinalIgnoreCase));
-            }
-
-            if (!string.IsNullOrEmpty(textSubject))
-            {
-                texts = texts.Where(x => x.Subject is not null && x.Subject.Contains(textSubject, StringComparison.OrdinalIgnoreCase));
+                texts = texts.Where(x => textIds.Contains(x.Id));
             }
 
             if (curatorIds is not null && curatorIds.Length > 0)
             {
-                texts = texts.Where(x => x.Curator is not null && curatorIds.Contains(x.Curator.Id));
+                texts = texts.Where(x => x.CuratorId.HasValue && curatorIds.Contains(x.CuratorId.Value));
             }
 
-            return texts.Select(x => CreateTextDto(x)).ToArray();
+            return texts.Select(x => new TextShortDto
+            {
+                Id = x.Id,
+                Name = x.Name,
+                Subject = x.Subject,
+                CreatedDate = x.CreatedDate,
+                EnglisVersion = x.EnglishVersion,
+                Curator = x.Curator is null? null : new GuidIdAndStringName
+                {
+                    Id = x.Curator.Id,
+                    Name = x.Curator.Name
+                } 
+            }).OrderByDescending(x => x.CreatedDate).ToArray(); ;
 
         }
 
-        public async Task<bool> DeleteCluster(Guid id)
+        public async Task<bool> DeleteText(Guid id)
         {
             var text = await _textRepository.GetTAsync(x => x.Id == id);
+            var possibleEngTexts = await _textRepository.GetAllAsync(x => x.UkrTextId.HasValue && x.UkrTextId == id);
+
+            foreach(var possibleEngText in possibleEngTexts)
+            {
+                possibleEngText.UkrTextId = null;
+            }
 
             if (text == null)
                 return false;

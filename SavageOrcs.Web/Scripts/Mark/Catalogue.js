@@ -1,81 +1,67 @@
 ﻿var CatalogueMarkView = Class.extend({
     Marks: null,
-    OnEnglish: false,
+    SelectedText: null,
+    MultiselectAll: null,
+
+    AreaTextPlaceholder: null,
+    NameTextPlaceholder: null,
+
+    SearchTextName: null,
+    SearchTextArea: null,
+
+    IsClear: false,
 
     InitializeControls: function () {
         var self = this;
        
 
         var areasOptions = {
-            placeholder: "Місця",
-            txtSelected: "вибрано",
-            txtAll: "Всі",
+            placeholder: self.AreaTextPlaceholder.value,
+            txtSelected: self.SelectedText.value,
+            txtAll: self.MultiselectAll.value,
             txtRemove: "Видалити",
-            txtSearch: "Пошук",
+            txtSearch: self.SearchTextArea.value,
             height: "300px",
             Id: "areasMultiselect",
             //MaxElementsToShow: 2
         }
 
         var keyWordsAndMarksOptions = {
-            placeholder: "Ключові слова",
-            txtSelected: "вибрано",
-            txtAll: "Всі",
+            placeholder: self.NameTextPlaceholder.value,
+            txtSelected: self.SelectedText.value,
+            txtAll: self.MultiselectAll.value,
             txtRemove: "Видалити",
-            txtSearch: "Пошук",
+            txtSearch: self.SearchTextName.value,
             height: "300px",
-            Id: "namesMultiselect",
-            //MaxElementsToShow: 1
-        }
-
-        var placesOptions = {
-            placeholder: "Локації",
-            txtSelected: "вибрано",
-            txtAll: "Всі",
-            txtRemove: "Видалити",
-            txtSearch: "Пошук",
-            height: "300px",
-            Id: "placesMultiselect",
+            Id: "namesMultiselect", 
             //MaxElementsToShow: 2
         }
 
         MultiselectDropdown(keyWordsAndMarksOptions);
-        MultiselectDropdown(placesOptions);
         MultiselectDropdown(areasOptions);
+
+        if ($("#areasMultiselect").val().length !== 0 || $('#namesMultiselect').val().length !== 0)
+            self.Search();
 
         self.SubscribeEvents();
     },
     SubscribeEvents: function () {
         var self = this;
-
-        $("#placesMultiselect").on('change', function () {
-            self.OnPlacesChange();
-        });
-
-        $("#areasMultiselect").on('change', function () {
-            self.OnAreasChange();
-        });
-
-        $("#namesMultiselect").on('change', function () {
-            self.OnNamesChange();
-        });
-
-        $("#tableDetail").css("display", "none");
-        $("#showMore").css("display", "none");
-
-        $("#search").click(function () {
-            $(".table-body-short").empty();
-            $(".table-body-detail").empty();
-            self.From = null;
+        $("#filter-big-text-info").on('click', function () {
             self.Search();
         });
 
-        $("#clearFilters").click(function () {
-            $('#keyWordsMultiselect option').attr('selected', ''),
-            $("#AreaName").val(''); 
-            $("#MarkName").val(''); 
-            $("#MarkDescription").val('');
+        $(".clear-button-container").on('click', function () {
+            self.Clear();
         });
+        
+        //$("#areasMultiselect").on('change', function () {
+        //    self.OnAreasChange();
+        //});
+
+        //$("#namesMultiselect").on('change', function () {
+        //    self.OnNamesChange();
+        //});
 
         var firstElement = $(".data-row-container .data-row")[0];
         if (firstElement !== undefined)
@@ -83,17 +69,16 @@
     },
     Search: function () {
         var self = this;
+        if (self.IsClear)
+            return;
 
         var names = $('#namesMultiselect').val() || [];
-
-
 
         var filters = {
             SelectedKeyWordIds: [],
             SelectedClusterIds: [],
             SelectedMarkIds: [],
             SelectedAreaIds: $("#areasMultiselect").val(),
-            SelectedPlaceIds: $("#placesMultiselect").val(),
         };
 
 
@@ -106,6 +91,7 @@
                 filters.SelectedKeyWordIds.push(value.substr(1));
             }
         });
+        debugger;
 
         $.ajax({
             type: 'POST',
@@ -147,18 +133,21 @@
             }
         });
     },
-    OnPlacesChange: function () {
-        var self = this;
-        self.Search();
-    },
     OnAreasChange: function () {
         var self = this;
         self.Search();
-
     },
     OnNamesChange: function () {
         var self = this;
         self.Search();
     },
-    
+    Clear: function () {
+        var self = this;
+        self.IsClear = true;
+        ClearMultiSelect("namesMultiselect");
+        ClearMultiSelect("areasMultiselect");
+        self.IsClear = false;
+        document.activeElement.blur();
+        self.Search();
+    }
 });

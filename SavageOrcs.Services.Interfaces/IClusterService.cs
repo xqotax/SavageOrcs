@@ -18,6 +18,6 @@ namespace SavageOrcs.Services.Interfaces
 
         Task<ClusterDto[]> GetClusters();
 
-        Task<ClusterDto[]> GetClustersByFilters(Guid[]? keyWordIds, Guid[]? clusterIds, Guid[]? placeIds, Guid[]? areaIds);
+        Task<ClusterDto[]> GetClustersByFilters(Guid[]? keyWordIds, Guid[]? clusterIds, Guid[]? areaIds);
     }
 }

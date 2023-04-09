@@ -1,9 +1,12 @@
 ﻿@using SavageOrcs.Web.ViewModels.Curator
+@using Microsoft.Extensions.Localization
+@using SavageOrcs.Web.Resources.Classes
+@inject LanguageService Language
 @model CuratorViewModel[]
 <div class="wrapper-search-curator">
     <div class="curator-data-col">
         <div class="curator-header-text">
-            Автори
+            @Language.GetCuratorKey("SearchHeader")
         </div>
         <div class="curator-data-row-container">
             @await Html.PartialAsync("_CatalogueDataRows", Model)
@@ -11,16 +14,22 @@
     </div>
     <div class="curator-search-col">
         <div class="curator-filter-search-text">
-            Експерти, які долучилися
-            до проєкту
+            @Language.GetCuratorKey("SearchDescription")
         </div>
         <div class="curator-filter-row">
             <div class="curator-filter-item">
-                <div class="curator-filter-multiselect-placeholder">Мультиселект</div>
-                <div class="curator-filter-big-text-info">Автор</div>
+                <div class="curator-filter-multiselect-placeholder">
+                    <select name="curatorsMultiselect" id="curatorsMultiselect" multiple multiselect-search="true" multiselect-select-all="true" multiselect-hide-x="true">
+                        @foreach (var curator in Model)
+                        {
+                            <option value=@curator.Id>@curator.DisplayName</option>
+                        }
+                    </select>
+                </div>
+                @*<div class="curator-filter-big-text-info">Автор</div>
                 <div class="curator-filter-small-text-info">
                     Почніть вводити ім'я автора
-                </div>
+                </div>*@
             </div>
         </div>
     </div>
@@ -29,9 +38,9 @@
 <div class="wrapper-search-bottom-text">
     <div class="bottom-text-row">
         <div class="bottom-text-col">
-            Долучайтеся до команди авторів
+            @Language.GetCuratorKey("SearchAreYouHaveMaterials")
         </div>
-        <div class="bottom-text-col">Пишіть на скриню:</div>
+        <div class="bottom-text-col">@Language.GetMainKey("MainContactUs")</div>
     </div>
     <div class="bottom-text-row">
         <div class="bottom-text-col"></div>
@@ -46,6 +55,12 @@
 @section Scripts{
     <script>
         var catalogueCuratorView = new CatalogueCuratorView();
+
+        catalogueCuratorView.SelectedText = @Json.Serialize(Language.GetMainKey("MultiselectSelectedText"));
+        catalogueCuratorView.MultiselectAll = @Json.Serialize(Language.GetMainKey("MultiselectAll"));
+
+        catalogueCuratorView.CuratorTextPlaceholder = @Json.Serialize(Language.GetTextKey("MultiselectCuratorTextPlaceholder"));
+        catalogueCuratorView.SearchTextCurator = @Json.Serialize(Language.GetTextKey("MultiselectSearchTextCurator"));
 
         $(document).ready(function () {
             catalogueCuratorView.InitializeControls();

@@ -56,7 +56,32 @@ builder.Services.AddMvc()
             var asseblyName = new AssemblyName(typeof(MainResource).GetTypeInfo().Assembly.FullName);
             return factory.Create("MainResource", asseblyName.Name);
         };
-    });
+    })
+    .AddDataAnnotationsLocalization(options =>
+    {
+        options.DataAnnotationLocalizerProvider = (type, factory) =>
+        {
+            var asseblyName = new AssemblyName(typeof(TextResource).GetTypeInfo().Assembly.FullName);
+            return factory.Create("TextResource", asseblyName.Name);
+        };
+    })
+    .AddDataAnnotationsLocalization(options =>
+    {
+        options.DataAnnotationLocalizerProvider = (type, factory) =>
+        {
+            var asseblyName = new AssemblyName(typeof(CuratorResource).GetTypeInfo().Assembly.FullName);
+            return factory.Create("CuratorResource", asseblyName.Name);
+        };
+    })
+    .AddDataAnnotationsLocalization(options =>
+    {
+        options.DataAnnotationLocalizerProvider = (type, factory) =>
+        {
+            var assemblyName = new AssemblyName(typeof(MarkResource).GetTypeInfo().Assembly.FullName);
+            return factory.Create("MarkResource", assemblyName.Name);
+        };
+    }); 
+
 
 builder.Services.Configure<RequestLocalizationOptions>(
     options =>
@@ -73,6 +98,7 @@ builder.Services.Configure<RequestLocalizationOptions>(
         options.RequestCultureProviders.Insert(0, new QueryStringRequestCultureProvider());
     }
 );
+
 
 var app = builder.Build();
 

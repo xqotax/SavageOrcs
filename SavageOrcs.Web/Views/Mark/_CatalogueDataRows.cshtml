@@ -1,4 +1,7 @@
 ﻿@using SavageOrcs.Web.ViewModels.Mark
+@using Microsoft.Extensions.Localization
+@using SavageOrcs.Web.Resources.Classes
+@inject LanguageService Language
 @model MarkCatalogueViewModel[]
 @for (int i = 1; i <= Model.Length; i++)
 {
@@ -53,7 +56,7 @@
                     }
                     @if (!string.IsNullOrEmpty(Model[i - 1].ResourceName))
                     {
-                        <div>Ресурс @Model[i - 1].ResourceName</div>
+                        <div>@Language.GetMarkKey("SearchRowResourceName") @Model[i - 1].ResourceName</div>
                     }
                 </div>
             </div>

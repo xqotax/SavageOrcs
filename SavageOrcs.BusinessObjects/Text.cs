@@ -18,6 +18,10 @@ namespace SavageOrcs.BusinessObjects
 
         public DateTime UpdatedDate { get; set; }
 
+        public bool EnglishVersion { get; set; }
+
+        public Guid? UkrTextId { get; set; }
+
         public Guid? CuratorId { get; set; }
 
         public virtual Curator? Curator { get; set; }

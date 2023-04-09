@@ -2,7 +2,7 @@
 
 namespace SavageOrcs.Web.ViewModels.Map
 {
-    public class MapCoordinatesViewModel
+    public class MapCoordinatesViewModel: UnitedCatalogueViewModel
     {
         public int Id { get; set; }
 

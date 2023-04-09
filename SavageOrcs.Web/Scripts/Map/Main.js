@@ -12,6 +12,16 @@ var MapMainView = Class.extend({
     MapClusters: null,
     InfoWindow: null,
     OldZoom: null,
+    SelectedText: null,
+    MultiselectAll: null,
+
+    AreaTextPlaceholder: null,
+    NameTextPlaceholder: null,
+
+    SearchTextName: null,
+    SearchTextArea: null,
+
+    IsClear: null,
     InitializeControls: function () {
         var self = this;
         const myLatlng = { lat: 50.5077456, lng: 31.018623 };
@@ -20,8 +30,48 @@ var MapMainView = Class.extend({
             content: "Перейти",
             position: myLatlng,
         });
+        
+        console.log(window.innerWidth);
+        var areasOptions = {
+            placeholder: self.AreaTextPlaceholder.value,
+            txtSelected: self.SelectedText.value,
+            txtAll: self.MultiselectAll.value,
+            txtRemove: "Видалити",
+            txtSearch: self.SearchTextArea.value,
+            height: window.innerWidth < 700 ? "150px" : "300px",
+            Id: "areasMultiselect",
+            //MaxElementsToShow: 2
+        }
+
+        var keyWordsAndMarksOptions = {
+            placeholder: self.NameTextPlaceholder.value,
+            txtSelected: self.SelectedText.value,
+            txtAll: self.MultiselectAll.value,
+            txtRemove: "Видалити",
+            txtSearch: self.SearchTextName.value,
+            height: window.innerWidth < 700 ? "150px" : "300px",
+            Id: "namesMultiselect",
+            //MaxElementsToShow: 2
+        }
+
+        MultiselectDropdown(keyWordsAndMarksOptions);
+        MultiselectDropdown(areasOptions);
+
+        if ($("#areasMultiselect").val().length !== 0 || $('#namesMultiselect').val().length !== 0)
+            self.Search();
+
+        self.SubscribeEvents();
     },
-    SubscribeEvents: function () { },
+    SubscribeEvents: function () {
+        var self = this;
+        $("#filter-big-text-info").on('click', function () {
+            self.Search();
+        });
+
+        $(".clear-button-col").on('click', function () {
+            self.Clear();
+        });
+    },
     InitMap: function () {
         var self = this;
         let map = new google.maps.Map(document.getElementById("map"), {
@@ -30,6 +80,7 @@ var MapMainView = Class.extend({
                 lng: parseFloat(this.Lng)
             },
             zoom: 6,
+            minZoom: 5,
             options: {
                 gestureHandling: 'greedy'
             },
@@ -98,9 +149,9 @@ var MapMainView = Class.extend({
                 title: element.name,
                 icon: {
                     url: "images/redCircle.png",
-                    scaledSize: new google.maps.Size(20, 20),
+                    scaledSize: new google.maps.Size(16, 16),
                     origin: new google.maps.Point(0, 0),
-                    anchor: new google.maps.Point(10, 10)
+                    anchor: new google.maps.Point(8, 8)
                 }
             });
 
@@ -160,32 +211,81 @@ var MapMainView = Class.extend({
         link += "\" class=\"btn btn-dark-custom\">" + element.name + "</a>";
         self.InfoWindow.setContent(link);
         self.InfoWindow.open(self.Map);
+    },
+    Search: function () {
+        var self = this;
+        console.log("1");
+        if (self.IsClear)
+            return;
+        console.log("2");
+        var names = $('#namesMultiselect').val() || [];
+
+        var filters = {
+            SelectedKeyWordIds: [],
+            SelectedClusterIds: [],
+            SelectedMarkIds: [],
+            SelectedAreaIds: $("#areasMultiselect").val(),
+        };
+
+        names.map(function (value) {
+            if (value.startsWith('C')) {
+                filters.SelectedClusterIds.push(value.substr(1));
+            } else if (value.startsWith('M')) {
+                filters.SelectedMarkIds.push(value.substr(1));
+            } else if (value.startsWith('K')) {
+                filters.SelectedKeyWordIds.push(value.substr(1));
+            }
+        });
+
+        $.ajax({
+            type: 'POST',
+            url: "/Map/GetMarks",
+            data: JSON.stringify(filters),
+            contentType: 'application/json; charset=utf-8',
+            success: function (json) {
+                self.MapMarks.forEach((marker) => {
+                    marker.marker.setMap(null);
+                });
+                self.MapClusters.forEach((marker) => {
+                    marker.marker.setMap(null);
+                });
+                self.MapMarks = [];
+                self.MapClusters = [];
+                $.each(json, function (index, element) {
+                    let marker = new google.maps.Marker({
+                        position: {
+                            lat: parseFloat(element.lat),
+                            lng: parseFloat(element.lng)
+                        },
+                        map: self.Map,
+                        title: element.name,
+                        icon: {
+                            url: "images/redCircle.png",
+                            scaledSize: element.isCluster ? new google.maps.Size(16, 16) : new google.maps.Size(10, 10),
+                            origin: new google.maps.Point(0, 0),
+                            anchor: element.isCluster ? new google.maps.Point(8, 8) : new google.maps.Point(5, 5)
+                        }
+                    });
+
+                    marker.addListener("click", () => {
+                        self.MarkOnClick(marker, element, element.isCluster);
+                    });
+                    if (element.isCluster)
+                        self.MapClusters.push({ id: element.id, marker: marker });
+                    else
+                        self.MapMarks.push({ id: element.id, marker: marker });
+                });
+            }
+        });
+    },
+    Clear: function () {
+        var self = this;
+        self.IsClear = true;
+        ClearMultiSelect("namesMultiselect");
+        ClearMultiSelect("areasMultiselect");
+        self.IsClear = false;
+        document.activeElement.blur();
+        self.Search();
     }
-
 });
-//parseFloat(self.Lat),
-//function initMap() {
-//    let map = new google.maps.Map(document.getElementById("map"), {
-//        center: {
-//            lat: 12,
-//            lng: 12
-//        },
-//        zoom: 12
-//    });
 
-//    let marker = new google.maps.Marker({
-//        position: {
-//            lat: 48.6683328,
-//            lng: 25.4827080
-//        },
-//        map: map,
-//        title: "My Home",
-//        icon: {
-//            url: "photo/1.jpg",
-//            scaledSize: new google.maps.Size(15, 15),
-//            origin: new google.maps.Point(0, 0),
-//            anchor: new google.maps.Point(0, 0)
-//        }
-//    });
-//}
-//var src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDuw7bPRLxL2yVBd9YArtpb47myhmUePGY&callback=initMap"

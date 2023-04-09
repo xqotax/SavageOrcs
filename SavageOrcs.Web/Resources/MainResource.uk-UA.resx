@@ -117,19 +117,103 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="ButtonClear" xml:space="preserve">
+    <value>Очистити</value>
+  </data>
+  <data name="ButtonSearch" xml:space="preserve">
+    <value>Шукати</value>
+  </data>
+  <data name="ButtonSearchDescription" xml:space="preserve">
+    <value>Якщо хочете ввести критерій натисніть «Шукати»</value>
+  </data>
   <data name="Description" xml:space="preserve">
     <value>Якийсь опис</value>
   </data>
-  <data name="EnglishHeaderText" xml:space="preserve">
-    <value>Англ</value>
+  <data name="EighteenPlusPopupBigText" xml:space="preserve">
+    <value>ДЕЯКІ ЗОБРАЖЕННЯ НА САЙТІ МІСТЯТЬ НЕЦЕНЗУРНУ ЛЕКСИКУ ТА МОВУ ВОРОЖНЕЧІ.</value>
   </data>
-  <data name="Menu" xml:space="preserve">
-    <value>Меню</value>
+  <data name="EighteenPlusPopupClickHere" xml:space="preserve">
+    <value>Натисніть для продовження</value>
+  </data>
+  <data name="EighteenPlusPopupSmallText" xml:space="preserve">
+    <value>Радимо покинути ресурс, якщо ви неповнолітні або чутливі до агресивних висловів росіян.</value>
+  </data>
+  <data name="FooterAllProtected" xml:space="preserve">
+    <value>Всі права захищено</value>
+  </data>
+  <data name="FooterDescription" xml:space="preserve">
+    <value>Сайт створено командою культурної інституції «Міжвухами»</value>
+  </data>
+  <data name="FooterDocumentingUkraine" xml:space="preserve">
+    <value>Проєкт створено за підтримки програми</value>
+  </data>
+  <data name="FooterInfoPartner" xml:space="preserve">
+    <value>Інформаційний партнер</value>
+  </data>
+  <data name="FooterJoinInstagram" xml:space="preserve">
+    <value>Приєднуйтеся до нашої спільноти в</value>
+  </data>
+  <data name="FooterMihzvyhamu" xml:space="preserve">
+    <value>Архів створено командою культурної інституції «Міжвухами»</value>
+  </data>
+  <data name="MainContactsOffer" xml:space="preserve">
+    <value>Бажаєте долучитися до проєкту?</value>
+  </data>
+  <data name="MainContactUs" xml:space="preserve">
+    <value>Пишіть на скриню:</value>
+  </data>
+  <data name="MainLeftColProjectDescription" xml:space="preserve">
+    <value>Перед вами архів написів, які залишили російські військові під час окупації територій України з лютого 2022 року. Тут ви знайдете красномовні артефакти «російської культури», яка породжує військову агресію, а також докази воєнних злочинів росіян.</value>
+  </data>
+  <data name="MainMapLabel" xml:space="preserve">
+    <value>Мапа</value>
+  </data>
+  <data name="MainPhotoBigText" xml:space="preserve">
+    <value>Відкритий архів написів російських окупантів</value>
+  </data>
+  <data name="MainPhotoResourceArea" xml:space="preserve">
+    <value>Великодимерська громада, Київська область.</value>
+  </data>
+  <data name="MainPhotoResourceDescription" xml:space="preserve">
+    <value>Напис російських військових «Ваш дом наш дом» в житлі місцевих мешканців.</value>
+  </data>
+  <data name="MainPhotoResourceName" xml:space="preserve">
+    <value>Власник фото: ProSLAV</value>
+  </data>
+  <data name="MainRightColProjectDescription" xml:space="preserve">
+    <value>Базу даних збирає команда культурної інституції «Міжвухами». Для цього ми їздимо в експедиції деокупованими територіями та моніторимо відкриті джерела. Архів відкритий для користування дослідників, митців та всіх, хто працює задля перемоги України.</value>
+  </data>
+  <data name="MultiselectAll" xml:space="preserve">
+    <value>Всі</value>
+  </data>
+  <data name="MultiselectSelectedText" xml:space="preserve">
+    <value>вибрано</value>
+  </data>
+  <data name="SideMenuContributorsButton" xml:space="preserve">
+    <value>Автори</value>
+  </data>
+  <data name="SideMenuContributorsLabel" xml:space="preserve">
+    <value>Експерти, які долучилися до проєкту</value>
+  </data>
+  <data name="SideMenuSearchButton" xml:space="preserve">
+    <value>Пошук</value>
+  </data>
+  <data name="SideMenuSearchLabel" xml:space="preserve">
+    <value>Ваш гід архівом, впорядкований за вмістом написів, географією та обʼєктами, де були знайдені графіті</value>
+  </data>
+  <data name="SideMenuTextsButton" xml:space="preserve">
+    <value>Тексти</value>
+  </data>
+  <data name="SideMenuTextsLabel" xml:space="preserve">
+    <value>Аналітика та рефлексії на базі матеріалів архіву</value>
   </data>
   <data name="Title" xml:space="preserve">
     <value>Настінні докази</value>
   </data>
-  <data name="UkrainianHeaderText" xml:space="preserve">
-    <value>Укр</value>
+  <data name="WallEvidence" xml:space="preserve">
+    <value>Настінні докази</value>
+  </data>
+  <data name="Warning" xml:space="preserve">
+    <value>УВАГА</value>
   </data>
 </root>

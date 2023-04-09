@@ -31,11 +31,18 @@
     cursor: pointer;
 }
 
-.admin-menu-item{
-    display:flex;
-    flex-direction:column;
-    justify-content:center;
-    align-items:center;
+.admin-menu-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.admin-menu-item {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 
@@ -43,3 +50,20 @@
 .admin-menu-item .nav-link:focus {
     background-color: black;
 }
+@media (max-width: 1100px){
+    .admin-menu-row {
+        flex-direction: column;
+        width: 30%;
+    }
+    .admin-menu-item a {
+        font-size: 12px;
+    }
+    .admin-menu-item #manage {
+        word-break: break-all;
+    }
+    .admin-menu-container{
+        left: 5%;
+
+    }
+}
+

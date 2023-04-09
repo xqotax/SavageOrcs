@@ -16,47 +16,56 @@
 <div class="admin-menu-container">
     @if (this.User.IsInRole("Admin"))
     {
-        <div class="admin-menu-item">
-            <a class="nav-link btn btn-link" style="color: white" asp-area="" asp-controller="AdminHelper" asp-action="KeyWordCatalogue">Ключові слова</a>
+        <div class="admin-menu-row">
+            <div class="admin-menu-item">
+                <a class="nav-link btn btn-link" style="color: white" asp-area="" asp-controller="AdminHelper" asp-action="KeyWordCatalogue">Ключові слова</a>
+            </div>
+            @*<div class="admin-menu-item">
+                <a class="nav-link btn btn-link" style="color: white" asp-area="" asp-controller="AdminHelper" asp-action="PlaceCatalogue">Об'єкти (місця)</a>
+            </div>*@
+            <div class="admin-menu-item">
+                <a class="nav-link btn btn-link" style="color: white" asp-area="" asp-controller="User" asp-action="Catalogue">Користувачі</a>
+            </div>
+            <div class="admin-menu-item">
+                <a class="nav-link btn btn-link" style="color: white" asp-area="" asp-controller="Curator" asp-action="Add">Додати куратора</a>
+            </div>
         </div>
-        <div class="admin-menu-item">
-            <a class="nav-link btn btn-link" style="color: white" asp-area="" asp-controller="AdminHelper" asp-action="PlaceCatalogue">Об'єкти (місця)</a>
-        </div>
-        <div class="admin-menu-item">
-            <a  class="nav-link btn btn-link" style="color: white" asp-area="" asp-controller="User" asp-action="Catalogue">Користувачі</a>
-        </div>
-        <div class="admin-menu-item">
-            <a class="nav-link btn btn-link" style="color: white" asp-area="" asp-controller="Curator" asp-action="Add">Додати куратора</a>
-        </div>
-        <div class="admin-menu-item">
-            <a  class="nav-link btn btn-link" style="color: white" asp-area="" asp-controller="Mark" asp-action="Add">Додати мітку</a>
-        </div>
-        <div class="admin-menu-item">
-            <a  class="nav-link btn btn-link"style="color: white" asp-area="" asp-controller="Cluster" asp-action="Add">Додати скупчення</a>
-        </div>
-        <div class="admin-menu-item">
-            <a  class="nav-link btn btn-link"style="color: white" asp-area="" asp-controller="Text" asp-action="Add">Додати текст</a>
+        <div class="admin-menu-row">
+            <div class="admin-menu-item">
+                <a class="nav-link btn btn-link" style="color: white" asp-area="" asp-controller="Mark" asp-action="Add">Додати мітку</a>
+            </div>
+            <div class="admin-menu-item">
+                <a class="nav-link btn btn-link" style="color: white" asp-area="" asp-controller="Cluster" asp-action="Add">Додати скупчення</a>
+            </div>
+            <div class="admin-menu-item">
+                <a class="nav-link btn btn-link" style="color: white" asp-area="" asp-controller="Text" asp-action="Add">Додати текст</a>
+            </div>
         </div>
     }
     @if (SignInManager.IsSignedIn(User))
     {
-        <div class="admin-menu-item">
-            <a id="manage" class="nav-link btn btn-link" style="color: white" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">@UserManager.GetUserName(User)</a>
-    
-        </div>
-        <div class="admin-menu-item">
-            <form id="logoutForm" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Main", "Map", new { area = "" })">
+        <div class="admin-menu-row">
+            <div class="admin-menu-item">
+                <a id="manage" class="nav-link btn btn-link" style="color: white" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">@UserManager.GetUserName(User)</a>
+
+            </div>
+            <div class="admin-menu-item">
+                <form id="logoutForm" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Main", "Map", new { area = "" })">
                     <button id="logout" type="submit" style="color: white" class="nav-link btn btn-link">Вийти</button>
-            </form>
+                </form>
+            </div>
         </div>
 
     }
-    else{
-        <div class="admin-menu-item">
-            <a style="color: white" class="nav-link btn btn-link"  id="register" asp-area="Identity" asp-page="/Account/Register">Реєстрація</a>
-        </div>
-        <div class="admin-menu-item">
-            <a style="color: white" class="nav-link btn btn-link" id="login" asp-area="Identity" asp-page="/Account/Login">Вхід</a>
+    else
+    {
+        <div class="admin-menu-row">
+            <div class="admin-menu-item">
+                <a style="color: white" class="nav-link btn btn-link" id="register" asp-area="Identity" asp-page="/Account/Register">Реєстрація</a>
+            </div>
+            <div class="admin-menu-item">
+                <a style="color: white" class="nav-link btn btn-link" id="login" asp-area="Identity" asp-page="/Account/Login">Вхід</a>
+            </div>
         </div>
     }
 </div>
@@ -65,12 +74,12 @@
         $("#rightNavigationAdmin").hide();
 
         $("#fixedAdminButton").click(function () {
-            if ( $(".admin-menu-container").css('display') === 'flex'){
+            if ($(".admin-menu-container").css('display') === 'flex') {
                 $(".admin-menu-container").css('display', 'none');
                 $("#leftNavigationAdmin").show();
                 $("#rightNavigationAdmin").hide();
             }
-            else{
+            else {
                 $(".admin-menu-container").css('display', 'flex');
                 $("#leftNavigationAdmin").hide();
                 $("#rightNavigationAdmin").show();

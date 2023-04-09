@@ -61,6 +61,16 @@ var MapMainView = Class.extend({
     MapClusters: null,
     InfoWindow: null,
     OldZoom: null,
+    SelectedText: null,
+    MultiselectAll: null,
+
+    AreaTextPlaceholder: null,
+    NameTextPlaceholder: null,
+
+    SearchTextName: null,
+    SearchTextArea: null,
+
+    IsClear: null,
     InitializeControls: function () {
         var self = this;
         const myLatlng = { lat: 50.5077456, lng: 31.018623 };
@@ -69,8 +79,48 @@ var MapMainView = Class.extend({
             content: "�������",
             position: myLatlng,
         });
+        console.log(window.innerWidth < 700 ? "150px" : "300px");
+        console.log(window.innerWidth);
+        var areasOptions = {
+            placeholder: self.AreaTextPlaceholder.value,
+            txtSelected: self.SelectedText.value,
+            txtAll: self.MultiselectAll.value,
+            txtRemove: "��������",
+            txtSearch: self.SearchTextArea.value,
+            height: window.innerWidth < 700 ? "150px" : "300px",
+            Id: "areasMultiselect",
+            //MaxElementsToShow: 2
+        }
+
+        var keyWordsAndMarksOptions = {
+            placeholder: self.NameTextPlaceholder.value,
+            txtSelected: self.SelectedText.value,
+            txtAll: self.MultiselectAll.value,
+            txtRemove: "��������",
+            txtSearch: self.SearchTextName.value,
+            height: window.innerWidth < 700 ? "150px" : "300px",
+            Id: "namesMultiselect",
+            //MaxElementsToShow: 2
+        }
+
+        MultiselectDropdown(keyWordsAndMarksOptions);
+        MultiselectDropdown(areasOptions);
+
+        if ($("#areasMultiselect").val().length !== 0 || $('#namesMultiselect').val().length !== 0)
+            self.Search();
+
+        self.SubscribeEvents();
     },
-    SubscribeEvents: function () { },
+    SubscribeEvents: function () {
+        var self = this;
+        $("#filter-big-text-info").on('click', function () {
+            self.Search();
+        });
+
+        $(".clear-button-col").on('click', function () {
+            self.Clear();
+        });
+    },
     InitMap: function () {
         var self = this;
         let map = new google.maps.Map(document.getElementById("map"), {
@@ -79,6 +129,7 @@ var MapMainView = Class.extend({
                 lng: parseFloat(this.Lng)
             },
             zoom: 6,
+            minZoom: 5,
             options: {
                 gestureHandling: 'greedy'
             },
@@ -147,9 +198,9 @@ var MapMainView = Class.extend({
                 title: element.name,
                 icon: {
                     url: "images/redCircle.png",
-                    scaledSize: new google.maps.Size(20, 20),
+                    scaledSize: new google.maps.Size(16, 16),
                     origin: new google.maps.Point(0, 0),
-                    anchor: new google.maps.Point(10, 10)
+                    anchor: new google.maps.Point(8, 8)
                 }
             });
 
@@ -209,35 +260,84 @@ var MapMainView = Class.extend({
         link += "\" class=\"btn btn-dark-custom\">" + element.name + "</a>";
         self.InfoWindow.setContent(link);
         self.InfoWindow.open(self.Map);
+    },
+    Search: function () {
+        var self = this;
+        console.log("1");
+        if (self.IsClear)
+            return;
+        console.log("2");
+        var names = $('#namesMultiselect').val() || [];
+
+        var filters = {
+            SelectedKeyWordIds: [],
+            SelectedClusterIds: [],
+            SelectedMarkIds: [],
+            SelectedAreaIds: $("#areasMultiselect").val(),
+        };
+
+        names.map(function (value) {
+            if (value.startsWith('C')) {
+                filters.SelectedClusterIds.push(value.substr(1));
+            } else if (value.startsWith('M')) {
+                filters.SelectedMarkIds.push(value.substr(1));
+            } else if (value.startsWith('K')) {
+                filters.SelectedKeyWordIds.push(value.substr(1));
+            }
+        });
+
+        $.ajax({
+            type: 'POST',
+            url: "/Map/GetMarks",
+            data: JSON.stringify(filters),
+            contentType: 'application/json; charset=utf-8',
+            success: function (json) {
+                self.MapMarks.forEach((marker) => {
+                    marker.marker.setMap(null);
+                });
+                self.MapClusters.forEach((marker) => {
+                    marker.marker.setMap(null);
+                });
+                self.MapMarks = [];
+                self.MapClusters = [];
+                $.each(json, function (index, element) {
+                    let marker = new google.maps.Marker({
+                        position: {
+                            lat: parseFloat(element.lat),
+                            lng: parseFloat(element.lng)
+                        },
+                        map: self.Map,
+                        title: element.name,
+                        icon: {
+                            url: "images/redCircle.png",
+                            scaledSize: element.isCluster ? new google.maps.Size(16, 16) : new google.maps.Size(10, 10),
+                            origin: new google.maps.Point(0, 0),
+                            anchor: element.isCluster ? new google.maps.Point(8, 8) : new google.maps.Point(5, 5)
+                        }
+                    });
+
+                    marker.addListener("click", () => {
+                        self.MarkOnClick(marker, element, element.isCluster);
+                    });
+                    if (element.isCluster)
+                        self.MapClusters.push({ id: element.id, marker: marker });
+                    else
+                        self.MapMarks.push({ id: element.id, marker: marker });
+                });
+            }
+        });
+    },
+    Clear: function () {
+        var self = this;
+        self.IsClear = true;
+        ClearMultiSelect("namesMultiselect");
+        ClearMultiSelect("areasMultiselect");
+        self.IsClear = false;
+        document.activeElement.blur();
+        self.Search();
     }
-
 });
-//parseFloat(self.Lat),
-//function initMap() {
-//    let map = new google.maps.Map(document.getElementById("map"), {
-//        center: {
-//            lat: 12,
-//            lng: 12
-//        },
-//        zoom: 12
-//    });
 
-//    let marker = new google.maps.Marker({
-//        position: {
-//            lat: 48.6683328,
-//            lng: 25.4827080
-//        },
-//        map: map,
-//        title: "My Home",
-//        icon: {
-//            url: "photo/1.jpg",
-//            scaledSize: new google.maps.Size(15, 15),
-//            origin: new google.maps.Point(0, 0),
-//            anchor: new google.maps.Point(0, 0)
-//        }
-//    });
-//}
-//var src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDuw7bPRLxL2yVBd9YArtpb47myhmUePGY&callback=initMap"
 
 var MarkAddView = Class.extend({
     IsNew: null,
@@ -397,8 +497,6 @@ var MarkAddView = Class.extend({
     },
     OnPlacesChange: function () {
         var el = $("#placesMultiselect");
-        console.log(el);
-        console.log(el.val());
     },
     SubscribeEvents: function () {
         var self = this;
@@ -745,82 +843,68 @@ var RevisionMarkView = Class.extend({
 })
 var CatalogueMarkView = Class.extend({
     Marks: null,
-    OnEnglish: false,
+    SelectedText: null,
+    MultiselectAll: null,
+
+    AreaTextPlaceholder: null,
+    NameTextPlaceholder: null,
+
+    SearchTextName: null,
+    SearchTextArea: null,
+
+    IsClear: false,
 
     InitializeControls: function () {
         var self = this;
        
 
         var areasOptions = {
-            placeholder: "Місця",
-            txtSelected: "вибрано",
-            txtAll: "Всі",
+            placeholder: self.AreaTextPlaceholder.value,
+            txtSelected: self.SelectedText.value,
+            txtAll: self.MultiselectAll.value,
             txtRemove: "Видалити",
-            txtSearch: "Пошук",
+            txtSearch: self.SearchTextArea.value,
             height: "300px",
             Id: "areasMultiselect",
             //MaxElementsToShow: 2
         }
 
         var keyWordsAndMarksOptions = {
-            placeholder: "Ключові слова",
-            txtSelected: "вибрано",
-            txtAll: "Всі",
+            placeholder: self.NameTextPlaceholder.value,
+            txtSelected: self.SelectedText.value,
+            txtAll: self.MultiselectAll.value,
             txtRemove: "Видалити",
-            txtSearch: "Пошук",
+            txtSearch: self.SearchTextName.value,
             height: "300px",
-            Id: "namesMultiselect",
-            //MaxElementsToShow: 1
-        }
-
-        var placesOptions = {
-            placeholder: "Локації",
-            txtSelected: "вибрано",
-            txtAll: "Всі",
-            txtRemove: "Видалити",
-            txtSearch: "Пошук",
-            height: "300px",
-            Id: "placesMultiselect",
+            Id: "namesMultiselect", 
             //MaxElementsToShow: 2
         }
 
         MultiselectDropdown(keyWordsAndMarksOptions);
-        MultiselectDropdown(placesOptions);
         MultiselectDropdown(areasOptions);
+
+        if ($("#areasMultiselect").val().length !== 0 || $('#namesMultiselect').val().length !== 0)
+            self.Search();
 
         self.SubscribeEvents();
     },
     SubscribeEvents: function () {
         var self = this;
-
-        $("#placesMultiselect").on('change', function () {
-            self.OnPlacesChange();
-        });
-
-        $("#areasMultiselect").on('change', function () {
-            self.OnAreasChange();
-        });
-
-        $("#namesMultiselect").on('change', function () {
-            self.OnNamesChange();
-        });
-
-        $("#tableDetail").css("display", "none");
-        $("#showMore").css("display", "none");
-
-        $("#search").click(function () {
-            $(".table-body-short").empty();
-            $(".table-body-detail").empty();
-            self.From = null;
+        $("#filter-big-text-info").on('click', function () {
             self.Search();
         });
 
-        $("#clearFilters").click(function () {
-            $('#keyWordsMultiselect option').attr('selected', ''),
-            $("#AreaName").val(''); 
-            $("#MarkName").val(''); 
-            $("#MarkDescription").val('');
+        $(".clear-button-container").on('click', function () {
+            self.Clear();
         });
+        
+        //$("#areasMultiselect").on('change', function () {
+        //    self.OnAreasChange();
+        //});
+
+        //$("#namesMultiselect").on('change', function () {
+        //    self.OnNamesChange();
+        //});
 
         var firstElement = $(".data-row-container .data-row")[0];
         if (firstElement !== undefined)
@@ -828,17 +912,16 @@ var CatalogueMarkView = Class.extend({
     },
     Search: function () {
         var self = this;
+        if (self.IsClear)
+            return;
 
         var names = $('#namesMultiselect').val() || [];
-
-
 
         var filters = {
             SelectedKeyWordIds: [],
             SelectedClusterIds: [],
             SelectedMarkIds: [],
             SelectedAreaIds: $("#areasMultiselect").val(),
-            SelectedPlaceIds: $("#placesMultiselect").val(),
         };
 
 
@@ -851,6 +934,7 @@ var CatalogueMarkView = Class.extend({
                 filters.SelectedKeyWordIds.push(value.substr(1));
             }
         });
+        debugger;
 
         $.ajax({
             type: 'POST',
@@ -892,20 +976,23 @@ var CatalogueMarkView = Class.extend({
             }
         });
     },
-    OnPlacesChange: function () {
-        var self = this;
-        self.Search();
-    },
     OnAreasChange: function () {
         var self = this;
         self.Search();
-
     },
     OnNamesChange: function () {
         var self = this;
         self.Search();
     },
-    
+    Clear: function () {
+        var self = this;
+        self.IsClear = true;
+        ClearMultiSelect("namesMultiselect");
+        ClearMultiSelect("areasMultiselect");
+        self.IsClear = false;
+        document.activeElement.blur();
+        self.Search();
+    }
 });
 var DeleteMarkView = Class.extend({
     
@@ -1661,27 +1748,34 @@ var RevisionTextView = Class.extend({
 })
 var CatalogueTextView = Class.extend({
     Curators: null,
-    SearchSelectDropdown: null,
+    SelectedText: null,
+    MultiselectAll: null,
+
+    CuratorTextPlaceholder: null,
+    NameTextPlaceholder: null,
+
+    SearchTextName: null,
+    SearchTextCurator: null,
 
     InitializeControls: function () {
         var self = this;
 
         var textNamesOptions = {
-            placeholder: "Виберіть назву",
-            txtSelected: "вибрано",
-            txtAll: "Всі",
+            placeholder: self.NameTextPlaceholder.value,
+            txtSelected: self.SelectedText.value,
+            txtAll: self.MultiselectAll.value,
             txtRemove: "Видалити",
-            txtSearch: "Пошук",
+            txtSearch: self.SearchTextName.value,
             height: "300px",
             Id: "textNamesMultiselect"
         }
 
         var curatorsOptions = {
-            placeholder: "Виберіть автора",
-            txtSelected: "вибрано",
-            txtAll: "Всі",
+            placeholder: self.CuratorTextPlaceholder.value,
+            txtSelected: self.SelectedText.value,
+            txtAll: self.MultiselectAll.value,
             txtRemove: "Видалити",
-            txtSearch: "Пошук",
+            txtSearch: self.SearchTextCurator.value,
             height: "300px",
             Id: "curatorsMultiselect"
         }
@@ -1694,17 +1788,13 @@ var CatalogueTextView = Class.extend({
     SubscribeEvents: function () {
         var self = this;
 
-        //$('#search').on('click', function () {
-        //    self.Search();
-        //});
+        $("#curatorsMultiselect").on('change', function () {
+            self.OnCuratorsChange();
+        });
 
-
-        //$("#clearFilters").click(function () {
-        //    //$("#KeyWord").val('');
-        //    $("#TextName").val('');
-        //    $("#TextSubject").val('');
-        //    $('#curatorMultiselect option').attr('selected', 'selected');
-        //});
+        $("#textNamesMultiselect").on('change', function () {
+            self.OnNamesChange();
+        });
 
         var firstElement = $(".text-search-data-table .text-data-row")[0];
         if (firstElement !== undefined)
@@ -1718,7 +1808,7 @@ var CatalogueTextView = Class.extend({
         });
         $(el).css('opacity', '1');
         $(el).addClass("data-row-selected");
-        var fullId = $(el).find("input:first-child").attr('id')
+        var fullId = $(el).find("input:first-child").val();
         id = fullId.substring(fullId.length - 36);
 
         $("#textContentPlaceholder").empty();
@@ -1732,14 +1822,11 @@ var CatalogueTextView = Class.extend({
         });
     },
     Search: function () {
-        $(".table-body-catalogue-text").empty();
-
         var self = this;
+
         var filters = {
-            CuratorIds: $("#curatorMultiselect").val(),
-            TextName: $("#TextName").val(),
-            TextSubject: $("#TextSubject").val()
-            //KeyWord: $("#KeyWord").val(),
+            TextIds: $("#textNamesMultiselect").val(),
+            CuratorIds: $("#curatorsMultiselect").val(),
         };
 
         $.ajax({
@@ -1748,25 +1835,20 @@ var CatalogueTextView = Class.extend({
             data: JSON.stringify(filters),
             contentType: 'application/json; charset=utf-8',
             success: function (data) {
-
-                var toAdd = "";
-
-                $.each(data, function (index, element) {
-                    toAdd += self.TableTextStartConstString + (index + 1);
-                    toAdd += self.TableTextNameConstString + element.id + "\">" + element.name;
-                    toAdd += self.TableTextSubjectConstString + element.subject;
-                    if (element.curator !== null) {
-                        toAdd += self.TableTextCuratorConstString + element.curator.id + "\">" + element.curator.name;
-                        toAdd += self.TableTextEndConstString;
-                    }
-                    else {
-                        toAdd += "</div><div class=\"table-body-catalogue-text-column-curator\"></div></div>";
-                    }
-                });
-
-                $(".table-body-catalogue-text").append(toAdd);
+                $(".text-search-data-table").html(data);
+                var firstElement = $(".text-search-data-table .text-data-row")[0];
+                if (firstElement !== undefined)
+                    self.Show(firstElement);
             }
         });
+    },
+    OnCuratorsChange: function () {
+        var self = this;
+        self.Search();
+    },
+    OnNamesChange: function () {
+        var self = this;
+        self.Search();
     }
 })
 var AddTextView = Class.extend({
@@ -1775,6 +1857,9 @@ var AddTextView = Class.extend({
     CuratorName: null,
     CuratorId: null,
 
+    UkrTextName: null,
+    UkrTextId: null,
+
     Blocks: null,
     OldData: null,
 
@@ -1782,6 +1867,11 @@ var AddTextView = Class.extend({
     CuratorIds: null,
     CuratorNames: null,
     SearchSelectDropdownCurators: null,
+
+    UkrTexts: null,
+    UkrTextIds: null,
+    UkrTextNames: null,
+    SearchSelectDropdownUkrTexts: null,
 
     Editor: null,
     Data: null,
@@ -1817,6 +1907,35 @@ var AddTextView = Class.extend({
 
             $("#dropdown-input-for-curator").val(self.CuratorName);
         }
+
+        self.SearchSelectDropdownUkrTexts = new SearchSelect('#dropdown-input-for-ukrText', {
+            data: [],
+            filter: SearchSelect.FILTER_CONTAINS,
+            sort: undefined,
+            inputClass: 'form-control-Select mobile-field',
+            maxOpenEntries: 5,
+            searchPosition: 'top',
+            onInputClickCallback: null,
+            onInputKeyDownCallback: null,
+        });
+
+        self.InitializeUkrTexts(self.UkrTexts);
+
+        if (self.UkrTextName !== '') {
+            var selected = $($("#ukrText .searchSelect--Result")[0]);
+            selected.removeClass("#ukrText searchSelect--Placeholder");
+            selected.html(self.UkrTextName);
+
+            $.each($("#ukrText .searchSelect--Option"), function (index, element) {
+                if ($(element).text() === self.UkrTextName) {
+                    $(element).addClass("#ukrText searchSelect--Option--selected")
+                }
+            });
+
+            $("#dropdown-input-for-ukrText").val(self.UkrTextName);
+        }
+
+
 
         self.OldData = {
             time: Date.now(),
@@ -1962,7 +2081,8 @@ var AddTextView = Class.extend({
                             "#8BC34A",
                             "#CDDC39",
                             "#FFF",
-                            "#000000"
+                            "#000000",
+                            "#DEDCDC"
                         ],
                         defaultColor: "#FF1300",
                         type: "text"
@@ -1971,11 +2091,30 @@ var AddTextView = Class.extend({
                 Marker: {
                     class: window.ColorPlugin,
                     config: {
+                        colorCollections: [
+                            "#FF1300",
+                            "#EC7878",
+                            "#9C27B0",
+                            "#673AB7",
+                            "#3F51B5",
+                            "#0070FF",
+                            "#03A9F4",
+                            "#00BCD4",
+                            "#4CAF50",
+                            "#8BC34A",
+                            "#CDDC39",
+                            "#FFF",
+                            "#000000",
+                            "#DEDCDC"
+                        ],
                         defaultColor: '#FFBF00',
                         type: 'marker',
                     }
                 },
-
+                clearStyles: {
+                    class: ClearStylesTool,
+                    inlineToolbar: true,
+                },
                 image: {
                     class: SimpleImage
                 },
@@ -2018,10 +2157,21 @@ var AddTextView = Class.extend({
             self.RemoveVideos();
         });
 
-        $('#dropdown-input-for-curator').addClass("display-8-custom");
+        $('#EnglishVersion').change(function () {
+            self.ChangeUkrRow();
+        });
+        self.ChangeUkrRow();
+
+        //$('#dropdown-input-for-curator').addClass("display-8-custom");
     },
 
-
+    ChangeUkrRow: function () {
+        if ($("#EnglishVersion").is(":checked")) {
+            $('#ukrTextRow').show();
+        } else {
+            $('#ukrTextRow').hide();
+        }
+    },
 
     InitializeCurators: function (data) {
         var self = this;
@@ -2035,6 +2185,18 @@ var AddTextView = Class.extend({
 
         self.SearchSelectDropdownCurators.setData(self.CuratorNames);
     },
+    InitializeUkrTexts: function (data) {
+        var self = this;
+        self.UkrTextNames = [];
+        self.UkrTextIds = [];
+
+        $.each(data, function (index, element) {
+            self.UkrTextNames.push(element.name);
+            self.UkrTextIds.push(element.id);
+        });
+
+        self.SearchSelectDropdownUkrTexts.setData(self.UkrTextNames);
+    },
 
     Save: function () {
         var self = this;
@@ -2045,9 +2207,14 @@ var AddTextView = Class.extend({
             var curatorId = self.CuratorIds[self.CuratorNames.indexOf($("#dropdown-input-for-curator").val())];
             curatorId = curatorId === "" ? null : curatorId;
 
+            var ukrTextId = self.UkrTextIds[self.UkrTextNames.indexOf($("#dropdown-input-for-ukrText").val())];
+            ukrTextId = ukrTextId === "" ? null : ukrTextId;
+
             var saveTextViewModel = {
                 Id: $("#Id").val() === "" ? null : $("#Id").val(),
                 CuratorId: curatorId,
+                UkrTextId: ukrTextId,
+                EnglishVersion: $('#EnglishVersion').is(":checked"),
                 Name: $("#Name").val(),
                 Subject: $("#Subject").val(),
                 Blocks: {
@@ -2127,11 +2294,11 @@ var AddTextView = Class.extend({
                 }
             });
         }).catch((error) => {
-            
+
         });
 
 
-        
+
 
     },
 
@@ -2237,7 +2404,7 @@ class SimpleImage {
                 if (!src || !src.length || !src.includes("data") || !src.includes("base64"))
                     return;
                 this._createImage(src);
-            } 
+            }
         });
 
         return this.wrapper;
@@ -2353,6 +2520,52 @@ class SimpleVideo {
         }
     }
 }
+
+class ClearStylesTool {
+    static get isInline() {
+        return true;
+    }
+
+    static get title() {
+        return "Clear Styles";
+    }
+
+    static get icon() {
+        return '<svg width="12" height="12" viewBox="0 0 12 12" xmlns="http://www.w3.org/2000/svg"><path d="M9.5 2C9.5 1.17157 8.82843 0.5 8 0.5H4C3.17157 0.5 2.5 1.17157 2.5 2V2.5H0.5V3.5H2.5V10.5H3.5V3.5H5.5V2.5H3.5V2C3.5 1.72386 3.72386 1.5 4 1.5H8C8.27614 1.5 8.5 1.72386 8.5 2V2.5H9.5V2ZM7.5 3.5V10.5H4.5V3.5H7.5Z"/></svg>';
+    }
+
+    //surround(range) {
+    //    const element = this.selection.findParentTag(this.tag);
+    //    if (element) {
+    //        element.outerHTML = element.innerHTML;
+    //    }
+    //}
+
+    surround(range) {
+        const selectedText = range.extractContents();
+        const span = document.createElement("span");
+        span.textContent = selectedText.textContent;
+        range.insertNode(span);
+    }
+
+    checkState() { }
+
+    render() {
+        this.button = document.createElement("div");
+        this.button.classList.add("color-fire-btn");
+        this.button.innerHTML = this.constructor.icon;
+        this.button.title = this.constructor.title;
+        this.button.addEventListener("click", () => {
+            const selection = window.getSelection();
+            if (selection.rangeCount > 0) {
+                const range = selection.getRangeAt(0);
+                this.surround(range);
+            }
+        });
+        return this.button;
+    }
+}
+
 var AddImageTextView = Class.extend({
     Image: null,
     ImageInput: null,
@@ -2529,25 +2742,70 @@ var RevisionCuratorView = Class.extend({
     }
 })
 var CatalogueCuratorView = Class.extend({
+    SelectedText: null,
+    MultiselectAll: null,
+    CuratorTextPlaceholder: null,
+    SearchTextCurator: null,
+
     InitializeControls: function () {
         var self = this;
+
+        var curatorsOptions = {
+            placeholder: self.CuratorTextPlaceholder.value,
+            txtSelected: self.SelectedText.value,
+            txtAll: self.MultiselectAll.value,
+            txtRemove: "Видалити",
+            txtSearch: self.SearchTextCurator.value,
+            height: "300px",
+            Id: "curatorsMultiselect"
+        }
+
+        MultiselectDropdown(curatorsOptions);
 
         self.SubscribeEvents();
     },
     SubscribeEvents: function () {
         var self = this;
 
-        //$(".curator-box").click(function () {
-        //    window.location.href = window.location.origin + "/Curator/Revision?id=" + $(this).attr("value");
-        //});
+        $("#curatorsMultiselect").on('change', function () {
+            self.OnCuratorsChange();
+        });
+    },
+    Search: function () {
+        var self = this;
+
+        
+        var curatorIds = $("#curatorsMultiselect").val();
+
+        $.ajax({
+            type: 'POST',
+            url: "/Curator/GetCurators",
+            data: JSON.stringify(curatorIds),
+            contentType: 'application/json; charset=utf-8',
+            success: function (data) {
+                $(".curator-data-row-container").html(data);
+            }
+        });
+    },
+    OnCuratorsChange: function () {
+        var self = this;
+        self.Search();
     },
     ShowDescription: function (el) {
         var container = $(el).parent().parent().parent();
         var descriptionContainer = container.find(".curator-content-detailed");
+        var bottomArrow = $(el).find(".bottomArrow");
+        var topArrow = $(el).find(".topArrow");
+
         if (descriptionContainer.css('display') === 'flex') {
             descriptionContainer.css('display', 'none');
+            topArrow.css('display', 'none');
+            bottomArrow.css('display', 'block');
+
         } else {
             descriptionContainer.css('display', 'flex');
+            bottomArrow.css('display', 'none');
+            topArrow.css('display', 'block');
         }
     },
     HideDescription: function (el) {

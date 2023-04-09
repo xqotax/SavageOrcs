@@ -1,4 +1,7 @@
 ﻿@using SavageOrcs.Web.ViewModels.Mark
+@using Microsoft.Extensions.Localization
+@using SavageOrcs.Web.Resources.Classes
+@inject LanguageService Language
 @model UnitedCatalogueViewModel
 
 <style>
@@ -11,7 +14,7 @@
 
 <div class="wrapper-search">
     <div class="photo-col">
-        <div class="top-row">Пошук</div>
+        <div class="top-row">@Language.GetMarkKey("SearchHeader")</div>
         <div class="image-placeholder">
             <div class="slideshow-container">
             </div>
@@ -20,8 +23,13 @@
     <div class="table-col">
         <div class="top-row">
             <div class="text-container-small">
-                Ваш гід архівом, впорядкований за вмістом написів,
-                географією та обʼєктами, де були знайдені графіті.
+                @Language.GetMarkKey("SearchDescription")
+            </div>
+            <div class="clear-button-container">
+                <button id="clear-button">@Language.GetMainKey("ButtonClear")</button>
+                <div class="clear-button-img">
+                    <img src="~/images/icons/clear.png" alt="" />
+                </div>
             </div>
         </div>
         <div class="mark-table">
@@ -44,10 +52,7 @@
                             }
                         </select>
                     </div>
-                    <div class="filter-big-text-info">Текст напису</div>
-                    <div class="filter-small-text-info">
-                        <div class="text-container-big">Введіть слова, які має містити напис</div>
-                    </div>
+                    
                 </div>
                 <div class="filter-item">
                     <div class="filter-multiselect-placeholder">
@@ -58,12 +63,15 @@
                             }
                         </select>
                     </div>
-                    <div class="filter-big-text-info">Населений пункт</div>
-                    <div class="filter-small-text-info">
-                        <div class="text-container-big">Почніть вводити назву населеного пункту</div>
-                    </div>
+                    
                 </div>
-                <div class="filter-item">
+                <div class="filter-item-search">
+                    <div class="filter-small-text-info">
+                        @*@Language.GetMainKey("ButtonSearchDescription")*@
+                    </div>
+                    <div id="filter-big-text-info">@Language.GetMainKey("ButtonSearch")</div>
+                </div>
+                @*<div class="filter-item">
                     <div class="filter-multiselect-placeholder">
                         <select name="placesMultiselect" id="placesMultiselect" multiple multiselect-search="true" multiselect-select-all="true" multiselect-hide-x="true">
                             @foreach (var keyWordAndMark in Model.Places)
@@ -72,11 +80,7 @@
                             }
                         </select>
                     </div>
-                    <div class="filter-big-text-info">Обʼєкт</div>
-                    <div class="filter-small-text-info">
-                        <div class="text-container-big"> Введіть локацію напису: школа, вокзал, магазин…</div>
-                    </div>
-                </div>
+                </div>*@
             </div>
             <div class="data-row-container">
                 @await Html.PartialAsync("_CatalogueDataRows", Model.Marks)
@@ -87,10 +91,9 @@
 <div class="wrapper-search-bottom-text">
     <div class="bottom-text-row">
         <div class="bottom-text-col">
-            Маєте матеріали
-            для архіву?
+            @Language.GetMarkKey("SearchAreYouHaveMaterials")
         </div>
-        <div class="bottom-text-col">Пишіть на скриню:</div>
+        <div class="bottom-text-col">@Language.GetMainKey("MainContactUs")</div>
     </div>
     <div class="bottom-text-row">
         <div class="bottom-text-col"></div>
@@ -131,7 +134,12 @@
             slides[slideIndex - 1].style.display = "block";
         }
         var catalogueMarkView = new CatalogueMarkView();
-
+        catalogueMarkView.SelectedText = @Json.Serialize(Language.GetMainKey("MultiselectSelectedText"));
+        catalogueMarkView.AreaTextPlaceholder = @Json.Serialize(Language.GetMarkKey("MultiselectAreaTextPlaceholder"));
+        catalogueMarkView.MultiselectAll = @Json.Serialize(Language.GetMainKey("MultiselectAll"));
+        catalogueMarkView.SearchTextName = @Json.Serialize(Language.GetMarkKey("MultiselectSearchTextName"));
+        catalogueMarkView.SearchTextArea = @Json.Serialize(Language.GetMarkKey("MultiselectSearchTextArea"));
+        catalogueMarkView.NameTextPlaceholder = @Json.Serialize(Language.GetMarkKey("MultiselectNameTextPlaceholder"));
         $(document).ready(function () {
             catalogueMarkView.InitializeControls();
             $(".data-row-container").css("overflow-x", "hidden");

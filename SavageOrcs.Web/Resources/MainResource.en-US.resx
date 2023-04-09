@@ -117,19 +117,103 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="ButtonClear" xml:space="preserve">
+    <value>Clear</value>
+  </data>
+  <data name="ButtonSearch" xml:space="preserve">
+    <value>Search</value>
+  </data>
+  <data name="ButtonSearchDescription" xml:space="preserve">
+    <value>If you want to enter a criterion, click "Search"</value>
+  </data>
   <data name="Description" xml:space="preserve">
     <value>Якийсь опис</value>
   </data>
-  <data name="EnglishHeaderText" xml:space="preserve">
-    <value>ENG</value>
+  <data name="EighteenPlusPopupBigText" xml:space="preserve">
+    <value>Some images on this website contain explicit language and hate speech.</value>
   </data>
-  <data name="Menu" xml:space="preserve">
-    <value>Menu</value>
+  <data name="EighteenPlusPopupClickHere" xml:space="preserve">
+    <value>Click to continue</value>
+  </data>
+  <data name="EighteenPlusPopupSmallText" xml:space="preserve">
+    <value>You are advised to leave if you are underage or sensitive to Russians’ aggressive expressions.</value>
+  </data>
+  <data name="FooterAllProtected" xml:space="preserve">
+    <value>All rights reserved</value>
+  </data>
+  <data name="FooterDescription" xml:space="preserve">
+    <value>The site was created by the team of the cultural institution "Mizhvukhamy"</value>
+  </data>
+  <data name="FooterDocumentingUkraine" xml:space="preserve">
+    <value>The project was created with the support of the program</value>
+  </data>
+  <data name="FooterInfoPartner" xml:space="preserve">
+    <value>Information partner</value>
+  </data>
+  <data name="FooterJoinInstagram" xml:space="preserve">
+    <value>Join our community in</value>
+  </data>
+  <data name="FooterMihzvyhamu" xml:space="preserve">
+    <value>The archive was created by the team cultural institution "Mizhvukhamy"</value>
+  </data>
+  <data name="MainContactsOffer" xml:space="preserve">
+    <value>Want to join the project?</value>
+  </data>
+  <data name="MainContactUs" xml:space="preserve">
+    <value>Contact us:</value>
+  </data>
+  <data name="MainLeftColProjectDescription" xml:space="preserve">
+    <value>This is an archive of inscriptions the Russian military have left during the occupation of the territories of Ukraine since February 2022. Here you will find eloquent artifacts of the "Russian culture" that breeds military aggression, as well as evidence of Russian war crimes.</value>
+  </data>
+  <data name="MainMapLabel" xml:space="preserve">
+    <value>Map</value>
+  </data>
+  <data name="MainPhotoBigText" xml:space="preserve">
+    <value>An open archive of the inscriptions of the Russian occupiers in Ukraine</value>
+  </data>
+  <data name="MainPhotoResourceArea" xml:space="preserve">
+    <value>Velykodymer community, Kyiv region.</value>
+  </data>
+  <data name="MainPhotoResourceDescription" xml:space="preserve">
+    <value>Inscription by the Russian military "Your home is our home" in the home of local residents.</value>
+  </data>
+  <data name="MainPhotoResourceName" xml:space="preserve">
+    <value>Photo credit: ProSLAV.</value>
+  </data>
+  <data name="MainRightColProjectDescription" xml:space="preserve">
+    <value>The database is collected by the team of the Mizhvukhamy cultural institution. In the project’s framework, we go on expeditions through the de-occupied territories and monitor open sources. The archive is open for use by researchers, artists, and everyone who works for the victory of Ukraine.</value>
+  </data>
+  <data name="MultiselectAll" xml:space="preserve">
+    <value>All</value>
+  </data>
+  <data name="MultiselectSelectedText" xml:space="preserve">
+    <value>selected</value>
+  </data>
+  <data name="SideMenuContributorsButton" xml:space="preserve">
+    <value>Contributors</value>
+  </data>
+  <data name="SideMenuContributorsLabel" xml:space="preserve">
+    <value>Experts who joined the project</value>
+  </data>
+  <data name="SideMenuSearchButton" xml:space="preserve">
+    <value>Search</value>
+  </data>
+  <data name="SideMenuSearchLabel" xml:space="preserve">
+    <value>Your guide to the archive, organized by inscription content, geography, and sites where graffiti were found</value>
+  </data>
+  <data name="SideMenuTextsButton" xml:space="preserve">
+    <value>Texts</value>
+  </data>
+  <data name="SideMenuTextsLabel" xml:space="preserve">
+    <value>Analysis and reflections based on archive materials</value>
   </data>
   <data name="Title" xml:space="preserve">
     <value>Wall Evidence</value>
   </data>
-  <data name="UkrainianHeaderText" xml:space="preserve">
-    <value>UKR</value>
+  <data name="WallEvidence" xml:space="preserve">
+    <value>Wall evidence</value>
+  </data>
+  <data name="Warning" xml:space="preserve">
+    <value>Warning</value>
   </data>
 </root>

@@ -50,38 +50,49 @@ namespace SavageOrcs.Services
             return cluster is null ? null : CreateClusterDto(cluster, withImage);
         }
 
-        public async Task<ClusterDto[]> GetClustersByFilters(Guid[]? keyWordIds,  Guid[]? clusterIds, Guid[]? placeIds, Guid[]? areaIds)
+        public async Task<ClusterDto[]> GetClustersByFilters(Guid[]? keyWordIds,  Guid[]? clusterIds, Guid[]? areaIds)
         {
             var clusters = await _clusterRepository.GetAllAsync();
 
-            var keyWords = Array.Empty<string>();
-            var places = Array.Empty<GuidIdAndStringName>();
+            var resultClusters = new List<Cluster>();
 
             var filterByClusterIds = clusterIds is not null && clusterIds.Length > 0;
             var filterByKeyWordIds = keyWordIds is not null && keyWordIds.Length > 0;
-            var filterByPlaceIds = placeIds is not null && placeIds.Length > 0;
             var filterByAreaIds = areaIds is not null && areaIds.Length > 0;
+
+            if ( !filterByClusterIds && !filterByKeyWordIds && !filterByAreaIds)
+                return clusters.Select(x => CreateClusterDto(x)).ToArray();
 
             if (filterByKeyWordIds)
             {
-                keyWords = (await _helperService.GetAllKeyWords()).Where(x => keyWordIds.Contains(x.Id) && !string.IsNullOrEmpty(x.Name)).Select(x => x.Name).ToArray();
+                var keyWords = (await _helperService.GetAllKeyWords()).Where(x => keyWordIds.Contains(x.Id) && !string.IsNullOrEmpty(x.Name)).Select(x => x.Name).ToArray();
+                resultClusters.AddRange(clusters
+                   .Where(x =>
+                       !string.IsNullOrEmpty(x.DescriptionEng)
+                       && keyWords.Any(y =>
+                           y.Contains(x.DescriptionEng, StringComparison.OrdinalIgnoreCase)) ||
+                           !string.IsNullOrEmpty(x.Description)
+                       && keyWords.Any(y =>
+                           y.Contains(x.Description, StringComparison.OrdinalIgnoreCase)) ||
+                           !string.IsNullOrEmpty(x.Name)
+                       && keyWords.Any(y =>
+                           y.Contains(x.Name, StringComparison.OrdinalIgnoreCase)))
+                   .ToList());
             }
 
-            if (filterByPlaceIds)
+            if (filterByClusterIds)
             {
-                places = (await _helperService.GetAllKeyWords()).Where(x => placeIds.Contains(x.Id) && !string.IsNullOrEmpty(x.Name)).ToArray();
+                resultClusters.AddRange(clusters.Where(x => clusterIds.Contains(x.Id)).ToList());
             }
 
-            clusters = clusters.Where(x => (filterByClusterIds && clusterIds.Contains(x.Id))
-            || (filterByAreaIds && x.AreaId.HasValue && areaIds.Contains(x.AreaId.Value))
-            || (filterByKeyWordIds &&
-                (!string.IsNullOrEmpty(x.DescriptionEng) && keyWords.Any(y => y.Contains(x.DescriptionEng)) ||
-                 !string.IsNullOrEmpty(x.Description) && keyWords.Any(y => y.Contains(x.Description)) ||
-                 !string.IsNullOrEmpty(x.Name) && keyWords.Any(y => y.Contains(x.Name))))
-            || (filterByPlaceIds && places.Any(a => x.PlaceToClusters.Select(y => y.PlaceId).Contains(a.Id)))
-            ).ToArray();
+            if (filterByAreaIds)
+            {
+                resultClusters.AddRange(clusters.Where(x => x.AreaId.HasValue && areaIds.Contains(x.AreaId.Value)).ToList());
+            }
 
-            return clusters.Select(x => CreateClusterDto(x)).ToArray();
+            resultClusters = resultClusters.GroupBy(x => x.Id).Select(x => x.First()).ToList();
+
+            return resultClusters.Select(x => CreateClusterDto(x)).ToArray();
         }
 
         public async Task<ClusterSaveResultDto> SaveCluster(ClusterSaveDto clusterSaveDto)
@@ -109,9 +120,16 @@ namespace SavageOrcs.Services
             cluster.Lat = clusterSaveDto.Lat;
             cluster.Lng = clusterSaveDto.Lng;
             cluster.MapId = clusterSaveDto.MapId;
-            cluster.AreaId = clusterSaveDto.AreaId;
-            cluster.CuratorId = clusterSaveDto.CuratorId;
 
+            if (clusterSaveDto.AreaId == _Constants.EmptySelect)
+                cluster.AreaId = null;
+            else
+                cluster.AreaId = clusterSaveDto.AreaId;
+
+            if (clusterSaveDto.CuratorId == _Constants.EmptySelect)
+                cluster.CuratorId = null;
+            else
+                cluster.CuratorId = clusterSaveDto.CuratorId;
 
             foreach (var placeToCluster in cluster.PlaceToClusters)
             {

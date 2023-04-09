@@ -1,4 +1,5 @@
-﻿@using SavageOrcs.Web.Resources
+﻿@using Microsoft.Extensions.Localization
+@using SavageOrcs.Web.Resources
 @using SavageOrcs.Web.Resources.Classes
 @inject LanguageService Language
 <!DOCTYPE html>
@@ -9,8 +10,8 @@
     <meta content="width=device-width, initial-scale=1" name="viewport" />
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/jquery/jquery.cookie.js"></script>
-    <title>@Language.GetKey("Title")</title>
-    <meta name="description" content="@Language.GetKey("Description")">
+    <title>@Language.GetMainKey("Title")</title>
+    <meta name="description" content="@Language.GetMainKey("Description")">
 
     <meta name="keywords" content="Війна, Україна, росія, Орки, вандалізм, Гаага, російські злочини, карта з фотографіями, геноцид">
     <meta name="Author" content="Культурна інституція «Міжвухами»">
@@ -20,7 +21,7 @@
     <meta property="og:site_name" content="Настінні докази" />
     <meta property='og:url' content="https://wallevidence.mizhvukhamy.com/">
     <meta property='og:title' content="Wall Evidence">
-    <meta property='og:description' content=@Language.GetKey("Description")>
+    <meta property='og:description' content=@Language.GetMainKey("Description")>
     <meta property='og:image' content="~/images/redCircle.png">
     <meta property='og:type' content="website">
    @* <meta name="robots" content="all">             TO ADD WHILE FINAL DEPLOY*@
@@ -28,48 +29,10 @@
     <meta name="twitter:card" content="summary">
     <meta name="twitter:site" content="Культурна інституція «Міжвухами»">
     <meta name="twitter:title" content="Wall Evidence">
-    <meta name="twitter:description" content=@Language.GetKey("Description")>
+    <meta name="twitter:description" content=@Language.GetMainKey("Description")>
     <meta name="twitter:image" content="~/images/redCircle.png">
     <link rel="icon" href="~/images/icons/redCircle.ico">
-
-
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/css/site-mobile.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/css/curator/curator.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/css/curator/curatorAdmin.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/css/text/text.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/css/text/textAdmin.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/css/mark/mark.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/css/mark/markAdmin.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/css/admin/AdminMenu.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/css/admin/identity.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/css/admin/keyWordAndPlaces.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/css/multiselect.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/css/styles.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/css/rightScroll.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/css/font-face.css" asp-append-version="true" />
-    <style>
-        a {
-          color: initial;
-          background-color: initial;
-          border: initial;
-          text-decoration: initial;
-        }
-        a:visited {
-          color: initial;
-          background-color: initial;
-          border: initial;
-          text-decoration: initial;
-        }
-        a:hover {
-          color: initial;
-          background-color: initial;
-          border: initial;
-          text-decoration: initial;
-        }
-    </style>
-    @*<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.18/dist/css/bootstrap-select.min.css">*@
+    @await Html.PartialAsync("_Styles")
 </head>
 <body>
     <div id="18PlusPopupPlaceholder"></div>
@@ -99,13 +62,12 @@
     </script>
     <header>
         <nav class="burger">
-            <div class="menu-line horisontal-line"></div>
-            <div class="menu-line horisontal-line"></div>
+            <img src="~/images/main/burger.png" alt="cross" />
         </nav>
         <nav class="cross">
             <img src="~/images/main/cross.svg" alt="cross" />
         </nav>
-        <a class="logo-text" style="color: #0F0F0F; text-decoration: none" asp-controller="Map" asp-action="Main">Настінні докази</a>
+        <a class="logo-text" asp-controller="Map" asp-action="Main">@Language.GetMainKey("WallEvidence")</a>
         <partial name="_SideMenu.cshtml" />
     </header>
     <main role="main" class="container-custom">
@@ -114,19 +76,20 @@
     <footer>
         <div class="d-flex justify-content-between-lg footer-text">
             <div class="footer-main-text">
-                СЛІДКУЙТЕ ЗА НАШИМ ПРОЄКТОМ В
-                <a href="https://www.instagram.com/xqotax/" style="color: #FF2929">
+                @Language.GetMainKey("FooterJoinInstagram")
+                <a href="https://instagram.com/wallevidence?igshid=ZjE2NGZiNDQ= " style="color: #FF2929">
                     INSTAGRAM
                 </a>
             </div>
-            <div class="footer-copy-text">Всі права захищено &copy; 2023</div>
+            <div class="footer-copy-text"> 
+                <p>@Language.GetMainKey("FooterDescription")</p>
+                <p>@Language.GetMainKey("FooterAllProtected") &copy; 2023</p>
+            </div>
         </div>
         <div class="d-flex justify-content-between footer-refernce">
             <div class="teams">
                 <div class="team-text">
-                    Архів створено командою
-                    культурної інституції
-                    «Міжвухами»
+                    @Language.GetMainKey("FooterMihzvyhamu")
                 </div>
                 <div class="reference-images">
                     <a href="https://www.facebook.com/mizhvukhamyfb">
@@ -137,21 +100,22 @@
             </div>
             <div class="teams">
                 <div class="team-text">
-                    Проєкт створено за підтримки програми
+                    @Language.GetMainKey("FooterDocumentingUkraine")
                 </div>
                 <div class="reference-images">
-                    <a href="https://www.iwm.at/program/documenting-ukraine">
+                    <a href="https://www.iwm.at/documenting-ukraine">
                         <img src="~/images/main/documentingUkraine.png" alt="Documenting Ukraine" />
                     </a>
                 </div>
             </div>
             <div class="teams">
                 <div class="team-text">
-                    Інформаційний партнер
+                    @Language.GetMainKey("FooterInfoPartner")
                 </div>
                 <div class="reference-images">
-                    <img src="~/images/main/Ukraine.png" alt="Ukraine" />
-
+                    <a href="https://ukrainer.net/nastinni-napysy/?fbclid=IwAR2Z4Ty3kdFmAj7vhZRBOqsbrkhP7x2AvAq9g665FbcjpUd3jcxj7iyk070">
+                        <img src="~/images/main/Ukraine.png" alt="Ukraine" />
+                    </a>
                 </div>
             </div>
         </div>
@@ -161,51 +125,18 @@
     <script src="~/js/site.js" asp-append-version="true"></script>
     <script src="~/lib/multiselect/multiselect-dropdown.js" asp-append-version="true"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.18/dist/js/bootstrap-select.min.js"></script>
-
     <script>
-        $(function () {
-            var state = true;
-            $(".cross, .burger").on("click", function () {
-                if (state) {
-                    var clientWidth = window.innerWidth;
-                    if (clientWidth > 900){
-                        $(".hidden-menu").animate({
-                            width: window.innerWidth - 116
-                        }, 400);
-                    }
-                    else if (clientWidth < 450) {
-                        $(".hidden-menu").animate({
-                            height: (window.innerHeight - 140) * 0.75
-                        }, 400);
-                    }
-                    $(".burger").css({ display: 'none' });
-                    $(".cross").css({ display: 'flex' });
-                    $(".hidden-menu").css({ display: 'flex' });
-                    
-                } else {
-                    var clientWidth = window.innerWidth;
-                    if (clientWidth > 900) {
-                        $(".hidden-menu").animate({
-                            width: 0
-                        }, 400);
-                    }
-                    else if (clientWidth < 450) {
-                        $(".hidden-menu").animate({
-                            height: 200
-                        }, 400);
-                    }
-
-                    $(".burger").css({ display: 'flex' });
-                    $(".cross").css({ display: 'none' });
-                    
-                    setTimeout(function () {
-                        $(".hidden-menu").css({ display: 'none' });
-                    }, 400);
+        $(document).ready(function () {
+            setTimeout(() => {
+                var setMultiselctWidht = window.innerWidth < 700 
+                if (setMultiselctWidht)
+                {
+                    $(".multiselect-dropdown-custom-list").css({"height": "200px"});
                 }
-                state = !state;
-            });
+            }, 200);
         });
     </script>
+    
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
