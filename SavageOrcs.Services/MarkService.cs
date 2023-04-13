@@ -7,6 +7,7 @@ using SavageOrcs.DbContext.Migrations;
 using SavageOrcs.Repositories.Interfaces;
 using SavageOrcs.Services.Interfaces;
 using SavageOrcs.UnitOfWork;
+using System.Text.RegularExpressions;
 
 namespace SavageOrcs.Services
 {
@@ -19,7 +20,7 @@ namespace SavageOrcs.Services
         private readonly IRepository<TextToMark> _textsToMarksRepository;
 
 
-        public MarkService(IUnitOfWork unitOfWork, IRepository<Mark> markRepository, IRepository<Image> imageRepository, IRepository<TextToMark> textsToMarksRepository,  IHelperService helperService, IRepository<PlaceToMark> placeToMarkRepository) : base(unitOfWork)
+        public MarkService(IUnitOfWork unitOfWork, IRepository<Mark> markRepository, IRepository<Image> imageRepository, IRepository<TextToMark> textsToMarksRepository, IHelperService helperService, IRepository<PlaceToMark> placeToMarkRepository) : base(unitOfWork)
         {
             _markRepository = markRepository;
             _imageRepository = imageRepository;
@@ -53,20 +54,45 @@ namespace SavageOrcs.Services
             {
                 var keyWords = (await _helperService.GetAllKeyWords()).Where(x => keyWordIds.Contains(x.Id) && !string.IsNullOrEmpty(x.Name)).Select(x => x.Name).ToArray();
 
-                resultMarks.AddRange(marks
-                    .Where(x => 
-                        !string.IsNullOrEmpty(x.DescriptionEng) 
-                        && keyWords.Any(y => 
-                            y.Contains(x.DescriptionEng, StringComparison.OrdinalIgnoreCase)) ||
-                            !string.IsNullOrEmpty(x.Description) 
-                        && keyWords.Any(y => 
-                            y.Contains(x.Description, StringComparison.OrdinalIgnoreCase)) ||
-                            !string.IsNullOrEmpty(x.Name) 
-                        && keyWords.Any(y => 
-                            y.Contains(x.Name, StringComparison.OrdinalIgnoreCase)))
-                    .ToList());
+                foreach (var mark in marks)
+                {
+                    if (!string.IsNullOrEmpty(mark.DescriptionEng)
+                        && keyWords.Any(y => Regex.IsMatch(mark.DescriptionEng, @"\b" + Regex.Escape(y) + @"\b", RegexOptions.IgnoreCase)
+                        || Regex.IsMatch(y, @"\b" + Regex.Escape(mark.DescriptionEng) + @"\b", RegexOptions.IgnoreCase)))
+                    {
+                        resultMarks.Add(mark);
+                        continue;
+                    }
+                    if (!string.IsNullOrEmpty(mark.Description)
+                        && keyWords.Any(y => Regex.IsMatch(mark.Description, @"\b" + Regex.Escape(y) + @"\b", RegexOptions.IgnoreCase)
+                        || Regex.IsMatch(y, @"\b" + Regex.Escape(mark.Description) + @"\b", RegexOptions.IgnoreCase)))
+                    {
+                        resultMarks.Add(mark);
+                        continue;
+                    }
+                    if (!string.IsNullOrEmpty(mark.Name)
+                        && keyWords.Any(y => Regex.IsMatch(mark.Name, @"\b" + Regex.Escape(y) + @"\b", RegexOptions.IgnoreCase)
+                        || Regex.IsMatch(y, @"\b" + Regex.Escape(mark.Name) + @"\b", RegexOptions.IgnoreCase)))
+                    {
+                        resultMarks.Add(mark);
+                        continue;
+                    }
+                }
+
+                //resultMarks.AddRange(marks
+                //    .Where(x =>
+                //        (!string.IsNullOrEmpty(x.DescriptionEng)
+                //        && keyWords.Any(y =>
+                //            y.Contains(x.DescriptionEng, StringComparison.OrdinalIgnoreCase))) ||
+                //            (!string.IsNullOrEmpty(x.Description)
+                //        && keyWords.Any(y =>
+                //            y.Contains(x.Description, StringComparison.OrdinalIgnoreCase))) ||
+                //            (!string.IsNullOrEmpty(x.Name)
+                //        && keyWords.Any(y =>
+                //            y.Contains(x.Name, StringComparison.OrdinalIgnoreCase))))
+                //    .ToList());
             }
-            
+
 
             if (filterByMarkIds)
             {
@@ -222,7 +248,7 @@ namespace SavageOrcs.Services
             if (markSaveDto.ClusterId == _Constants.EmptySelect)
                 mark.ClusterId = null;
             else
-                mark.ClusterId = markSaveDto.ClusterId; 
+                mark.ClusterId = markSaveDto.ClusterId;
 
             if (markSaveDto.CuratorId == _Constants.EmptySelect)
                 mark.CuratorId = null;

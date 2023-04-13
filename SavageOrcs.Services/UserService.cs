@@ -45,7 +45,7 @@ namespace SavageOrcs.Services
 
             if (!string.IsNullOrEmpty(email))
             {
-                users = users.Where(x => x.Email == email);
+                users = users.Where(x => x.Email.Contains(email));
             }
 
             if (!string.IsNullOrEmpty(fullName))

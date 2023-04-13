@@ -27,7 +27,7 @@
     Search: function () {
         var self = this;
 
-        var filters = {
+        var userCatalogueFilter = {
             Name: $("#Name").val(),
             Email: $("#Email").val()
         };
@@ -35,7 +35,7 @@
         $.ajax({
             type: 'POST',
             url: "/User/GetUsers",
-            data: JSON.stringify(filters),
+            data: JSON.stringify(userCatalogueFilter),
             contentType: 'application/json; charset=utf-8',
             success: function (data) {
                 $(".table-body-catalogue-user").empty();

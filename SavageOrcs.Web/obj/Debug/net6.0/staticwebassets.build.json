@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "h2ON9oYIq1FZ1VpHvoI5r87RLlO3CvMAZ8gFtAfM/Zs=",
+  "Hash": "iIpIaJY1V4yNTd17Gjzo3MaJW0G13IGyM9fPf1nl2aE=",
   "Source": "SavageOrcs.Web",
   "BasePath": "_content/SavageOrcs.Web",
   "Mode": "Default",
@@ -10,17 +10,17 @@
     {
       "Name": "SavageOrcs.Web\\wwwroot",
       "Source": "SavageOrcs.Web",
-      "ContentRoot": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\wwwroot\\",
+      "ContentRoot": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\",
       "BasePath": "_content/SavageOrcs.Web",
       "Pattern": "**"
     }
   ],
   "Assets": [
     {
-      "Identity": "C:\\Users\\skrip\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\css\\site.css",
+      "Identity": "C:\\Users\\Yurij Skripnik\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\css\\site.css",
       "SourceId": "Microsoft.AspNetCore.Identity.UI",
       "SourceType": "Package",
-      "ContentRoot": "C:\\Users\\skrip\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\",
+      "ContentRoot": "C:\\Users\\Yurij Skripnik\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\",
       "BasePath": "Identity",
       "RelativePath": "css/site.css",
       "AssetKind": "All",
@@ -31,13 +31,13 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "C:\\Users\\skrip\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\css\\site.css"
+      "OriginalItemSpec": "C:\\Users\\Yurij Skripnik\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\css\\site.css"
     },
     {
-      "Identity": "C:\\Users\\skrip\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\favicon.ico",
+      "Identity": "C:\\Users\\Yurij Skripnik\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\favicon.ico",
       "SourceId": "Microsoft.AspNetCore.Identity.UI",
       "SourceType": "Package",
-      "ContentRoot": "C:\\Users\\skrip\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\",
+      "ContentRoot": "C:\\Users\\Yurij Skripnik\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\",
       "BasePath": "Identity",
       "RelativePath": "favicon.ico",
       "AssetKind": "All",
@@ -48,13 +48,13 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "C:\\Users\\skrip\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\favicon.ico"
+      "OriginalItemSpec": "C:\\Users\\Yurij Skripnik\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\favicon.ico"
     },
     {
-      "Identity": "C:\\Users\\skrip\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\js\\site.js",
+      "Identity": "C:\\Users\\Yurij Skripnik\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\js\\site.js",
       "SourceId": "Microsoft.AspNetCore.Identity.UI",
       "SourceType": "Package",
-      "ContentRoot": "C:\\Users\\skrip\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\",
+      "ContentRoot": "C:\\Users\\Yurij Skripnik\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\",
       "BasePath": "Identity",
       "RelativePath": "js/site.js",
       "AssetKind": "All",
@@ -65,13 +65,13 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "C:\\Users\\skrip\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\js\\site.js"
+      "OriginalItemSpec": "C:\\Users\\Yurij Skripnik\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\js\\site.js"
     },
     {
-      "Identity": "C:\\Users\\skrip\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\lib\\bootstrap\\dist\\css\\bootstrap.css",
+      "Identity": "C:\\Users\\Yurij Skripnik\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\lib\\bootstrap\\dist\\css\\bootstrap.css",
       "SourceId": "Microsoft.AspNetCore.Identity.UI",
       "SourceType": "Package",
-      "ContentRoot": "C:\\Users\\skrip\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\",
+      "ContentRoot": "C:\\Users\\Yurij Skripnik\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\",
       "BasePath": "Identity",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap.css",
       "AssetKind": "All",
@@ -82,13 +82,13 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "C:\\Users\\skrip\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\lib\\bootstrap\\dist\\css\\bootstrap.css"
+      "OriginalItemSpec": "C:\\Users\\Yurij Skripnik\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\lib\\bootstrap\\dist\\css\\bootstrap.css"
     },
     {
-      "Identity": "C:\\Users\\skrip\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\lib\\bootstrap\\dist\\css\\bootstrap.css.map",
+      "Identity": "C:\\Users\\Yurij Skripnik\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\lib\\bootstrap\\dist\\css\\bootstrap.css.map",
       "SourceId": "Microsoft.AspNetCore.Identity.UI",
       "SourceType": "Package",
-      "ContentRoot": "C:\\Users\\skrip\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\",
+      "ContentRoot": "C:\\Users\\Yurij Skripnik\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\",
       "BasePath": "Identity",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap.css.map",
       "AssetKind": "All",
@@ -99,13 +99,13 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "C:\\Users\\skrip\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\lib\\bootstrap\\dist\\css\\bootstrap.css.map"
+      "OriginalItemSpec": "C:\\Users\\Yurij Skripnik\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\lib\\bootstrap\\dist\\css\\bootstrap.css.map"
     },
     {
-      "Identity": "C:\\Users\\skrip\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\lib\\bootstrap\\dist\\css\\bootstrap.min.css",
+      "Identity": "C:\\Users\\Yurij Skripnik\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\lib\\bootstrap\\dist\\css\\bootstrap.min.css",
       "SourceId": "Microsoft.AspNetCore.Identity.UI",
       "SourceType": "Package",
-      "ContentRoot": "C:\\Users\\skrip\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\",
+      "ContentRoot": "C:\\Users\\Yurij Skripnik\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\",
       "BasePath": "Identity",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap.min.css",
       "AssetKind": "All",
@@ -116,13 +116,13 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "C:\\Users\\skrip\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\lib\\bootstrap\\dist\\css\\bootstrap.min.css"
+      "OriginalItemSpec": "C:\\Users\\Yurij Skripnik\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\lib\\bootstrap\\dist\\css\\bootstrap.min.css"
     },
     {
-      "Identity": "C:\\Users\\skrip\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\lib\\bootstrap\\dist\\css\\bootstrap.min.css.map",
+      "Identity": "C:\\Users\\Yurij Skripnik\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\lib\\bootstrap\\dist\\css\\bootstrap.min.css.map",
       "SourceId": "Microsoft.AspNetCore.Identity.UI",
       "SourceType": "Package",
-      "ContentRoot": "C:\\Users\\skrip\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\",
+      "ContentRoot": "C:\\Users\\Yurij Skripnik\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\",
       "BasePath": "Identity",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap.min.css.map",
       "AssetKind": "All",
@@ -133,13 +133,13 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "C:\\Users\\skrip\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\lib\\bootstrap\\dist\\css\\bootstrap.min.css.map"
+      "OriginalItemSpec": "C:\\Users\\Yurij Skripnik\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\lib\\bootstrap\\dist\\css\\bootstrap.min.css.map"
     },
     {
-      "Identity": "C:\\Users\\skrip\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css",
+      "Identity": "C:\\Users\\Yurij Skripnik\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css",
       "SourceId": "Microsoft.AspNetCore.Identity.UI",
       "SourceType": "Package",
-      "ContentRoot": "C:\\Users\\skrip\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\",
+      "ContentRoot": "C:\\Users\\Yurij Skripnik\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\",
       "BasePath": "Identity",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap.rtl.css",
       "AssetKind": "All",
@@ -150,13 +150,13 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "C:\\Users\\skrip\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css"
+      "OriginalItemSpec": "C:\\Users\\Yurij Skripnik\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css"
     },
     {
-      "Identity": "C:\\Users\\skrip\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css.map",
+      "Identity": "C:\\Users\\Yurij Skripnik\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css.map",
       "SourceId": "Microsoft.AspNetCore.Identity.UI",
       "SourceType": "Package",
-      "ContentRoot": "C:\\Users\\skrip\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\",
+      "ContentRoot": "C:\\Users\\Yurij Skripnik\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\",
       "BasePath": "Identity",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap.rtl.css.map",
       "AssetKind": "All",
@@ -167,13 +167,13 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "C:\\Users\\skrip\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css.map"
+      "OriginalItemSpec": "C:\\Users\\Yurij Skripnik\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css.map"
     },
     {
-      "Identity": "C:\\Users\\skrip\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css",
+      "Identity": "C:\\Users\\Yurij Skripnik\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css",
       "SourceId": "Microsoft.AspNetCore.Identity.UI",
       "SourceType": "Package",
-      "ContentRoot": "C:\\Users\\skrip\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\",
+      "ContentRoot": "C:\\Users\\Yurij Skripnik\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\",
       "BasePath": "Identity",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap.rtl.min.css",
       "AssetKind": "All",
@@ -184,13 +184,13 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "C:\\Users\\skrip\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css"
+      "OriginalItemSpec": "C:\\Users\\Yurij Skripnik\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css"
     },
     {
-      "Identity": "C:\\Users\\skrip\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css.map",
+      "Identity": "C:\\Users\\Yurij Skripnik\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css.map",
       "SourceId": "Microsoft.AspNetCore.Identity.UI",
       "SourceType": "Package",
-      "ContentRoot": "C:\\Users\\skrip\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\",
+      "ContentRoot": "C:\\Users\\Yurij Skripnik\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\",
       "BasePath": "Identity",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap.rtl.min.css.map",
       "AssetKind": "All",
@@ -201,13 +201,13 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "C:\\Users\\skrip\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css.map"
+      "OriginalItemSpec": "C:\\Users\\Yurij Skripnik\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css.map"
     },
     {
-      "Identity": "C:\\Users\\skrip\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css",
+      "Identity": "C:\\Users\\Yurij Skripnik\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css",
       "SourceId": "Microsoft.AspNetCore.Identity.UI",
       "SourceType": "Package",
-      "ContentRoot": "C:\\Users\\skrip\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\",
+      "ContentRoot": "C:\\Users\\Yurij Skripnik\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\",
       "BasePath": "Identity",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-grid.css",
       "AssetKind": "All",
@@ -218,13 +218,13 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "C:\\Users\\skrip\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css"
+      "OriginalItemSpec": "C:\\Users\\Yurij Skripnik\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css"
     },
     {
-      "Identity": "C:\\Users\\skrip\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css.map",
+      "Identity": "C:\\Users\\Yurij Skripnik\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css.map",
       "SourceId": "Microsoft.AspNetCore.Identity.UI",
       "SourceType": "Package",
-      "ContentRoot": "C:\\Users\\skrip\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\",
+      "ContentRoot": "C:\\Users\\Yurij Skripnik\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\",
       "BasePath": "Identity",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-grid.css.map",
       "AssetKind": "All",
@@ -235,13 +235,13 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "C:\\Users\\skrip\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css.map"
+      "OriginalItemSpec": "C:\\Users\\Yurij Skripnik\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css.map"
     },
     {
-      "Identity": "C:\\Users\\skrip\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css",
+      "Identity": "C:\\Users\\Yurij Skripnik\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css",
       "SourceId": "Microsoft.AspNetCore.Identity.UI",
       "SourceType": "Package",
-      "ContentRoot": "C:\\Users\\skrip\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\",
+      "ContentRoot": "C:\\Users\\Yurij Skripnik\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\",
       "BasePath": "Identity",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-grid.min.css",
       "AssetKind": "All",
@@ -252,13 +252,13 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "C:\\Users\\skrip\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css"
+      "OriginalItemSpec": "C:\\Users\\Yurij Skripnik\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css"
     },
     {
-      "Identity": "C:\\Users\\skrip\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css.map",
+      "Identity": "C:\\Users\\Yurij Skripnik\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css.map",
       "SourceId": "Microsoft.AspNetCore.Identity.UI",
       "SourceType": "Package",
-      "ContentRoot": "C:\\Users\\skrip\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\",
+      "ContentRoot": "C:\\Users\\Yurij Skripnik\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\",
       "BasePath": "Identity",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-grid.min.css.map",
       "AssetKind": "All",
@@ -269,13 +269,13 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "C:\\Users\\skrip\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css.map"
+      "OriginalItemSpec": "C:\\Users\\Yurij Skripnik\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css.map"
     },
     {
-      "Identity": "C:\\Users\\skrip\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css",
+      "Identity": "C:\\Users\\Yurij Skripnik\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css",
       "SourceId": "Microsoft.AspNetCore.Identity.UI",
       "SourceType": "Package",
-      "ContentRoot": "C:\\Users\\skrip\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\",
+      "ContentRoot": "C:\\Users\\Yurij Skripnik\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\",
       "BasePath": "Identity",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-grid.rtl.css",
       "AssetKind": "All",
@@ -286,13 +286,13 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "C:\\Users\\skrip\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css"
+      "OriginalItemSpec": "C:\\Users\\Yurij Skripnik\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css"
     },
     {
-      "Identity": "C:\\Users\\skrip\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css.map",
+      "Identity": "C:\\Users\\Yurij Skripnik\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css.map",
       "SourceId": "Microsoft.AspNetCore.Identity.UI",
       "SourceType": "Package",
-      "ContentRoot": "C:\\Users\\skrip\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\",
+      "ContentRoot": "C:\\Users\\Yurij Skripnik\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\",
       "BasePath": "Identity",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-grid.rtl.css.map",
       "AssetKind": "All",
@@ -303,13 +303,13 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "C:\\Users\\skrip\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css.map"
+      "OriginalItemSpec": "C:\\Users\\Yurij Skripnik\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css.map"
     },
     {
-      "Identity": "C:\\Users\\skrip\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css",
+      "Identity": "C:\\Users\\Yurij Skripnik\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css",
       "SourceId": "Microsoft.AspNetCore.Identity.UI",
       "SourceType": "Package",
-      "ContentRoot": "C:\\Users\\skrip\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\",
+      "ContentRoot": "C:\\Users\\Yurij Skripnik\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\",
       "BasePath": "Identity",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-grid.rtl.min.css",
       "AssetKind": "All",
@@ -320,13 +320,13 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "C:\\Users\\skrip\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css"
+      "OriginalItemSpec": "C:\\Users\\Yurij Skripnik\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css"
     },
     {
-      "Identity": "C:\\Users\\skrip\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css.map",
+      "Identity": "C:\\Users\\Yurij Skripnik\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css.map",
       "SourceId": "Microsoft.AspNetCore.Identity.UI",
       "SourceType": "Package",
-      "ContentRoot": "C:\\Users\\skrip\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\",
+      "ContentRoot": "C:\\Users\\Yurij Skripnik\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\",
       "BasePath": "Identity",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-grid.rtl.min.css.map",
       "AssetKind": "All",
@@ -337,13 +337,13 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "C:\\Users\\skrip\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css.map"
+      "OriginalItemSpec": "C:\\Users\\Yurij Skripnik\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css.map"
     },
     {
-      "Identity": "C:\\Users\\skrip\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css",
+      "Identity": "C:\\Users\\Yurij Skripnik\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css",
       "SourceId": "Microsoft.AspNetCore.Identity.UI",
       "SourceType": "Package",
-      "ContentRoot": "C:\\Users\\skrip\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\",
+      "ContentRoot": "C:\\Users\\Yurij Skripnik\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\",
       "BasePath": "Identity",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-reboot.css",
       "AssetKind": "All",
@@ -354,13 +354,13 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "C:\\Users\\skrip\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css"
+      "OriginalItemSpec": "C:\\Users\\Yurij Skripnik\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css"
     },
     {
-      "Identity": "C:\\Users\\skrip\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css.map",
+      "Identity": "C:\\Users\\Yurij Skripnik\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css.map",
       "SourceId": "Microsoft.AspNetCore.Identity.UI",
       "SourceType": "Package",
-      "ContentRoot": "C:\\Users\\skrip\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\",
+      "ContentRoot": "C:\\Users\\Yurij Skripnik\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\",
       "BasePath": "Identity",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-reboot.css.map",
       "AssetKind": "All",
@@ -371,13 +371,13 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "C:\\Users\\skrip\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css.map"
+      "OriginalItemSpec": "C:\\Users\\Yurij Skripnik\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css.map"
     },
     {
-      "Identity": "C:\\Users\\skrip\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css",
+      "Identity": "C:\\Users\\Yurij Skripnik\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css",
       "SourceId": "Microsoft.AspNetCore.Identity.UI",
       "SourceType": "Package",
-      "ContentRoot": "C:\\Users\\skrip\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\",
+      "ContentRoot": "C:\\Users\\Yurij Skripnik\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\",
       "BasePath": "Identity",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-reboot.min.css",
       "AssetKind": "All",
@@ -388,13 +388,13 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "C:\\Users\\skrip\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css"
+      "OriginalItemSpec": "C:\\Users\\Yurij Skripnik\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css"
     },
     {
-      "Identity": "C:\\Users\\skrip\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css.map",
+      "Identity": "C:\\Users\\Yurij Skripnik\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css.map",
       "SourceId": "Microsoft.AspNetCore.Identity.UI",
       "SourceType": "Package",
-      "ContentRoot": "C:\\Users\\skrip\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\",
+      "ContentRoot": "C:\\Users\\Yurij Skripnik\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\",
       "BasePath": "Identity",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-reboot.min.css.map",
       "AssetKind": "All",
@@ -405,13 +405,13 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "C:\\Users\\skrip\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css.map"
+      "OriginalItemSpec": "C:\\Users\\Yurij Skripnik\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css.map"
     },
     {
-      "Identity": "C:\\Users\\skrip\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css",
+      "Identity": "C:\\Users\\Yurij Skripnik\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css",
       "SourceId": "Microsoft.AspNetCore.Identity.UI",
       "SourceType": "Package",
-      "ContentRoot": "C:\\Users\\skrip\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\",
+      "ContentRoot": "C:\\Users\\Yurij Skripnik\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\",
       "BasePath": "Identity",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-reboot.rtl.css",
       "AssetKind": "All",
@@ -422,13 +422,13 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "C:\\Users\\skrip\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css"
+      "OriginalItemSpec": "C:\\Users\\Yurij Skripnik\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css"
     },
     {
-      "Identity": "C:\\Users\\skrip\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css.map",
+      "Identity": "C:\\Users\\Yurij Skripnik\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css.map",
       "SourceId": "Microsoft.AspNetCore.Identity.UI",
       "SourceType": "Package",
-      "ContentRoot": "C:\\Users\\skrip\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\",
+      "ContentRoot": "C:\\Users\\Yurij Skripnik\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\",
       "BasePath": "Identity",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-reboot.rtl.css.map",
       "AssetKind": "All",
@@ -439,13 +439,13 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "C:\\Users\\skrip\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css.map"
+      "OriginalItemSpec": "C:\\Users\\Yurij Skripnik\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css.map"
     },
     {
-      "Identity": "C:\\Users\\skrip\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css",
+      "Identity": "C:\\Users\\Yurij Skripnik\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css",
       "SourceId": "Microsoft.AspNetCore.Identity.UI",
       "SourceType": "Package",
-      "ContentRoot": "C:\\Users\\skrip\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\",
+      "ContentRoot": "C:\\Users\\Yurij Skripnik\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\",
       "BasePath": "Identity",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-reboot.rtl.min.css",
       "AssetKind": "All",
@@ -456,13 +456,13 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "C:\\Users\\skrip\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css"
+      "OriginalItemSpec": "C:\\Users\\Yurij Skripnik\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css"
     },
     {
-      "Identity": "C:\\Users\\skrip\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css.map",
+      "Identity": "C:\\Users\\Yurij Skripnik\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css.map",
       "SourceId": "Microsoft.AspNetCore.Identity.UI",
       "SourceType": "Package",
-      "ContentRoot": "C:\\Users\\skrip\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\",
+      "ContentRoot": "C:\\Users\\Yurij Skripnik\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\",
       "BasePath": "Identity",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-reboot.rtl.min.css.map",
       "AssetKind": "All",
@@ -473,13 +473,13 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "C:\\Users\\skrip\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css.map"
+      "OriginalItemSpec": "C:\\Users\\Yurij Skripnik\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css.map"
     },
     {
-      "Identity": "C:\\Users\\skrip\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css",
+      "Identity": "C:\\Users\\Yurij Skripnik\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css",
       "SourceId": "Microsoft.AspNetCore.Identity.UI",
       "SourceType": "Package",
-      "ContentRoot": "C:\\Users\\skrip\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\",
+      "ContentRoot": "C:\\Users\\Yurij Skripnik\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\",
       "BasePath": "Identity",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-utilities.css",
       "AssetKind": "All",
@@ -490,13 +490,13 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "C:\\Users\\skrip\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css"
+      "OriginalItemSpec": "C:\\Users\\Yurij Skripnik\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css"
     },
     {
-      "Identity": "C:\\Users\\skrip\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css.map",
+      "Identity": "C:\\Users\\Yurij Skripnik\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css.map",
       "SourceId": "Microsoft.AspNetCore.Identity.UI",
       "SourceType": "Package",
-      "ContentRoot": "C:\\Users\\skrip\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\",
+      "ContentRoot": "C:\\Users\\Yurij Skripnik\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\",
       "BasePath": "Identity",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-utilities.css.map",
       "AssetKind": "All",
@@ -507,13 +507,13 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "C:\\Users\\skrip\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css.map"
+      "OriginalItemSpec": "C:\\Users\\Yurij Skripnik\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css.map"
     },
     {
-      "Identity": "C:\\Users\\skrip\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css",
+      "Identity": "C:\\Users\\Yurij Skripnik\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css",
       "SourceId": "Microsoft.AspNetCore.Identity.UI",
       "SourceType": "Package",
-      "ContentRoot": "C:\\Users\\skrip\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\",
+      "ContentRoot": "C:\\Users\\Yurij Skripnik\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\",
       "BasePath": "Identity",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-utilities.min.css",
       "AssetKind": "All",
@@ -524,13 +524,13 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "C:\\Users\\skrip\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css"
+      "OriginalItemSpec": "C:\\Users\\Yurij Skripnik\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css"
     },
     {
-      "Identity": "C:\\Users\\skrip\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css.map",
+      "Identity": "C:\\Users\\Yurij Skripnik\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css.map",
       "SourceId": "Microsoft.AspNetCore.Identity.UI",
       "SourceType": "Package",
-      "ContentRoot": "C:\\Users\\skrip\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\",
+      "ContentRoot": "C:\\Users\\Yurij Skripnik\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\",
       "BasePath": "Identity",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-utilities.min.css.map",
       "AssetKind": "All",
@@ -541,13 +541,13 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "C:\\Users\\skrip\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css.map"
+      "OriginalItemSpec": "C:\\Users\\Yurij Skripnik\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css.map"
     },
     {
-      "Identity": "C:\\Users\\skrip\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css",
+      "Identity": "C:\\Users\\Yurij Skripnik\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css",
       "SourceId": "Microsoft.AspNetCore.Identity.UI",
       "SourceType": "Package",
-      "ContentRoot": "C:\\Users\\skrip\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\",
+      "ContentRoot": "C:\\Users\\Yurij Skripnik\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\",
       "BasePath": "Identity",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-utilities.rtl.css",
       "AssetKind": "All",
@@ -558,13 +558,13 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "C:\\Users\\skrip\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css"
+      "OriginalItemSpec": "C:\\Users\\Yurij Skripnik\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css"
     },
     {
-      "Identity": "C:\\Users\\skrip\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css.map",
+      "Identity": "C:\\Users\\Yurij Skripnik\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css.map",
       "SourceId": "Microsoft.AspNetCore.Identity.UI",
       "SourceType": "Package",
-      "ContentRoot": "C:\\Users\\skrip\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\",
+      "ContentRoot": "C:\\Users\\Yurij Skripnik\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\",
       "BasePath": "Identity",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-utilities.rtl.css.map",
       "AssetKind": "All",
@@ -575,13 +575,13 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "C:\\Users\\skrip\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css.map"
+      "OriginalItemSpec": "C:\\Users\\Yurij Skripnik\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css.map"
     },
     {
-      "Identity": "C:\\Users\\skrip\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css",
+      "Identity": "C:\\Users\\Yurij Skripnik\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css",
       "SourceId": "Microsoft.AspNetCore.Identity.UI",
       "SourceType": "Package",
-      "ContentRoot": "C:\\Users\\skrip\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\",
+      "ContentRoot": "C:\\Users\\Yurij Skripnik\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\",
       "BasePath": "Identity",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-utilities.rtl.min.css",
       "AssetKind": "All",
@@ -592,13 +592,13 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "C:\\Users\\skrip\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css"
+      "OriginalItemSpec": "C:\\Users\\Yurij Skripnik\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css"
     },
     {
-      "Identity": "C:\\Users\\skrip\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css.map",
+      "Identity": "C:\\Users\\Yurij Skripnik\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css.map",
       "SourceId": "Microsoft.AspNetCore.Identity.UI",
       "SourceType": "Package",
-      "ContentRoot": "C:\\Users\\skrip\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\",
+      "ContentRoot": "C:\\Users\\Yurij Skripnik\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\",
       "BasePath": "Identity",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-utilities.rtl.min.css.map",
       "AssetKind": "All",
@@ -609,13 +609,13 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "C:\\Users\\skrip\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css.map"
+      "OriginalItemSpec": "C:\\Users\\Yurij Skripnik\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css.map"
     },
     {
-      "Identity": "C:\\Users\\skrip\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js",
+      "Identity": "C:\\Users\\Yurij Skripnik\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js",
       "SourceId": "Microsoft.AspNetCore.Identity.UI",
       "SourceType": "Package",
-      "ContentRoot": "C:\\Users\\skrip\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\",
+      "ContentRoot": "C:\\Users\\Yurij Skripnik\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\",
       "BasePath": "Identity",
       "RelativePath": "lib/bootstrap/dist/js/bootstrap.bundle.js",
       "AssetKind": "All",
@@ -626,13 +626,13 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "C:\\Users\\skrip\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js"
+      "OriginalItemSpec": "C:\\Users\\Yurij Skripnik\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js"
     },
     {
-      "Identity": "C:\\Users\\skrip\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js.map",
+      "Identity": "C:\\Users\\Yurij Skripnik\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js.map",
       "SourceId": "Microsoft.AspNetCore.Identity.UI",
       "SourceType": "Package",
-      "ContentRoot": "C:\\Users\\skrip\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\",
+      "ContentRoot": "C:\\Users\\Yurij Skripnik\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\",
       "BasePath": "Identity",
       "RelativePath": "lib/bootstrap/dist/js/bootstrap.bundle.js.map",
       "AssetKind": "All",
@@ -643,13 +643,13 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "C:\\Users\\skrip\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js.map"
+      "OriginalItemSpec": "C:\\Users\\Yurij Skripnik\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js.map"
     },
     {
-      "Identity": "C:\\Users\\skrip\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js",
+      "Identity": "C:\\Users\\Yurij Skripnik\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js",
       "SourceId": "Microsoft.AspNetCore.Identity.UI",
       "SourceType": "Package",
-      "ContentRoot": "C:\\Users\\skrip\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\",
+      "ContentRoot": "C:\\Users\\Yurij Skripnik\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\",
       "BasePath": "Identity",
       "RelativePath": "lib/bootstrap/dist/js/bootstrap.bundle.min.js",
       "AssetKind": "All",
@@ -660,13 +660,13 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "C:\\Users\\skrip\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js"
+      "OriginalItemSpec": "C:\\Users\\Yurij Skripnik\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js"
     },
     {
-      "Identity": "C:\\Users\\skrip\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js.map",
+      "Identity": "C:\\Users\\Yurij Skripnik\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js.map",
       "SourceId": "Microsoft.AspNetCore.Identity.UI",
       "SourceType": "Package",
-      "ContentRoot": "C:\\Users\\skrip\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\",
+      "ContentRoot": "C:\\Users\\Yurij Skripnik\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\",
       "BasePath": "Identity",
       "RelativePath": "lib/bootstrap/dist/js/bootstrap.bundle.min.js.map",
       "AssetKind": "All",
@@ -677,13 +677,13 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "C:\\Users\\skrip\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js.map"
+      "OriginalItemSpec": "C:\\Users\\Yurij Skripnik\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js.map"
     },
     {
-      "Identity": "C:\\Users\\skrip\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js",
+      "Identity": "C:\\Users\\Yurij Skripnik\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js",
       "SourceId": "Microsoft.AspNetCore.Identity.UI",
       "SourceType": "Package",
-      "ContentRoot": "C:\\Users\\skrip\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\",
+      "ContentRoot": "C:\\Users\\Yurij Skripnik\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\",
       "BasePath": "Identity",
       "RelativePath": "lib/bootstrap/dist/js/bootstrap.esm.js",
       "AssetKind": "All",
@@ -694,13 +694,13 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "C:\\Users\\skrip\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js"
+      "OriginalItemSpec": "C:\\Users\\Yurij Skripnik\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js"
     },
     {
-      "Identity": "C:\\Users\\skrip\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js.map",
+      "Identity": "C:\\Users\\Yurij Skripnik\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js.map",
       "SourceId": "Microsoft.AspNetCore.Identity.UI",
       "SourceType": "Package",
-      "ContentRoot": "C:\\Users\\skrip\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\",
+      "ContentRoot": "C:\\Users\\Yurij Skripnik\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\",
       "BasePath": "Identity",
       "RelativePath": "lib/bootstrap/dist/js/bootstrap.esm.js.map",
       "AssetKind": "All",
@@ -711,13 +711,13 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "C:\\Users\\skrip\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js.map"
+      "OriginalItemSpec": "C:\\Users\\Yurij Skripnik\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js.map"
     },
     {
-      "Identity": "C:\\Users\\skrip\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js",
+      "Identity": "C:\\Users\\Yurij Skripnik\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js",
       "SourceId": "Microsoft.AspNetCore.Identity.UI",
       "SourceType": "Package",
-      "ContentRoot": "C:\\Users\\skrip\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\",
+      "ContentRoot": "C:\\Users\\Yurij Skripnik\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\",
       "BasePath": "Identity",
       "RelativePath": "lib/bootstrap/dist/js/bootstrap.esm.min.js",
       "AssetKind": "All",
@@ -728,13 +728,13 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "C:\\Users\\skrip\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js"
+      "OriginalItemSpec": "C:\\Users\\Yurij Skripnik\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js"
     },
     {
-      "Identity": "C:\\Users\\skrip\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js.map",
+      "Identity": "C:\\Users\\Yurij Skripnik\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js.map",
       "SourceId": "Microsoft.AspNetCore.Identity.UI",
       "SourceType": "Package",
-      "ContentRoot": "C:\\Users\\skrip\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\",
+      "ContentRoot": "C:\\Users\\Yurij Skripnik\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\",
       "BasePath": "Identity",
       "RelativePath": "lib/bootstrap/dist/js/bootstrap.esm.min.js.map",
       "AssetKind": "All",
@@ -745,13 +745,13 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "C:\\Users\\skrip\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js.map"
+      "OriginalItemSpec": "C:\\Users\\Yurij Skripnik\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js.map"
     },
     {
-      "Identity": "C:\\Users\\skrip\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\lib\\bootstrap\\dist\\js\\bootstrap.js",
+      "Identity": "C:\\Users\\Yurij Skripnik\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\lib\\bootstrap\\dist\\js\\bootstrap.js",
       "SourceId": "Microsoft.AspNetCore.Identity.UI",
       "SourceType": "Package",
-      "ContentRoot": "C:\\Users\\skrip\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\",
+      "ContentRoot": "C:\\Users\\Yurij Skripnik\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\",
       "BasePath": "Identity",
       "RelativePath": "lib/bootstrap/dist/js/bootstrap.js",
       "AssetKind": "All",
@@ -762,13 +762,13 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "C:\\Users\\skrip\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\lib\\bootstrap\\dist\\js\\bootstrap.js"
+      "OriginalItemSpec": "C:\\Users\\Yurij Skripnik\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\lib\\bootstrap\\dist\\js\\bootstrap.js"
     },
     {
-      "Identity": "C:\\Users\\skrip\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\lib\\bootstrap\\dist\\js\\bootstrap.js.map",
+      "Identity": "C:\\Users\\Yurij Skripnik\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\lib\\bootstrap\\dist\\js\\bootstrap.js.map",
       "SourceId": "Microsoft.AspNetCore.Identity.UI",
       "SourceType": "Package",
-      "ContentRoot": "C:\\Users\\skrip\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\",
+      "ContentRoot": "C:\\Users\\Yurij Skripnik\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\",
       "BasePath": "Identity",
       "RelativePath": "lib/bootstrap/dist/js/bootstrap.js.map",
       "AssetKind": "All",
@@ -779,13 +779,13 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "C:\\Users\\skrip\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\lib\\bootstrap\\dist\\js\\bootstrap.js.map"
+      "OriginalItemSpec": "C:\\Users\\Yurij Skripnik\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\lib\\bootstrap\\dist\\js\\bootstrap.js.map"
     },
     {
-      "Identity": "C:\\Users\\skrip\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\lib\\bootstrap\\dist\\js\\bootstrap.min.js",
+      "Identity": "C:\\Users\\Yurij Skripnik\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\lib\\bootstrap\\dist\\js\\bootstrap.min.js",
       "SourceId": "Microsoft.AspNetCore.Identity.UI",
       "SourceType": "Package",
-      "ContentRoot": "C:\\Users\\skrip\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\",
+      "ContentRoot": "C:\\Users\\Yurij Skripnik\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\",
       "BasePath": "Identity",
       "RelativePath": "lib/bootstrap/dist/js/bootstrap.min.js",
       "AssetKind": "All",
@@ -796,13 +796,13 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "C:\\Users\\skrip\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\lib\\bootstrap\\dist\\js\\bootstrap.min.js"
+      "OriginalItemSpec": "C:\\Users\\Yurij Skripnik\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\lib\\bootstrap\\dist\\js\\bootstrap.min.js"
     },
     {
-      "Identity": "C:\\Users\\skrip\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\lib\\bootstrap\\dist\\js\\bootstrap.min.js.map",
+      "Identity": "C:\\Users\\Yurij Skripnik\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\lib\\bootstrap\\dist\\js\\bootstrap.min.js.map",
       "SourceId": "Microsoft.AspNetCore.Identity.UI",
       "SourceType": "Package",
-      "ContentRoot": "C:\\Users\\skrip\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\",
+      "ContentRoot": "C:\\Users\\Yurij Skripnik\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\",
       "BasePath": "Identity",
       "RelativePath": "lib/bootstrap/dist/js/bootstrap.min.js.map",
       "AssetKind": "All",
@@ -813,13 +813,13 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "C:\\Users\\skrip\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\lib\\bootstrap\\dist\\js\\bootstrap.min.js.map"
+      "OriginalItemSpec": "C:\\Users\\Yurij Skripnik\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\lib\\bootstrap\\dist\\js\\bootstrap.min.js.map"
     },
     {
-      "Identity": "C:\\Users\\skrip\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\lib\\bootstrap\\LICENSE",
+      "Identity": "C:\\Users\\Yurij Skripnik\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\lib\\bootstrap\\LICENSE",
       "SourceId": "Microsoft.AspNetCore.Identity.UI",
       "SourceType": "Package",
-      "ContentRoot": "C:\\Users\\skrip\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\",
+      "ContentRoot": "C:\\Users\\Yurij Skripnik\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\",
       "BasePath": "Identity",
       "RelativePath": "lib/bootstrap/LICENSE",
       "AssetKind": "All",
@@ -830,13 +830,13 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "C:\\Users\\skrip\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\lib\\bootstrap\\LICENSE"
+      "OriginalItemSpec": "C:\\Users\\Yurij Skripnik\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\lib\\bootstrap\\LICENSE"
     },
     {
-      "Identity": "C:\\Users\\skrip\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\lib\\jquery\\dist\\jquery.js",
+      "Identity": "C:\\Users\\Yurij Skripnik\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\lib\\jquery\\dist\\jquery.js",
       "SourceId": "Microsoft.AspNetCore.Identity.UI",
       "SourceType": "Package",
-      "ContentRoot": "C:\\Users\\skrip\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\",
+      "ContentRoot": "C:\\Users\\Yurij Skripnik\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\",
       "BasePath": "Identity",
       "RelativePath": "lib/jquery/dist/jquery.js",
       "AssetKind": "All",
@@ -847,13 +847,13 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "C:\\Users\\skrip\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\lib\\jquery\\dist\\jquery.js"
+      "OriginalItemSpec": "C:\\Users\\Yurij Skripnik\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\lib\\jquery\\dist\\jquery.js"
     },
     {
-      "Identity": "C:\\Users\\skrip\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\lib\\jquery\\dist\\jquery.min.js",
+      "Identity": "C:\\Users\\Yurij Skripnik\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\lib\\jquery\\dist\\jquery.min.js",
       "SourceId": "Microsoft.AspNetCore.Identity.UI",
       "SourceType": "Package",
-      "ContentRoot": "C:\\Users\\skrip\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\",
+      "ContentRoot": "C:\\Users\\Yurij Skripnik\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\",
       "BasePath": "Identity",
       "RelativePath": "lib/jquery/dist/jquery.min.js",
       "AssetKind": "All",
@@ -864,13 +864,13 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "C:\\Users\\skrip\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\lib\\jquery\\dist\\jquery.min.js"
+      "OriginalItemSpec": "C:\\Users\\Yurij Skripnik\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\lib\\jquery\\dist\\jquery.min.js"
     },
     {
-      "Identity": "C:\\Users\\skrip\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\lib\\jquery\\dist\\jquery.min.map",
+      "Identity": "C:\\Users\\Yurij Skripnik\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\lib\\jquery\\dist\\jquery.min.map",
       "SourceId": "Microsoft.AspNetCore.Identity.UI",
       "SourceType": "Package",
-      "ContentRoot": "C:\\Users\\skrip\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\",
+      "ContentRoot": "C:\\Users\\Yurij Skripnik\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\",
       "BasePath": "Identity",
       "RelativePath": "lib/jquery/dist/jquery.min.map",
       "AssetKind": "All",
@@ -881,13 +881,13 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "C:\\Users\\skrip\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\lib\\jquery\\dist\\jquery.min.map"
+      "OriginalItemSpec": "C:\\Users\\Yurij Skripnik\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\lib\\jquery\\dist\\jquery.min.map"
     },
     {
-      "Identity": "C:\\Users\\skrip\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\lib\\jquery\\LICENSE.txt",
+      "Identity": "C:\\Users\\Yurij Skripnik\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\lib\\jquery\\LICENSE.txt",
       "SourceId": "Microsoft.AspNetCore.Identity.UI",
       "SourceType": "Package",
-      "ContentRoot": "C:\\Users\\skrip\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\",
+      "ContentRoot": "C:\\Users\\Yurij Skripnik\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\",
       "BasePath": "Identity",
       "RelativePath": "lib/jquery/LICENSE.txt",
       "AssetKind": "All",
@@ -898,13 +898,13 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "C:\\Users\\skrip\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\lib\\jquery\\LICENSE.txt"
+      "OriginalItemSpec": "C:\\Users\\Yurij Skripnik\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\lib\\jquery\\LICENSE.txt"
     },
     {
-      "Identity": "C:\\Users\\skrip\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\lib\\jquery-validation\\dist\\additional-methods.js",
+      "Identity": "C:\\Users\\Yurij Skripnik\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\lib\\jquery-validation\\dist\\additional-methods.js",
       "SourceId": "Microsoft.AspNetCore.Identity.UI",
       "SourceType": "Package",
-      "ContentRoot": "C:\\Users\\skrip\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\",
+      "ContentRoot": "C:\\Users\\Yurij Skripnik\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\",
       "BasePath": "Identity",
       "RelativePath": "lib/jquery-validation/dist/additional-methods.js",
       "AssetKind": "All",
@@ -915,13 +915,13 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "C:\\Users\\skrip\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\lib\\jquery-validation\\dist\\additional-methods.js"
+      "OriginalItemSpec": "C:\\Users\\Yurij Skripnik\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\lib\\jquery-validation\\dist\\additional-methods.js"
     },
     {
-      "Identity": "C:\\Users\\skrip\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\lib\\jquery-validation\\dist\\additional-methods.min.js",
+      "Identity": "C:\\Users\\Yurij Skripnik\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\lib\\jquery-validation\\dist\\additional-methods.min.js",
       "SourceId": "Microsoft.AspNetCore.Identity.UI",
       "SourceType": "Package",
-      "ContentRoot": "C:\\Users\\skrip\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\",
+      "ContentRoot": "C:\\Users\\Yurij Skripnik\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\",
       "BasePath": "Identity",
       "RelativePath": "lib/jquery-validation/dist/additional-methods.min.js",
       "AssetKind": "All",
@@ -932,13 +932,13 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "C:\\Users\\skrip\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\lib\\jquery-validation\\dist\\additional-methods.min.js"
+      "OriginalItemSpec": "C:\\Users\\Yurij Skripnik\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\lib\\jquery-validation\\dist\\additional-methods.min.js"
     },
     {
-      "Identity": "C:\\Users\\skrip\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\lib\\jquery-validation\\dist\\jquery.validate.js",
+      "Identity": "C:\\Users\\Yurij Skripnik\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\lib\\jquery-validation\\dist\\jquery.validate.js",
       "SourceId": "Microsoft.AspNetCore.Identity.UI",
       "SourceType": "Package",
-      "ContentRoot": "C:\\Users\\skrip\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\",
+      "ContentRoot": "C:\\Users\\Yurij Skripnik\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\",
       "BasePath": "Identity",
       "RelativePath": "lib/jquery-validation/dist/jquery.validate.js",
       "AssetKind": "All",
@@ -949,13 +949,13 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "C:\\Users\\skrip\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\lib\\jquery-validation\\dist\\jquery.validate.js"
+      "OriginalItemSpec": "C:\\Users\\Yurij Skripnik\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\lib\\jquery-validation\\dist\\jquery.validate.js"
     },
     {
-      "Identity": "C:\\Users\\skrip\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\lib\\jquery-validation\\dist\\jquery.validate.min.js",
+      "Identity": "C:\\Users\\Yurij Skripnik\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\lib\\jquery-validation\\dist\\jquery.validate.min.js",
       "SourceId": "Microsoft.AspNetCore.Identity.UI",
       "SourceType": "Package",
-      "ContentRoot": "C:\\Users\\skrip\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\",
+      "ContentRoot": "C:\\Users\\Yurij Skripnik\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\",
       "BasePath": "Identity",
       "RelativePath": "lib/jquery-validation/dist/jquery.validate.min.js",
       "AssetKind": "All",
@@ -966,13 +966,13 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "C:\\Users\\skrip\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\lib\\jquery-validation\\dist\\jquery.validate.min.js"
+      "OriginalItemSpec": "C:\\Users\\Yurij Skripnik\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\lib\\jquery-validation\\dist\\jquery.validate.min.js"
     },
     {
-      "Identity": "C:\\Users\\skrip\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\lib\\jquery-validation\\LICENSE.md",
+      "Identity": "C:\\Users\\Yurij Skripnik\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\lib\\jquery-validation\\LICENSE.md",
       "SourceId": "Microsoft.AspNetCore.Identity.UI",
       "SourceType": "Package",
-      "ContentRoot": "C:\\Users\\skrip\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\",
+      "ContentRoot": "C:\\Users\\Yurij Skripnik\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\",
       "BasePath": "Identity",
       "RelativePath": "lib/jquery-validation/LICENSE.md",
       "AssetKind": "All",
@@ -983,13 +983,13 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "C:\\Users\\skrip\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\lib\\jquery-validation\\LICENSE.md"
+      "OriginalItemSpec": "C:\\Users\\Yurij Skripnik\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\lib\\jquery-validation\\LICENSE.md"
     },
     {
-      "Identity": "C:\\Users\\skrip\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.js",
+      "Identity": "C:\\Users\\Yurij Skripnik\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.js",
       "SourceId": "Microsoft.AspNetCore.Identity.UI",
       "SourceType": "Package",
-      "ContentRoot": "C:\\Users\\skrip\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\",
+      "ContentRoot": "C:\\Users\\Yurij Skripnik\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\",
       "BasePath": "Identity",
       "RelativePath": "lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js",
       "AssetKind": "All",
@@ -1000,13 +1000,13 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "C:\\Users\\skrip\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.js"
+      "OriginalItemSpec": "C:\\Users\\Yurij Skripnik\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.js"
     },
     {
-      "Identity": "C:\\Users\\skrip\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.min.js",
+      "Identity": "C:\\Users\\Yurij Skripnik\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.min.js",
       "SourceId": "Microsoft.AspNetCore.Identity.UI",
       "SourceType": "Package",
-      "ContentRoot": "C:\\Users\\skrip\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\",
+      "ContentRoot": "C:\\Users\\Yurij Skripnik\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\",
       "BasePath": "Identity",
       "RelativePath": "lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js",
       "AssetKind": "All",
@@ -1017,13 +1017,13 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "C:\\Users\\skrip\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.min.js"
+      "OriginalItemSpec": "C:\\Users\\Yurij Skripnik\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.min.js"
     },
     {
-      "Identity": "C:\\Users\\skrip\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\lib\\jquery-validation-unobtrusive\\LICENSE.txt",
+      "Identity": "C:\\Users\\Yurij Skripnik\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\lib\\jquery-validation-unobtrusive\\LICENSE.txt",
       "SourceId": "Microsoft.AspNetCore.Identity.UI",
       "SourceType": "Package",
-      "ContentRoot": "C:\\Users\\skrip\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\",
+      "ContentRoot": "C:\\Users\\Yurij Skripnik\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\",
       "BasePath": "Identity",
       "RelativePath": "lib/jquery-validation-unobtrusive/LICENSE.txt",
       "AssetKind": "All",
@@ -1034,13 +1034,13 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "C:\\Users\\skrip\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\lib\\jquery-validation-unobtrusive\\LICENSE.txt"
+      "OriginalItemSpec": "C:\\Users\\Yurij Skripnik\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.9\\staticwebassets\\V5\\lib\\jquery-validation-unobtrusive\\LICENSE.txt"
     },
     {
-      "Identity": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\obj\\Debug\\net6.0\\scopedcss\\bundle\\SavageOrcs.Web.styles.css",
+      "Identity": "D:\\Study\\Diploma\\SavageOrcs.Web\\obj\\Debug\\net6.0\\scopedcss\\bundle\\SavageOrcs.Web.styles.css",
       "SourceId": "SavageOrcs.Web",
       "SourceType": "Computed",
-      "ContentRoot": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\obj\\Debug\\net6.0\\scopedcss\\bundle\\",
+      "ContentRoot": "D:\\Study\\Diploma\\SavageOrcs.Web\\obj\\Debug\\net6.0\\scopedcss\\bundle\\",
       "BasePath": "_content/SavageOrcs.Web",
       "RelativePath": "SavageOrcs.Web.styles.css",
       "AssetKind": "All",
@@ -1051,13 +1051,13 @@
       "AssetTraitValue": "ApplicationBundle",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\obj\\Debug\\net6.0\\scopedcss\\bundle\\SavageOrcs.Web.styles.css"
+      "OriginalItemSpec": "D:\\Study\\Diploma\\SavageOrcs.Web\\obj\\Debug\\net6.0\\scopedcss\\bundle\\SavageOrcs.Web.styles.css"
     },
     {
-      "Identity": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\obj\\Debug\\net6.0\\scopedcss\\projectbundle\\SavageOrcs.Web.bundle.scp.css",
+      "Identity": "D:\\Study\\Diploma\\SavageOrcs.Web\\obj\\Debug\\net6.0\\scopedcss\\projectbundle\\SavageOrcs.Web.bundle.scp.css",
       "SourceId": "SavageOrcs.Web",
       "SourceType": "Computed",
-      "ContentRoot": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\obj\\Debug\\net6.0\\scopedcss\\projectbundle\\",
+      "ContentRoot": "D:\\Study\\Diploma\\SavageOrcs.Web\\obj\\Debug\\net6.0\\scopedcss\\projectbundle\\",
       "BasePath": "_content/SavageOrcs.Web",
       "RelativePath": "SavageOrcs.Web.bundle.scp.css",
       "AssetKind": "All",
@@ -1068,13 +1068,13 @@
       "AssetTraitValue": "ProjectBundle",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\obj\\Debug\\net6.0\\scopedcss\\projectbundle\\SavageOrcs.Web.bundle.scp.css"
+      "OriginalItemSpec": "D:\\Study\\Diploma\\SavageOrcs.Web\\obj\\Debug\\net6.0\\scopedcss\\projectbundle\\SavageOrcs.Web.bundle.scp.css"
     },
     {
-      "Identity": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\wwwroot\\css\\additional\\18plusPopup.css",
+      "Identity": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\css\\additional\\18plusPopup.css",
       "SourceId": "SavageOrcs.Web",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\wwwroot\\",
+      "ContentRoot": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\",
       "BasePath": "_content/SavageOrcs.Web",
       "RelativePath": "css/additional/18plusPopup.css",
       "AssetKind": "All",
@@ -1088,10 +1088,10 @@
       "OriginalItemSpec": "wwwroot\\css\\additional\\18plusPopup.css"
     },
     {
-      "Identity": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\wwwroot\\css\\additional\\font-face.css",
+      "Identity": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\css\\additional\\font-face.css",
       "SourceId": "SavageOrcs.Web",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\wwwroot\\",
+      "ContentRoot": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\",
       "BasePath": "_content/SavageOrcs.Web",
       "RelativePath": "css/additional/font-face.css",
       "AssetKind": "All",
@@ -1105,10 +1105,10 @@
       "OriginalItemSpec": "wwwroot\\css\\additional\\font-face.css"
     },
     {
-      "Identity": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\wwwroot\\css\\additional\\multiselect.css",
+      "Identity": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\css\\additional\\multiselect.css",
       "SourceId": "SavageOrcs.Web",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\wwwroot\\",
+      "ContentRoot": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\",
       "BasePath": "_content/SavageOrcs.Web",
       "RelativePath": "css/additional/multiselect.css",
       "AssetKind": "All",
@@ -1122,10 +1122,10 @@
       "OriginalItemSpec": "wwwroot\\css\\additional\\multiselect.css"
     },
     {
-      "Identity": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\wwwroot\\css\\additional\\rightScroll.css",
+      "Identity": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\css\\additional\\rightScroll.css",
       "SourceId": "SavageOrcs.Web",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\wwwroot\\",
+      "ContentRoot": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\",
       "BasePath": "_content/SavageOrcs.Web",
       "RelativePath": "css/additional/rightScroll.css",
       "AssetKind": "All",
@@ -1139,10 +1139,10 @@
       "OriginalItemSpec": "wwwroot\\css\\additional\\rightScroll.css"
     },
     {
-      "Identity": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\wwwroot\\css\\additional\\sideMenu.css",
+      "Identity": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\css\\additional\\sideMenu.css",
       "SourceId": "SavageOrcs.Web",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\wwwroot\\",
+      "ContentRoot": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\",
       "BasePath": "_content/SavageOrcs.Web",
       "RelativePath": "css/additional/sideMenu.css",
       "AssetKind": "All",
@@ -1156,10 +1156,10 @@
       "OriginalItemSpec": "wwwroot\\css\\additional\\sideMenu.css"
     },
     {
-      "Identity": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\wwwroot\\css\\additional\\styles.css",
+      "Identity": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\css\\additional\\styles.css",
       "SourceId": "SavageOrcs.Web",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\wwwroot\\",
+      "ContentRoot": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\",
       "BasePath": "_content/SavageOrcs.Web",
       "RelativePath": "css/additional/styles.css",
       "AssetKind": "All",
@@ -1173,10 +1173,10 @@
       "OriginalItemSpec": "wwwroot\\css\\additional\\styles.css"
     },
     {
-      "Identity": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\wwwroot\\css\\admin\\AdminMenu.css",
+      "Identity": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\css\\admin\\AdminMenu.css",
       "SourceId": "SavageOrcs.Web",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\wwwroot\\",
+      "ContentRoot": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\",
       "BasePath": "_content/SavageOrcs.Web",
       "RelativePath": "css/admin/AdminMenu.css",
       "AssetKind": "All",
@@ -1190,10 +1190,10 @@
       "OriginalItemSpec": "wwwroot\\css\\admin\\AdminMenu.css"
     },
     {
-      "Identity": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\wwwroot\\css\\admin\\identity.css",
+      "Identity": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\css\\admin\\identity.css",
       "SourceId": "SavageOrcs.Web",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\wwwroot\\",
+      "ContentRoot": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\",
       "BasePath": "_content/SavageOrcs.Web",
       "RelativePath": "css/admin/identity.css",
       "AssetKind": "All",
@@ -1207,10 +1207,10 @@
       "OriginalItemSpec": "wwwroot\\css\\admin\\identity.css"
     },
     {
-      "Identity": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\wwwroot\\css\\admin\\keyWordAndPlaces.css",
+      "Identity": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\css\\admin\\keyWordAndPlaces.css",
       "SourceId": "SavageOrcs.Web",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\wwwroot\\",
+      "ContentRoot": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\",
       "BasePath": "_content/SavageOrcs.Web",
       "RelativePath": "css/admin/keyWordAndPlaces.css",
       "AssetKind": "All",
@@ -1224,10 +1224,10 @@
       "OriginalItemSpec": "wwwroot\\css\\admin\\keyWordAndPlaces.css"
     },
     {
-      "Identity": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\wwwroot\\css\\curator\\curator.css",
+      "Identity": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\css\\curator\\curator.css",
       "SourceId": "SavageOrcs.Web",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\wwwroot\\",
+      "ContentRoot": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\",
       "BasePath": "_content/SavageOrcs.Web",
       "RelativePath": "css/curator/curator.css",
       "AssetKind": "All",
@@ -1241,10 +1241,10 @@
       "OriginalItemSpec": "wwwroot\\css\\curator\\curator.css"
     },
     {
-      "Identity": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\wwwroot\\css\\curator\\curatorAdmin.css",
+      "Identity": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\css\\curator\\curatorAdmin.css",
       "SourceId": "SavageOrcs.Web",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\wwwroot\\",
+      "ContentRoot": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\",
       "BasePath": "_content/SavageOrcs.Web",
       "RelativePath": "css/curator/curatorAdmin.css",
       "AssetKind": "All",
@@ -1258,10 +1258,10 @@
       "OriginalItemSpec": "wwwroot\\css\\curator\\curatorAdmin.css"
     },
     {
-      "Identity": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\wwwroot\\css\\curator\\curatorRevision.css",
+      "Identity": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\css\\curator\\curatorRevision.css",
       "SourceId": "SavageOrcs.Web",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\wwwroot\\",
+      "ContentRoot": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\",
       "BasePath": "_content/SavageOrcs.Web",
       "RelativePath": "css/curator/curatorRevision.css",
       "AssetKind": "All",
@@ -1275,10 +1275,10 @@
       "OriginalItemSpec": "wwwroot\\css\\curator\\curatorRevision.css"
     },
     {
-      "Identity": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\wwwroot\\css\\curator\\curators.css",
+      "Identity": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\css\\curator\\curators.css",
       "SourceId": "SavageOrcs.Web",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\wwwroot\\",
+      "ContentRoot": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\",
       "BasePath": "_content/SavageOrcs.Web",
       "RelativePath": "css/curator/curators.css",
       "AssetKind": "All",
@@ -1292,10 +1292,10 @@
       "OriginalItemSpec": "wwwroot\\css\\curator\\curators.css"
     },
     {
-      "Identity": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\wwwroot\\css\\main\\main.css",
+      "Identity": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\css\\main\\main.css",
       "SourceId": "SavageOrcs.Web",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\wwwroot\\",
+      "ContentRoot": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\",
       "BasePath": "_content/SavageOrcs.Web",
       "RelativePath": "css/main/main.css",
       "AssetKind": "All",
@@ -1309,10 +1309,10 @@
       "OriginalItemSpec": "wwwroot\\css\\main\\main.css"
     },
     {
-      "Identity": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\wwwroot\\css\\main\\main-mobile.css",
+      "Identity": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\css\\main\\main-mobile.css",
       "SourceId": "SavageOrcs.Web",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\wwwroot\\",
+      "ContentRoot": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\",
       "BasePath": "_content/SavageOrcs.Web",
       "RelativePath": "css/main/main-mobile.css",
       "AssetKind": "All",
@@ -1326,10 +1326,10 @@
       "OriginalItemSpec": "wwwroot\\css\\main\\main-mobile.css"
     },
     {
-      "Identity": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\wwwroot\\css\\mark\\mark.css",
+      "Identity": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\css\\mark\\mark.css",
       "SourceId": "SavageOrcs.Web",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\wwwroot\\",
+      "ContentRoot": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\",
       "BasePath": "_content/SavageOrcs.Web",
       "RelativePath": "css/mark/mark.css",
       "AssetKind": "All",
@@ -1343,10 +1343,10 @@
       "OriginalItemSpec": "wwwroot\\css\\mark\\mark.css"
     },
     {
-      "Identity": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\wwwroot\\css\\mark\\markAdmin.css",
+      "Identity": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\css\\mark\\markAdmin.css",
       "SourceId": "SavageOrcs.Web",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\wwwroot\\",
+      "ContentRoot": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\",
       "BasePath": "_content/SavageOrcs.Web",
       "RelativePath": "css/mark/markAdmin.css",
       "AssetKind": "All",
@@ -1360,10 +1360,10 @@
       "OriginalItemSpec": "wwwroot\\css\\mark\\markAdmin.css"
     },
     {
-      "Identity": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\wwwroot\\css\\mark\\mark-mobile.css",
+      "Identity": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\css\\mark\\mark-mobile.css",
       "SourceId": "SavageOrcs.Web",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\wwwroot\\",
+      "ContentRoot": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\",
       "BasePath": "_content/SavageOrcs.Web",
       "RelativePath": "css/mark/mark-mobile.css",
       "AssetKind": "All",
@@ -1377,10 +1377,10 @@
       "OriginalItemSpec": "wwwroot\\css\\mark\\mark-mobile.css"
     },
     {
-      "Identity": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\wwwroot\\css\\site.css",
+      "Identity": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\css\\site.css",
       "SourceId": "SavageOrcs.Web",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\wwwroot\\",
+      "ContentRoot": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\",
       "BasePath": "_content/SavageOrcs.Web",
       "RelativePath": "css/site.css",
       "AssetKind": "All",
@@ -1394,10 +1394,10 @@
       "OriginalItemSpec": "wwwroot\\css\\site.css"
     },
     {
-      "Identity": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\wwwroot\\css\\site-mobile.css",
+      "Identity": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\css\\site-mobile.css",
       "SourceId": "SavageOrcs.Web",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\wwwroot\\",
+      "ContentRoot": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\",
       "BasePath": "_content/SavageOrcs.Web",
       "RelativePath": "css/site-mobile.css",
       "AssetKind": "All",
@@ -1411,10 +1411,10 @@
       "OriginalItemSpec": "wwwroot\\css\\site-mobile.css"
     },
     {
-      "Identity": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\wwwroot\\css\\text\\text.css",
+      "Identity": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\css\\text\\text.css",
       "SourceId": "SavageOrcs.Web",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\wwwroot\\",
+      "ContentRoot": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\",
       "BasePath": "_content/SavageOrcs.Web",
       "RelativePath": "css/text/text.css",
       "AssetKind": "All",
@@ -1428,10 +1428,10 @@
       "OriginalItemSpec": "wwwroot\\css\\text\\text.css"
     },
     {
-      "Identity": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\wwwroot\\css\\text\\textAdmin.css",
+      "Identity": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\css\\text\\textAdmin.css",
       "SourceId": "SavageOrcs.Web",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\wwwroot\\",
+      "ContentRoot": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\",
       "BasePath": "_content/SavageOrcs.Web",
       "RelativePath": "css/text/textAdmin.css",
       "AssetKind": "All",
@@ -1445,10 +1445,10 @@
       "OriginalItemSpec": "wwwroot\\css\\text\\textAdmin.css"
     },
     {
-      "Identity": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\wwwroot\\css\\user\\userCatalogue.css",
+      "Identity": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\css\\user\\userCatalogue.css",
       "SourceId": "SavageOrcs.Web",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\wwwroot\\",
+      "ContentRoot": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\",
       "BasePath": "_content/SavageOrcs.Web",
       "RelativePath": "css/user/userCatalogue.css",
       "AssetKind": "All",
@@ -1462,10 +1462,10 @@
       "OriginalItemSpec": "wwwroot\\css\\user\\userCatalogue.css"
     },
     {
-      "Identity": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\wwwroot\\css\\user\\userRevision.css",
+      "Identity": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\css\\user\\userRevision.css",
       "SourceId": "SavageOrcs.Web",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\wwwroot\\",
+      "ContentRoot": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\",
       "BasePath": "_content/SavageOrcs.Web",
       "RelativePath": "css/user/userRevision.css",
       "AssetKind": "All",
@@ -1479,10 +1479,10 @@
       "OriginalItemSpec": "wwwroot\\css\\user\\userRevision.css"
     },
     {
-      "Identity": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\wwwroot\\images\\arrows\\bottomArrow.png",
+      "Identity": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\images\\arrows\\bottomArrow.png",
       "SourceId": "SavageOrcs.Web",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\wwwroot\\",
+      "ContentRoot": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\",
       "BasePath": "_content/SavageOrcs.Web",
       "RelativePath": "images/arrows/bottomArrow.png",
       "AssetKind": "All",
@@ -1496,10 +1496,10 @@
       "OriginalItemSpec": "wwwroot\\images\\arrows\\bottomArrow.png"
     },
     {
-      "Identity": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\wwwroot\\images\\arrows\\leftArrow.png",
+      "Identity": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\images\\arrows\\leftArrow.png",
       "SourceId": "SavageOrcs.Web",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\wwwroot\\",
+      "ContentRoot": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\",
       "BasePath": "_content/SavageOrcs.Web",
       "RelativePath": "images/arrows/leftArrow.png",
       "AssetKind": "All",
@@ -1513,10 +1513,10 @@
       "OriginalItemSpec": "wwwroot\\images\\arrows\\leftArrow.png"
     },
     {
-      "Identity": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\wwwroot\\images\\arrows\\topArrow.png",
+      "Identity": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\images\\arrows\\topArrow.png",
       "SourceId": "SavageOrcs.Web",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\wwwroot\\",
+      "ContentRoot": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\",
       "BasePath": "_content/SavageOrcs.Web",
       "RelativePath": "images/arrows/topArrow.png",
       "AssetKind": "All",
@@ -1530,10 +1530,10 @@
       "OriginalItemSpec": "wwwroot\\images\\arrows\\topArrow.png"
     },
     {
-      "Identity": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\wwwroot\\images\\flags\\GB.png",
+      "Identity": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\images\\flags\\GB.png",
       "SourceId": "SavageOrcs.Web",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\wwwroot\\",
+      "ContentRoot": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\",
       "BasePath": "_content/SavageOrcs.Web",
       "RelativePath": "images/flags/GB.png",
       "AssetKind": "All",
@@ -1547,10 +1547,10 @@
       "OriginalItemSpec": "wwwroot\\images\\flags\\GB.png"
     },
     {
-      "Identity": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\wwwroot\\images\\flags\\UA.png",
+      "Identity": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\images\\flags\\UA.png",
       "SourceId": "SavageOrcs.Web",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\wwwroot\\",
+      "ContentRoot": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\",
       "BasePath": "_content/SavageOrcs.Web",
       "RelativePath": "images/flags/UA.png",
       "AssetKind": "All",
@@ -1564,10 +1564,10 @@
       "OriginalItemSpec": "wwwroot\\images\\flags\\UA.png"
     },
     {
-      "Identity": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\wwwroot\\images\\icons\\clear.png",
+      "Identity": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\images\\icons\\clear.png",
       "SourceId": "SavageOrcs.Web",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\wwwroot\\",
+      "ContentRoot": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\",
       "BasePath": "_content/SavageOrcs.Web",
       "RelativePath": "images/icons/clear.png",
       "AssetKind": "All",
@@ -1581,10 +1581,10 @@
       "OriginalItemSpec": "wwwroot\\images\\icons\\clear.png"
     },
     {
-      "Identity": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\wwwroot\\images\\icons\\clone.png",
+      "Identity": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\images\\icons\\clone.png",
       "SourceId": "SavageOrcs.Web",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\wwwroot\\",
+      "ContentRoot": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\",
       "BasePath": "_content/SavageOrcs.Web",
       "RelativePath": "images/icons/clone.png",
       "AssetKind": "All",
@@ -1598,10 +1598,10 @@
       "OriginalItemSpec": "wwwroot\\images\\icons\\clone.png"
     },
     {
-      "Identity": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\wwwroot\\images\\icons\\noSelectedCheckBox.png",
+      "Identity": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\images\\icons\\noSelectedCheckBox.png",
       "SourceId": "SavageOrcs.Web",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\wwwroot\\",
+      "ContentRoot": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\",
       "BasePath": "_content/SavageOrcs.Web",
       "RelativePath": "images/icons/noSelectedCheckBox.png",
       "AssetKind": "All",
@@ -1615,10 +1615,10 @@
       "OriginalItemSpec": "wwwroot\\images\\icons\\noSelectedCheckBox.png"
     },
     {
-      "Identity": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\wwwroot\\images\\icons\\redCircle.ico",
+      "Identity": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\images\\icons\\redCircle.ico",
       "SourceId": "SavageOrcs.Web",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\wwwroot\\",
+      "ContentRoot": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\",
       "BasePath": "_content/SavageOrcs.Web",
       "RelativePath": "images/icons/redCircle.ico",
       "AssetKind": "All",
@@ -1632,10 +1632,10 @@
       "OriginalItemSpec": "wwwroot\\images\\icons\\redCircle.ico"
     },
     {
-      "Identity": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\wwwroot\\images\\icons\\video.png",
+      "Identity": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\images\\icons\\video.png",
       "SourceId": "SavageOrcs.Web",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\wwwroot\\",
+      "ContentRoot": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\",
       "BasePath": "_content/SavageOrcs.Web",
       "RelativePath": "images/icons/video.png",
       "AssetKind": "All",
@@ -1649,10 +1649,10 @@
       "OriginalItemSpec": "wwwroot\\images\\icons\\video.png"
     },
     {
-      "Identity": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\wwwroot\\images\\icons\\video-play.svg",
+      "Identity": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\images\\icons\\video-play.svg",
       "SourceId": "SavageOrcs.Web",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\wwwroot\\",
+      "ContentRoot": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\",
       "BasePath": "_content/SavageOrcs.Web",
       "RelativePath": "images/icons/video-play.svg",
       "AssetKind": "All",
@@ -1666,10 +1666,10 @@
       "OriginalItemSpec": "wwwroot\\images\\icons\\video-play.svg"
     },
     {
-      "Identity": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\wwwroot\\images\\main\\404.png",
+      "Identity": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\images\\main\\404.png",
       "SourceId": "SavageOrcs.Web",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\wwwroot\\",
+      "ContentRoot": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\",
       "BasePath": "_content/SavageOrcs.Web",
       "RelativePath": "images/main/404.png",
       "AssetKind": "All",
@@ -1683,10 +1683,10 @@
       "OriginalItemSpec": "wwwroot\\images\\main\\404.png"
     },
     {
-      "Identity": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\wwwroot\\images\\main\\burger.png",
+      "Identity": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\images\\main\\burger.png",
       "SourceId": "SavageOrcs.Web",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\wwwroot\\",
+      "ContentRoot": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\",
       "BasePath": "_content/SavageOrcs.Web",
       "RelativePath": "images/main/burger.png",
       "AssetKind": "All",
@@ -1700,10 +1700,10 @@
       "OriginalItemSpec": "wwwroot\\images\\main\\burger.png"
     },
     {
-      "Identity": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\wwwroot\\images\\main\\cross.svg",
+      "Identity": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\images\\main\\cross.svg",
       "SourceId": "SavageOrcs.Web",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\wwwroot\\",
+      "ContentRoot": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\",
       "BasePath": "_content/SavageOrcs.Web",
       "RelativePath": "images/main/cross.svg",
       "AssetKind": "All",
@@ -1717,10 +1717,10 @@
       "OriginalItemSpec": "wwwroot\\images\\main\\cross.svg"
     },
     {
-      "Identity": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\wwwroot\\images\\main\\documentingUkraine.png",
+      "Identity": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\images\\main\\documentingUkraine.png",
       "SourceId": "SavageOrcs.Web",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\wwwroot\\",
+      "ContentRoot": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\",
       "BasePath": "_content/SavageOrcs.Web",
       "RelativePath": "images/main/documentingUkraine.png",
       "AssetKind": "All",
@@ -1734,10 +1734,10 @@
       "OriginalItemSpec": "wwwroot\\images\\main\\documentingUkraine.png"
     },
     {
-      "Identity": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\wwwroot\\images\\main\\mizhvuhamu.png",
+      "Identity": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\images\\main\\mizhvuhamu.png",
       "SourceId": "SavageOrcs.Web",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\wwwroot\\",
+      "ContentRoot": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\",
       "BasePath": "_content/SavageOrcs.Web",
       "RelativePath": "images/main/mizhvuhamu.png",
       "AssetKind": "All",
@@ -1751,10 +1751,10 @@
       "OriginalItemSpec": "wwwroot\\images\\main\\mizhvuhamu.png"
     },
     {
-      "Identity": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\wwwroot\\images\\main\\Ukraine.png",
+      "Identity": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\images\\main\\Ukraine.png",
       "SourceId": "SavageOrcs.Web",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\wwwroot\\",
+      "ContentRoot": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\",
       "BasePath": "_content/SavageOrcs.Web",
       "RelativePath": "images/main/Ukraine.png",
       "AssetKind": "All",
@@ -1768,10 +1768,10 @@
       "OriginalItemSpec": "wwwroot\\images\\main\\Ukraine.png"
     },
     {
-      "Identity": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\wwwroot\\images\\main\\yourHouse-OurHouse.jpg",
+      "Identity": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\images\\main\\yourHouse-OurHouse.jpg",
       "SourceId": "SavageOrcs.Web",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\wwwroot\\",
+      "ContentRoot": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\",
       "BasePath": "_content/SavageOrcs.Web",
       "RelativePath": "images/main/yourHouse-OurHouse.jpg",
       "AssetKind": "All",
@@ -1785,10 +1785,10 @@
       "OriginalItemSpec": "wwwroot\\images\\main\\yourHouse-OurHouse.jpg"
     },
     {
-      "Identity": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\wwwroot\\images\\main\\yourHouse-OurHouse-mob.png",
+      "Identity": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\images\\main\\yourHouse-OurHouse-mob.png",
       "SourceId": "SavageOrcs.Web",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\wwwroot\\",
+      "ContentRoot": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\",
       "BasePath": "_content/SavageOrcs.Web",
       "RelativePath": "images/main/yourHouse-OurHouse-mob.png",
       "AssetKind": "All",
@@ -1802,10 +1802,10 @@
       "OriginalItemSpec": "wwwroot\\images\\main\\yourHouse-OurHouse-mob.png"
     },
     {
-      "Identity": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\wwwroot\\images\\redCircle.png",
+      "Identity": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\images\\redCircle.png",
       "SourceId": "SavageOrcs.Web",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\wwwroot\\",
+      "ContentRoot": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\",
       "BasePath": "_content/SavageOrcs.Web",
       "RelativePath": "images/redCircle.png",
       "AssetKind": "All",
@@ -1819,10 +1819,10 @@
       "OriginalItemSpec": "wwwroot\\images\\redCircle.png"
     },
     {
-      "Identity": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\wwwroot\\images\\rubbish\\1.jpg",
+      "Identity": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\images\\rubbish\\1.jpg",
       "SourceId": "SavageOrcs.Web",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\wwwroot\\",
+      "ContentRoot": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\",
       "BasePath": "_content/SavageOrcs.Web",
       "RelativePath": "images/rubbish/1.jpg",
       "AssetKind": "All",
@@ -1836,10 +1836,10 @@
       "OriginalItemSpec": "wwwroot\\images\\rubbish\\1.jpg"
     },
     {
-      "Identity": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\wwwroot\\images\\rubbish\\2.jfif",
+      "Identity": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\images\\rubbish\\2.jfif",
       "SourceId": "SavageOrcs.Web",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\wwwroot\\",
+      "ContentRoot": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\",
       "BasePath": "_content/SavageOrcs.Web",
       "RelativePath": "images/rubbish/2.jfif",
       "AssetKind": "All",
@@ -1853,10 +1853,10 @@
       "OriginalItemSpec": "wwwroot\\images\\rubbish\\2.jfif"
     },
     {
-      "Identity": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\wwwroot\\images\\rubbish\\bodyBackground.jpg",
+      "Identity": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\images\\rubbish\\bodyBackground.jpg",
       "SourceId": "SavageOrcs.Web",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\wwwroot\\",
+      "ContentRoot": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\",
       "BasePath": "_content/SavageOrcs.Web",
       "RelativePath": "images/rubbish/bodyBackground.jpg",
       "AssetKind": "All",
@@ -1870,10 +1870,10 @@
       "OriginalItemSpec": "wwwroot\\images\\rubbish\\bodyBackground.jpg"
     },
     {
-      "Identity": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\wwwroot\\images\\rubbish\\bodyBackground1.jpg",
+      "Identity": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\images\\rubbish\\bodyBackground1.jpg",
       "SourceId": "SavageOrcs.Web",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\wwwroot\\",
+      "ContentRoot": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\",
       "BasePath": "_content/SavageOrcs.Web",
       "RelativePath": "images/rubbish/bodyBackground1.jpg",
       "AssetKind": "All",
@@ -1887,10 +1887,10 @@
       "OriginalItemSpec": "wwwroot\\images\\rubbish\\bodyBackground1.jpg"
     },
     {
-      "Identity": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\wwwroot\\images\\rubbish\\bodyBackground2.jpg",
+      "Identity": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\images\\rubbish\\bodyBackground2.jpg",
       "SourceId": "SavageOrcs.Web",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\wwwroot\\",
+      "ContentRoot": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\",
       "BasePath": "_content/SavageOrcs.Web",
       "RelativePath": "images/rubbish/bodyBackground2.jpg",
       "AssetKind": "All",
@@ -1904,10 +1904,10 @@
       "OriginalItemSpec": "wwwroot\\images\\rubbish\\bodyBackground2.jpg"
     },
     {
-      "Identity": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\wwwroot\\images\\rubbish\\clusterIcon.png",
+      "Identity": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\images\\rubbish\\clusterIcon.png",
       "SourceId": "SavageOrcs.Web",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\wwwroot\\",
+      "ContentRoot": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\",
       "BasePath": "_content/SavageOrcs.Web",
       "RelativePath": "images/rubbish/clusterIcon.png",
       "AssetKind": "All",
@@ -1921,10 +1921,10 @@
       "OriginalItemSpec": "wwwroot\\images\\rubbish\\clusterIcon.png"
     },
     {
-      "Identity": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\wwwroot\\images\\rubbish\\logo.png",
+      "Identity": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\images\\rubbish\\logo.png",
       "SourceId": "SavageOrcs.Web",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\wwwroot\\",
+      "ContentRoot": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\",
       "BasePath": "_content/SavageOrcs.Web",
       "RelativePath": "images/rubbish/logo.png",
       "AssetKind": "All",
@@ -1938,10 +1938,10 @@
       "OriginalItemSpec": "wwwroot\\images\\rubbish\\logo.png"
     },
     {
-      "Identity": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\wwwroot\\images\\rubbish\\markIcon.png",
+      "Identity": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\images\\rubbish\\markIcon.png",
       "SourceId": "SavageOrcs.Web",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\wwwroot\\",
+      "ContentRoot": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\",
       "BasePath": "_content/SavageOrcs.Web",
       "RelativePath": "images/rubbish/markIcon.png",
       "AssetKind": "All",
@@ -1955,10 +1955,10 @@
       "OriginalItemSpec": "wwwroot\\images\\rubbish\\markIcon.png"
     },
     {
-      "Identity": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\wwwroot\\images\\rubbish\\markIconApproximate.png",
+      "Identity": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\images\\rubbish\\markIconApproximate.png",
       "SourceId": "SavageOrcs.Web",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\wwwroot\\",
+      "ContentRoot": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\",
       "BasePath": "_content/SavageOrcs.Web",
       "RelativePath": "images/rubbish/markIconApproximate.png",
       "AssetKind": "All",
@@ -1972,10 +1972,10 @@
       "OriginalItemSpec": "wwwroot\\images\\rubbish\\markIconApproximate.png"
     },
     {
-      "Identity": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\wwwroot\\js\\site.js",
+      "Identity": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\js\\site.js",
       "SourceId": "SavageOrcs.Web",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\wwwroot\\",
+      "ContentRoot": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\",
       "BasePath": "_content/SavageOrcs.Web",
       "RelativePath": "js/site.js",
       "AssetKind": "All",
@@ -1989,10 +1989,10 @@
       "OriginalItemSpec": "wwwroot\\js\\site.js"
     },
     {
-      "Identity": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\wwwroot\\js\\site.min.js",
+      "Identity": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\js\\site.min.js",
       "SourceId": "SavageOrcs.Web",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\wwwroot\\",
+      "ContentRoot": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\",
       "BasePath": "_content/SavageOrcs.Web",
       "RelativePath": "js/site.min.js",
       "AssetKind": "All",
@@ -2006,10 +2006,10 @@
       "OriginalItemSpec": "wwwroot\\js\\site.min.js"
     },
     {
-      "Identity": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css",
+      "Identity": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css",
       "SourceId": "SavageOrcs.Web",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\wwwroot\\",
+      "ContentRoot": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\",
       "BasePath": "_content/SavageOrcs.Web",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap.css",
       "AssetKind": "All",
@@ -2023,10 +2023,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css"
     },
     {
-      "Identity": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css.map",
+      "Identity": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css.map",
       "SourceId": "SavageOrcs.Web",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\wwwroot\\",
+      "ContentRoot": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\",
       "BasePath": "_content/SavageOrcs.Web",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap.css.map",
       "AssetKind": "All",
@@ -2040,10 +2040,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css.map"
     },
     {
-      "Identity": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.min.css",
+      "Identity": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.min.css",
       "SourceId": "SavageOrcs.Web",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\wwwroot\\",
+      "ContentRoot": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\",
       "BasePath": "_content/SavageOrcs.Web",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap.min.css",
       "AssetKind": "All",
@@ -2057,10 +2057,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.min.css"
     },
     {
-      "Identity": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.min.css.map",
+      "Identity": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.min.css.map",
       "SourceId": "SavageOrcs.Web",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\wwwroot\\",
+      "ContentRoot": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\",
       "BasePath": "_content/SavageOrcs.Web",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap.min.css.map",
       "AssetKind": "All",
@@ -2074,10 +2074,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.min.css.map"
     },
     {
-      "Identity": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css",
+      "Identity": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css",
       "SourceId": "SavageOrcs.Web",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\wwwroot\\",
+      "ContentRoot": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\",
       "BasePath": "_content/SavageOrcs.Web",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap.rtl.css",
       "AssetKind": "All",
@@ -2091,10 +2091,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css"
     },
     {
-      "Identity": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css.map",
+      "Identity": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css.map",
       "SourceId": "SavageOrcs.Web",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\wwwroot\\",
+      "ContentRoot": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\",
       "BasePath": "_content/SavageOrcs.Web",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap.rtl.css.map",
       "AssetKind": "All",
@@ -2108,10 +2108,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css.map"
     },
     {
-      "Identity": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css",
+      "Identity": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css",
       "SourceId": "SavageOrcs.Web",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\wwwroot\\",
+      "ContentRoot": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\",
       "BasePath": "_content/SavageOrcs.Web",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap.rtl.min.css",
       "AssetKind": "All",
@@ -2125,10 +2125,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css"
     },
     {
-      "Identity": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css.map",
+      "Identity": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css.map",
       "SourceId": "SavageOrcs.Web",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\wwwroot\\",
+      "ContentRoot": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\",
       "BasePath": "_content/SavageOrcs.Web",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap.rtl.min.css.map",
       "AssetKind": "All",
@@ -2142,10 +2142,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css.map"
     },
     {
-      "Identity": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css",
+      "Identity": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css",
       "SourceId": "SavageOrcs.Web",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\wwwroot\\",
+      "ContentRoot": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\",
       "BasePath": "_content/SavageOrcs.Web",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-grid.css",
       "AssetKind": "All",
@@ -2159,10 +2159,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css"
     },
     {
-      "Identity": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css.map",
+      "Identity": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css.map",
       "SourceId": "SavageOrcs.Web",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\wwwroot\\",
+      "ContentRoot": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\",
       "BasePath": "_content/SavageOrcs.Web",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-grid.css.map",
       "AssetKind": "All",
@@ -2176,10 +2176,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css.map"
     },
     {
-      "Identity": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css",
+      "Identity": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css",
       "SourceId": "SavageOrcs.Web",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\wwwroot\\",
+      "ContentRoot": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\",
       "BasePath": "_content/SavageOrcs.Web",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-grid.min.css",
       "AssetKind": "All",
@@ -2193,10 +2193,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css"
     },
     {
-      "Identity": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css.map",
+      "Identity": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css.map",
       "SourceId": "SavageOrcs.Web",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\wwwroot\\",
+      "ContentRoot": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\",
       "BasePath": "_content/SavageOrcs.Web",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-grid.min.css.map",
       "AssetKind": "All",
@@ -2210,10 +2210,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css.map"
     },
     {
-      "Identity": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css",
+      "Identity": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css",
       "SourceId": "SavageOrcs.Web",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\wwwroot\\",
+      "ContentRoot": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\",
       "BasePath": "_content/SavageOrcs.Web",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-grid.rtl.css",
       "AssetKind": "All",
@@ -2227,10 +2227,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css"
     },
     {
-      "Identity": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css.map",
+      "Identity": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css.map",
       "SourceId": "SavageOrcs.Web",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\wwwroot\\",
+      "ContentRoot": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\",
       "BasePath": "_content/SavageOrcs.Web",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-grid.rtl.css.map",
       "AssetKind": "All",
@@ -2244,10 +2244,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css.map"
     },
     {
-      "Identity": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css",
+      "Identity": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css",
       "SourceId": "SavageOrcs.Web",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\wwwroot\\",
+      "ContentRoot": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\",
       "BasePath": "_content/SavageOrcs.Web",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-grid.rtl.min.css",
       "AssetKind": "All",
@@ -2261,10 +2261,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css"
     },
     {
-      "Identity": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css.map",
+      "Identity": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css.map",
       "SourceId": "SavageOrcs.Web",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\wwwroot\\",
+      "ContentRoot": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\",
       "BasePath": "_content/SavageOrcs.Web",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-grid.rtl.min.css.map",
       "AssetKind": "All",
@@ -2278,10 +2278,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css.map"
     },
     {
-      "Identity": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css",
+      "Identity": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css",
       "SourceId": "SavageOrcs.Web",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\wwwroot\\",
+      "ContentRoot": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\",
       "BasePath": "_content/SavageOrcs.Web",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-reboot.css",
       "AssetKind": "All",
@@ -2295,10 +2295,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css"
     },
     {
-      "Identity": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css.map",
+      "Identity": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css.map",
       "SourceId": "SavageOrcs.Web",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\wwwroot\\",
+      "ContentRoot": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\",
       "BasePath": "_content/SavageOrcs.Web",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-reboot.css.map",
       "AssetKind": "All",
@@ -2312,10 +2312,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css.map"
     },
     {
-      "Identity": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css",
+      "Identity": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css",
       "SourceId": "SavageOrcs.Web",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\wwwroot\\",
+      "ContentRoot": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\",
       "BasePath": "_content/SavageOrcs.Web",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-reboot.min.css",
       "AssetKind": "All",
@@ -2329,10 +2329,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css"
     },
     {
-      "Identity": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css.map",
+      "Identity": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css.map",
       "SourceId": "SavageOrcs.Web",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\wwwroot\\",
+      "ContentRoot": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\",
       "BasePath": "_content/SavageOrcs.Web",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-reboot.min.css.map",
       "AssetKind": "All",
@@ -2346,10 +2346,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css.map"
     },
     {
-      "Identity": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css",
+      "Identity": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css",
       "SourceId": "SavageOrcs.Web",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\wwwroot\\",
+      "ContentRoot": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\",
       "BasePath": "_content/SavageOrcs.Web",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-reboot.rtl.css",
       "AssetKind": "All",
@@ -2363,10 +2363,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css"
     },
     {
-      "Identity": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css.map",
+      "Identity": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css.map",
       "SourceId": "SavageOrcs.Web",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\wwwroot\\",
+      "ContentRoot": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\",
       "BasePath": "_content/SavageOrcs.Web",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-reboot.rtl.css.map",
       "AssetKind": "All",
@@ -2380,10 +2380,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css.map"
     },
     {
-      "Identity": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css",
+      "Identity": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css",
       "SourceId": "SavageOrcs.Web",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\wwwroot\\",
+      "ContentRoot": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\",
       "BasePath": "_content/SavageOrcs.Web",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-reboot.rtl.min.css",
       "AssetKind": "All",
@@ -2397,10 +2397,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css"
     },
     {
-      "Identity": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css.map",
+      "Identity": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css.map",
       "SourceId": "SavageOrcs.Web",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\wwwroot\\",
+      "ContentRoot": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\",
       "BasePath": "_content/SavageOrcs.Web",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-reboot.rtl.min.css.map",
       "AssetKind": "All",
@@ -2414,10 +2414,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css.map"
     },
     {
-      "Identity": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css",
+      "Identity": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css",
       "SourceId": "SavageOrcs.Web",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\wwwroot\\",
+      "ContentRoot": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\",
       "BasePath": "_content/SavageOrcs.Web",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-utilities.css",
       "AssetKind": "All",
@@ -2431,10 +2431,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css"
     },
     {
-      "Identity": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css.map",
+      "Identity": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css.map",
       "SourceId": "SavageOrcs.Web",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\wwwroot\\",
+      "ContentRoot": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\",
       "BasePath": "_content/SavageOrcs.Web",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-utilities.css.map",
       "AssetKind": "All",
@@ -2448,10 +2448,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css.map"
     },
     {
-      "Identity": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css",
+      "Identity": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css",
       "SourceId": "SavageOrcs.Web",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\wwwroot\\",
+      "ContentRoot": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\",
       "BasePath": "_content/SavageOrcs.Web",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-utilities.min.css",
       "AssetKind": "All",
@@ -2465,10 +2465,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css"
     },
     {
-      "Identity": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css.map",
+      "Identity": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css.map",
       "SourceId": "SavageOrcs.Web",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\wwwroot\\",
+      "ContentRoot": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\",
       "BasePath": "_content/SavageOrcs.Web",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-utilities.min.css.map",
       "AssetKind": "All",
@@ -2482,10 +2482,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css.map"
     },
     {
-      "Identity": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css",
+      "Identity": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css",
       "SourceId": "SavageOrcs.Web",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\wwwroot\\",
+      "ContentRoot": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\",
       "BasePath": "_content/SavageOrcs.Web",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-utilities.rtl.css",
       "AssetKind": "All",
@@ -2499,10 +2499,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css"
     },
     {
-      "Identity": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css.map",
+      "Identity": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css.map",
       "SourceId": "SavageOrcs.Web",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\wwwroot\\",
+      "ContentRoot": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\",
       "BasePath": "_content/SavageOrcs.Web",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-utilities.rtl.css.map",
       "AssetKind": "All",
@@ -2516,10 +2516,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css.map"
     },
     {
-      "Identity": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css",
+      "Identity": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css",
       "SourceId": "SavageOrcs.Web",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\wwwroot\\",
+      "ContentRoot": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\",
       "BasePath": "_content/SavageOrcs.Web",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-utilities.rtl.min.css",
       "AssetKind": "All",
@@ -2533,10 +2533,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css"
     },
     {
-      "Identity": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css.map",
+      "Identity": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css.map",
       "SourceId": "SavageOrcs.Web",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\wwwroot\\",
+      "ContentRoot": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\",
       "BasePath": "_content/SavageOrcs.Web",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-utilities.rtl.min.css.map",
       "AssetKind": "All",
@@ -2550,10 +2550,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css.map"
     },
     {
-      "Identity": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js",
+      "Identity": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js",
       "SourceId": "SavageOrcs.Web",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\wwwroot\\",
+      "ContentRoot": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\",
       "BasePath": "_content/SavageOrcs.Web",
       "RelativePath": "lib/bootstrap/dist/js/bootstrap.bundle.js",
       "AssetKind": "All",
@@ -2567,10 +2567,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js"
     },
     {
-      "Identity": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js.map",
+      "Identity": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js.map",
       "SourceId": "SavageOrcs.Web",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\wwwroot\\",
+      "ContentRoot": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\",
       "BasePath": "_content/SavageOrcs.Web",
       "RelativePath": "lib/bootstrap/dist/js/bootstrap.bundle.js.map",
       "AssetKind": "All",
@@ -2584,10 +2584,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js.map"
     },
     {
-      "Identity": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js",
+      "Identity": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js",
       "SourceId": "SavageOrcs.Web",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\wwwroot\\",
+      "ContentRoot": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\",
       "BasePath": "_content/SavageOrcs.Web",
       "RelativePath": "lib/bootstrap/dist/js/bootstrap.bundle.min.js",
       "AssetKind": "All",
@@ -2601,10 +2601,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js"
     },
     {
-      "Identity": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js.map",
+      "Identity": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js.map",
       "SourceId": "SavageOrcs.Web",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\wwwroot\\",
+      "ContentRoot": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\",
       "BasePath": "_content/SavageOrcs.Web",
       "RelativePath": "lib/bootstrap/dist/js/bootstrap.bundle.min.js.map",
       "AssetKind": "All",
@@ -2618,10 +2618,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js.map"
     },
     {
-      "Identity": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js",
+      "Identity": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js",
       "SourceId": "SavageOrcs.Web",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\wwwroot\\",
+      "ContentRoot": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\",
       "BasePath": "_content/SavageOrcs.Web",
       "RelativePath": "lib/bootstrap/dist/js/bootstrap.esm.js",
       "AssetKind": "All",
@@ -2635,10 +2635,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js"
     },
     {
-      "Identity": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js.map",
+      "Identity": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js.map",
       "SourceId": "SavageOrcs.Web",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\wwwroot\\",
+      "ContentRoot": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\",
       "BasePath": "_content/SavageOrcs.Web",
       "RelativePath": "lib/bootstrap/dist/js/bootstrap.esm.js.map",
       "AssetKind": "All",
@@ -2652,10 +2652,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js.map"
     },
     {
-      "Identity": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js",
+      "Identity": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js",
       "SourceId": "SavageOrcs.Web",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\wwwroot\\",
+      "ContentRoot": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\",
       "BasePath": "_content/SavageOrcs.Web",
       "RelativePath": "lib/bootstrap/dist/js/bootstrap.esm.min.js",
       "AssetKind": "All",
@@ -2669,10 +2669,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js"
     },
     {
-      "Identity": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js.map",
+      "Identity": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js.map",
       "SourceId": "SavageOrcs.Web",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\wwwroot\\",
+      "ContentRoot": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\",
       "BasePath": "_content/SavageOrcs.Web",
       "RelativePath": "lib/bootstrap/dist/js/bootstrap.esm.min.js.map",
       "AssetKind": "All",
@@ -2686,10 +2686,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js.map"
     },
     {
-      "Identity": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.js",
+      "Identity": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.js",
       "SourceId": "SavageOrcs.Web",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\wwwroot\\",
+      "ContentRoot": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\",
       "BasePath": "_content/SavageOrcs.Web",
       "RelativePath": "lib/bootstrap/dist/js/bootstrap.js",
       "AssetKind": "All",
@@ -2703,10 +2703,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.js"
     },
     {
-      "Identity": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.js.map",
+      "Identity": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.js.map",
       "SourceId": "SavageOrcs.Web",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\wwwroot\\",
+      "ContentRoot": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\",
       "BasePath": "_content/SavageOrcs.Web",
       "RelativePath": "lib/bootstrap/dist/js/bootstrap.js.map",
       "AssetKind": "All",
@@ -2720,10 +2720,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.js.map"
     },
     {
-      "Identity": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.min.js",
+      "Identity": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.min.js",
       "SourceId": "SavageOrcs.Web",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\wwwroot\\",
+      "ContentRoot": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\",
       "BasePath": "_content/SavageOrcs.Web",
       "RelativePath": "lib/bootstrap/dist/js/bootstrap.min.js",
       "AssetKind": "All",
@@ -2737,10 +2737,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.min.js"
     },
     {
-      "Identity": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.min.js.map",
+      "Identity": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.min.js.map",
       "SourceId": "SavageOrcs.Web",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\wwwroot\\",
+      "ContentRoot": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\",
       "BasePath": "_content/SavageOrcs.Web",
       "RelativePath": "lib/bootstrap/dist/js/bootstrap.min.js.map",
       "AssetKind": "All",
@@ -2754,10 +2754,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.min.js.map"
     },
     {
-      "Identity": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\wwwroot\\lib\\bootstrap\\LICENSE",
+      "Identity": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\lib\\bootstrap\\LICENSE",
       "SourceId": "SavageOrcs.Web",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\wwwroot\\",
+      "ContentRoot": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\",
       "BasePath": "_content/SavageOrcs.Web",
       "RelativePath": "lib/bootstrap/LICENSE",
       "AssetKind": "All",
@@ -2771,10 +2771,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\LICENSE"
     },
     {
-      "Identity": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\wwwroot\\lib\\editor\\editor.js",
+      "Identity": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\lib\\editor\\editor.js",
       "SourceId": "SavageOrcs.Web",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\wwwroot\\",
+      "ContentRoot": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\",
       "BasePath": "_content/SavageOrcs.Web",
       "RelativePath": "lib/editor/editor.js",
       "AssetKind": "All",
@@ -2788,10 +2788,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\editor\\editor.js"
     },
     {
-      "Identity": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\wwwroot\\lib\\jquery\\dist\\jquery.js",
+      "Identity": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\lib\\jquery\\dist\\jquery.js",
       "SourceId": "SavageOrcs.Web",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\wwwroot\\",
+      "ContentRoot": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\",
       "BasePath": "_content/SavageOrcs.Web",
       "RelativePath": "lib/jquery/dist/jquery.js",
       "AssetKind": "All",
@@ -2805,10 +2805,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\jquery\\dist\\jquery.js"
     },
     {
-      "Identity": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\wwwroot\\lib\\jquery\\dist\\jquery.min.js",
+      "Identity": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\lib\\jquery\\dist\\jquery.min.js",
       "SourceId": "SavageOrcs.Web",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\wwwroot\\",
+      "ContentRoot": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\",
       "BasePath": "_content/SavageOrcs.Web",
       "RelativePath": "lib/jquery/dist/jquery.min.js",
       "AssetKind": "All",
@@ -2822,10 +2822,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\jquery\\dist\\jquery.min.js"
     },
     {
-      "Identity": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\wwwroot\\lib\\jquery\\dist\\jquery.min.map",
+      "Identity": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\lib\\jquery\\dist\\jquery.min.map",
       "SourceId": "SavageOrcs.Web",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\wwwroot\\",
+      "ContentRoot": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\",
       "BasePath": "_content/SavageOrcs.Web",
       "RelativePath": "lib/jquery/dist/jquery.min.map",
       "AssetKind": "All",
@@ -2839,10 +2839,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\jquery\\dist\\jquery.min.map"
     },
     {
-      "Identity": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\wwwroot\\lib\\jquery\\jquery.cookie.js",
+      "Identity": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\lib\\jquery\\jquery.cookie.js",
       "SourceId": "SavageOrcs.Web",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\wwwroot\\",
+      "ContentRoot": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\",
       "BasePath": "_content/SavageOrcs.Web",
       "RelativePath": "lib/jquery/jquery.cookie.js",
       "AssetKind": "All",
@@ -2856,10 +2856,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\jquery\\jquery.cookie.js"
     },
     {
-      "Identity": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\wwwroot\\lib\\jquery\\LICENSE.txt",
+      "Identity": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\lib\\jquery\\LICENSE.txt",
       "SourceId": "SavageOrcs.Web",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\wwwroot\\",
+      "ContentRoot": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\",
       "BasePath": "_content/SavageOrcs.Web",
       "RelativePath": "lib/jquery/LICENSE.txt",
       "AssetKind": "All",
@@ -2873,10 +2873,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\jquery\\LICENSE.txt"
     },
     {
-      "Identity": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\wwwroot\\lib\\jquery-validation\\dist\\additional-methods.js",
+      "Identity": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\lib\\jquery-validation\\dist\\additional-methods.js",
       "SourceId": "SavageOrcs.Web",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\wwwroot\\",
+      "ContentRoot": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\",
       "BasePath": "_content/SavageOrcs.Web",
       "RelativePath": "lib/jquery-validation/dist/additional-methods.js",
       "AssetKind": "All",
@@ -2890,10 +2890,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\jquery-validation\\dist\\additional-methods.js"
     },
     {
-      "Identity": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\wwwroot\\lib\\jquery-validation\\dist\\additional-methods.min.js",
+      "Identity": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\lib\\jquery-validation\\dist\\additional-methods.min.js",
       "SourceId": "SavageOrcs.Web",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\wwwroot\\",
+      "ContentRoot": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\",
       "BasePath": "_content/SavageOrcs.Web",
       "RelativePath": "lib/jquery-validation/dist/additional-methods.min.js",
       "AssetKind": "All",
@@ -2907,10 +2907,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\jquery-validation\\dist\\additional-methods.min.js"
     },
     {
-      "Identity": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\wwwroot\\lib\\jquery-validation\\dist\\jquery.validate.js",
+      "Identity": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\lib\\jquery-validation\\dist\\jquery.validate.js",
       "SourceId": "SavageOrcs.Web",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\wwwroot\\",
+      "ContentRoot": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\",
       "BasePath": "_content/SavageOrcs.Web",
       "RelativePath": "lib/jquery-validation/dist/jquery.validate.js",
       "AssetKind": "All",
@@ -2924,10 +2924,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\jquery-validation\\dist\\jquery.validate.js"
     },
     {
-      "Identity": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\wwwroot\\lib\\jquery-validation\\dist\\jquery.validate.min.js",
+      "Identity": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\lib\\jquery-validation\\dist\\jquery.validate.min.js",
       "SourceId": "SavageOrcs.Web",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\wwwroot\\",
+      "ContentRoot": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\",
       "BasePath": "_content/SavageOrcs.Web",
       "RelativePath": "lib/jquery-validation/dist/jquery.validate.min.js",
       "AssetKind": "All",
@@ -2941,10 +2941,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\jquery-validation\\dist\\jquery.validate.min.js"
     },
     {
-      "Identity": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\wwwroot\\lib\\jquery-validation\\LICENSE.md",
+      "Identity": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\lib\\jquery-validation\\LICENSE.md",
       "SourceId": "SavageOrcs.Web",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\wwwroot\\",
+      "ContentRoot": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\",
       "BasePath": "_content/SavageOrcs.Web",
       "RelativePath": "lib/jquery-validation/LICENSE.md",
       "AssetKind": "All",
@@ -2958,10 +2958,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\jquery-validation\\LICENSE.md"
     },
     {
-      "Identity": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\wwwroot\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.js",
+      "Identity": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.js",
       "SourceId": "SavageOrcs.Web",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\wwwroot\\",
+      "ContentRoot": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\",
       "BasePath": "_content/SavageOrcs.Web",
       "RelativePath": "lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js",
       "AssetKind": "All",
@@ -2975,10 +2975,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.js"
     },
     {
-      "Identity": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\wwwroot\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.min.js",
+      "Identity": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.min.js",
       "SourceId": "SavageOrcs.Web",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\wwwroot\\",
+      "ContentRoot": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\",
       "BasePath": "_content/SavageOrcs.Web",
       "RelativePath": "lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js",
       "AssetKind": "All",
@@ -2992,10 +2992,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.min.js"
     },
     {
-      "Identity": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\wwwroot\\lib\\jquery-validation-unobtrusive\\LICENSE.txt",
+      "Identity": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\lib\\jquery-validation-unobtrusive\\LICENSE.txt",
       "SourceId": "SavageOrcs.Web",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\wwwroot\\",
+      "ContentRoot": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\",
       "BasePath": "_content/SavageOrcs.Web",
       "RelativePath": "lib/jquery-validation-unobtrusive/LICENSE.txt",
       "AssetKind": "All",
@@ -3009,10 +3009,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\jquery-validation-unobtrusive\\LICENSE.txt"
     },
     {
-      "Identity": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\wwwroot\\lib\\multiselect\\multiselect-dropdown.js",
+      "Identity": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\lib\\multiselect\\multiselect-dropdown.js",
       "SourceId": "SavageOrcs.Web",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\wwwroot\\",
+      "ContentRoot": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\",
       "BasePath": "_content/SavageOrcs.Web",
       "RelativePath": "lib/multiselect/multiselect-dropdown.js",
       "AssetKind": "All",
@@ -3026,10 +3026,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\multiselect\\multiselect-dropdown.js"
     },
     {
-      "Identity": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\wwwroot\\lib\\search-select\\search-select.css",
+      "Identity": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\lib\\search-select\\search-select.css",
       "SourceId": "SavageOrcs.Web",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\wwwroot\\",
+      "ContentRoot": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\",
       "BasePath": "_content/SavageOrcs.Web",
       "RelativePath": "lib/search-select/search-select.css",
       "AssetKind": "All",
@@ -3043,10 +3043,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\search-select\\search-select.css"
     },
     {
-      "Identity": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\wwwroot\\lib\\search-select\\search-select.js",
+      "Identity": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\lib\\search-select\\search-select.js",
       "SourceId": "SavageOrcs.Web",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\wwwroot\\",
+      "ContentRoot": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\",
       "BasePath": "_content/SavageOrcs.Web",
       "RelativePath": "lib/search-select/search-select.js",
       "AssetKind": "All",
@@ -3060,10 +3060,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\search-select\\search-select.js"
     },
     {
-      "Identity": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\wwwroot\\text\\Mizhvukhamy-Alternate.ttf",
+      "Identity": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\text\\Mizhvukhamy-Alternate.ttf",
       "SourceId": "SavageOrcs.Web",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\wwwroot\\",
+      "ContentRoot": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\",
       "BasePath": "_content/SavageOrcs.Web",
       "RelativePath": "text/Mizhvukhamy-Alternate.ttf",
       "AssetKind": "All",
@@ -3077,10 +3077,10 @@
       "OriginalItemSpec": "wwwroot\\text\\Mizhvukhamy-Alternate.ttf"
     },
     {
-      "Identity": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\wwwroot\\text\\Mizhvukhamy-Bold.ttf",
+      "Identity": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\text\\Mizhvukhamy-Bold.ttf",
       "SourceId": "SavageOrcs.Web",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\wwwroot\\",
+      "ContentRoot": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\",
       "BasePath": "_content/SavageOrcs.Web",
       "RelativePath": "text/Mizhvukhamy-Bold.ttf",
       "AssetKind": "All",
@@ -3094,10 +3094,10 @@
       "OriginalItemSpec": "wwwroot\\text\\Mizhvukhamy-Bold.ttf"
     },
     {
-      "Identity": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\wwwroot\\text\\Mizhvukhamy-Light.ttf",
+      "Identity": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\text\\Mizhvukhamy-Light.ttf",
       "SourceId": "SavageOrcs.Web",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\wwwroot\\",
+      "ContentRoot": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\",
       "BasePath": "_content/SavageOrcs.Web",
       "RelativePath": "text/Mizhvukhamy-Light.ttf",
       "AssetKind": "All",
@@ -3111,10 +3111,10 @@
       "OriginalItemSpec": "wwwroot\\text\\Mizhvukhamy-Light.ttf"
     },
     {
-      "Identity": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\wwwroot\\text\\Mizhvukhamy-Medium.ttf",
+      "Identity": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\text\\Mizhvukhamy-Medium.ttf",
       "SourceId": "SavageOrcs.Web",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\wwwroot\\",
+      "ContentRoot": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\",
       "BasePath": "_content/SavageOrcs.Web",
       "RelativePath": "text/Mizhvukhamy-Medium.ttf",
       "AssetKind": "All",
@@ -3128,10 +3128,10 @@
       "OriginalItemSpec": "wwwroot\\text\\Mizhvukhamy-Medium.ttf"
     },
     {
-      "Identity": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\wwwroot\\text\\Mizhvukhamy-Regular.ttf",
+      "Identity": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\text\\Mizhvukhamy-Regular.ttf",
       "SourceId": "SavageOrcs.Web",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\wwwroot\\",
+      "ContentRoot": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\",
       "BasePath": "_content/SavageOrcs.Web",
       "RelativePath": "text/Mizhvukhamy-Regular.ttf",
       "AssetKind": "All",
@@ -3145,10 +3145,10 @@
       "OriginalItemSpec": "wwwroot\\text\\Mizhvukhamy-Regular.ttf"
     },
     {
-      "Identity": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\wwwroot\\text\\Mizhvukhamy-Thin.ttf",
+      "Identity": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\text\\Mizhvukhamy-Thin.ttf",
       "SourceId": "SavageOrcs.Web",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Навчання\\Diploma\\SavageOrcs.Web\\wwwroot\\",
+      "ContentRoot": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\",
       "BasePath": "_content/SavageOrcs.Web",
       "RelativePath": "text/Mizhvukhamy-Thin.ttf",
       "AssetKind": "All",

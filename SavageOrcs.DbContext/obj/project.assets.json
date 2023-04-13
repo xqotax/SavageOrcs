@@ -2121,19 +2121,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\skrip\\.nuget\\packages\\": {}
+    "C:\\Users\\Yurij Skripnik\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Навчання\\Diploma\\SavageOrcs.DbContext\\SavageOrcs.DbContext.csproj",
+      "projectUniqueName": "D:\\Study\\Diploma\\SavageOrcs.DbContext\\SavageOrcs.DbContext.csproj",
       "projectName": "SavageOrcs.DbContext",
-      "projectPath": "D:\\Навчання\\Diploma\\SavageOrcs.DbContext\\SavageOrcs.DbContext.csproj",
-      "packagesPath": "C:\\Users\\skrip\\.nuget\\packages\\",
-      "outputPath": "D:\\Навчання\\Diploma\\SavageOrcs.DbContext\\obj\\",
+      "projectPath": "D:\\Study\\Diploma\\SavageOrcs.DbContext\\SavageOrcs.DbContext.csproj",
+      "packagesPath": "C:\\Users\\Yurij Skripnik\\.nuget\\packages\\",
+      "outputPath": "D:\\Study\\Diploma\\SavageOrcs.DbContext\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\skrip\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Yurij Skripnik\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -2147,8 +2147,8 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
-            "D:\\Навчання\\Diploma\\SavageOrcs.BusinessObjects\\SavageOrcs.BusinessObjects.csproj": {
-              "projectPath": "D:\\Навчання\\Diploma\\SavageOrcs.BusinessObjects\\SavageOrcs.BusinessObjects.csproj"
+            "D:\\Study\\Diploma\\SavageOrcs.BusinessObjects\\SavageOrcs.BusinessObjects.csproj": {
+              "projectPath": "D:\\Study\\Diploma\\SavageOrcs.BusinessObjects\\SavageOrcs.BusinessObjects.csproj"
             }
           }
         }
@@ -2192,7 +2192,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.400\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.203\\RuntimeIdentifierGraph.json"
       }
     }
   }

@@ -46,9 +46,11 @@
     {
         <div class="admin-menu-row">
             <div class="admin-menu-item">
-                <a id="manage" class="nav-link btn btn-link" style="color: white" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">@UserManager.GetUserName(User)</a>
-
+                <a style="color: white" class="nav-link btn btn-link" id="register" asp-area="Identity" asp-page="/Account/Register">Реєстрація</a>
             </div>
+            @*<div class="admin-menu-item">
+                <a id="manage" class="nav-link btn btn-link" style="color: white" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">@UserManager.GetUserName(User)</a>
+            </div>*@
             <div class="admin-menu-item">
                 <form id="logoutForm" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Main", "Map", new { area = "" })">
                     <button id="logout" type="submit" style="color: white" class="nav-link btn btn-link">Вийти</button>
@@ -60,9 +62,9 @@
     else
     {
         <div class="admin-menu-row">
-            <div class="admin-menu-item">
+            @*<div class="admin-menu-item">
                 <a style="color: white" class="nav-link btn btn-link" id="register" asp-area="Identity" asp-page="/Account/Register">Реєстрація</a>
-            </div>
+            </div>*@
             <div class="admin-menu-item">
                 <a style="color: white" class="nav-link btn btn-link" id="login" asp-area="Identity" asp-page="/Account/Login">Вхід</a>
             </div>

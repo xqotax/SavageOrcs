@@ -80,6 +80,36 @@
     color: #0F0F0F;
 }
 
+.mark-map-popup {
+    background-color: #FF2929;
+    display: block;
+    position: relative;
+    min-height: 5px;
+    min-width: 120px;
+    z-index: 100;
+    text-align: center;
+    vertical-align: central;
+    font-size: 10px;
+    line-height: 15px;
+}
+.gm-style-iw-d::-webkit-scrollbar-track {
+    background: #FF2929 !important;
+}
+
+.gm-style-iw-d::-webkit-scrollbar-track-piece {
+    background: #FF2929 !important;
+}
+
+.gm-style-iw-c {
+    background-color: #FF2929 !important;
+}
+
+.gm-style-iw-tc, .gm-style-iw-tc::after {
+    background: #FF2929 !important;
+    -webkit-clip-path: polygon(0 0,50% 100%,100% 0) !important;
+    clip-path: polygon(0 0,50% 100%,100% 0) !important;
+}
+
 .filter-item {
     height: 100%;
     width: 29%;

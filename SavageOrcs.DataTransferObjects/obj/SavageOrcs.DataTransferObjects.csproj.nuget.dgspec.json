@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Навчання\\Diploma\\SavageOrcs.DataTransferObjects\\SavageOrcs.DataTransferObjects.csproj": {}
+    "D:\\Study\\Diploma\\SavageOrcs.DataTransferObjects\\SavageOrcs.DataTransferObjects.csproj": {}
   },
   "projects": {
-    "D:\\Навчання\\Diploma\\SavageOrcs.DataTransferObjects\\SavageOrcs.DataTransferObjects.csproj": {
+    "D:\\Study\\Diploma\\SavageOrcs.DataTransferObjects\\SavageOrcs.DataTransferObjects.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Навчання\\Diploma\\SavageOrcs.DataTransferObjects\\SavageOrcs.DataTransferObjects.csproj",
+        "projectUniqueName": "D:\\Study\\Diploma\\SavageOrcs.DataTransferObjects\\SavageOrcs.DataTransferObjects.csproj",
         "projectName": "SavageOrcs.DataTransferObjects",
-        "projectPath": "D:\\Навчання\\Diploma\\SavageOrcs.DataTransferObjects\\SavageOrcs.DataTransferObjects.csproj",
-        "packagesPath": "C:\\Users\\skrip\\.nuget\\packages\\",
-        "outputPath": "D:\\Навчання\\Diploma\\SavageOrcs.DataTransferObjects\\obj\\",
+        "projectPath": "D:\\Study\\Diploma\\SavageOrcs.DataTransferObjects\\SavageOrcs.DataTransferObjects.csproj",
+        "packagesPath": "C:\\Users\\Yurij Skripnik\\.nuget\\packages\\",
+        "outputPath": "D:\\Study\\Diploma\\SavageOrcs.DataTransferObjects\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\skrip\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Yurij Skripnik\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -28,8 +28,8 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "D:\\Навчання\\Diploma\\SavageOrcs.Enums\\SavageOrcs.Enums.csproj": {
-                "projectPath": "D:\\Навчання\\Diploma\\SavageOrcs.Enums\\SavageOrcs.Enums.csproj"
+              "D:\\Study\\Diploma\\SavageOrcs.Enums\\SavageOrcs.Enums.csproj": {
+                "projectPath": "D:\\Study\\Diploma\\SavageOrcs.Enums\\SavageOrcs.Enums.csproj"
               }
             }
           }
@@ -59,21 +59,21 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.400\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.203\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "D:\\Навчання\\Diploma\\SavageOrcs.Enums\\SavageOrcs.Enums.csproj": {
+    "D:\\Study\\Diploma\\SavageOrcs.Enums\\SavageOrcs.Enums.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Навчання\\Diploma\\SavageOrcs.Enums\\SavageOrcs.Enums.csproj",
+        "projectUniqueName": "D:\\Study\\Diploma\\SavageOrcs.Enums\\SavageOrcs.Enums.csproj",
         "projectName": "SavageOrcs.Enums",
-        "projectPath": "D:\\Навчання\\Diploma\\SavageOrcs.Enums\\SavageOrcs.Enums.csproj",
-        "packagesPath": "C:\\Users\\skrip\\.nuget\\packages\\",
-        "outputPath": "D:\\Навчання\\Diploma\\SavageOrcs.Enums\\obj\\",
+        "projectPath": "D:\\Study\\Diploma\\SavageOrcs.Enums\\SavageOrcs.Enums.csproj",
+        "packagesPath": "C:\\Users\\Yurij Skripnik\\.nuget\\packages\\",
+        "outputPath": "D:\\Study\\Diploma\\SavageOrcs.Enums\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\skrip\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Yurij Skripnik\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -114,7 +114,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.400\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.203\\RuntimeIdentifierGraph.json"
         }
       }
     }

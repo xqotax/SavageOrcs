@@ -1,0 +1,517 @@
+{
+  "Files": [
+    {
+      "Id": "D:\\Study\\Diploma\\SavageOrcs.Web\\obj\\Debug\\net6.0\\scopedcss\\projectbundle\\SavageOrcs.Web.bundle.scp.css",
+      "PackagePath": "staticwebassets\\SavageOrcs.Web.bundle.scp.css"
+    },
+    {
+      "Id": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\css\\additional\\18plusPopup.css",
+      "PackagePath": "staticwebassets\\css\\additional\\18plusPopup.css"
+    },
+    {
+      "Id": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\css\\additional\\font-face.css",
+      "PackagePath": "staticwebassets\\css\\additional\\font-face.css"
+    },
+    {
+      "Id": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\css\\additional\\multiselect.css",
+      "PackagePath": "staticwebassets\\css\\additional\\multiselect.css"
+    },
+    {
+      "Id": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\css\\additional\\rightScroll.css",
+      "PackagePath": "staticwebassets\\css\\additional\\rightScroll.css"
+    },
+    {
+      "Id": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\css\\additional\\sideMenu.css",
+      "PackagePath": "staticwebassets\\css\\additional\\sideMenu.css"
+    },
+    {
+      "Id": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\css\\additional\\styles.css",
+      "PackagePath": "staticwebassets\\css\\additional\\styles.css"
+    },
+    {
+      "Id": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\css\\admin\\AdminMenu.css",
+      "PackagePath": "staticwebassets\\css\\admin\\AdminMenu.css"
+    },
+    {
+      "Id": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\css\\admin\\identity.css",
+      "PackagePath": "staticwebassets\\css\\admin\\identity.css"
+    },
+    {
+      "Id": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\css\\admin\\keyWordAndPlaces.css",
+      "PackagePath": "staticwebassets\\css\\admin\\keyWordAndPlaces.css"
+    },
+    {
+      "Id": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\css\\curator\\curator.css",
+      "PackagePath": "staticwebassets\\css\\curator\\curator.css"
+    },
+    {
+      "Id": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\css\\curator\\curatorAdmin.css",
+      "PackagePath": "staticwebassets\\css\\curator\\curatorAdmin.css"
+    },
+    {
+      "Id": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\css\\curator\\curatorRevision.css",
+      "PackagePath": "staticwebassets\\css\\curator\\curatorRevision.css"
+    },
+    {
+      "Id": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\css\\curator\\curators.css",
+      "PackagePath": "staticwebassets\\css\\curator\\curators.css"
+    },
+    {
+      "Id": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\css\\main\\main-mobile.css",
+      "PackagePath": "staticwebassets\\css\\main\\main-mobile.css"
+    },
+    {
+      "Id": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\css\\main\\main.css",
+      "PackagePath": "staticwebassets\\css\\main\\main.css"
+    },
+    {
+      "Id": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\css\\mark\\mark-mobile.css",
+      "PackagePath": "staticwebassets\\css\\mark\\mark-mobile.css"
+    },
+    {
+      "Id": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\css\\mark\\mark.css",
+      "PackagePath": "staticwebassets\\css\\mark\\mark.css"
+    },
+    {
+      "Id": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\css\\mark\\markAdmin.css",
+      "PackagePath": "staticwebassets\\css\\mark\\markAdmin.css"
+    },
+    {
+      "Id": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\css\\site-mobile.css",
+      "PackagePath": "staticwebassets\\css\\site-mobile.css"
+    },
+    {
+      "Id": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\css\\site.css",
+      "PackagePath": "staticwebassets\\css\\site.css"
+    },
+    {
+      "Id": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\css\\text\\text.css",
+      "PackagePath": "staticwebassets\\css\\text\\text.css"
+    },
+    {
+      "Id": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\css\\text\\textAdmin.css",
+      "PackagePath": "staticwebassets\\css\\text\\textAdmin.css"
+    },
+    {
+      "Id": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\css\\user\\userCatalogue.css",
+      "PackagePath": "staticwebassets\\css\\user\\userCatalogue.css"
+    },
+    {
+      "Id": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\css\\user\\userRevision.css",
+      "PackagePath": "staticwebassets\\css\\user\\userRevision.css"
+    },
+    {
+      "Id": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\images\\arrows\\bottomArrow.png",
+      "PackagePath": "staticwebassets\\images\\arrows\\bottomArrow.png"
+    },
+    {
+      "Id": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\images\\arrows\\leftArrow.png",
+      "PackagePath": "staticwebassets\\images\\arrows\\leftArrow.png"
+    },
+    {
+      "Id": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\images\\arrows\\topArrow.png",
+      "PackagePath": "staticwebassets\\images\\arrows\\topArrow.png"
+    },
+    {
+      "Id": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\images\\flags\\GB.png",
+      "PackagePath": "staticwebassets\\images\\flags\\GB.png"
+    },
+    {
+      "Id": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\images\\flags\\UA.png",
+      "PackagePath": "staticwebassets\\images\\flags\\UA.png"
+    },
+    {
+      "Id": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\images\\icons\\clear.png",
+      "PackagePath": "staticwebassets\\images\\icons\\clear.png"
+    },
+    {
+      "Id": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\images\\icons\\clone.png",
+      "PackagePath": "staticwebassets\\images\\icons\\clone.png"
+    },
+    {
+      "Id": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\images\\icons\\noSelectedCheckBox.png",
+      "PackagePath": "staticwebassets\\images\\icons\\noSelectedCheckBox.png"
+    },
+    {
+      "Id": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\images\\icons\\redCircle.ico",
+      "PackagePath": "staticwebassets\\images\\icons\\redCircle.ico"
+    },
+    {
+      "Id": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\images\\icons\\video-play.svg",
+      "PackagePath": "staticwebassets\\images\\icons\\video-play.svg"
+    },
+    {
+      "Id": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\images\\icons\\video.png",
+      "PackagePath": "staticwebassets\\images\\icons\\video.png"
+    },
+    {
+      "Id": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\images\\main\\404.png",
+      "PackagePath": "staticwebassets\\images\\main\\404.png"
+    },
+    {
+      "Id": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\images\\main\\Ukraine.png",
+      "PackagePath": "staticwebassets\\images\\main\\Ukraine.png"
+    },
+    {
+      "Id": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\images\\main\\burger.png",
+      "PackagePath": "staticwebassets\\images\\main\\burger.png"
+    },
+    {
+      "Id": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\images\\main\\cross.svg",
+      "PackagePath": "staticwebassets\\images\\main\\cross.svg"
+    },
+    {
+      "Id": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\images\\main\\documentingUkraine.png",
+      "PackagePath": "staticwebassets\\images\\main\\documentingUkraine.png"
+    },
+    {
+      "Id": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\images\\main\\mizhvuhamu.png",
+      "PackagePath": "staticwebassets\\images\\main\\mizhvuhamu.png"
+    },
+    {
+      "Id": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\images\\main\\yourHouse-OurHouse-mob.png",
+      "PackagePath": "staticwebassets\\images\\main\\yourHouse-OurHouse-mob.png"
+    },
+    {
+      "Id": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\images\\main\\yourHouse-OurHouse.jpg",
+      "PackagePath": "staticwebassets\\images\\main\\yourHouse-OurHouse.jpg"
+    },
+    {
+      "Id": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\images\\redCircle.png",
+      "PackagePath": "staticwebassets\\images\\redCircle.png"
+    },
+    {
+      "Id": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\images\\rubbish\\1.jpg",
+      "PackagePath": "staticwebassets\\images\\rubbish\\1.jpg"
+    },
+    {
+      "Id": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\images\\rubbish\\2.jfif",
+      "PackagePath": "staticwebassets\\images\\rubbish\\2.jfif"
+    },
+    {
+      "Id": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\images\\rubbish\\bodyBackground.jpg",
+      "PackagePath": "staticwebassets\\images\\rubbish\\bodyBackground.jpg"
+    },
+    {
+      "Id": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\images\\rubbish\\bodyBackground1.jpg",
+      "PackagePath": "staticwebassets\\images\\rubbish\\bodyBackground1.jpg"
+    },
+    {
+      "Id": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\images\\rubbish\\bodyBackground2.jpg",
+      "PackagePath": "staticwebassets\\images\\rubbish\\bodyBackground2.jpg"
+    },
+    {
+      "Id": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\images\\rubbish\\clusterIcon.png",
+      "PackagePath": "staticwebassets\\images\\rubbish\\clusterIcon.png"
+    },
+    {
+      "Id": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\images\\rubbish\\logo.png",
+      "PackagePath": "staticwebassets\\images\\rubbish\\logo.png"
+    },
+    {
+      "Id": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\images\\rubbish\\markIcon.png",
+      "PackagePath": "staticwebassets\\images\\rubbish\\markIcon.png"
+    },
+    {
+      "Id": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\images\\rubbish\\markIconApproximate.png",
+      "PackagePath": "staticwebassets\\images\\rubbish\\markIconApproximate.png"
+    },
+    {
+      "Id": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\js\\site.js",
+      "PackagePath": "staticwebassets\\js\\site.js"
+    },
+    {
+      "Id": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\js\\site.min.js",
+      "PackagePath": "staticwebassets\\js\\site.min.js"
+    },
+    {
+      "Id": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\lib\\bootstrap\\LICENSE",
+      "PackagePath": "staticwebassets\\lib\\bootstrap"
+    },
+    {
+      "Id": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css"
+    },
+    {
+      "Id": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css.map"
+    },
+    {
+      "Id": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css"
+    },
+    {
+      "Id": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css.map"
+    },
+    {
+      "Id": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css"
+    },
+    {
+      "Id": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css.map"
+    },
+    {
+      "Id": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css"
+    },
+    {
+      "Id": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css.map"
+    },
+    {
+      "Id": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css"
+    },
+    {
+      "Id": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css.map"
+    },
+    {
+      "Id": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css"
+    },
+    {
+      "Id": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css.map"
+    },
+    {
+      "Id": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css"
+    },
+    {
+      "Id": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css.map"
+    },
+    {
+      "Id": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css"
+    },
+    {
+      "Id": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css.map"
+    },
+    {
+      "Id": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css"
+    },
+    {
+      "Id": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css.map"
+    },
+    {
+      "Id": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css"
+    },
+    {
+      "Id": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css.map"
+    },
+    {
+      "Id": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css"
+    },
+    {
+      "Id": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css.map"
+    },
+    {
+      "Id": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css"
+    },
+    {
+      "Id": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css.map"
+    },
+    {
+      "Id": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.css"
+    },
+    {
+      "Id": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.css.map"
+    },
+    {
+      "Id": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.min.css"
+    },
+    {
+      "Id": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.min.css.map"
+    },
+    {
+      "Id": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css"
+    },
+    {
+      "Id": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css.map"
+    },
+    {
+      "Id": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css"
+    },
+    {
+      "Id": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css.map"
+    },
+    {
+      "Id": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js"
+    },
+    {
+      "Id": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js.map"
+    },
+    {
+      "Id": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js"
+    },
+    {
+      "Id": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js.map"
+    },
+    {
+      "Id": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js"
+    },
+    {
+      "Id": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js.map"
+    },
+    {
+      "Id": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js"
+    },
+    {
+      "Id": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js.map"
+    },
+    {
+      "Id": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.js",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.js"
+    },
+    {
+      "Id": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.js.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.js.map"
+    },
+    {
+      "Id": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.min.js",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.min.js"
+    },
+    {
+      "Id": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.min.js.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.min.js.map"
+    },
+    {
+      "Id": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\lib\\editor\\editor.js",
+      "PackagePath": "staticwebassets\\lib\\editor\\editor.js"
+    },
+    {
+      "Id": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\lib\\jquery-validation-unobtrusive\\LICENSE.txt",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation-unobtrusive\\LICENSE.txt"
+    },
+    {
+      "Id": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.js"
+    },
+    {
+      "Id": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.min.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.min.js"
+    },
+    {
+      "Id": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\lib\\jquery-validation\\LICENSE.md",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation\\LICENSE.md"
+    },
+    {
+      "Id": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\lib\\jquery-validation\\dist\\additional-methods.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation\\dist\\additional-methods.js"
+    },
+    {
+      "Id": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\lib\\jquery-validation\\dist\\additional-methods.min.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation\\dist\\additional-methods.min.js"
+    },
+    {
+      "Id": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\lib\\jquery-validation\\dist\\jquery.validate.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation\\dist\\jquery.validate.js"
+    },
+    {
+      "Id": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\lib\\jquery-validation\\dist\\jquery.validate.min.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation\\dist\\jquery.validate.min.js"
+    },
+    {
+      "Id": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\lib\\jquery\\LICENSE.txt",
+      "PackagePath": "staticwebassets\\lib\\jquery\\LICENSE.txt"
+    },
+    {
+      "Id": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\lib\\jquery\\dist\\jquery.js",
+      "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.js"
+    },
+    {
+      "Id": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\lib\\jquery\\dist\\jquery.min.js",
+      "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.min.js"
+    },
+    {
+      "Id": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\lib\\jquery\\dist\\jquery.min.map",
+      "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.min.map"
+    },
+    {
+      "Id": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\lib\\jquery\\jquery.cookie.js",
+      "PackagePath": "staticwebassets\\lib\\jquery\\jquery.cookie.js"
+    },
+    {
+      "Id": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\lib\\multiselect\\multiselect-dropdown.js",
+      "PackagePath": "staticwebassets\\lib\\multiselect\\multiselect-dropdown.js"
+    },
+    {
+      "Id": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\lib\\search-select\\search-select.css",
+      "PackagePath": "staticwebassets\\lib\\search-select\\search-select.css"
+    },
+    {
+      "Id": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\lib\\search-select\\search-select.js",
+      "PackagePath": "staticwebassets\\lib\\search-select\\search-select.js"
+    },
+    {
+      "Id": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\text\\Mizhvukhamy-Alternate.ttf",
+      "PackagePath": "staticwebassets\\text\\Mizhvukhamy-Alternate.ttf"
+    },
+    {
+      "Id": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\text\\Mizhvukhamy-Bold.ttf",
+      "PackagePath": "staticwebassets\\text\\Mizhvukhamy-Bold.ttf"
+    },
+    {
+      "Id": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\text\\Mizhvukhamy-Light.ttf",
+      "PackagePath": "staticwebassets\\text\\Mizhvukhamy-Light.ttf"
+    },
+    {
+      "Id": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\text\\Mizhvukhamy-Medium.ttf",
+      "PackagePath": "staticwebassets\\text\\Mizhvukhamy-Medium.ttf"
+    },
+    {
+      "Id": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\text\\Mizhvukhamy-Regular.ttf",
+      "PackagePath": "staticwebassets\\text\\Mizhvukhamy-Regular.ttf"
+    },
+    {
+      "Id": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\text\\Mizhvukhamy-Thin.ttf",
+      "PackagePath": "staticwebassets\\text\\Mizhvukhamy-Thin.ttf"
+    },
+    {
+      "Id": "obj\\Debug\\net6.0\\staticwebassets\\msbuild.SavageOrcs.Web.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj\\Debug\\net6.0\\staticwebassets\\msbuild.build.SavageOrcs.Web.props",
+      "PackagePath": "build\\SavageOrcs.Web.props"
+    },
+    {
+      "Id": "obj\\Debug\\net6.0\\staticwebassets\\msbuild.buildMultiTargeting.SavageOrcs.Web.props",
+      "PackagePath": "buildMultiTargeting\\SavageOrcs.Web.props"
+    },
+    {
+      "Id": "obj\\Debug\\net6.0\\staticwebassets\\msbuild.buildTransitive.SavageOrcs.Web.props",
+      "PackagePath": "buildTransitive\\SavageOrcs.Web.props"
+    }
+  ],
+  "ElementsToRemove": []
+}

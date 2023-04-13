@@ -59,7 +59,8 @@ header a:hover {
     height: 0px;
     flex-direction: row;
     /*background-color: rgba(255, 41, 41, 0.4);*/
-    background-color: #DEDCDC;
+    /*background-color: #DEDCDC;*/
+    background-color: #FF2929;
     color: #0F0F0F;
     bottom: 0px;
 }
@@ -253,5 +254,10 @@ header a:hover {
 
     
 }
-
+@media (max-height: 700px) and (min-width: 700px) {
+    .logo-text {
+        bottom: 20px;
+        top:auto;
+    }
+}
 

@@ -1,4 +1,5 @@
-﻿using SavageOrcs.Services.Interfaces;
+﻿using Microsoft.Extensions.Configuration;
+using SavageOrcs.Services.Interfaces;
 using SavageOrcs.UnitOfWork;
 using System;
 using System.Collections.Generic;
@@ -12,13 +13,18 @@ namespace SavageOrcs.Services
 {
     public class EmailService : UnitOfWorkService, IEmailService
     {
-        public EmailService(IUnitOfWork unitOfWork) : base(unitOfWork)
+        private readonly IConfiguration _configuration;
+        public EmailService(IUnitOfWork unitOfWork, IConfiguration configuration) : base(unitOfWork)
         {
+            _configuration = configuration;
         }
 
         public async Task SendEmailAsync(string email, string subject, string message)
         {
-            var from = new MailAddress("skripnik.petro@gmail.com", "Savage Orcs confirm email");
+            var emailFrom = _configuration.GetSection("EmailSenderString").Value;
+            var passwordFrom = _configuration.GetSection("PasswordSenderString").Value;
+
+            var from = new MailAddress(emailFrom, "Savage Orcs confirm email");
             var to = new MailAddress(email);
 
             var mailMessage = new MailMessage(from, to)
@@ -39,7 +45,7 @@ namespace SavageOrcs.Services
 
             var smtp = new SmtpClient("smtp.gmail.com", 587)
             {
-                Credentials = new NetworkCredential("skripnik.petro@gmail.com", "okhkjtjepwpchnwu"),
+                Credentials = new NetworkCredential(emailFrom, passwordFrom),
                 EnableSsl = true
             };
             await smtp.SendMailAsync(mailMessage);

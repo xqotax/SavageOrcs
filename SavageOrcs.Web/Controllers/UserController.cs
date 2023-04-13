@@ -75,9 +75,9 @@ namespace SavageOrcs.Web.Controllers
 
         [HttpPost]
         [Authorize(Roles = "Admin")]
-        public async Task<JsonResult> GetUsers([FromBody] UserCatalogueFilter filter)
+        public async Task<JsonResult> GetUsers([FromBody] UserCatalogueFilter userCatalogueFilter)
         {
-            var userDtos = await _userService.GetUsers(filter.Name, filter.Email);
+            var userDtos = await _userService.GetUsers(userCatalogueFilter.Name, userCatalogueFilter.Email);
 
             var userViewModels = userDtos.Select(x => new UserCatalogueViewModel
             {

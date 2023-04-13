@@ -13,7 +13,7 @@
     height: 100%;
     width: 100%;
     /*background-color: #FF2929;*/
-    background-color: #DEDCDC;
+    background-color: #FF2929;
     color: #0F0F0F;
     display: flex;
     flex-direction: column;
@@ -34,7 +34,7 @@
 
 .eighteen-block {
     /*color: #FF2929;*/
-    color: rgba(224, 97, 95, 0.8);
+    color: #0F0F0F;
 }
 
 .big-text-info {

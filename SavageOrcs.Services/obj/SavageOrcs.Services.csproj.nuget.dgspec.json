@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Навчання\\Diploma\\SavageOrcs.Services\\SavageOrcs.Services.csproj": {}
+    "D:\\Study\\Diploma\\SavageOrcs.Services\\SavageOrcs.Services.csproj": {}
   },
   "projects": {
-    "D:\\Навчання\\Diploma\\SavageOrcs.BusinessObjects\\SavageOrcs.BusinessObjects.csproj": {
+    "D:\\Study\\Diploma\\SavageOrcs.BusinessObjects\\SavageOrcs.BusinessObjects.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Навчання\\Diploma\\SavageOrcs.BusinessObjects\\SavageOrcs.BusinessObjects.csproj",
+        "projectUniqueName": "D:\\Study\\Diploma\\SavageOrcs.BusinessObjects\\SavageOrcs.BusinessObjects.csproj",
         "projectName": "SavageOrcs.BusinessObjects",
-        "projectPath": "D:\\Навчання\\Diploma\\SavageOrcs.BusinessObjects\\SavageOrcs.BusinessObjects.csproj",
-        "packagesPath": "C:\\Users\\skrip\\.nuget\\packages\\",
-        "outputPath": "D:\\Навчання\\Diploma\\SavageOrcs.BusinessObjects\\obj\\",
+        "projectPath": "D:\\Study\\Diploma\\SavageOrcs.BusinessObjects\\SavageOrcs.BusinessObjects.csproj",
+        "packagesPath": "C:\\Users\\Yurij Skripnik\\.nuget\\packages\\",
+        "outputPath": "D:\\Study\\Diploma\\SavageOrcs.BusinessObjects\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\skrip\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Yurij Skripnik\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -28,8 +28,8 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "D:\\Навчання\\Diploma\\SavageOrcs.Enums\\SavageOrcs.Enums.csproj": {
-                "projectPath": "D:\\Навчання\\Diploma\\SavageOrcs.Enums\\SavageOrcs.Enums.csproj"
+              "D:\\Study\\Diploma\\SavageOrcs.Enums\\SavageOrcs.Enums.csproj": {
+                "projectPath": "D:\\Study\\Diploma\\SavageOrcs.Enums\\SavageOrcs.Enums.csproj"
               }
             }
           }
@@ -69,21 +69,21 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.400\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.203\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "D:\\Навчання\\Diploma\\SavageOrcs.DataTransferObjects\\SavageOrcs.DataTransferObjects.csproj": {
+    "D:\\Study\\Diploma\\SavageOrcs.DataTransferObjects\\SavageOrcs.DataTransferObjects.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Навчання\\Diploma\\SavageOrcs.DataTransferObjects\\SavageOrcs.DataTransferObjects.csproj",
+        "projectUniqueName": "D:\\Study\\Diploma\\SavageOrcs.DataTransferObjects\\SavageOrcs.DataTransferObjects.csproj",
         "projectName": "SavageOrcs.DataTransferObjects",
-        "projectPath": "D:\\Навчання\\Diploma\\SavageOrcs.DataTransferObjects\\SavageOrcs.DataTransferObjects.csproj",
-        "packagesPath": "C:\\Users\\skrip\\.nuget\\packages\\",
-        "outputPath": "D:\\Навчання\\Diploma\\SavageOrcs.DataTransferObjects\\obj\\",
+        "projectPath": "D:\\Study\\Diploma\\SavageOrcs.DataTransferObjects\\SavageOrcs.DataTransferObjects.csproj",
+        "packagesPath": "C:\\Users\\Yurij Skripnik\\.nuget\\packages\\",
+        "outputPath": "D:\\Study\\Diploma\\SavageOrcs.DataTransferObjects\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\skrip\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Yurij Skripnik\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -97,8 +97,8 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "D:\\Навчання\\Diploma\\SavageOrcs.Enums\\SavageOrcs.Enums.csproj": {
-                "projectPath": "D:\\Навчання\\Diploma\\SavageOrcs.Enums\\SavageOrcs.Enums.csproj"
+              "D:\\Study\\Diploma\\SavageOrcs.Enums\\SavageOrcs.Enums.csproj": {
+                "projectPath": "D:\\Study\\Diploma\\SavageOrcs.Enums\\SavageOrcs.Enums.csproj"
               }
             }
           }
@@ -128,21 +128,21 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.400\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.203\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "D:\\Навчання\\Diploma\\SavageOrcs.DbContext\\SavageOrcs.DbContext.csproj": {
+    "D:\\Study\\Diploma\\SavageOrcs.DbContext\\SavageOrcs.DbContext.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Навчання\\Diploma\\SavageOrcs.DbContext\\SavageOrcs.DbContext.csproj",
+        "projectUniqueName": "D:\\Study\\Diploma\\SavageOrcs.DbContext\\SavageOrcs.DbContext.csproj",
         "projectName": "SavageOrcs.DbContext",
-        "projectPath": "D:\\Навчання\\Diploma\\SavageOrcs.DbContext\\SavageOrcs.DbContext.csproj",
-        "packagesPath": "C:\\Users\\skrip\\.nuget\\packages\\",
-        "outputPath": "D:\\Навчання\\Diploma\\SavageOrcs.DbContext\\obj\\",
+        "projectPath": "D:\\Study\\Diploma\\SavageOrcs.DbContext\\SavageOrcs.DbContext.csproj",
+        "packagesPath": "C:\\Users\\Yurij Skripnik\\.nuget\\packages\\",
+        "outputPath": "D:\\Study\\Diploma\\SavageOrcs.DbContext\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\skrip\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Yurij Skripnik\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -156,8 +156,8 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "D:\\Навчання\\Diploma\\SavageOrcs.BusinessObjects\\SavageOrcs.BusinessObjects.csproj": {
-                "projectPath": "D:\\Навчання\\Diploma\\SavageOrcs.BusinessObjects\\SavageOrcs.BusinessObjects.csproj"
+              "D:\\Study\\Diploma\\SavageOrcs.BusinessObjects\\SavageOrcs.BusinessObjects.csproj": {
+                "projectPath": "D:\\Study\\Diploma\\SavageOrcs.BusinessObjects\\SavageOrcs.BusinessObjects.csproj"
               }
             }
           }
@@ -201,21 +201,21 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.400\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.203\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "D:\\Навчання\\Diploma\\SavageOrcs.Enums\\SavageOrcs.Enums.csproj": {
+    "D:\\Study\\Diploma\\SavageOrcs.Enums\\SavageOrcs.Enums.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Навчання\\Diploma\\SavageOrcs.Enums\\SavageOrcs.Enums.csproj",
+        "projectUniqueName": "D:\\Study\\Diploma\\SavageOrcs.Enums\\SavageOrcs.Enums.csproj",
         "projectName": "SavageOrcs.Enums",
-        "projectPath": "D:\\Навчання\\Diploma\\SavageOrcs.Enums\\SavageOrcs.Enums.csproj",
-        "packagesPath": "C:\\Users\\skrip\\.nuget\\packages\\",
-        "outputPath": "D:\\Навчання\\Diploma\\SavageOrcs.Enums\\obj\\",
+        "projectPath": "D:\\Study\\Diploma\\SavageOrcs.Enums\\SavageOrcs.Enums.csproj",
+        "packagesPath": "C:\\Users\\Yurij Skripnik\\.nuget\\packages\\",
+        "outputPath": "D:\\Study\\Diploma\\SavageOrcs.Enums\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\skrip\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Yurij Skripnik\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -256,21 +256,21 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.400\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.203\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "D:\\Навчання\\Diploma\\SavageOrcs.Repositories.Interfaces\\SavageOrcs.Repositories.Interfaces.csproj": {
+    "D:\\Study\\Diploma\\SavageOrcs.Repositories.Interfaces\\SavageOrcs.Repositories.Interfaces.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Навчання\\Diploma\\SavageOrcs.Repositories.Interfaces\\SavageOrcs.Repositories.Interfaces.csproj",
+        "projectUniqueName": "D:\\Study\\Diploma\\SavageOrcs.Repositories.Interfaces\\SavageOrcs.Repositories.Interfaces.csproj",
         "projectName": "SavageOrcs.Repositories.Interfaces",
-        "projectPath": "D:\\Навчання\\Diploma\\SavageOrcs.Repositories.Interfaces\\SavageOrcs.Repositories.Interfaces.csproj",
-        "packagesPath": "C:\\Users\\skrip\\.nuget\\packages\\",
-        "outputPath": "D:\\Навчання\\Diploma\\SavageOrcs.Repositories.Interfaces\\obj\\",
+        "projectPath": "D:\\Study\\Diploma\\SavageOrcs.Repositories.Interfaces\\SavageOrcs.Repositories.Interfaces.csproj",
+        "packagesPath": "C:\\Users\\Yurij Skripnik\\.nuget\\packages\\",
+        "outputPath": "D:\\Study\\Diploma\\SavageOrcs.Repositories.Interfaces\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\skrip\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Yurij Skripnik\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -311,21 +311,21 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.400\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.203\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "D:\\Навчання\\Diploma\\SavageOrcs.Services.Interfaces\\SavageOrcs.Services.Interfaces.csproj": {
+    "D:\\Study\\Diploma\\SavageOrcs.Services.Interfaces\\SavageOrcs.Services.Interfaces.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Навчання\\Diploma\\SavageOrcs.Services.Interfaces\\SavageOrcs.Services.Interfaces.csproj",
+        "projectUniqueName": "D:\\Study\\Diploma\\SavageOrcs.Services.Interfaces\\SavageOrcs.Services.Interfaces.csproj",
         "projectName": "SavageOrcs.Services.Interfaces",
-        "projectPath": "D:\\Навчання\\Diploma\\SavageOrcs.Services.Interfaces\\SavageOrcs.Services.Interfaces.csproj",
-        "packagesPath": "C:\\Users\\skrip\\.nuget\\packages\\",
-        "outputPath": "D:\\Навчання\\Diploma\\SavageOrcs.Services.Interfaces\\obj\\",
+        "projectPath": "D:\\Study\\Diploma\\SavageOrcs.Services.Interfaces\\SavageOrcs.Services.Interfaces.csproj",
+        "packagesPath": "C:\\Users\\Yurij Skripnik\\.nuget\\packages\\",
+        "outputPath": "D:\\Study\\Diploma\\SavageOrcs.Services.Interfaces\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\skrip\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Yurij Skripnik\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -339,8 +339,8 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "D:\\Навчання\\Diploma\\SavageOrcs.DataTransferObjects\\SavageOrcs.DataTransferObjects.csproj": {
-                "projectPath": "D:\\Навчання\\Diploma\\SavageOrcs.DataTransferObjects\\SavageOrcs.DataTransferObjects.csproj"
+              "D:\\Study\\Diploma\\SavageOrcs.DataTransferObjects\\SavageOrcs.DataTransferObjects.csproj": {
+                "projectPath": "D:\\Study\\Diploma\\SavageOrcs.DataTransferObjects\\SavageOrcs.DataTransferObjects.csproj"
               }
             }
           }
@@ -370,21 +370,21 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.400\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.203\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "D:\\Навчання\\Diploma\\SavageOrcs.Services\\SavageOrcs.Services.csproj": {
+    "D:\\Study\\Diploma\\SavageOrcs.Services\\SavageOrcs.Services.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Навчання\\Diploma\\SavageOrcs.Services\\SavageOrcs.Services.csproj",
+        "projectUniqueName": "D:\\Study\\Diploma\\SavageOrcs.Services\\SavageOrcs.Services.csproj",
         "projectName": "SavageOrcs.Services",
-        "projectPath": "D:\\Навчання\\Diploma\\SavageOrcs.Services\\SavageOrcs.Services.csproj",
-        "packagesPath": "C:\\Users\\skrip\\.nuget\\packages\\",
-        "outputPath": "D:\\Навчання\\Diploma\\SavageOrcs.Services\\obj\\",
+        "projectPath": "D:\\Study\\Diploma\\SavageOrcs.Services\\SavageOrcs.Services.csproj",
+        "packagesPath": "C:\\Users\\Yurij Skripnik\\.nuget\\packages\\",
+        "outputPath": "D:\\Study\\Diploma\\SavageOrcs.Services\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\skrip\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Yurij Skripnik\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -398,17 +398,17 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "D:\\Навчання\\Diploma\\SavageOrcs.DataTransferObjects\\SavageOrcs.DataTransferObjects.csproj": {
-                "projectPath": "D:\\Навчання\\Diploma\\SavageOrcs.DataTransferObjects\\SavageOrcs.DataTransferObjects.csproj"
+              "D:\\Study\\Diploma\\SavageOrcs.DataTransferObjects\\SavageOrcs.DataTransferObjects.csproj": {
+                "projectPath": "D:\\Study\\Diploma\\SavageOrcs.DataTransferObjects\\SavageOrcs.DataTransferObjects.csproj"
               },
-              "D:\\Навчання\\Diploma\\SavageOrcs.Repositories.Interfaces\\SavageOrcs.Repositories.Interfaces.csproj": {
-                "projectPath": "D:\\Навчання\\Diploma\\SavageOrcs.Repositories.Interfaces\\SavageOrcs.Repositories.Interfaces.csproj"
+              "D:\\Study\\Diploma\\SavageOrcs.Repositories.Interfaces\\SavageOrcs.Repositories.Interfaces.csproj": {
+                "projectPath": "D:\\Study\\Diploma\\SavageOrcs.Repositories.Interfaces\\SavageOrcs.Repositories.Interfaces.csproj"
               },
-              "D:\\Навчання\\Diploma\\SavageOrcs.Services.Interfaces\\SavageOrcs.Services.Interfaces.csproj": {
-                "projectPath": "D:\\Навчання\\Diploma\\SavageOrcs.Services.Interfaces\\SavageOrcs.Services.Interfaces.csproj"
+              "D:\\Study\\Diploma\\SavageOrcs.Services.Interfaces\\SavageOrcs.Services.Interfaces.csproj": {
+                "projectPath": "D:\\Study\\Diploma\\SavageOrcs.Services.Interfaces\\SavageOrcs.Services.Interfaces.csproj"
               },
-              "D:\\Навчання\\Diploma\\SavageOrcs.UnitOfWork\\SavageOrcs.UnitOfWork.csproj": {
-                "projectPath": "D:\\Навчання\\Diploma\\SavageOrcs.UnitOfWork\\SavageOrcs.UnitOfWork.csproj"
+              "D:\\Study\\Diploma\\SavageOrcs.UnitOfWork\\SavageOrcs.UnitOfWork.csproj": {
+                "projectPath": "D:\\Study\\Diploma\\SavageOrcs.UnitOfWork\\SavageOrcs.UnitOfWork.csproj"
               }
             }
           }
@@ -444,21 +444,21 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.400\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.203\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "D:\\Навчання\\Diploma\\SavageOrcs.UnitOfWork\\SavageOrcs.UnitOfWork.csproj": {
+    "D:\\Study\\Diploma\\SavageOrcs.UnitOfWork\\SavageOrcs.UnitOfWork.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Навчання\\Diploma\\SavageOrcs.UnitOfWork\\SavageOrcs.UnitOfWork.csproj",
+        "projectUniqueName": "D:\\Study\\Diploma\\SavageOrcs.UnitOfWork\\SavageOrcs.UnitOfWork.csproj",
         "projectName": "SavageOrcs.UnitOfWork",
-        "projectPath": "D:\\Навчання\\Diploma\\SavageOrcs.UnitOfWork\\SavageOrcs.UnitOfWork.csproj",
-        "packagesPath": "C:\\Users\\skrip\\.nuget\\packages\\",
-        "outputPath": "D:\\Навчання\\Diploma\\SavageOrcs.UnitOfWork\\obj\\",
+        "projectPath": "D:\\Study\\Diploma\\SavageOrcs.UnitOfWork\\SavageOrcs.UnitOfWork.csproj",
+        "packagesPath": "C:\\Users\\Yurij Skripnik\\.nuget\\packages\\",
+        "outputPath": "D:\\Study\\Diploma\\SavageOrcs.UnitOfWork\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\skrip\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Yurij Skripnik\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -472,8 +472,8 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "D:\\Навчання\\Diploma\\SavageOrcs.DbContext\\SavageOrcs.DbContext.csproj": {
-                "projectPath": "D:\\Навчання\\Diploma\\SavageOrcs.DbContext\\SavageOrcs.DbContext.csproj"
+              "D:\\Study\\Diploma\\SavageOrcs.DbContext\\SavageOrcs.DbContext.csproj": {
+                "projectPath": "D:\\Study\\Diploma\\SavageOrcs.DbContext\\SavageOrcs.DbContext.csproj"
               }
             }
           }
@@ -503,7 +503,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.400\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.203\\RuntimeIdentifierGraph.json"
         }
       }
     }
