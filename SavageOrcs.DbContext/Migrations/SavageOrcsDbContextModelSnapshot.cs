@@ -165,13 +165,14 @@ namespace SavageOrcs.DbContext.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<int>("AreaTypeId")
-                        .HasColumnType("int");
-
                     b.Property<long>("Code")
                         .HasColumnType("bigint");
 
                     b.Property<string>("Community")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("CommunityEng")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -191,32 +192,21 @@ namespace SavageOrcs.DbContext.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("NameEng")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Region")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("Id");
-
-                    b.HasIndex("AreaTypeId");
-
-                    b.ToTable("Areas");
-                });
-
-            modelBuilder.Entity("SavageOrcs.BusinessObjects.AreaType", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<string>("Name")
+                    b.Property<string>("RegionEng")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
-                    b.ToTable("AreaTypes");
+                    b.ToTable("Areas");
                 });
 
             modelBuilder.Entity("SavageOrcs.BusinessObjects.Block", b =>
@@ -283,6 +273,9 @@ namespace SavageOrcs.DbContext.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("NameEng")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("ResourceName")
                         .HasColumnType("nvarchar(max)");
 
@@ -322,6 +315,9 @@ namespace SavageOrcs.DbContext.Migrations
                         .HasColumnType("varbinary(max)");
 
                     b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("NameEng")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("UserId")
@@ -369,8 +365,8 @@ namespace SavageOrcs.DbContext.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<bool?>("RegisterIsImportant")
-                        .HasColumnType("bit");
+                    b.Property<string>("NameEng")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("UpdatedDate")
                         .HasColumnType("datetime2");
@@ -441,6 +437,9 @@ namespace SavageOrcs.DbContext.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("NameEng")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("ResourceName")
                         .HasColumnType("nvarchar(max)");
 
@@ -469,68 +468,6 @@ namespace SavageOrcs.DbContext.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("Marks");
-                });
-
-            modelBuilder.Entity("SavageOrcs.BusinessObjects.Place", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("NameEng")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Places");
-                });
-
-            modelBuilder.Entity("SavageOrcs.BusinessObjects.PlaceToCluster", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("ClusterId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("PlaceId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ClusterId");
-
-                    b.HasIndex("PlaceId");
-
-                    b.ToTable("PlaceToClusters");
-                });
-
-            modelBuilder.Entity("SavageOrcs.BusinessObjects.PlaceToMark", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("MarkId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("PlaceId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("MarkId");
-
-                    b.HasIndex("PlaceId");
-
-                    b.ToTable("PlaceToMarks");
                 });
 
             modelBuilder.Entity("SavageOrcs.BusinessObjects.Text", b =>
@@ -736,17 +673,6 @@ namespace SavageOrcs.DbContext.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("SavageOrcs.BusinessObjects.Area", b =>
-                {
-                    b.HasOne("SavageOrcs.BusinessObjects.AreaType", "AreaType")
-                        .WithMany("Areas")
-                        .HasForeignKey("AreaTypeId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("AreaType");
-                });
-
             modelBuilder.Entity("SavageOrcs.BusinessObjects.Block", b =>
                 {
                     b.HasOne("SavageOrcs.BusinessObjects.Text", "Text")
@@ -839,44 +765,6 @@ namespace SavageOrcs.DbContext.Migrations
                     b.Navigation("Map");
                 });
 
-            modelBuilder.Entity("SavageOrcs.BusinessObjects.PlaceToCluster", b =>
-                {
-                    b.HasOne("SavageOrcs.BusinessObjects.Cluster", "Cluster")
-                        .WithMany("PlaceToClusters")
-                        .HasForeignKey("ClusterId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("SavageOrcs.BusinessObjects.Place", "Place")
-                        .WithMany("PlaceToClusters")
-                        .HasForeignKey("PlaceId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Cluster");
-
-                    b.Navigation("Place");
-                });
-
-            modelBuilder.Entity("SavageOrcs.BusinessObjects.PlaceToMark", b =>
-                {
-                    b.HasOne("SavageOrcs.BusinessObjects.Mark", "Mark")
-                        .WithMany("PlaceToMarks")
-                        .HasForeignKey("MarkId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("SavageOrcs.BusinessObjects.Place", "Place")
-                        .WithMany("PlaceToMarks")
-                        .HasForeignKey("PlaceId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Mark");
-
-                    b.Navigation("Place");
-                });
-
             modelBuilder.Entity("SavageOrcs.BusinessObjects.Text", b =>
                 {
                     b.HasOne("SavageOrcs.BusinessObjects.Curator", "Curator")
@@ -929,16 +817,9 @@ namespace SavageOrcs.DbContext.Migrations
                     b.Navigation("Marks");
                 });
 
-            modelBuilder.Entity("SavageOrcs.BusinessObjects.AreaType", b =>
-                {
-                    b.Navigation("Areas");
-                });
-
             modelBuilder.Entity("SavageOrcs.BusinessObjects.Cluster", b =>
                 {
                     b.Navigation("Marks");
-
-                    b.Navigation("PlaceToClusters");
 
                     b.Navigation("TextsToClusters");
                 });
@@ -963,16 +844,7 @@ namespace SavageOrcs.DbContext.Migrations
                 {
                     b.Navigation("Images");
 
-                    b.Navigation("PlaceToMarks");
-
                     b.Navigation("TextsToMarks");
-                });
-
-            modelBuilder.Entity("SavageOrcs.BusinessObjects.Place", b =>
-                {
-                    b.Navigation("PlaceToClusters");
-
-                    b.Navigation("PlaceToMarks");
                 });
 
             modelBuilder.Entity("SavageOrcs.BusinessObjects.Text", b =>

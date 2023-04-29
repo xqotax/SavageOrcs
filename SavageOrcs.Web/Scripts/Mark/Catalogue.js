@@ -55,13 +55,13 @@
             self.Clear();
         });
         
-        //$("#areasMultiselect").on('change', function () {
-        //    self.OnAreasChange();
-        //});
+        $("#namesMultiselect").on('change', function () {
+            self.OnMultiselectChange();
+        });
 
-        //$("#namesMultiselect").on('change', function () {
-        //    self.OnNamesChange();
-        //});
+        $("#areasMultiselect").on('change', function () {
+            self.OnMultiselectChange();
+        });
 
         var firstElement = $(".data-row-container .data-row")[0];
         if (firstElement !== undefined)
@@ -91,7 +91,6 @@
                 filters.SelectedKeyWordIds.push(value.substr(1));
             }
         });
-        debugger;
 
         $.ajax({
             type: 'POST',
@@ -107,10 +106,18 @@
         });
     },
     Show: function (el) {
+        var self = this;
+
         $('.data-row').each(function (idex, element) {
             $(element).css('opacity', '0.3');
             $(element).removeClass("data-row-selected");
         });
+
+        if (window.innerWidth <= 1000 && $(el).next().attr('id') === 'markMobileSlideshowPlaceholder') {
+            $("#markMobileSlideshowPlaceholder").remove();
+            return;
+        }
+
         $(el).css('opacity', '1');
         $(el).addClass("data-row-selected");
         var fullId = $(el).find("input:first-child").attr('id')
@@ -125,11 +132,16 @@
             url: "/Mark/GetImages?id=" + id + "&isCluster=" + isCluster + "&index=" + index,
             contentType: 'application/json; charset=utf-8',
             success: function (result) {
-                $(".slideshow-container").html(result);
-                var containerTop = $(".data-row-container").offset().top;
-                var rowTop = $(el).offset().top;
-                var topToSet = rowTop - containerTop;
-                $(".slideshow-container").css({ "margin-top": topToSet +'px' });
+                if (window.innerWidth <= 1000) {
+                    self.ShowMobile(el, result);
+                }
+                else {
+                    $(".slideshow-container").html(result);
+                    var containerTop = $(".data-row-container").offset().top;
+                    var rowTop = $(el).offset().top;
+                    var topToSet = rowTop - containerTop;
+                    $(".slideshow-container").css({ "margin-top": topToSet + 'px' });
+                }
             }
         });
     },
@@ -149,5 +161,24 @@
         self.IsClear = false;
         document.activeElement.blur();
         self.Search();
+    },
+    OnMultiselectChange: function () {
+        var areaSelectedLenght = $("#areasMultiselect").val().length;
+        var nameSelectedLenght = $("#namesMultiselect").val().length;
+
+        if (areaSelectedLenght > 0 || nameSelectedLenght > 0) {
+            $("#filter-big-text-info").css({ "color": "#FF2929" });
+            $("#clear-button").css({ "color": "#FF2929" });
+            $(".clear-button-img img").attr("src", "/images/icons/clearRed.png");
+        }
+        else {
+            $("#filter-big-text-info").css({ "color": "#0F0F0F" });
+            $("#clear-button").css({ "color": "#0F0F0F" });
+            $(".clear-button-img img").attr("src", "/images/icons/clear.png");
+        }
+    },
+    ShowMobile: function (el, result) {
+        $("#markMobileSlideshowPlaceholder").remove();
+        $(el).after("<div class=\"data-row\" id=\"markMobileSlideshowPlaceholder\">" + result + "</div>")
     }
 });

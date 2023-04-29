@@ -119,6 +119,14 @@ var MapMainView = Class.extend({
         $(".clear-button-col").on('click', function () {
             self.Clear();
         });
+
+        $("#namesMultiselect").on('change', function () {
+            self.OnMultiselectChange();
+        });
+
+        $("#areasMultiselect").on('change', function () {
+            self.OnMultiselectChange();
+        });
     },
     InitMap: function () {
         var self = this;
@@ -334,6 +342,21 @@ var MapMainView = Class.extend({
         self.IsClear = false;
         document.activeElement.blur();
         self.Search();
+    },
+    OnMultiselectChange: function () {
+        var areaSelectedLenght = $("#areasMultiselect").val().length;
+        var nameSelectedLenght = $("#namesMultiselect").val().length;
+
+        if (areaSelectedLenght > 0 || nameSelectedLenght > 0) {
+            $("#filter-big-text-info").css({ "color": "#FF2929" });
+            $("#clear-button").css({ "color": "#FF2929" });
+            $(".clear-button-img img").attr("src", "/images/icons/clearRed.png");
+        }
+        else {
+            $("#filter-big-text-info").css({ "color": "#0F0F0F" });
+            $("#clear-button").css({ "color": "#0F0F0F" });
+            $(".clear-button-img img").attr("src", "/images/icons/clear.png");
+        }
     }
 });
 
@@ -384,25 +407,21 @@ var MarkAddView = Class.extend({
         self.IsInitializate = true;
         //self.InfoWindow.open(self.Map);
 
-        if (self.Images !== null) {
-            self.AddImages();
-        }
-
         if (!self.IsNew) {
             self.SetMark();
         }
 
-        var placesOptions = {
-            placeholder: "Виберіть локацію",
-            txtSelected: "вибрано",
-            txtAll: "Всі",
-            txtRemove: "Видалити",
-            txtSearch: "Пошук",
-            height: "300px",
-            Id: "placesMultiselect"
-        }
+        //var placesOptions = {
+        //    placeholder: "Виберіть локацію",
+        //    txtSelected: "вибрано",
+        //    txtAll: "Всі",
+        //    txtRemove: "Видалити",
+        //    txtSearch: "Пошук",
+        //    height: "300px",
+        //    Id: "placesMultiselect"
+        //}
 
-        MultiselectDropdown(placesOptions);
+        //MultiselectDropdown(placesOptions);
 
 
         self.SearchSelectDropdownAreas = new SearchSelect('#dropdown-input-for-mark', {
@@ -494,9 +513,9 @@ var MarkAddView = Class.extend({
             self.DeleteMark();
         }
     },
-    OnPlacesChange: function () {
-        var el = $("#placesMultiselect");
-    },
+    //OnPlacesChange: function () {
+    //    var el = $("#placesMultiselect");
+    //},
     SubscribeEvents: function () {
         var self = this;
 
@@ -522,13 +541,10 @@ var MarkAddView = Class.extend({
             self.RemoveImages();
         });
 
-        $("#placesMultiselect").on('change', function () {
-            self.OnPlacesChange();
-        });
+        //$("#placesMultiselect").on('change', function () {
+        //    self.OnPlacesChange();
+        //});
 
-        //$('#dropdown-input-for-mark').addClass("display-8-custom");
-        //$('#dropdown-input-for-cluster').addClass("display-8-custom");
-        
 
         self.Map.addListener("click", (mapsMouseEvent) => {
             self.InfoWindow.close();
@@ -639,12 +655,13 @@ var MarkAddView = Class.extend({
             ClusterId: clusterId,
             CuratorId: curatorId,
             Name: $("#Name").val(),
+            NameEng: $("#NameEng").val(),
             Description: $("#Description").val(),
             DescriptionEng: $("#DescriptionEng").val(),
             ResourceUrl: $("#ResourceUrl").val(),
             ResourceName: $("#ResourceName").val(),
             ResourceNameEng: $("#ResourceNameEng").val(),
-            SelectedPlaceIds: $("#placesMultiselect").val(),
+            //SelectedPlaceIds: $("#placesMultiselect").val(),
             Images: []
         };
 
@@ -733,24 +750,6 @@ var MarkAddView = Class.extend({
                 $('#addImagePlaceholder').html(src);
             }
         });
-    },
-    AddImages: function () {
-        //var self = this;
-
-        //$.each(self.Images, function (index, element) {
-        //    var rowCount = $("#imageContainer .row").length;
-        //    var colCount = $("#imageContainer .col-md-3").length;
-
-        //    $(".popup-content-custom .row #imagePlaceholder").removeAttr('id');
-
-        //    if ((rowCount === 0) || (colCount !== 0 && Math.floor(colCount / rowCount) === 3)) {
-        //        $("#imageContainer").append(self.RowAddConstString + self.ColAddConstString + "<img src=\"" + element + "\" height=\"200\">" + self.DivAddConstString + self.DivAddConstString);
-        //    }
-        //    else {
-        //        $("#imageContainer .row").last().append(self.ColAddConstString + "<img src=\"" + element + "\" height=\"200\">" + self.DivAddConstString);
-        //    }
-        //});
-
     },
     RemoveImage: function (el) {
         var row = $(el).parent().parent().parent();
@@ -897,13 +896,13 @@ var CatalogueMarkView = Class.extend({
             self.Clear();
         });
         
-        //$("#areasMultiselect").on('change', function () {
-        //    self.OnAreasChange();
-        //});
+        $("#namesMultiselect").on('change', function () {
+            self.OnMultiselectChange();
+        });
 
-        //$("#namesMultiselect").on('change', function () {
-        //    self.OnNamesChange();
-        //});
+        $("#areasMultiselect").on('change', function () {
+            self.OnMultiselectChange();
+        });
 
         var firstElement = $(".data-row-container .data-row")[0];
         if (firstElement !== undefined)
@@ -933,7 +932,6 @@ var CatalogueMarkView = Class.extend({
                 filters.SelectedKeyWordIds.push(value.substr(1));
             }
         });
-        debugger;
 
         $.ajax({
             type: 'POST',
@@ -949,10 +947,18 @@ var CatalogueMarkView = Class.extend({
         });
     },
     Show: function (el) {
+        var self = this;
+
         $('.data-row').each(function (idex, element) {
             $(element).css('opacity', '0.3');
             $(element).removeClass("data-row-selected");
         });
+
+        if (window.innerWidth <= 1000 && $(el).next().attr('id') === 'markMobileSlideshowPlaceholder') {
+            $("#markMobileSlideshowPlaceholder").remove();
+            return;
+        }
+
         $(el).css('opacity', '1');
         $(el).addClass("data-row-selected");
         var fullId = $(el).find("input:first-child").attr('id')
@@ -967,11 +973,16 @@ var CatalogueMarkView = Class.extend({
             url: "/Mark/GetImages?id=" + id + "&isCluster=" + isCluster + "&index=" + index,
             contentType: 'application/json; charset=utf-8',
             success: function (result) {
-                $(".slideshow-container").html(result);
-                var containerTop = $(".data-row-container").offset().top;
-                var rowTop = $(el).offset().top;
-                var topToSet = rowTop - containerTop;
-                $(".slideshow-container").css({ "margin-top": topToSet +'px' });
+                if (window.innerWidth <= 1000) {
+                    self.ShowMobile(el, result);
+                }
+                else {
+                    $(".slideshow-container").html(result);
+                    var containerTop = $(".data-row-container").offset().top;
+                    var rowTop = $(el).offset().top;
+                    var topToSet = rowTop - containerTop;
+                    $(".slideshow-container").css({ "margin-top": topToSet + 'px' });
+                }
             }
         });
     },
@@ -991,6 +1002,25 @@ var CatalogueMarkView = Class.extend({
         self.IsClear = false;
         document.activeElement.blur();
         self.Search();
+    },
+    OnMultiselectChange: function () {
+        var areaSelectedLenght = $("#areasMultiselect").val().length;
+        var nameSelectedLenght = $("#namesMultiselect").val().length;
+
+        if (areaSelectedLenght > 0 || nameSelectedLenght > 0) {
+            $("#filter-big-text-info").css({ "color": "#FF2929" });
+            $("#clear-button").css({ "color": "#FF2929" });
+            $(".clear-button-img img").attr("src", "/images/icons/clearRed.png");
+        }
+        else {
+            $("#filter-big-text-info").css({ "color": "#0F0F0F" });
+            $("#clear-button").css({ "color": "#0F0F0F" });
+            $(".clear-button-img img").attr("src", "/images/icons/clear.png");
+        }
+    },
+    ShowMobile: function (el, result) {
+        $("#markMobileSlideshowPlaceholder").remove();
+        $(el).after("<div class=\"data-row\" id=\"markMobileSlideshowPlaceholder\">" + result + "</div>")
     }
 });
 var DeleteMarkView = Class.extend({
@@ -1220,7 +1250,6 @@ var ClusterAddView = Class.extend({
     CuratorNames: null,
     SearchSelectDropdownCurators: null,
 
-
     Areas: null,
     AreaName: null,
     AreaId: null,
@@ -1261,18 +1290,18 @@ var ClusterAddView = Class.extend({
             self.SetMark();
         }
 
-        var placesOptions = {
-            placeholder: "Виберіть локацію",
-            txtSelected: "вибрано",
-            txtAll: "Всі",
-            txtRemove: "Видалити",
-            txtSearch: "Пошук",
-            height: "300px",
-            Id: "placesMultiselect",
-            //MaxElementsToShow: 2
-        }
+        //var placesOptions = {
+        //    placeholder: "Виберіть локацію",
+        //    txtSelected: "вибрано",
+        //    txtAll: "Всі",
+        //    txtRemove: "Видалити",
+        //    txtSearch: "Пошук",
+        //    height: "300px",
+        //    Id: "placesMultiselect",
+        //    //MaxElementsToShow: 2
+        //}
 
-        MultiselectDropdown(placesOptions);
+        //MultiselectDropdown(placesOptions);
 
         self.SearchSelectDropdownAreas = new SearchSelect('#dropdown-input-for-area', {
             data: [],
@@ -1438,12 +1467,13 @@ var ClusterAddView = Class.extend({
             AreaId: areaId,
             CuratorId: curatorId,
             Name: $("#Name").val(),
+            NameEng: $("#NameEng").val(),
             Description: $("#Description").val(),
             DescriptionEng: $("#DescriptionEng").val(),
             ResourceUrl: $("#ResourceUrl").val(),
             ResourceName: $("#ResourceName").val(),
             ResourceNameEng: $("#ResourceNameEng").val(),
-            SelectedPlaceIds: $("#placesMultiselect").val()
+            //SelectedPlaceIds: $("#placesMultiselect").val()
         };
 
         $.ajax({
@@ -1800,22 +1830,37 @@ var CatalogueTextView = Class.extend({
         
     },
     Show: function (el) {
+        var self = this;
+        
+
         $('.text-data-row').each(function (idex, element) {
             $(element).css('opacity', '0.3');
             $(element).removeClass("data-row-selected");
         });
+
+        if (window.innerWidth <= 1000 && $(el).next().attr('id') === 'textMobileContentPlaceholder') {
+            $("#textMobileContentPlaceholder").remove();
+            return;
+        }
+
         $(el).css('opacity', '1');
         $(el).addClass("data-row-selected");
         var fullId = $(el).find("input:first-child").val();
         id = fullId.substring(fullId.length - 36);
 
         $("#textContentPlaceholder").empty();
+
         $.ajax({
             type: 'POST',
             url: "/Text/GetText?id=" + id ,
             contentType: 'application/json; charset=utf-8',
             success: function (result) {
-                $("#textContentPlaceholder").html(result);
+                if (window.innerWidth <= 1000) {
+                    self.ShowMobile(el, result);
+                }
+                else {
+                    $("#textContentPlaceholder").html(result);
+                }
             }
         });
     },
@@ -1847,6 +1892,10 @@ var CatalogueTextView = Class.extend({
     OnNamesChange: function () {
         var self = this;
         self.Search();
+    },
+    ShowMobile: function (el, result) {
+        $("#textMobileContentPlaceholder").remove();
+        $(el).after("<div class=\"text-data-row\" id=\"textMobileContentPlaceholder\">" + result + "</div>")
     }
 })
 var AddTextView = Class.extend({
@@ -2754,7 +2803,7 @@ var CatalogueCuratorView = Class.extend({
             txtAll: self.MultiselectAll.value,
             txtRemove: "Видалити",
             txtSearch: self.SearchTextCurator.value,
-            height: "300px",
+            height: window.innerWidth > 950 ? "300px" : "150px",
             Id: "curatorsMultiselect"
         }
 
@@ -2781,7 +2830,7 @@ var CatalogueCuratorView = Class.extend({
             data: JSON.stringify(curatorIds),
             contentType: 'application/json; charset=utf-8',
             success: function (data) {
-                $(".curator-data-row-container").html(data);
+                $(".curator-data-col-container").html(data);
             }
         });
     },
@@ -2861,6 +2910,7 @@ var CuratorAddView = Class.extend({
         var saveCuratorViewModel = {
             Id: $("#Id").val() === "" ? null : $("#Id").val(),
             DisplayName: $("#DisplayName").val(),
+            DisplayNameEng: $("#DisplayNameEng").val(),
             Description: $("#Description").val(),
             DescriptionEng: $("#DescriptionEng").val(),
             Image: $("#curatorImage").attr('src')
@@ -2993,21 +3043,25 @@ var KeyWordView = Class.extend({
     },
     Add: function () {
         var text = $("#keyWordToAdd").val();
-        if (text.lenght === 0)
+        var textEng = $("#keyWordToAddEng").val();
+        if (text.lenght === 0 || textEng.lenght === 0)
             return;
 
         $("#keyWordContainer").prepend("<div class=\"keyWord-row pb-2\"><input type=\"hidden\" value=\"\"><input type=\"text\" class=\"text-box-custom form-control\" value=\"" +
-            text + "\"><button class=\"btn btn-dark-custom\" onclick=\"keyWordView.Remove(this)\">Видалити</button></div>");
+            text + "\"><input type=\"text\" class=\"text-box-custom form-control\" value=\"" +
+            textEng + "\"><button class=\"btn btn-dark-custom\" onclick=\"keyWordView.Remove(this)\">Видалити</button></div>");
         $("#keyWordToAdd").val("");
+        $("#keyWordToAddEng").val("");
     },
     Search: function () {
         var filter = $("#filter").val().toLowerCase();
 
         $('#keyWordContainer .keyWord-row').each(function (index, element) {
-            var keyWord = $(element).find(".text-box-custom").val().toLowerCase();
+            var keyWord = $(element).find(".text-box-custom").eq(0).val().toLowerCase();
+            var keyWordEng = $(element).find(".text-box-custom").eq(1).val().toLowerCase();
 
             $(element).css({ display: 'flex' });
-            if (keyWord.indexOf(filter) === -1)
+            if (keyWord.indexOf(filter) === -1 && keyWordEng.indexOf(filter) === -1)
                 $(element).css({ display: 'none' });
         });
 
@@ -3021,9 +3075,11 @@ var KeyWordView = Class.extend({
             if (id === undefined || id === null)
                 id = "";
             var name = $(this).find('input[type="text"]').eq(0).val();
+            var nameEng = $(this).find('input[type="text"]').eq(1).val();
             var obj = {
                 Id: id,
-                Name: name
+                Name: name,
+                NameEng: nameEng
             };
             dataArray.push(obj);
         });
@@ -3052,7 +3108,7 @@ var KeyWordView = Class.extend({
 });
 
 
-var PlaceView = Class.extend({
+var AreaView = Class.extend({
     InitializeControls: function () {
         var self = this;
 
@@ -3062,7 +3118,7 @@ var PlaceView = Class.extend({
     SubscribeEvents: function () {
         var self = this;
 
-        $("#addPlace").on('click', function () {
+        $("#addArea").on('click', function () {
             self.Add();
         });
 
@@ -3079,26 +3135,71 @@ var PlaceView = Class.extend({
         });
     },
     Add: function () {
-        var text = $("#placeToAdd").val();
-        var textEng = $("#placeToAddEng").val();
-        if (text.lenght === 0)
+        var name = $("#addName").val();
+        var comunnity = $("#addCommunity").val();
+        var region = $("#addRegion").val();
+        if (name.lenght === 0 || comunnity.lenght === 0 || region.lenght === 0)
             return;
 
-        $("#placeContainer").prepend("<div class=\"place-row pb-2\"><input type=\"hidden\" value=\"\"><input type=\"text\" class=\"text-box-custom form-control\" value=\"" +
-            text + "\"><input type=\"text\" class=\"text-box-custom form-control\" value=\"" +
-            textEng + "\"><button class=\"btn btn-dark-custom\" onclick=\"placeView.Remove(this)\">Видалити</button></div>");
-        $("#placeToAdd").val("");
-        $("#placeToAddEng").val("");
+        $("#areaContainer").prepend("<div class=\"area-row pb-2\"><div class=\"area-row-first\">" +
+            "<input type=\"hidden\" value=\"\"><input type=\"text\" class=\"text-box-custom form-control\" value=\"" +
+            name + "\"><input type=\"text\" class=\"text-box-custom form-control\" value=\"" +
+            comunnity + "\"><input type=\"text\" class=\"text-box-custom form-control\" value=\"" +
+            region + "\"></div><div class=\"area-row-second\"><input type=\"text\" class=\"text-box-custom form-control\" value=\"" +
+            "\"><input type=\"text\" class=\"text-box-custom form-control\" value=\"" +
+            "\"><input type=\"text\" class=\"text-box-custom form-control\" value=\"" +
+            "\"><button class=\"btn btn-dark-custom\" onclick=\"areaView.Remove(this)\">Видалити</button></div></div>");
+        $("#addName").val("");
+        $("#addCommunity").val("");
+        $("#addRegion").val("");
     },
     Search: function () {
-        var filter = $("#filter").val().toLowerCase();
+        var filterName = $("#filterName").val().toLowerCase();
+        var filterCommunity = $("#filterCommunity").val().toLowerCase();
+        var filterRegion = $("#filterRegion").val().toLowerCase();
 
-        $('#placeContainer .place-row').each(function (index, element) {
-            var place = $(element).find(".text-box-custom").eq(0).val().toLowerCase();
-            var placeEng = $(element).find(".text-box-custom").eq(1).val().toLowerCase();
+        $('#areaContainer .area-row').each(function (index, element) {
+            var name = $(element).find(".text-box-custom").eq(0).val().toLowerCase();
+            var community = $(element).find(".text-box-custom").eq(1).val().toLowerCase();
+            var region = $(element).find(".text-box-custom").eq(2).val().toLowerCase();
 
-            $(element).css({ display: 'flex' });
-            if (place.indexOf(filter) === -1 && placeEng.indexOf(filter) === -1)
+            var nameEng = $(element).find(".text-box-custom").eq(3).val().toLowerCase();
+            var communityEng = $(element).find(".text-box-custom").eq(4).val().toLowerCase();
+            var regionEng = $(element).find(".text-box-custom").eq(5).val().toLowerCase();
+
+            var toShowName = false;
+            var toShowCommunity = false;
+            var toShowRegion = false;
+            if (filterName === '')
+                toShowName = true;
+
+            if (filterCommunity === '')
+                toShowCommunity = true;
+
+            if (filterRegion === '')
+                toShowRegion = true;
+
+            if (name !== '' && name.indexOf(filterName) !== -1)
+                toShowName = true;
+
+            if (nameEng !== '' && nameEng.indexOf(filterName) !== -1)
+                toShowName = true;
+
+            if (community !== '' && community.indexOf(filterCommunity) !== -1)
+                toShowCommunity = true;
+
+            if (communityEng !== '' && communityEng.indexOf(filterCommunity) !== -1)
+                toShowCommunity = true;
+
+            if (region !== '' && region.indexOf(filterRegion) !== -1)
+                toShowRegion = true;
+
+            if (regionEng !== '' && regionEng.indexOf(filterRegion) !== -1)
+                toShowRegion = true;
+
+            if (toShowName && toShowCommunity && toShowRegion)
+                $(element).css({ display: 'flex' });
+            else
                 $(element).css({ display: 'none' });
         });
 
@@ -3106,17 +3207,27 @@ var PlaceView = Class.extend({
     Save: function () {
         var self = this;
         var dataArray = [];
-        $('.place-row').each(function () {
+        $('.area-row').each(function () {
             var id = $(this).find('input[type="hidden"]').eq(0).val();
 
             if (id === undefined || id === null)
                 id = "";
+
             var name = $(this).find('input[type="text"]').eq(0).val();
-            var nameEng = $(this).find('input[type="text"]').eq(1).val();
+            var community = $(this).find('input[type="text"]').eq(1).val();
+            var region = $(this).find('input[type="text"]').eq(2).val();
+
+            var nameEng = $(this).find('input[type="text"]').eq(3).val();
+            var communityEng = $(this).find('input[type="text"]').eq(4).val();
+            var regionEng = $(this).find('input[type="text"]').eq(5).val();
             var obj = {
                 Id: id,
                 Name: name,
-                NameEng: nameEng
+                NameEng: nameEng,
+                CommunityEng: communityEng,
+                Community: community,
+                Region: region,
+                RegionEng: regionEng,
             };
             dataArray.push(obj);
             console.log(dataArray);
@@ -3124,7 +3235,7 @@ var PlaceView = Class.extend({
 
         $.ajax({
             type: 'POST',
-            url: "/AdminHelper/SavePlaces",
+            url: "/AdminHelper/SaveAreas",
             data: JSON.stringify(dataArray),
             contentType: 'application/json; charset=utf-8',
             success: function (src) {
@@ -3133,15 +3244,17 @@ var PlaceView = Class.extend({
         });
     },
     Remove: function (el) {
-        var row = $(el).parent();
+        var row = $(el).parent().parent();
         row.remove();
     },
     Clear: function () {
-        $('#placeContainer .place-row').each(function (index, element) {
+        $('#areaContainer .area-row').each(function (index, element) {
             $(element).css({ display: 'flex' });
         });
 
-        $("#filter").val("");
+        $("#filterName").val("");
+        $("#filterCommunity").val("");
+        $("#filterRegion").val("");
     }
 });
 

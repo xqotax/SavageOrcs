@@ -216,7 +216,3 @@ input[type="checkbox"]:checked {
     max-width: 90%;
     cursor: pointer;
 }
-
-.curator-box {
-    cursor: pointer;
-}

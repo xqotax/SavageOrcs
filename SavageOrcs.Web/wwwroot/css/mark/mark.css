@@ -1,16 +1,51 @@
-﻿
-.wrapper-search-bottom-text, .wrapper-search {
+﻿.wrapper-search {
     padding-left: 64px;
     padding-right: 70px;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: center;
     width: 100%;
+    padding-top: 32px;
+}
+.mark-header-row {
+    height: 138px;
+    width: 100%;
+    color: #0F0F0F;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.mark-header-text {
+    width: 48%;
+    font-weight: 500;
+    font-size: 48px;
+    line-height: 60px;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+}
+.mark-header-info {
+    width: 52%;
+}
+.mark-info-text p{
+    width: 75%;
 }
 
-.wrapper-search {
-    padding-top: 32px;
-    height: 1135px;
+.clear-button-container {
+    position: relative;
+    cursor: pointer;
+    width: 20%;
+    left: 80%;
+    height: 107px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.mark-table-row {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
 }
 
 .photo-col, table-col {
@@ -29,38 +64,13 @@
     width: 60%;
 }
 
-.top-row {
-    height: 138px;
-    width: 100%;
-    color: #0F0F0F;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-}
 
-.clear-button-container {
-    cursor: pointer;
-    align-self: end;
-    width: 100px;
-    height: 107px;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-}
 
-.photo-col .top-row {
-    font-weight: 500;
-    font-size: 48px;
-    line-height: 60px;
-    letter-spacing: 0.03em;
-    text-transform: uppercase;
-}
 
-.table-col .top-row {
-    font-weight: 400;
-    font-size: 14px;
-    line-height: 17px;
-}
+
+
+
+
 
 .image-placeholder, .mark-table {
     height: 944px;
@@ -156,9 +166,9 @@
     width: 3%;
 }
 
-    .col-item-for-curator-number .col-content-item {
-        border-top: none;
-    }
+.col-item-for-curator-number .col-content-item {
+    border-top: none;
+}
 
 .col-content-item {
     position: relative;
@@ -214,8 +224,8 @@
 }
 
 
-@media (min-width: 1200px) {
-    .form-col, .from-text-info-row, .email-text-info-row, .bottom-text-row {
+@media (min-width: 1100px) {
+    .form-col, .from-text-info-row, .bottom-text-row {
         font-size: 30px;
         line-height: 40px;
     }
@@ -224,6 +234,7 @@
 
 
 .wrapper-mark-revision {
+    position: fixed;
     padding-left: 64px;
     padding-right: 70px;
     display: flex;
@@ -231,14 +242,18 @@
     justify-content: start;
     padding-top: 32px;
     padding-bottom: 150px;
-    height: 1000px;
+    height: 100%;
     background-color: #0F0F0F;
 }
 
 .mark-revision-content-row {
+    position:relative;
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: start;
+}
+.mark-revision-space-col{
+    width: 5%;
 }
 
 .wrapper-mark-revision,
@@ -249,12 +264,13 @@
 
 .mark-revision-navigation-row {
     height: 118px;
+    position:relative;
 }
 
-    .mark-revision-navigation-row #back {
-        background: none;
-        border: none;
-    }
+.mark-revision-navigation-row #back {
+    background: none;
+    border: none;
+}
 
 
 .mark-revision-content-col {
@@ -266,7 +282,7 @@
 }
 
 .mark-revision-image-col {
-    width: 65%;
+    width: 55%;
     max-height: 682px;
 }
 
@@ -283,4 +299,75 @@
 }
 
 .mark-revision-curator {
+}
+
+
+@media (max-width: 1100px){
+    .wrapper-search {
+        padding-left: 34px;
+        padding-right: 44px;
+    }
+    .photo-col{
+        width: 35%;
+    }
+    .table-col{
+        width: 65%;
+    }
+    .mark-header-text {
+        width: 43.5%;
+    }
+
+    .mark-header-info {
+        width: 56.5%;
+    }
+}
+@media (max-width: 1000px) {
+    .photo-col{
+        display: none;
+    }
+    .table-col{
+        width: 100%;
+    }
+    .filter-item-small {
+        display: none;
+    }
+    .filter-item, .filter-item-search {
+        width: 33%;
+    }
+    .clear-button-container{
+        left: 76%;
+    }
+    .col-item-red-circle {
+        display: none;
+    }
+    .col-item-number {
+        border-top: 1px solid black;
+    }
+    .col-item{
+        width: 32%;
+    }
+    .slideshow-wrapper, .mySlides  a{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    .wrapper-mark-revision{
+        padding-left: 34px;
+    }
+    .mark-revision-content-row {
+        flex-direction: column-reverse;
+    }
+    .mark-revision-image-col{
+        width: 87%;
+    }
+    .mark-revision-content-col{
+        width: 60%;
+    }
+    .mark-revision-image-col .slideshow-wrapper {
+        align-items: start;
+    }
+    .mark-revision-space-col {
+        height: 38px;
+    }
 }

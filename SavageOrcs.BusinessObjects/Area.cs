@@ -18,10 +18,6 @@ namespace SavageOrcs.BusinessObjects
 
         public long? Lvl_4 { get; set; }
 
-        public int AreaTypeId { get; set; }
-
-        public virtual AreaType AreaType { get; set; }
-
         public string Name { get; set; }
 
         public long Code { get; set; }
@@ -29,6 +25,12 @@ namespace SavageOrcs.BusinessObjects
         public string Region { get; set; }
 
         public string Community { get; set; }
+
+        public string NameEng { get; set; }
+
+        public string RegionEng { get; set; }
+
+        public string CommunityEng { get; set; }
 
         public virtual ICollection<Mark> Marks { get; set; } = new HashSet<Mark>();
     }

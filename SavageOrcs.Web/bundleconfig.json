@@ -36,7 +36,7 @@
         "Scripts/Curator/Delete.js",
 
         "Scripts/AdminHelper/KeyWord.js",
-        "Scripts/AdminHelper/Place.js"
+        "Scripts/AdminHelper/Area.js"
       ],
       "minify": {
         "enabled": true,

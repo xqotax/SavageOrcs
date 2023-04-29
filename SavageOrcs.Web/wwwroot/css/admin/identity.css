@@ -1,5 +1,11 @@
 ﻿.auth-container {
     margin-top: 25px;
-    padding-bottom: 25px;
     width: 100%;
+}
+.card-header {
+    height: 100px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding-left: 10%;
 }

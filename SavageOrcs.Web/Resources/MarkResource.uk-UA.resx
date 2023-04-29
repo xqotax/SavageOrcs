@@ -129,11 +129,20 @@
   <data name="MultiselectSearchTextName" xml:space="preserve">
     <value>Введіть слова, які має містити напис</value>
   </data>
+  <data name="RevisionCuratorLabel" xml:space="preserve">
+    <value>Автор:</value>
+  </data>
+  <data name="RevisionPhotoIsEmpty" xml:space="preserve">
+    <value>Фото з тих, чи інших причин приховане автором, або взагалі відсутнє.</value>
+  </data>
+  <data name="RevisionResourceLabel" xml:space="preserve">
+    <value>Власник фото:</value>
+  </data>
   <data name="SearchAreYouHaveMaterials" xml:space="preserve">
     <value>Маєте матеріали для архіву?</value>
   </data>
   <data name="SearchDescription" xml:space="preserve">
-    <value>Ваш гід архівом, впорядкований за вмістом написів, географією та обʼєктами, де були знайдені графіті</value>
+    <value>Ваш гід архівом, впорядкований за вмістом та географією написів</value>
   </data>
   <data name="SearchHeader" xml:space="preserve">
     <value>Пошук</value>

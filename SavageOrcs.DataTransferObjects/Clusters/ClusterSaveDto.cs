@@ -13,6 +13,8 @@ namespace SavageOrcs.DataTransferObjects.Cluster
 
         public string? Name { get; set; }
 
+        public string? NameEng { get; set; }
+
         public double Lng { get; set; }
 
         public double Lat { get; set; }
@@ -28,8 +30,6 @@ namespace SavageOrcs.DataTransferObjects.Cluster
         public string? ResourceUrl { get; set; }
 
         public Guid? CuratorId { get; set; }
-
-        public Guid[] PlaceIds { get; set; } = new Guid[0];
 
         public Guid? AreaId { get; set; }
 

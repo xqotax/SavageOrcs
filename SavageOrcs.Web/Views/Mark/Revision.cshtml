@@ -1,4 +1,7 @@
 ﻿@using SavageOrcs.Web.ViewModels.Mark
+@using Microsoft.Extensions.Localization
+@using SavageOrcs.Web.Resources.Classes
+@inject LanguageService Language
 @model RevisionMarkViewModel
 <script>
     function plusSlides(n) {
@@ -77,19 +80,18 @@
             @if (!string.IsNullOrEmpty(Model.CuratorName))
             {
                 <div class="mark-revision-curator">
-                    Автор: <span>@Model.CuratorName</span>
+                    @Language.GetMarkKey("RevisionCuratorLabel") <span>@Model.CuratorName</span>
                 </div>
-                
             }
             @if (!string.IsNullOrEmpty(Model.ResourceUrl) && !string.IsNullOrEmpty(Model.ResourceName))
             {
                 <div class="mark-revision-resources">
-                    Власник фото: <a style="color:white; text-decoration: underline;" target="_blank" href="@Model.ResourceUrl">@Model.ResourceName</a>
+                    @Language.GetMarkKey("RevisionResourceLabel") <a style="color:white; text-decoration: underline;" target="_blank" href="@Model.ResourceUrl">@Model.ResourceName</a>
                 </div>
             }
             else if (string.IsNullOrEmpty(Model.ResourceUrl) && !string.IsNullOrEmpty(Model.ResourceName)){
                 <div class="mark-revision-resources">
-                    Власник фото: <span>@Model.ResourceName</span>
+                    @Language.GetMarkKey("RevisionResourceLabel") <span>@Model.ResourceName</span>
                 </div>
             }
             @if (!Model.IsCluster && Model.ClusterId is not null)
@@ -99,7 +101,7 @@
             @if (Model.IsCluster){
                 <a class="mark-revision-cluster" style="color:white; text-decoration: underline;" href="/Mark/Catalogue?clusterId=@Model.Id.ToString()">Переглянути більше схожих фото</a>
             }
-        </div>
+        </div><div class="mark-revision-space-col"></div>
         <div class="mark-revision-image-col">
             @if (Model.Images is not null && Model.Images.Length != 0)
             {
@@ -112,7 +114,7 @@
             }
             else
             {
-                <div>Фото з тих, чи інших причин приховане автором, або взагалі відсутнє.</div>
+                <div>@Language.GetMarkKey("RevisionPhotoIsEmpty")</div>
             }
         </div>
     </div>

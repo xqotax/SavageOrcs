@@ -199,7 +199,7 @@
     <value>Пошук</value>
   </data>
   <data name="SideMenuSearchLabel" xml:space="preserve">
-    <value>Ваш гід архівом, впорядкований за вмістом написів, географією та обʼєктами, де були знайдені графіті</value>
+    <value>Ваш гід архівом, впорядкований за вмістом та географією написів</value>
   </data>
   <data name="SideMenuTextsButton" xml:space="preserve">
     <value>Тексти</value>

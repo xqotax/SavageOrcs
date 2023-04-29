@@ -51,6 +51,7 @@ namespace SavageOrcs.Services
             return new CuratorDto
             {
                 Id = curator.Id,
+                DisplayNameEng = curator.NameEng,
                 DisplayName = curator.Name,
                 Description = curator.Description,
                 DescriptionEng = curator.DescriptionEng,
@@ -63,13 +64,16 @@ namespace SavageOrcs.Services
                 MarkDtos = curator.Marks.Select(x => new MarkShortDto
                 {
                     Id = x.Id,
-                    Name  =x.Name,
+                    Name = x.Name,
+                    NameEng = x.NameEng,
                     Lat = x.Lat,
                     Lng = x.Lng,
                     Description = x.Description,
                     DescriptionEng = x.DescriptionEng,
                     CuratorName = x.Curator is null ? "" : x.Curator.Name,
+                    CuratorNameEng = x.Curator is null ? "" : x.Curator.NameEng,
                     ClusterName = x.Cluster?.Name,
+                    ClusterNameEng = x.Cluster?.NameEng,
                     ResourceUrl = x.ResourceUrl,
                     ResourceName = x.ResourceName,
                 }).ToArray()
@@ -94,6 +98,7 @@ namespace SavageOrcs.Services
                 }
 
                 curator.Name = curatorSaveDto.DisplayName;
+                curator.NameEng = curatorSaveDto.DisplayNameEng;
                 curator.Description = curatorSaveDto.Description;
                 curator.DescriptionEng = curatorSaveDto.DescriptionEng;
                 curator.Image = curatorSaveDto.Image;

@@ -16,17 +16,15 @@ namespace SavageOrcs.Services
         private readonly IRepository<Mark> _markRepository;
         private readonly IHelperService _helperService;
         private readonly IRepository<Image> _imageRepository;
-        private readonly IRepository<PlaceToMark> _placeToMarkRepository;
         private readonly IRepository<TextToMark> _textsToMarksRepository;
 
 
-        public MarkService(IUnitOfWork unitOfWork, IRepository<Mark> markRepository, IRepository<Image> imageRepository, IRepository<TextToMark> textsToMarksRepository, IHelperService helperService, IRepository<PlaceToMark> placeToMarkRepository) : base(unitOfWork)
+        public MarkService(IUnitOfWork unitOfWork, IRepository<Mark> markRepository, IRepository<Image> imageRepository, IRepository<TextToMark> textsToMarksRepository, IHelperService helperService) : base(unitOfWork)
         {
             _markRepository = markRepository;
             _imageRepository = imageRepository;
             _textsToMarksRepository = textsToMarksRepository;
             _helperService = helperService;
-            _placeToMarkRepository = placeToMarkRepository;
         }
 
         public async Task<MarkDto?> GetMarkById(Guid id)
@@ -52,7 +50,7 @@ namespace SavageOrcs.Services
 
             if (filterByKeyWordIds)
             {
-                var keyWords = (await _helperService.GetAllKeyWords()).Where(x => keyWordIds.Contains(x.Id) && !string.IsNullOrEmpty(x.Name)).Select(x => x.Name).ToArray();
+                var keyWords = (await _helperService.GetAllKeyWords()).Where(x => keyWordIds.Contains(x.Id) && !string.IsNullOrEmpty(x.Name)).Select(x => _helperService.GetTranslation(x.Name, x.NameEng)).ToArray();
 
                 foreach (var mark in marks)
                 {
@@ -78,19 +76,6 @@ namespace SavageOrcs.Services
                         continue;
                     }
                 }
-
-                //resultMarks.AddRange(marks
-                //    .Where(x =>
-                //        (!string.IsNullOrEmpty(x.DescriptionEng)
-                //        && keyWords.Any(y =>
-                //            y.Contains(x.DescriptionEng, StringComparison.OrdinalIgnoreCase))) ||
-                //            (!string.IsNullOrEmpty(x.Description)
-                //        && keyWords.Any(y =>
-                //            y.Contains(x.Description, StringComparison.OrdinalIgnoreCase))) ||
-                //            (!string.IsNullOrEmpty(x.Name)
-                //        && keyWords.Any(y =>
-                //            y.Contains(x.Name, StringComparison.OrdinalIgnoreCase))))
-                //    .ToList());
             }
 
 
@@ -127,12 +112,13 @@ namespace SavageOrcs.Services
             return marks.Select(CreateMarkDto).ToArray();
         }
 
-        public async Task<GuidIdAndStringName[]> GetMarkNames()
+        public async Task<GuidIdAndStringNameWithEnglishName[]> GetMarkNames()
         {
-            return (await _markRepository.GetAllAsync()).OrderBy(x => x.Name).Select(x => new GuidIdAndStringName
+            return (await _markRepository.GetAllAsync()).OrderBy(x => x.Name).Select(x => new GuidIdAndStringNameWithEnglishName
             {
                 Id = x.Id,
-                Name = x.Name
+                Name = x.Name,
+                NameEng = x.NameEng
             }).ToArray();
         }
         private static MarkShortDto CreateMarkShortDto(Mark mark)
@@ -149,6 +135,7 @@ namespace SavageOrcs.Services
                 ResourceName = mark.ResourceName,
                 ResourceNameEng = mark.ResourceNameEng,
                 Name = mark.Name,
+                NameEng = mark.NameEng, 
                 ResourceUrl = mark.ResourceUrl,
                 IsVisible = mark.IsVisible,
                 Area = mark.Area is null ? (mark.Cluster?.Area is null ? null : new AreaShortDto
@@ -174,6 +161,7 @@ namespace SavageOrcs.Services
             {
                 Id = mark.Id,
                 Name = mark.Name,
+                NameEng = mark.NameEng,
                 Description = mark.Description,
                 DescriptionEng = mark.DescriptionEng,
                 Lat = mark.Lat ?? mark.Cluster?.Lat,
@@ -184,13 +172,19 @@ namespace SavageOrcs.Services
                     Id = mark.Cluster.Area.Id,
                     Name = mark.Cluster.Area.Name,
                     Region = mark.Cluster.Area.Region,
-                    Community = mark.Cluster.Area.Community
+                    Community = mark.Cluster.Area.Community,
+                    NameEng = mark.Cluster.Area.NameEng,
+                    CommunityEng = mark.Cluster.Area.CommunityEng,
+                    RegionEng = mark.Cluster.Area.RegionEng,
                 }) : new AreaShortDto
                 {
                     Id = mark.Area.Id,
                     Name = mark.Area.Name,
                     Region = mark.Area.Region,
-                    Community = mark.Area.Community
+                    Community = mark.Area.Community,
+                    NameEng = mark.Area.NameEng,
+                    CommunityEng = mark.Area.CommunityEng,
+                    RegionEng = mark.Area.RegionEng,
                 },
                 ResourceUrl = mark.ResourceUrl,
                 ResourceName = mark.ResourceName,
@@ -201,22 +195,18 @@ namespace SavageOrcs.Services
                     IsVisible = x.IsVisible
                 }).ToArray(),
                 CreatedDate = mark.CreatedDate,
-                Cluster = mark.Cluster is null ? new GuidIdAndStringName() : new GuidIdAndStringName
+                Cluster = mark.Cluster is null ? new GuidIdAndStringNameWithEnglishName() : new GuidIdAndStringNameWithEnglishName
                 {
                     Id = mark.Cluster.Id,
-                    Name = mark.Cluster.Name ?? ""
+                    Name = mark.Cluster.Name ?? "",
+                    NameEng = mark.Cluster.NameEng ?? "",
                 },
-                Curator = mark.Curator is null ? new GuidIdAndStringName() : new GuidIdAndStringName
+                Curator = mark.Curator is null ? new GuidIdAndStringNameWithEnglishName() : new GuidIdAndStringNameWithEnglishName
                 {
                     Id = mark.Curator.Id,
-                    Name = mark.Curator.Name ?? ""
-                },
-                Places = mark.PlaceToMarks.Select(x => new GuidIdAndStringNameWithEnglishName
-                {
-                    Id = x.Place.Id,
-                    Name = x.Place.Name,
-                    NameEng = x.Place.NameEng
-                }).ToArray()
+                    Name = mark.Curator.Name ?? "",
+                    NameEng = mark.Curator.NameEng ?? "",
+                }
             };
         }
 
@@ -238,6 +228,7 @@ namespace SavageOrcs.Services
 
             mark.UpdatedDate = DateTime.Now;
             mark.Name = markSaveDto.Name;
+            mark.NameEng = markSaveDto.NameEng;
             mark.Description = markSaveDto.Description;
 
             if (markSaveDto.AreaId == _Constants.EmptySelect)
@@ -285,26 +276,6 @@ namespace SavageOrcs.Services
                 image.Content = imageDto.Content;
                 image.IsVisible = imageDto.IsVisible;
                 await _imageRepository.AddAsync(image);
-            }
-
-            foreach (var placeToMark in mark.PlaceToMarks)
-            {
-                if (!markSaveDto.PlaceIds.Contains(placeToMark.PlaceId))
-                    _placeToMarkRepository.Delete(placeToMark);
-            }
-
-
-            foreach (var placeId in markSaveDto.PlaceIds)
-            {
-                var oldPlaceIds = mark.PlaceToMarks.Select(x => x.PlaceId).ToArray();
-
-                if (!oldPlaceIds.Contains(placeId))
-                    _placeToMarkRepository.Add(new PlaceToMark
-                    {
-                        Id = new Guid(),
-                        MarkId = mark.Id,
-                        PlaceId = placeId
-                    });
             }
 
             await UnitOfWork.SaveChangesAsync();

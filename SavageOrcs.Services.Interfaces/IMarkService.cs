@@ -17,7 +17,7 @@ namespace SavageOrcs.Services.Interfaces
 
         Task<MarkShortDto[]> GetShortMarks();
 
-        Task<GuidIdAndStringName[]> GetMarkNames();
+        Task<GuidIdAndStringNameWithEnglishName[]> GetMarkNames();
 
         Task<MarkSaveResultDto> SaveMark(MarkSaveDto markSaveDto);
 

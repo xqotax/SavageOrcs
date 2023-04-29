@@ -74,6 +74,16 @@
             <div class="row pb-2">
                 <div class="col-md-4 d-flex align-items-center">
                     <label>
+                        Назва для іноземних користувачів:
+                    </label>
+                </div>
+                <div class="col-md-7">
+                    @Html.TextAreaFor(m => m.NameEng, new { @class = "text-box-custom form-control  area-for-custom"})
+                </div>
+            </div>
+            <div class="row pb-2">
+                <div class="col-md-4 d-flex align-items-center">
+                    <label>
                         Опис:
                     </label>
                 </div>
@@ -107,7 +117,7 @@
                            hidden />
                 </div>
             </div>
-            <div class="row pb-2" style="display: none">
+            @*<div class="row pb-2" style="display: none">
                 <div class="col-md-4 d-flex align-items-center">
                     <label>
                         Місця:
@@ -128,7 +138,7 @@
                         }
                     </select>
                 </div>
-            </div>
+            </div>*@
             <div class="row pb-2">
                 <div class="col-md-4 d-flex align-items-center">
                     <label>

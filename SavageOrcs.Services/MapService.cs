@@ -36,13 +36,15 @@ namespace SavageOrcs.Services
                     Lng = x.Lng,
                     Id = x.Id,
                     Name = x.Name,
+                    NameEng = x.NameEng
                 }).ToArray(),
                 MapClusterDtos = map.Clusters.Select(x => new MapClusterDto
                 {
                     Lat = x.Lat,
                     Lng = x.Lng,
                     Id = x.Id,
-                    Name = x.Name
+                    Name = x.Name,
+                    NameEng = x.NameEng
                 }).ToArray()
             };
         }

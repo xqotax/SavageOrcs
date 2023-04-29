@@ -46,7 +46,7 @@ function MultiselectDropdown(options) {
     document.querySelectorAll("select[multiple]").forEach((el, k) => {
         if ($(el).attr('id') !== config.id)
             return;
-        var div = newEl('div', { class: 'multiselect-dropdown-custom', style: { width: '100%', minHeight: '44px', minHeight: '44px', padding: '' } });
+        var div = newEl('div', { class: 'multiselect-dropdown-custom', style: { width: '100%', minHeight: window.innerWidth >= 700 ? '44px' : '24px', padding: '' } });
         el.style.display = 'none';
         el.parentNode.insertBefore(div, el.nextSibling);
         var listWrap = newEl('div', { class: 'multiselect-dropdown-custom-list-wrapper' });
@@ -157,11 +157,14 @@ function MultiselectDropdown(options) {
             searchWrap.style.zIndex = 4;
             search.focus();
             search.select();
-            if ($(event.target).parent().parent().parent().find("#namesMultiselect").length == 1
-                && $(document).find(".map-container").length == 1) {
+            if ($(event.target).parent().parent().parent().find("#namesMultiselect").length == 1) {
                 //$(document).find(".map-container").find("#areasMultiselect").parent().find(".multiselect-dropdown-custom").css({ "display": "none" });
                 setTimeout(() => {
-                    $(document).find(".map-container").find("#areasMultiselect").parent().find(".multiselect-dropdown-custom").css({ "display": "none" });
+                    if ($(document).find(".map-container").length == 1)
+                        $(document).find(".map-container").find("#areasMultiselect").parent().find(".multiselect-dropdown-custom").css({ "display": "none" });
+                    if ($(document).find(".table-col").length == 1)
+                        $(document).find(".table-col").find("#areasMultiselect").parent().find(".multiselect-dropdown-custom").css({ "display": "none" });
+
                 }, 10);
             }
         });
@@ -171,6 +174,9 @@ function MultiselectDropdown(options) {
                 var searchWrap = listWrap.querySelector('.multiselect-dropdown-custom-list');
                 if ($(document).find(".map-container").length == 1 && $(event.target).closest('.filter-multiselect-placeholder').find("#namesMultiselect").length != 1) {
                     $(document).find(".map-container").find("#areasMultiselect").parent().find(".multiselect-dropdown-custom").css({ "display": "block" });
+                }
+                if ($(document).find(".table-col").length == 1 && $(event.target).closest('.filter-multiselect-placeholder').find("#namesMultiselect").length != 1) {
+                    $(document).find(".table-col").find("#areasMultiselect").parent().find(".multiselect-dropdown-custom").css({ "display": "block" });
                 }
                 searchWrap.style.display = 'none';
                 searchWrap.style.zIndex = 2;

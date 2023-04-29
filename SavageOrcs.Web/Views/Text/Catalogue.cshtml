@@ -5,54 +5,59 @@
 @model UnitedCatalogueTextViewModel
 
 <div class="wrapper-text-search">
-    <div class="text-content-col">
-        <div class="header-text-search-row">@Language.GetTextKey("SearchHeader")</div>
-        <div class="text-content-row">
-            <div id="textContentPlaceholder"></div>
+    <div class="curator-header-row">
+        <div class="curator-header-text">
+            @Language.GetTextKey("SearchHeader")
+        </div>
+        <div class="curator-info-text">
+            <p>@Language.GetTextKey("SearchDescription")</p>
         </div>
     </div>
-    <div class="text-data-col">
-        <div class="description-header-text-search-row">
-            @Language.GetTextKey("SearchDescription")
+    <div class="text-content-row">
+        <div class="text-content-col">
+            <div id="textContentPlaceholder"></div>
         </div>
-        <div class="text-search-filter-row">
-            <div class="text-search-filter-item">
-                <div class="text-search-filter-multiselect-placeholder">
-                    <select name="textNamesMultiselect" id="textNamesMultiselect" multiple multiselect-search="true" multiselect-select-all="true" multiselect-hide-x="true">
-                        @foreach (var area in Model.TextNames)
-                        {
-                            <option value=@area.Id>@area.Name</option>
-                        }
-                    </select>
+        <div class="text-table-col">
+            <div class="text-search-filter-row">
+                <div class="text-search-filter-item">
+                    <div class="text-search-filter-multiselect-placeholder">
+                        <select name="textNamesMultiselect" id="textNamesMultiselect" multiple multiselect-search="true" multiselect-select-all="true" multiselect-hide-x="true">
+                            @foreach (var area in Model.TextNames)
+                            {
+                                <option value=@area.Id>@area.Name</option>
+                            }
+                        </select>
+                    </div>
+                </div>
+                <div class="text-search-filter-item">
+                    <div class="text-search-filter-multiselect-placeholder">
+                        <select name="curatorsMultiselect" id="curatorsMultiselect" multiple multiselect-search="true" multiselect-select-all="true" multiselect-hide-x="true">
+                            @foreach (var area in Model.Curators)
+                            {
+                                <option value=@area.Id>@area.Name</option>
+                            }
+                        </select>
+                    </div>
                 </div>
             </div>
-            <div class="text-search-filter-item">
-                <div class="text-search-filter-multiselect-placeholder">
-                    <select name="curatorsMultiselect" id="curatorsMultiselect" multiple multiselect-search="true" multiselect-select-all="true" multiselect-hide-x="true">
-                        @foreach (var area in Model.Curators)
-                        {
-                            <option value=@area.Id>@area.Name</option>
-                        }
-                    </select>
-                </div>
+            <div class="text-search-data-table">
+                @await Html.PartialAsync("_CatalogueDataRows", Model.Texts)
             </div>
-        </div>
-        <div class="text-search-data-table">
-            @await Html.PartialAsync("_CatalogueDataRows", Model.Texts)
         </div>
     </div>
 </div>
-<div class="wrapper-search-bottom-text">
-    <div class="bottom-text-row">
-        <div class="bottom-text-col">
+<div class="email-container">
+    <div class="email-col email-first-col">
+        <div class="email-text-info-row">
             @Language.GetTextKey("SearchAreYouHaveMaterials")
         </div>
-        <div class="bottom-text-col">@Language.GetMainKey("MainContactUs")</div>
     </div>
-    <div class="bottom-text-row">
-        <div class="bottom-text-col"></div>
-        <div class="bottom-text-col">
-            <a style="color: #FF2929" href="mailto:info@mizhvukhamy.com?subject=Application%20for%20joining%20the%20team">
+    <div class="email-col">
+        <div class="email-text-info-row">
+            @Language.GetMainKey("MainContactUs")
+        </div>
+        <div class="email-text-info-row mr-lg-2">
+            <a href="mailto:info@mizhvukhamy.com?subject=Application%20for%20joining%20the%20team">
                 info@mizhvukhamy.com
             </a>
         </div>

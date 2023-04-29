@@ -1,0 +1,179 @@
+﻿.wrapper-keyWords, .wrapper-places {
+    padding-left: 64px;
+    padding-right: 70px;
+    padding-top: 25px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 100%;
+}
+
+
+.keyWords-header-row, .places-header-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: start;
+    height: 100px;
+}
+
+.keyWords-header-text, .places-header-text {
+    width: 35%;
+    font-weight: 500;
+    font-size: 40px;
+    line-height: 52px;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    color: #0F0F0F;
+}
+
+.keyWords-header-actions, .places-header-actions {
+    height: 40px;
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.places-header-action-row {
+    width: 100%;
+    height: 40px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.keyWords-header-action-row {
+    width: 100%;
+    height: 40px;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+}
+
+.keyWords-header-action-col {
+    width: 40%;
+    height: 40px;
+    display: flex;
+    flex-direction: column;
+}
+
+.keyWords-action-row, .areas-action-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    height: 90px;
+    width: 100%;
+    padding-bottom: 40px;
+}
+
+    .keyWords-action-row #filter {
+        width: 35%;
+    }
+
+    .keyWords-action-row #search {
+        width: 35%;
+    }
+
+    .keyWords-action-row #clear {
+        width: 20%;
+    }
+
+    .keyWords-action-row #keyWordToAdd, .keyWords-action-row #keyWordToAddEng {
+        width: 35%;
+    }
+
+    .keyWords-action-row #addKeyWord {
+        width: 20%;
+    }
+
+.keyWords-table {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 50px;
+    min-height: 100px;
+}
+
+.keyWordControl, .placeControl {
+    width: 40%;
+}
+
+.placeControlShort {
+    width: 30%;
+}
+
+.placeButton {
+    width: 15%;
+}
+
+
+
+#keyWordContainer, #placeContainer {
+    padding-bottom: 50px;
+}
+
+.keyWords-content-row, .places-content-row {
+    width: 60%;
+}
+
+.places-content-row {
+    padding-top: 30px;
+}
+
+.keyWord-row{
+    width: 130%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.area-row {
+    width: 120%;
+    display: flex;
+    flex-direction: column;
+    height: 100px;
+}
+.area-row-first, .area-row-second {
+    width: 100%;
+    height: 40px;
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+}
+.area-row-first {
+    margin-bottom: 10px;
+}
+.area-row-second{
+    margin-bottom: 30px;
+}
+
+.keyWord-row .text-box-custom {
+    width: 300px;
+}
+
+.area-row .text-box-custom {
+    width: 27%;
+}
+
+.places-delete-info {
+    height: 95px;
+    width: 90%;
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 30px;
+    letter-spacing: 0.03em;
+    color: #ff0000;
+    padding-bottom: 30px;
+}
+
+.areas-action-row #filterName,
+.areas-action-row #filterCommunity,
+.areas-action-row #filterRegion,
+.areas-action-row #addName,
+.areas-action-row #addCommunity,
+.areas-action-row #addRegion {
+    width: 20%;
+}
+
+.areasButton {
+    width: 15%;
+}

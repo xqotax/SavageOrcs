@@ -129,11 +129,20 @@
   <data name="MultiselectSearchTextName" xml:space="preserve">
     <value>Enter the words that the inscription should contain</value>
   </data>
+  <data name="RevisionCuratorLabel" xml:space="preserve">
+    <value>Author:</value>
+  </data>
+  <data name="RevisionPhotoIsEmpty" xml:space="preserve">
+    <value>The photo is hidden by the author for one reason or another, or is missing altogether.</value>
+  </data>
+  <data name="RevisionResourceLabel" xml:space="preserve">
+    <value>Photo owner:</value>
+  </data>
   <data name="SearchAreYouHaveMaterials" xml:space="preserve">
     <value>Do you have data for the archive?</value>
   </data>
   <data name="SearchDescription" xml:space="preserve">
-    <value>Your guide to the archive, organized by inscription content, geography, and sites where graffiti were found</value>
+    <value>Your guide to the archive, organized by inscription content and geography</value>
   </data>
   <data name="SearchHeader" xml:space="preserve">
     <value>Search</value>

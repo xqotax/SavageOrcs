@@ -115,17 +115,20 @@ namespace SavageOrcs.Web.Areas.Identity.Pages.Account
             [Compare("Password", ErrorMessage = "Паролі не співпадають")]
             public string ConfirmPassword { get; set; }
         }
-
-        public async Task OnGetAsync(string returnUrl = null)
+        public async Task<IActionResult> OnGetAsync(string returnUrl = null)
         {
+            if (!User.IsInRole("Admin"))
+            {
+                return RedirectToPage("/AccessDenied");
+            }
             ReturnUrl = returnUrl;
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
+            return Page();
         }
-
         public async Task<IActionResult> OnPostAsync(string returnUrl = null)
         {
             if (!User.IsInRole("Admin"))
-                return RedirectToAction("NotFound");
+                return RedirectToPage("/AccessDenied");
 
             returnUrl ??= Url.Content("~/");
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();

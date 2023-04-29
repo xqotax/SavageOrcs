@@ -26,21 +26,25 @@
     },
     Add: function () {
         var text = $("#keyWordToAdd").val();
-        if (text.lenght === 0)
+        var textEng = $("#keyWordToAddEng").val();
+        if (text.lenght === 0 || textEng.lenght === 0)
             return;
 
         $("#keyWordContainer").prepend("<div class=\"keyWord-row pb-2\"><input type=\"hidden\" value=\"\"><input type=\"text\" class=\"text-box-custom form-control\" value=\"" +
-            text + "\"><button class=\"btn btn-dark-custom\" onclick=\"keyWordView.Remove(this)\">Видалити</button></div>");
+            text + "\"><input type=\"text\" class=\"text-box-custom form-control\" value=\"" +
+            textEng + "\"><button class=\"btn btn-dark-custom\" onclick=\"keyWordView.Remove(this)\">Видалити</button></div>");
         $("#keyWordToAdd").val("");
+        $("#keyWordToAddEng").val("");
     },
     Search: function () {
         var filter = $("#filter").val().toLowerCase();
 
         $('#keyWordContainer .keyWord-row').each(function (index, element) {
-            var keyWord = $(element).find(".text-box-custom").val().toLowerCase();
+            var keyWord = $(element).find(".text-box-custom").eq(0).val().toLowerCase();
+            var keyWordEng = $(element).find(".text-box-custom").eq(1).val().toLowerCase();
 
             $(element).css({ display: 'flex' });
-            if (keyWord.indexOf(filter) === -1)
+            if (keyWord.indexOf(filter) === -1 && keyWordEng.indexOf(filter) === -1)
                 $(element).css({ display: 'none' });
         });
 
@@ -54,9 +58,11 @@
             if (id === undefined || id === null)
                 id = "";
             var name = $(this).find('input[type="text"]').eq(0).val();
+            var nameEng = $(this).find('input[type="text"]').eq(1).val();
             var obj = {
                 Id: id,
-                Name: name
+                Name: name,
+                NameEng: nameEng
             };
             dataArray.push(obj);
         });

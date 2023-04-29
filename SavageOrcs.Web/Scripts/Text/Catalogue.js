@@ -54,22 +54,37 @@
         
     },
     Show: function (el) {
+        var self = this;
+        
+
         $('.text-data-row').each(function (idex, element) {
             $(element).css('opacity', '0.3');
             $(element).removeClass("data-row-selected");
         });
+
+        if (window.innerWidth <= 1000 && $(el).next().attr('id') === 'textMobileContentPlaceholder') {
+            $("#textMobileContentPlaceholder").remove();
+            return;
+        }
+
         $(el).css('opacity', '1');
         $(el).addClass("data-row-selected");
         var fullId = $(el).find("input:first-child").val();
         id = fullId.substring(fullId.length - 36);
 
         $("#textContentPlaceholder").empty();
+
         $.ajax({
             type: 'POST',
             url: "/Text/GetText?id=" + id ,
             contentType: 'application/json; charset=utf-8',
             success: function (result) {
-                $("#textContentPlaceholder").html(result);
+                if (window.innerWidth <= 1000) {
+                    self.ShowMobile(el, result);
+                }
+                else {
+                    $("#textContentPlaceholder").html(result);
+                }
             }
         });
     },
@@ -101,5 +116,9 @@
     OnNamesChange: function () {
         var self = this;
         self.Search();
+    },
+    ShowMobile: function (el, result) {
+        $("#textMobileContentPlaceholder").remove();
+        $(el).after("<div class=\"text-data-row\" id=\"textMobileContentPlaceholder\">" + result + "</div>")
     }
 })

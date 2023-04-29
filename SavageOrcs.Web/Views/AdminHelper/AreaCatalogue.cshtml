@@ -1,0 +1,73 @@
+﻿@using SavageOrcs.Web.ViewModels.Area
+@model AreaCatalogueViewModel[]
+
+<div class="wrapper-keyWords">
+    <div class="keyWords-header-row">
+        <div class="keyWords-header-text">Місця</div>
+        <div class="keyWords-header-actions">
+            <div class="keyWords-header-action-row">
+                <button id="save" class="btn btn-dark-custom placeButton">Зберегти</button>
+            </div>
+        </div>
+    </div>
+    <div class="places-delete-info">
+        Після зберігання видалити місце буде не можливо, але поки ви його не використаєте - ніхто не побачить неправильні дані, тому просто додайте нове
+    </div>
+    <div class="keyWords-table">
+        <div class="keyWords-content-row">
+            <div class="col-md-1"></div>
+            <div class="col-md-9" id="areaContainer">
+                @foreach (var place in Model)
+                {
+                    <div class="area-row pb-2">
+                        <div class="area-row-first">
+                            @Html.HiddenFor(x => place.Id)
+                            <input type="text" class="text-box-custom form-control" value="@place.Name">
+                            <input type="text" class="text-box-custom form-control" value="@place.Community">
+                            <input type="text" class="text-box-custom form-control" value="@place.Region">
+                        </div>
+                        <div class="area-row-second">
+                            <input type="text" class="text-box-custom form-control" value="@place.NameEng">
+                            <input type="text" class="text-box-custom form-control" value="@place.CommunityEng">
+                            <input type="text" class="text-box-custom form-control" value="@place.RegionEng">
+                            <button class="btn btn-dark-custom" onclick="placeView.Remove(this)">Видалити</button>
+                        </div>
+                        
+                        
+                    </div>
+                }
+            </div>
+            <div class="col-md-2"></div>
+        </div>
+        <div class="keyWords-header-action-col">
+            <div class="areas-action-row">
+                <input type="text" class="text-box-custom form-control keyWordControl" id="filterName" placeholder="Назва">
+                <input type="text" class="text-box-custom form-control keyWordControl" id="filterCommunity" placeholder="Район">
+                <input type="text" class="text-box-custom form-control keyWordControl" id="filterRegion" placeholder="Область">
+                <button id="search" class="btn btn-dark-custom areasButton">Пошук</button>
+                <button id="clear" class="btn btn-dark-custom areasButton">Очистити</button>
+            </div>
+            <div class="areas-action-row">
+                <input type="text" class="text-box-custom form-control keyWordControl" id="addName" placeholder="Назва">
+                <input type="text" class="text-box-custom form-control keyWordControl" id="addCommunity" placeholder="Район">
+                <input type="text" class="text-box-custom form-control keyWordControl" id="addRegion" placeholder="Область">
+                <div class="areasButton" style="opacity: 0"></div>
+                <button id="addArea" class="btn btn-dark-custom areasButton">Додати</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+@section Scripts{
+
+    <script>
+        var areaView = new AreaView();
+
+        $(document).ready(function () {
+            areaView.InitializeControls();
+        });
+
+    </script>
+}

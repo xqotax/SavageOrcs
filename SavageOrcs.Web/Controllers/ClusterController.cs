@@ -1,13 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using NuGet.Versioning;
-using SavageOrcs.DataTransferObjects._Constants;
 using SavageOrcs.DataTransferObjects.Areas;
 using SavageOrcs.DataTransferObjects.Cluster;
-using SavageOrcs.DataTransferObjects.Curators;
-using SavageOrcs.DataTransferObjects.Maps;
-using SavageOrcs.DataTransferObjects.Marks;
-using SavageOrcs.Services;
 using SavageOrcs.Services.Interfaces;
 using SavageOrcs.Web.ViewModels.Cluster;
 using SavageOrcs.Web.ViewModels.Constants;
@@ -20,17 +14,15 @@ namespace SavageOrcs.Web.Controllers
     public class ClusterController : Controller
     {
         
-        private readonly IHelperService _imageService;
         private readonly IAreaService _areaService;
         private readonly IClusterService _clusterService;
         private readonly ICuratorService _curatorService;
         private readonly IHelperService _helperService;
 
-        public ClusterController(IAreaService areaService, IHelperService imageService, IClusterService clusterService, ICuratorService curatorService, IHelperService helperService)
+        public ClusterController(IAreaService areaService,  IClusterService clusterService, ICuratorService curatorService, IHelperService helperService)
         {
             _clusterService = clusterService;
             _areaService = areaService;
-            _imageService = imageService;
             _curatorService = curatorService;
             _helperService = helperService;
         }
@@ -69,6 +61,7 @@ namespace SavageOrcs.Web.Controllers
                 Lng = clusterDto is null ? "31.0275809" : clusterDto.Lng.ToString(CultureInfo.InvariantCulture),
                 Zoom = "6",
                 Name = clusterDto?.Name,
+                NameEng = clusterDto?.NameEng,
                 Description = clusterDto?.Description,
                 DescriptionEng = clusterDto?.DescriptionEng,
                 ResourceName = clusterDto?.ResourceName,    
@@ -88,12 +81,6 @@ namespace SavageOrcs.Web.Controllers
                     Id = x.Id,
                     Name = x.DisplayName
                 })).ToArray(),
-                Places = (await _helperService.GetAllPlaces()).Select(x => new GuidIdAndNameViewModel
-                {
-                    Id = x.Id,
-                    Name = Thread.CurrentThread.CurrentUICulture.TwoLetterISOLanguageName == "uk" ? x.Name : x.NameEng,
-                }).ToArray(),
-                SelectedPlaceIds = clusterDto is null ? Array.Empty<Guid>() : clusterDto.Places.Select(x => x.Id).ToArray()
             };
 
             return View(addClusterViewModel);
@@ -118,8 +105,8 @@ namespace SavageOrcs.Web.Controllers
             clusterSaveDto.ResourceName = saveClusterViewModel.ResourceName;
             clusterSaveDto.ResourceNameEng = saveClusterViewModel.ResourceNameEng;
             clusterSaveDto.ResourceUrl = saveClusterViewModel.ResourceUrl;
-            clusterSaveDto.PlaceIds = saveClusterViewModel.SelectedPlaceIds;
             clusterSaveDto.Name = saveClusterViewModel.Name;
+            clusterSaveDto.NameEng = saveClusterViewModel.NameEng;
             clusterSaveDto.Id = saveClusterViewModel.Id;
             clusterSaveDto.Lat = double.Parse(saveClusterViewModel.Lat, CultureInfo.InvariantCulture);
             clusterSaveDto.Lng = double.Parse(saveClusterViewModel.Lng, CultureInfo.InvariantCulture);
@@ -141,58 +128,11 @@ namespace SavageOrcs.Web.Controllers
         }
 
         [AllowAnonymous]
-        public async Task<IActionResult> Revision(Guid id)
+        public IActionResult Revision(Guid id)
         {
             return RedirectToAction("Revision", "Mark", new {Id = id, isCluster = true});
         }
 
-        [AllowAnonymous]
-        //public IActionResult Catalogue()
-        //{
-        //    var filterCatalogueClusterViewModel = new FilterCatalogueClusterViewModel()
-        //    {
-        //        AreaName = "",
-        //        KeyWord = "",
-        //        ClusterDescription = "",
-        //        ClusterName = "",
-        //        MinCountOfMarks = null
-        //    };
-
-        //    return View("Catalogue", filterCatalogueClusterViewModel);
-        //}
-
-        //[Authorize(Roles = "Admin")]
-        //public async Task<IActionResult> Delete(Guid? id)
-        //{
-        //    var clusterDto = id.HasValue ? await _clusterService.GetClusterById(id.Value) : null;
-
-        //    if (clusterDto is null)
-        //    {
-        //        return NotFound();
-        //    }
-        //    var areaDtos = await _areaService.GetAreasByNameAsync(clusterDto.Area is null ? "Херсон" : clusterDto.Area.Name);
-
-        //    var addClusterViewModel = new AddClusterViewModel
-        //    {
-        //        Id = clusterDto?.Id,
-        //        Lat = clusterDto is null ? "48.6125528" : clusterDto.Lat.ToString(CultureInfo.InvariantCulture),
-        //        Lng = clusterDto is null ? "31.0275809" : clusterDto.Lng.ToString(CultureInfo.InvariantCulture),
-        //        Zoom = "6",
-        //        Name = clusterDto?.Name,
-        //        Description = clusterDto?.Description,
-        //        AreaId = clusterDto?.Area?.Id,
-        //        AreaName = clusterDto?.Area?.Name,
-        //        IsNew = !id.HasValue,
-        //        Areas = areaDtos.Select(x => new GuidIdAndNameViewModel
-        //        {
-        //            Name = x.Name + ", " + x.Community + ", " + x.Region,
-        //            Id = x.Id
-        //        }).OrderBy(x => x.Name).ToArray(),
-        //        ToDelete = true
-        //    };
-
-        //    return View("Add", addClusterViewModel);
-        //}
 
         [Authorize(Roles = "Admin")]
         public IActionResult DeleteCluster()

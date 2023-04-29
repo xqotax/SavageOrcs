@@ -12,10 +12,10 @@ namespace SavageOrcs.BusinessObjects
 
         public string? Name { get; set; }
 
+        public string? NameEng { get; set; }
+
         public DateTime CreatedDate { get; set; }
 
         public DateTime UpdatedDate { get; set; }
-
-        public bool? RegisterIsImportant { get; set; }
     }
 }

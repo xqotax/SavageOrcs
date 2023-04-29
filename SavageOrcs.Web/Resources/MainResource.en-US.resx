@@ -199,7 +199,7 @@
     <value>Search</value>
   </data>
   <data name="SideMenuSearchLabel" xml:space="preserve">
-    <value>Your guide to the archive, organized by inscription content, geography, and sites where graffiti were found</value>
+    <value>Your guide to the archive, organized by inscription content and geography</value>
   </data>
   <data name="SideMenuTextsButton" xml:space="preserve">
     <value>Texts</value>

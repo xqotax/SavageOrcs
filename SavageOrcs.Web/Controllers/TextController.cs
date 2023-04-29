@@ -46,7 +46,7 @@ namespace SavageOrcs.Web.Controllers
             return View(textRevisionViewModel);
         }
 
-        private string GetHtmlText(BlockDto block)
+        private static string GetHtmlText(BlockDto block)
         {
             if (block.Type == BlockType.Header)
             {
@@ -84,7 +84,7 @@ namespace SavageOrcs.Web.Controllers
             else return "";
         }
 
-        private string ArrayToLi(string[] items)
+        private static string ArrayToLi(string[] items)
         {
             var stringToReturn = "";
             foreach (var item in items)
@@ -332,7 +332,8 @@ namespace SavageOrcs.Web.Controllers
                     textDtos = textDtos.Where(x => x.EnglisVersion).ToArray();
             }
 
-            unitedTextViewModel.Curators = (await _curatorService.GetCurators()).Select(x => new GuidIdAndNameViewModel
+            unitedTextViewModel.Curators = (await _curatorService.GetCurators()).Where(x => x.TextDtos is not null && x.TextDtos.Length > 0)
+                .Select(x => new GuidIdAndNameViewModel
             {
                 Id = x.Id,
                 Name = x.DisplayName

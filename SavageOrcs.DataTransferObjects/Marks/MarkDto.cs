@@ -14,6 +14,8 @@ namespace SavageOrcs.DataTransferObjects.Marks
 
         public string? Name { get; set; }
 
+        public string? NameEng { get; set; }
+
         public double? Lng { get; set; }
 
         public double? Lat { get; set; }
@@ -30,15 +32,13 @@ namespace SavageOrcs.DataTransferObjects.Marks
 
         public bool IsVisible { get; set; }
 
-        public GuidIdAndStringName Curator { get; set; } = new GuidIdAndStringName();
+        public GuidIdAndStringNameWithEnglishName Curator { get; set; } = new GuidIdAndStringNameWithEnglishName();
 
         public AreaShortDto? Area { get; set; }
 
-        public GuidIdAndStringName Cluster { get; set; } = new GuidIdAndStringName();
+        public GuidIdAndStringNameWithEnglishName Cluster { get; set; } = new GuidIdAndStringNameWithEnglishName();
 
         public ByteContentAndBooIsVisible[] Images { get; set; } = Array.Empty<ByteContentAndBooIsVisible>();
-
-        public GuidIdAndStringNameWithEnglishName[] Places { get; set; } = Array.Empty<GuidIdAndStringNameWithEnglishName>();
 
         public DateTime CreatedDate { get; set; }
     }
@@ -48,6 +48,8 @@ namespace SavageOrcs.DataTransferObjects.Marks
         public Guid? Id { get; set; }
 
         public string? Name { get; set; }
+
+        public string? NameEng { get; set; }
 
         public double? Lng { get; set; }
 
@@ -65,7 +67,11 @@ namespace SavageOrcs.DataTransferObjects.Marks
 
         public string? CuratorName { get; set; }
 
+        public string? CuratorNameEng { get; set; }
+
         public string? ClusterName { get; set; }
+
+        public string? ClusterNameEng { get; set; }
 
         public bool IsVisible { get; set; }
 

@@ -70,6 +70,14 @@ var MapMainView = Class.extend({
         $(".clear-button-col").on('click', function () {
             self.Clear();
         });
+
+        $("#namesMultiselect").on('change', function () {
+            self.OnMultiselectChange();
+        });
+
+        $("#areasMultiselect").on('change', function () {
+            self.OnMultiselectChange();
+        });
     },
     InitMap: function () {
         var self = this;
@@ -285,6 +293,21 @@ var MapMainView = Class.extend({
         self.IsClear = false;
         document.activeElement.blur();
         self.Search();
+    },
+    OnMultiselectChange: function () {
+        var areaSelectedLenght = $("#areasMultiselect").val().length;
+        var nameSelectedLenght = $("#namesMultiselect").val().length;
+
+        if (areaSelectedLenght > 0 || nameSelectedLenght > 0) {
+            $("#filter-big-text-info").css({ "color": "#FF2929" });
+            $("#clear-button").css({ "color": "#FF2929" });
+            $(".clear-button-img img").attr("src", "/images/icons/clearRed.png");
+        }
+        else {
+            $("#filter-big-text-info").css({ "color": "#0F0F0F" });
+            $("#clear-button").css({ "color": "#0F0F0F" });
+            $(".clear-button-img img").attr("src", "/images/icons/clear.png");
+        }
     }
 });
 

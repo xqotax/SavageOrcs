@@ -13,6 +13,7 @@ using System.Collections.Generic;
 using System.Drawing.Printing;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace SavageOrcs.Services
@@ -24,15 +25,13 @@ namespace SavageOrcs.Services
         private readonly IHelperService _helperService;
         private readonly IRepository<Image> _imageRepository;
         private readonly IRepository<TextToCluster> _textsToClustersRepository;
-        private readonly IRepository<PlaceToCluster> _placeToClusterRepository;
 
-        public ClusterService(IUnitOfWork unitOfWork, IRepository<Cluster> clusterRepository, IRepository<Image> imageRepository, IRepository<Mark> markRepository, IRepository<TextToCluster> textsToClustersRepository, IRepository<PlaceToCluster> placeToClusterRepository, IHelperService helperService) : base(unitOfWork)
+        public ClusterService(IUnitOfWork unitOfWork, IRepository<Cluster> clusterRepository, IRepository<Image> imageRepository, IRepository<Mark> markRepository, IRepository<TextToCluster> textsToClustersRepository, IHelperService helperService) : base(unitOfWork)
         {
             _clusterRepository = clusterRepository;
             _imageRepository = imageRepository;
             _markRepository = markRepository;
             _textsToClustersRepository = textsToClustersRepository;
-            _placeToClusterRepository = placeToClusterRepository;
             _helperService = helperService;
         }
 
@@ -65,19 +64,35 @@ namespace SavageOrcs.Services
 
             if (filterByKeyWordIds)
             {
-                var keyWords = (await _helperService.GetAllKeyWords()).Where(x => keyWordIds.Contains(x.Id) && !string.IsNullOrEmpty(x.Name)).Select(x => x.Name).ToArray();
-                resultClusters.AddRange(clusters
-                   .Where(x =>
-                       !string.IsNullOrEmpty(x.DescriptionEng)
-                       && keyWords.Any(y =>
-                           y.Contains(x.DescriptionEng, StringComparison.OrdinalIgnoreCase)) ||
-                           !string.IsNullOrEmpty(x.Description)
-                       && keyWords.Any(y =>
-                           y.Contains(x.Description, StringComparison.OrdinalIgnoreCase)) ||
-                           !string.IsNullOrEmpty(x.Name)
-                       && keyWords.Any(y =>
-                           y.Contains(x.Name, StringComparison.OrdinalIgnoreCase)))
-                   .ToList());
+                if (filterByKeyWordIds)
+                {
+                    var keyWords = (await _helperService.GetAllKeyWords()).Where(x => keyWordIds.Contains(x.Id) && !string.IsNullOrEmpty(x.Name)).Select(x => _helperService.GetTranslation(x.Name, x.NameEng)).ToArray();
+
+                    foreach (var cluster in clusters)
+                    {
+                        if (!string.IsNullOrEmpty(cluster.DescriptionEng)
+                            && keyWords.Any(y => Regex.IsMatch(cluster.DescriptionEng, @"\b" + Regex.Escape(y) + @"\b", RegexOptions.IgnoreCase)
+                            || Regex.IsMatch(y, @"\b" + Regex.Escape(cluster.DescriptionEng) + @"\b", RegexOptions.IgnoreCase)))
+                        {
+                            resultClusters.Add(cluster);
+                            continue;
+                        }
+                        if (!string.IsNullOrEmpty(cluster.Description)
+                            && keyWords.Any(y => Regex.IsMatch(cluster.Description, @"\b" + Regex.Escape(y) + @"\b", RegexOptions.IgnoreCase)
+                            || Regex.IsMatch(y, @"\b" + Regex.Escape(cluster.Description) + @"\b", RegexOptions.IgnoreCase)))
+                        {
+                            resultClusters.Add(cluster);
+                            continue;
+                        }
+                        if (!string.IsNullOrEmpty(cluster.Name)
+                            && keyWords.Any(y => Regex.IsMatch(cluster.Name, @"\b" + Regex.Escape(y) + @"\b", RegexOptions.IgnoreCase)
+                            || Regex.IsMatch(y, @"\b" + Regex.Escape(cluster.Name) + @"\b", RegexOptions.IgnoreCase)))
+                        {
+                            resultClusters.Add(cluster);
+                            continue;
+                        }
+                    }
+                }
             }
 
             if (filterByClusterIds)
@@ -113,6 +128,7 @@ namespace SavageOrcs.Services
 
             cluster.UpdatedDate = DateTime.Now;
             cluster.Name = clusterSaveDto.Name;
+            cluster.NameEng = clusterSaveDto.NameEng;
             cluster.Description = clusterSaveDto.Description;
             cluster.DescriptionEng = clusterSaveDto.DescriptionEng;
             cluster.ResourceName = clusterSaveDto.ResourceName;
@@ -130,26 +146,6 @@ namespace SavageOrcs.Services
                 cluster.CuratorId = null;
             else
                 cluster.CuratorId = clusterSaveDto.CuratorId;
-
-            foreach (var placeToCluster in cluster.PlaceToClusters)
-            {
-                if (!clusterSaveDto.PlaceIds.Contains(placeToCluster.PlaceId))
-                    _placeToClusterRepository.Delete(placeToCluster);
-            }
-
-
-            foreach (var placeId in clusterSaveDto.PlaceIds)
-            {
-                var oldPlaceIds = cluster.PlaceToClusters.Select(x => x.PlaceId).ToArray();
-
-                if (!oldPlaceIds.Contains(placeId))
-                    _placeToClusterRepository.Add(new PlaceToCluster
-                    {
-                        Id = new Guid(),
-                        ClusterId = cluster.Id,
-                        PlaceId = placeId
-                    });
-            }
 
 
             await UnitOfWork.SaveChangesAsync();
@@ -169,12 +165,19 @@ namespace SavageOrcs.Services
             {
                 Id = cluster.Id,
                 Name = cluster.Name,
+                NameEng = cluster.NameEng,
                 Description = cluster.Description,
                 DescriptionEng = cluster.DescriptionEng,
                 ResourceName = cluster.ResourceName,
                 ResourceNameEng = cluster.ResourceNameEng,
                 ResourceUrl = cluster.ResourceUrl,
-                Curator = cluster.Curator is null? new GuidIdAndStringName { } : new GuidIdAndStringName { Name = cluster.Curator.Name, Id = cluster.Curator.Id },
+                Curator = cluster.Curator is null
+                    ? new GuidIdAndStringNameWithEnglishName { } 
+                    : new GuidIdAndStringNameWithEnglishName { 
+                        Name = cluster.Curator.Name, 
+                        Id = cluster.Curator.Id, 
+                        NameEng = cluster .Curator.NameEng
+                    },
                 Lat = cluster.Lat,
                 Lng = cluster.Lng,
                 Area = cluster.Area is null ? null : new AreaShortDto
@@ -188,6 +191,7 @@ namespace SavageOrcs.Services
                 { 
                     Id = x.Id,
                     Name = x.Name,
+                    NameEng = x.NameEng,
                     Description = x.Description,
                     ResourceName = x.ResourceName,
                     ResourceNameEng= x.ResourceNameEng,
@@ -205,14 +209,11 @@ namespace SavageOrcs.Services
                         Id = x.Area.Id,
                         Name = x.Area.Name,
                         Community = x.Area.Community,
-                        Region = x.Area.Region
+                        Region = x.Area.Region,
+                        RegionEng = x.Area.RegionEng,
+                        CommunityEng = x.Area.CommunityEng,
+                        NameEng = x.Area.NameEng
                     }
-                }).ToArray(),
-                Places = cluster.PlaceToClusters.Select(x => new GuidIdAndStringNameWithEnglishName
-                {
-                    Id = x.Place.Id,
-                    Name = x.Place.Name,
-                    NameEng = x.Place.NameEng
                 }).ToArray()
             };
         }

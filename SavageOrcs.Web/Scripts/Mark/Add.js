@@ -44,25 +44,21 @@
         self.IsInitializate = true;
         //self.InfoWindow.open(self.Map);
 
-        if (self.Images !== null) {
-            self.AddImages();
-        }
-
         if (!self.IsNew) {
             self.SetMark();
         }
 
-        var placesOptions = {
-            placeholder: "Виберіть локацію",
-            txtSelected: "вибрано",
-            txtAll: "Всі",
-            txtRemove: "Видалити",
-            txtSearch: "Пошук",
-            height: "300px",
-            Id: "placesMultiselect"
-        }
+        //var placesOptions = {
+        //    placeholder: "Виберіть локацію",
+        //    txtSelected: "вибрано",
+        //    txtAll: "Всі",
+        //    txtRemove: "Видалити",
+        //    txtSearch: "Пошук",
+        //    height: "300px",
+        //    Id: "placesMultiselect"
+        //}
 
-        MultiselectDropdown(placesOptions);
+        //MultiselectDropdown(placesOptions);
 
 
         self.SearchSelectDropdownAreas = new SearchSelect('#dropdown-input-for-mark', {
@@ -154,9 +150,9 @@
             self.DeleteMark();
         }
     },
-    OnPlacesChange: function () {
-        var el = $("#placesMultiselect");
-    },
+    //OnPlacesChange: function () {
+    //    var el = $("#placesMultiselect");
+    //},
     SubscribeEvents: function () {
         var self = this;
 
@@ -182,13 +178,10 @@
             self.RemoveImages();
         });
 
-        $("#placesMultiselect").on('change', function () {
-            self.OnPlacesChange();
-        });
+        //$("#placesMultiselect").on('change', function () {
+        //    self.OnPlacesChange();
+        //});
 
-        //$('#dropdown-input-for-mark').addClass("display-8-custom");
-        //$('#dropdown-input-for-cluster').addClass("display-8-custom");
-        
 
         self.Map.addListener("click", (mapsMouseEvent) => {
             self.InfoWindow.close();
@@ -299,12 +292,13 @@
             ClusterId: clusterId,
             CuratorId: curatorId,
             Name: $("#Name").val(),
+            NameEng: $("#NameEng").val(),
             Description: $("#Description").val(),
             DescriptionEng: $("#DescriptionEng").val(),
             ResourceUrl: $("#ResourceUrl").val(),
             ResourceName: $("#ResourceName").val(),
             ResourceNameEng: $("#ResourceNameEng").val(),
-            SelectedPlaceIds: $("#placesMultiselect").val(),
+            //SelectedPlaceIds: $("#placesMultiselect").val(),
             Images: []
         };
 
@@ -393,24 +387,6 @@
                 $('#addImagePlaceholder').html(src);
             }
         });
-    },
-    AddImages: function () {
-        //var self = this;
-
-        //$.each(self.Images, function (index, element) {
-        //    var rowCount = $("#imageContainer .row").length;
-        //    var colCount = $("#imageContainer .col-md-3").length;
-
-        //    $(".popup-content-custom .row #imagePlaceholder").removeAttr('id');
-
-        //    if ((rowCount === 0) || (colCount !== 0 && Math.floor(colCount / rowCount) === 3)) {
-        //        $("#imageContainer").append(self.RowAddConstString + self.ColAddConstString + "<img src=\"" + element + "\" height=\"200\">" + self.DivAddConstString + self.DivAddConstString);
-        //    }
-        //    else {
-        //        $("#imageContainer .row").last().append(self.ColAddConstString + "<img src=\"" + element + "\" height=\"200\">" + self.DivAddConstString);
-        //    }
-        //});
-
     },
     RemoveImage: function (el) {
         var row = $(el).parent().parent().parent();

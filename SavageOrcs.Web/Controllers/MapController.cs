@@ -1,10 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Mvc;
-using NuGet.Packaging;
-using SavageOrcs.BusinessObjects;
-using SavageOrcs.Services;
 using SavageOrcs.Services.Interfaces;
 using SavageOrcs.Web.ViewModels.Constants;
 using SavageOrcs.Web.ViewModels.Map;
@@ -67,14 +63,14 @@ namespace SavageOrcs.Web.Controllers
                     Id = x.Id,
                     Lat = x.Lat?.ToString().Replace(',', '.'),
                     Lng = x.Lng?.ToString().Replace(',', '.'),
-                    Name = x.Name,
+                    Name = _helperService.GetTranslation(x.Name, x.NameEng),
                 }).ToArray(),
                 MapClusterViewModels = mapDto.MapClusterDtos.Select(x => new MapClusterViewModel
                 {
                     Id = x.Id,
                     Lat = x.Lat?.ToString().Replace(',', '.'),
                     Lng = x.Lng?.ToString().Replace(',', '.'),
-                    Name = x.Name
+                    Name = _helperService.GetTranslation(x.Name, x.NameEng)
                 }).ToArray()
 
             };
@@ -90,27 +86,22 @@ namespace SavageOrcs.Web.Controllers
             mapCoordinatesViewModel.KeyWords = (await _helperService.GetAllKeyWords()).Select(x => new GuidIdAndNameViewModel
             {
                 Id = x.Id,
-                Name = x.Name
+                Name = _helperService.GetTranslation(x.Name, x.NameEng)
             }).ToArray();
             mapCoordinatesViewModel.ClusterNames = clusterDtos.Select(x => new GuidIdAndNameViewModel
             {
                 Id = x.Id,
-                Name = x.Name
+                Name = _helperService.GetTranslation(x.Name, x.NameEng)
             }).OrderBy(x => x.Name).ToArray();
             mapCoordinatesViewModel.Areas = (await _areaService.GetUsedAreasAsync()).Select(x => new GuidIdAndNameViewModel
             {
                 Id = x.Id,
                 Name = x.Name + ", " + x.Community + ", " + x.Region,
             }).ToArray();
-            //mapCoordinatesViewModel.MarkNames = markDtos.Select(x => new GuidIdAndNameViewModel
-            //{
-            //    Id = x.Id.Value,
-            //    Name = x.Name
-            //}).ToArray();
             mapCoordinatesViewModel.MarkNames = markDtos.Select(x => new GuidIdAndNameViewModel
             {
                 Id = x.Id.Value,
-                Name = x.Name
+                Name = _helperService.GetTranslation(x.Name, x.NameEng)
             }).Where(x => !mapCoordinatesViewModel.KeyWords
                     .Any(y => x.Name is not null && y.Name is not null && x.Name.Contains(y.Name, StringComparison.OrdinalIgnoreCase)))
                 .GroupBy(x => x.Name)
@@ -133,7 +124,7 @@ namespace SavageOrcs.Web.Controllers
                 Id = x.Id.Value,
                 Lat = x.Lat?.ToString().Replace(',', '.'),
                 Lng = x.Lng?.ToString().Replace(',', '.'),
-                Name = x.Name,
+                Name = _helperService.GetTranslation(x.Name, x.NameEng),
                 IsCluster = false
             }).ToArray();
             try
@@ -143,7 +134,7 @@ namespace SavageOrcs.Web.Controllers
                     Id = x.Id,
                     Lat = x.Lat.ToString().Replace(',', '.'),
                     Lng = x.Lng.ToString().Replace(',', '.'),
-                    Name = x.Name,
+                    Name = _helperService.GetTranslation(x.Name, x.NameEng),
                     IsCluster = true
                 })).ToArray();
             }

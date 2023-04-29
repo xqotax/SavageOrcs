@@ -12,6 +12,8 @@ namespace SavageOrcs.BusinessObjects
 
         public string? Name { get; set; }
 
+        public string? NameEng { get; set; }
+
         public double Lng { get; set; }
 
         public double Lat { get; set; }
@@ -45,7 +47,5 @@ namespace SavageOrcs.BusinessObjects
         public virtual ICollection<Mark> Marks { get; set; } = new HashSet<Mark>();
 
         public virtual ICollection<TextToCluster> TextsToClusters { get; set; } = new HashSet<TextToCluster>();
-
-        public virtual ICollection<PlaceToCluster> PlaceToClusters { get; set; } = new HashSet<PlaceToCluster>();
     }
 }

@@ -79,7 +79,7 @@
     overflow: hidden;
     font-size: 12px;
     line-height: 14px;
-    background-image: url("../../images/arrows/topArrow.png");
+    background-image: url("../../images/arrows/bottomArrow.png");
     background-repeat: no-repeat;
     background-position: top 5px right 10px;
     background-size: 16px 12px;
@@ -102,7 +102,7 @@
     line-height: 14px;
     background-image: url("../../images/arrows/topArrow.png");
     background-repeat: no-repeat;
-    background-position: top 10px right 10px;
+    background-position: top 5px right 10px;
     background-size: 16px 12px;
 }
 
@@ -203,7 +203,35 @@
 
 
 @media( max-width: 700px){
+    
     .multiselect-dropdown-custom-list div {
         padding-left: 0px;
+    }
+    .multiselect-dropdown-custom-list-wrapper .multiselect-dropdown-custom-search,
+    .multiselect-dropdown-custom-list-wrapper .multiselect-dropdown-custom-search:focus {
+        height: 30px;
+        
+    }
+    .multiselect-dropdown-custom span.multiselect-placeholder {
+        top: 38px;
+    }
+    .multiselect-dropdown-custom-list-wrapper .multiselect-dropdown-custom-search {
+
+        background-position: top 3px right 10px;
+    }
+        
+    .multiselect-dropdown-custom-list-wrapper .multiselect-dropdown-custom-search:focus {
+
+        background-position: top 1px right 10px;
+    }
+    .multiselect-dropdown-custom span.optext{
+        height: 25px;
+    }
+    
+}
+@media( max-width: 460px) {
+    .multiselect-dropdown-custom-list-wrapper .multiselect-dropdown-custom-search {
+        font-size: 9px;
+        line-height: 30px;
     }
 }

@@ -212,7 +212,9 @@
 }
 
 .email-text-info-row a, .email-text-info-row a:hover {
-    color: #FF2929
+    color: #FF2929;
+    text-decoration: underline;
+
 }
 
 .form-container {
@@ -333,12 +335,12 @@ footer {
         padding-right: 44px;
     }
     .email-container{
-        height: 400px;
+        height: 350px;
         margin-top: 120px;
     }
 
     .email-first-col {
-        width: 70%;
+        width: 77%;
     }
 
     .email-col {
@@ -363,5 +365,6 @@ footer {
         width: 80%;
         height: 220px;
     }
+
 }
 

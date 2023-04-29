@@ -4,19 +4,19 @@
 @inject LanguageService Language
 @model CuratorViewModel[]
 <div class="wrapper-search-curator">
-    <div class="curator-data-col">
+    <div class="curator-header-row">
         <div class="curator-header-text">
             @Language.GetCuratorKey("SearchHeader")
         </div>
-        <div class="curator-data-row-container">
-            @await Html.PartialAsync("_CatalogueDataRows", Model)
+        <div class="curator-info-text">
+            <p>@Language.GetCuratorKey("SearchDescription")</p>
         </div>
     </div>
-    <div class="curator-search-col">
-        <div class="curator-filter-search-text">
-            @Language.GetCuratorKey("SearchDescription")
+    <div class="curator-table-row">
+        <div class="curator-data-col-container">
+            @await Html.PartialAsync("_CatalogueDataRows", Model)
         </div>
-        <div class="curator-filter-row">
+        <div class="curator-filter-col">
             <div class="curator-filter-item">
                 <div class="curator-filter-multiselect-placeholder">
                     <select name="curatorsMultiselect" id="curatorsMultiselect" multiple multiselect-search="true" multiselect-select-all="true" multiselect-hide-x="true">
@@ -26,26 +26,23 @@
                         }
                     </select>
                 </div>
-                @*<div class="curator-filter-big-text-info">Автор</div>
-                <div class="curator-filter-small-text-info">
-                    Почніть вводити ім'я автора
-                </div>*@
             </div>
         </div>
     </div>
 </div>
 
-<div class="wrapper-search-bottom-text">
-    <div class="bottom-text-row">
-        <div class="bottom-text-col">
+<div class="email-container">
+    <div class="email-col email-first-col">
+        <div class="email-text-info-row">
             @Language.GetCuratorKey("SearchAreYouHaveMaterials")
         </div>
-        <div class="bottom-text-col">@Language.GetMainKey("MainContactUs")</div>
     </div>
-    <div class="bottom-text-row">
-        <div class="bottom-text-col"></div>
-        <div class="bottom-text-col">
-            <a style="color: #FF2929" href="mailto:info@mizhvukhamy.com?subject=Application%20for%20joining%20the%20team">
+    <div class="email-col">
+        <div class="email-text-info-row">
+            @Language.GetMainKey("MainContactUs")
+        </div>
+        <div class="email-text-info-row mr-lg-2">
+            <a href="mailto:info@mizhvukhamy.com?subject=Application%20for%20joining%20the%20team">
                 info@mizhvukhamy.com
             </a>
         </div>

@@ -14,6 +14,8 @@ namespace SavageOrcs.DataTransferObjects.Curators
 
         public string? DisplayName { get; set; }
 
+        public string? DisplayNameEng { get; set; }
+
         public string? Description { get; set; }
 
         public string? DescriptionEng { get; set; }

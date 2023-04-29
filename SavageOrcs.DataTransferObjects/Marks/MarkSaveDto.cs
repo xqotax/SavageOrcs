@@ -13,6 +13,8 @@ namespace SavageOrcs.DataTransferObjects.Marks
 
         public string? Name { get; set; }
 
+        public string? NameEng { get; set; }
+
         public double? Lng { get; set; }
 
         public double? Lat { get; set; }
@@ -34,8 +36,6 @@ namespace SavageOrcs.DataTransferObjects.Marks
         public Guid? ClusterId { get; set; }
 
         public Guid? CuratorId { get; set; }
-
-        public Guid[] PlaceIds { get; set; } = new Guid[0];
 
         public int MapId { get; set; }
 

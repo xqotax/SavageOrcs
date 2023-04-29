@@ -37,8 +37,12 @@
       "PackagePath": "staticwebassets\\css\\admin\\identity.css"
     },
     {
-      "Id": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\css\\admin\\keyWordAndPlaces.css",
-      "PackagePath": "staticwebassets\\css\\admin\\keyWordAndPlaces.css"
+      "Id": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\css\\admin\\keyWordAndArea.css",
+      "PackagePath": "staticwebassets\\css\\admin\\keyWordAndArea.css"
+    },
+    {
+      "Id": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\css\\curator\\curator-mobile.css",
+      "PackagePath": "staticwebassets\\css\\curator\\curator-mobile.css"
     },
     {
       "Id": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\css\\curator\\curator.css",
@@ -47,14 +51,6 @@
     {
       "Id": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\css\\curator\\curatorAdmin.css",
       "PackagePath": "staticwebassets\\css\\curator\\curatorAdmin.css"
-    },
-    {
-      "Id": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\css\\curator\\curatorRevision.css",
-      "PackagePath": "staticwebassets\\css\\curator\\curatorRevision.css"
-    },
-    {
-      "Id": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\css\\curator\\curators.css",
-      "PackagePath": "staticwebassets\\css\\curator\\curators.css"
     },
     {
       "Id": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\css\\main\\main-mobile.css",
@@ -83,6 +79,10 @@
     {
       "Id": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\css\\site.css",
       "PackagePath": "staticwebassets\\css\\site.css"
+    },
+    {
+      "Id": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\css\\text\\text-mobile.css",
+      "PackagePath": "staticwebassets\\css\\text\\text-mobile.css"
     },
     {
       "Id": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\css\\text\\text.css",
@@ -123,6 +123,10 @@
     {
       "Id": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\images\\icons\\clear.png",
       "PackagePath": "staticwebassets\\images\\icons\\clear.png"
+    },
+    {
+      "Id": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\images\\icons\\clearRed.png",
+      "PackagePath": "staticwebassets\\images\\icons\\clearRed.png"
     },
     {
       "Id": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\images\\icons\\clone.png",

@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "iIpIaJY1V4yNTd17Gjzo3MaJW0G13IGyM9fPf1nl2aE=",
+  "Hash": "TL6VB4tGK/s5oAgArjrsQ6rFOMD4KfZvTox1hSq8lRI=",
   "Source": "SavageOrcs.Web",
   "BasePath": "_content/SavageOrcs.Web",
   "Mode": "Default",
@@ -1207,12 +1207,12 @@
       "OriginalItemSpec": "wwwroot\\css\\admin\\identity.css"
     },
     {
-      "Identity": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\css\\admin\\keyWordAndPlaces.css",
+      "Identity": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\css\\admin\\keyWordAndArea.css",
       "SourceId": "SavageOrcs.Web",
       "SourceType": "Discovered",
       "ContentRoot": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\",
       "BasePath": "_content/SavageOrcs.Web",
-      "RelativePath": "css/admin/keyWordAndPlaces.css",
+      "RelativePath": "css/admin/keyWordAndArea.css",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -1221,7 +1221,7 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\css\\admin\\keyWordAndPlaces.css"
+      "OriginalItemSpec": "wwwroot\\css\\admin\\keyWordAndArea.css"
     },
     {
       "Identity": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\css\\curator\\curator.css",
@@ -1258,12 +1258,12 @@
       "OriginalItemSpec": "wwwroot\\css\\curator\\curatorAdmin.css"
     },
     {
-      "Identity": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\css\\curator\\curatorRevision.css",
+      "Identity": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\css\\curator\\curator-mobile.css",
       "SourceId": "SavageOrcs.Web",
       "SourceType": "Discovered",
       "ContentRoot": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\",
       "BasePath": "_content/SavageOrcs.Web",
-      "RelativePath": "css/curator/curatorRevision.css",
+      "RelativePath": "css/curator/curator-mobile.css",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -1272,24 +1272,7 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\css\\curator\\curatorRevision.css"
-    },
-    {
-      "Identity": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\css\\curator\\curators.css",
-      "SourceId": "SavageOrcs.Web",
-      "SourceType": "Discovered",
-      "ContentRoot": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\",
-      "BasePath": "_content/SavageOrcs.Web",
-      "RelativePath": "css/curator/curators.css",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\css\\curator\\curators.css"
+      "OriginalItemSpec": "wwwroot\\css\\curator\\curator-mobile.css"
     },
     {
       "Identity": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\css\\main\\main.css",
@@ -1445,6 +1428,23 @@
       "OriginalItemSpec": "wwwroot\\css\\text\\textAdmin.css"
     },
     {
+      "Identity": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\css\\text\\text-mobile.css",
+      "SourceId": "SavageOrcs.Web",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\",
+      "BasePath": "_content/SavageOrcs.Web",
+      "RelativePath": "css/text/text-mobile.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\text\\text-mobile.css"
+    },
+    {
       "Identity": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\css\\user\\userCatalogue.css",
       "SourceId": "SavageOrcs.Web",
       "SourceType": "Discovered",
@@ -1579,6 +1579,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\images\\icons\\clear.png"
+    },
+    {
+      "Identity": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\images\\icons\\clearRed.png",
+      "SourceId": "SavageOrcs.Web",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\",
+      "BasePath": "_content/SavageOrcs.Web",
+      "RelativePath": "images/icons/clearRed.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\icons\\clearRed.png"
     },
     {
       "Identity": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\images\\icons\\clone.png",

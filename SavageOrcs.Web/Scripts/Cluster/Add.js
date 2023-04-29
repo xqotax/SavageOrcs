@@ -11,7 +11,6 @@
     CuratorNames: null,
     SearchSelectDropdownCurators: null,
 
-
     Areas: null,
     AreaName: null,
     AreaId: null,
@@ -52,18 +51,18 @@
             self.SetMark();
         }
 
-        var placesOptions = {
-            placeholder: "Виберіть локацію",
-            txtSelected: "вибрано",
-            txtAll: "Всі",
-            txtRemove: "Видалити",
-            txtSearch: "Пошук",
-            height: "300px",
-            Id: "placesMultiselect",
-            //MaxElementsToShow: 2
-        }
+        //var placesOptions = {
+        //    placeholder: "Виберіть локацію",
+        //    txtSelected: "вибрано",
+        //    txtAll: "Всі",
+        //    txtRemove: "Видалити",
+        //    txtSearch: "Пошук",
+        //    height: "300px",
+        //    Id: "placesMultiselect",
+        //    //MaxElementsToShow: 2
+        //}
 
-        MultiselectDropdown(placesOptions);
+        //MultiselectDropdown(placesOptions);
 
         self.SearchSelectDropdownAreas = new SearchSelect('#dropdown-input-for-area', {
             data: [],
@@ -229,12 +228,13 @@
             AreaId: areaId,
             CuratorId: curatorId,
             Name: $("#Name").val(),
+            NameEng: $("#NameEng").val(),
             Description: $("#Description").val(),
             DescriptionEng: $("#DescriptionEng").val(),
             ResourceUrl: $("#ResourceUrl").val(),
             ResourceName: $("#ResourceName").val(),
             ResourceNameEng: $("#ResourceNameEng").val(),
-            SelectedPlaceIds: $("#placesMultiselect").val()
+            //SelectedPlaceIds: $("#placesMultiselect").val()
         };
 
         $.ajax({

@@ -47,6 +47,7 @@
         var saveCuratorViewModel = {
             Id: $("#Id").val() === "" ? null : $("#Id").val(),
             DisplayName: $("#DisplayName").val(),
+            DisplayNameEng: $("#DisplayNameEng").val(),
             Description: $("#Description").val(),
             DescriptionEng: $("#DescriptionEng").val(),
             Image: $("#curatorImage").attr('src')

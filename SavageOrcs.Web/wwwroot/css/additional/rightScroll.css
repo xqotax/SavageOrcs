@@ -1,39 +1,39 @@
-﻿@media (min-width: 900px) {
-    ::-webkit-scrollbar {
-        width: 10px;
-    }
-
-    /* Track */
-    ::-webkit-scrollbar-track {
-        background: #f1f1f1;
-    }
-    
-    /* Handle */
-    ::-webkit-scrollbar-thumb {
-        background: #888;
-    }
-
-    /* Handle on hover */
-    ::-webkit-scrollbar-thumb:hover {
-        background: #555;
-    }
-
-    .data-row-container::-webkit-scrollbar {
-        width: 4px;
-    }
-
-    /* Track */
-    .data-row-container::-webkit-scrollbar-track {
-        background: #ABABAB;
-    }
-
-    /* Handle */
-    .data-row-container::-webkit-scrollbar-thumb {
-        background: #555;
-    }
-
-    /* Handle on hover */
-    .data-row-container::-webkit-scrollbar-thumb:hover {
-        background: #808080;
-    }
+﻿
+::-webkit-scrollbar {
+    width: 10px;
 }
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+    
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #888;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+.data-row-container::-webkit-scrollbar {
+    width: 4px;
+}
+
+/* Track */
+.data-row-container::-webkit-scrollbar-track {
+    background: #ABABAB;
+}
+
+/* Handle */
+.data-row-container::-webkit-scrollbar-thumb {
+    background: #555;
+}
+
+/* Handle on hover */
+.data-row-container::-webkit-scrollbar-thumb:hover {
+    background: #808080;
+}
+

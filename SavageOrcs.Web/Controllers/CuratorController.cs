@@ -1,18 +1,12 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using SavageOrcs.DataTransferObjects.Cluster;
 using SavageOrcs.DataTransferObjects.Curators;
-using SavageOrcs.DataTransferObjects.Texts;
-using SavageOrcs.DbContext.Migrations;
-using SavageOrcs.Services;
 using SavageOrcs.Services.Interfaces;
-using SavageOrcs.Web.ViewModels.Cluster;
 using SavageOrcs.Web.ViewModels.Constants;
 using SavageOrcs.Web.ViewModels.Curator;
 using SavageOrcs.Web.ViewModels.Mark;
 using SavageOrcs.Web.ViewModels.Text;
 using System.Globalization;
-using System.Text;
 
 namespace SavageOrcs.Web.Controllers
 {
@@ -41,6 +35,7 @@ namespace SavageOrcs.Web.Controllers
 
             addCuratorViewModel.Id = curatorDto?.Id;
             addCuratorViewModel.DisplayName = curatorDto?.DisplayName;
+            addCuratorViewModel.DisplayNameEng = curatorDto?.DisplayNameEng;
             addCuratorViewModel.Description = curatorDto?.Description;
             addCuratorViewModel.DescriptionEng = curatorDto?.DescriptionEng;
             addCuratorViewModel.Image = curatorDto is null || curatorDto.Image is null ? null : _helperService.GetImage(curatorDto.Image);
@@ -65,6 +60,7 @@ namespace SavageOrcs.Web.Controllers
             {
                 Id = saveCuratorViewModel.Id,
                 DisplayName = saveCuratorViewModel.DisplayName,
+                DisplayNameEng = saveCuratorViewModel.DisplayNameEng,
                 Description = saveCuratorViewModel.Description,
                 DescriptionEng = saveCuratorViewModel.DescriptionEng,
                 Image = _helperService.GetBytes(saveCuratorViewModel.Image)
@@ -118,7 +114,7 @@ namespace SavageOrcs.Web.Controllers
             var curators = !curatorDtos.Any() ? Array.Empty<CuratorViewModel>() : curatorDtos.Select(x => new CuratorViewModel
             {
                 Id = x.Id,
-                DisplayName = x.DisplayName,
+                DisplayName = _helperService.GetTranslation(x.DisplayName, x.DisplayNameEng),
                 Description = _helperService.GetTranslation(x.Description, x.DescriptionEng),
                 Image = x.Image is not null ? _helperService.GetImage(x.Image) : null
             }).ToArray();
@@ -152,7 +148,7 @@ namespace SavageOrcs.Web.Controllers
                     .Select(y => new MarkCatalogueViewModel
                     {
                         Id = y.Id,
-                        Name = y.Name,
+                        Name = _helperService.GetTranslation(y.Name, y.NameEng),
                         ResourceName = _helperService.GetTranslation(y.ResourceName, y.ResourceNameEng),
                         Area = y.Area is null ? new GuidIdAndNameViewModel() : new GuidIdAndNameViewModel
                         {
@@ -189,7 +185,7 @@ namespace SavageOrcs.Web.Controllers
             var curatorViewModels = curatorDtos.Select(x => new CuratorViewModel
             {
                 Id = x.Id,
-                DisplayName = x.DisplayName,
+                DisplayName = _helperService.GetTranslation(x.DisplayName, x.DisplayNameEng),
                 Description = _helperService.GetTranslation(x.Description, x.DescriptionEng),
                 Image = x.Image is not null ? _helperService.GetImage(x.Image) : null
             }).ToArray();
@@ -222,7 +218,7 @@ namespace SavageOrcs.Web.Controllers
                     .Select(y => new MarkCatalogueViewModel
                     {
                         Id = y.Id,
-                        Name = y.Name,
+                        Name = _helperService.GetTranslation(y.Name, y.NameEng),
                         ResourceName = _helperService.GetTranslation(y.ResourceName, y.ResourceNameEng),
                         Area = y.Area is null ? new GuidIdAndNameViewModel() : new GuidIdAndNameViewModel
                         {
@@ -235,24 +231,5 @@ namespace SavageOrcs.Web.Controllers
 
             return PartialView("_CatalogueDataRows", curatorViewModels);
         }
-        //[AllowAnonymous]
-        //public async Task<IActionResult> Revision(Guid id)
-        //{
-        //    var curatorDto = await _curatorService.GetCuratorById(id);
-
-        //    var curatorRevisionViewModel = new RevisionCuratorViewModel
-        //    {
-        //        Id = curatorDto.Id,
-        //        DisplayName = curatorDto.DisplayName,
-        //        Description = Thread.CurrentThread.CurrentUICulture.TwoLetterISOLanguageName == "uk" ? curatorDto.Description: curatorDto.DescriptionEng,
-        //        Image = curatorDto.Image is not null ? _helperService.GetImage(curatorDto.Image) : null,
-        //        Texts = curatorDto.TextDtos?.Select(x => new RevisionCuratorTextsViewModel {
-        //            Id = x.Id,
-        //            Name = x.Name,
-        //            Subject = x.Subject
-        //        }).ToArray()
-        //    };
-        //    return View(curatorRevisionViewModel);
-        //}
     }
 }

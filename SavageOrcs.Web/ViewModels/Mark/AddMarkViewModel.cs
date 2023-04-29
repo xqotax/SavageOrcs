@@ -27,6 +27,8 @@ namespace SavageOrcs.Web.ViewModels.Mark
 
         public string? Name { get; set; }
 
+        public string? NameEng { get; set; }
+
         public string? Description { get; set; }
 
         public string? DescriptionEng { get; set; }
@@ -48,10 +50,6 @@ namespace SavageOrcs.Web.ViewModels.Mark
         public GuidIdAndNameViewModel[] Clusters { get; set; } = new GuidIdAndNameViewModel[0];
 
         public GuidIdAndNameViewModel[] Curators { get; set; } = new GuidIdAndNameViewModel[0];
-
-        public GuidIdAndNameViewModel[] Places { get; set; } = new GuidIdAndNameViewModel[0];
-
-        public Guid[] SelectedPlaceIds { get; set; } = new Guid[0];
 
     }
 }

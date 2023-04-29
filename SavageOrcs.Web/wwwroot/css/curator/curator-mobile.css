@@ -1,0 +1,134 @@
+﻿@media (max-width: 700px) {
+    .curator-header-row {
+        height: 100px;
+    }
+
+    .curator-header-text {
+        width: 55%;
+    }
+
+    .curator-info-text {
+        width: 40%;
+    }
+
+        .curator-info-text p {
+            width: 60%;
+        }
+
+    .wrapper-search-curator {
+        padding-left: 16px;
+        padding-right: 16px;
+        padding-top: 18px;
+    }
+
+    .curator-photo-col {
+        width: 28%;
+    }
+
+    .curator-content-col {
+        width: 68%;
+    }
+
+    .curator-content-description {
+        font-size: 12px;
+        line-height: 14px;
+    }
+
+    .curator-content-detailed {
+        position: relative;
+        left: -47.5%;
+        width: 147.5%;
+    }
+
+    .curator-data-row {
+        padding-bottom: 60px;
+    }
+}
+
+@media (max-width: 570px) {
+    .curator-header-text {
+        font-size: 32px;
+        line-height: 40px;
+    }
+
+    .curator-info-text {
+        font-size: 12px;
+        line-height: 14px;
+    }
+
+    .curator-content-name-col {
+        font-size: 30px;
+        line-height: 38px;
+    }
+
+    .curator-content-description {
+        padding-bottom: 40px;
+    }
+
+    .curator-content-count-row {
+        font-size: 18px;
+        line-height: 24px;
+    }
+
+    .curator-content-header {
+        height: 120px;
+    }
+
+    .curator-image {
+        max-height: 120px;
+    }
+}
+
+@media (max-width: 480px) {
+    .curator-header-text {
+        font-size: 24px;
+        line-height: 24px;
+        width: 65%;
+    }
+
+    .curator-info-text {
+        font-size: 8px;
+        line-height: 9px;
+    }
+
+    .curator-content-name-col {
+        font-size: 22px;
+        line-height: 24.2px;
+    }
+
+    .curator-content-count-row {
+        font-size: 14px;
+        line-height: 17px;
+    }
+
+    .curator-content-header {
+        height: 88px;
+    }
+
+    .curator-image {
+        max-height: 88px;
+    }
+
+    .curator-content-button-more {
+        width: 30px;
+    }
+
+    .bottomArrow, .topArrow {
+        width: 20px;
+    }
+
+    .curator-data-row {
+        padding-bottom: 38px;
+    }
+
+    .col-curator-text-name, .col-curator-text-date {
+        font-size: 9px;
+        line-height: 10px;
+    }
+}
+
+@media (max-width: 380px) {
+    .curator-header-text {
+        width: 80%;
+    }
+}

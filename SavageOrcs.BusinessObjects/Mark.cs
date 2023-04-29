@@ -6,6 +6,8 @@
 
         public string? Name { get; set; }
 
+        public string? NameEng { get; set; }
+
         public double? Lng { get; set; }
 
         public double? Lat { get; set; }
@@ -45,7 +47,5 @@
         public bool IsVisible { get; set; }
 
         public virtual ICollection<TextToMark> TextsToMarks { get; set; } = new HashSet<TextToMark>();
-
-        public virtual ICollection<PlaceToMark> PlaceToMarks { get; set; } = new HashSet<PlaceToMark>();
     }
 }

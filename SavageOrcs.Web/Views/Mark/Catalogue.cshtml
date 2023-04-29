@@ -10,20 +10,23 @@
         height: 400px;
         position: relative;
     }
+
+    @@media (max-width: 1100px) {
+        .slideshow-container {
+            width: 95%;
+        }
+    }
+    
 </style>
 
 <div class="wrapper-search">
-    <div class="photo-col">
-        <div class="top-row">@Language.GetMarkKey("SearchHeader")</div>
-        <div class="image-placeholder">
-            <div class="slideshow-container">
-            </div>
+    <div class="mark-header-row">
+        <div class="mark-header-text">
+            @Language.GetMarkKey("SearchHeader")
         </div>
-    </div>
-    <div class="table-col">
-        <div class="top-row">
-            <div class="text-container-small">
-                @Language.GetMarkKey("SearchDescription")
+        <div class="mark-header-info">
+            <div class="mark-info-text">
+                <p>@Language.GetMarkKey("SearchDescription")</p>
             </div>
             <div class="clear-button-container">
                 <button id="clear-button">@Language.GetMainKey("ButtonClear")</button>
@@ -32,7 +35,16 @@
                 </div>
             </div>
         </div>
-        <div class="mark-table">
+
+    </div>
+    <div class="mark-table-row">
+        <div class="photo-col">
+            <div class="image-placeholder">
+                <div class="slideshow-container">
+                </div>
+            </div>
+        </div>
+        <div class="table-col">
             <div class="filter-row">
                 <div class="filter-item-small"></div>
                 <div class="filter-item">
@@ -52,7 +64,7 @@
                             }
                         </select>
                     </div>
-                    
+
                 </div>
                 <div class="filter-item">
                     <div class="filter-multiselect-placeholder">
@@ -63,24 +75,11 @@
                             }
                         </select>
                     </div>
-                    
+
                 </div>
                 <div class="filter-item-search">
-                    <div class="filter-small-text-info">
-                        @*@Language.GetMainKey("ButtonSearchDescription")*@
-                    </div>
                     <div id="filter-big-text-info">@Language.GetMainKey("ButtonSearch")</div>
                 </div>
-                @*<div class="filter-item">
-                    <div class="filter-multiselect-placeholder">
-                        <select name="placesMultiselect" id="placesMultiselect" multiple multiselect-search="true" multiselect-select-all="true" multiselect-hide-x="true">
-                            @foreach (var keyWordAndMark in Model.Places)
-                            {
-                                <option value=@keyWordAndMark.Id>@keyWordAndMark.Name</option>
-                            }
-                        </select>
-                    </div>
-                </div>*@
             </div>
             <div class="data-row-container">
                 @await Html.PartialAsync("_CatalogueDataRows", Model.Marks)
@@ -88,23 +87,23 @@
         </div>
     </div>
 </div>
-<div class="wrapper-search-bottom-text">
-    <div class="bottom-text-row">
-        <div class="bottom-text-col">
+<div class="email-container">
+    <div class="email-col email-first-col">
+        <div class="email-text-info-row">
             @Language.GetMarkKey("SearchAreYouHaveMaterials")
         </div>
-        <div class="bottom-text-col">@Language.GetMainKey("MainContactUs")</div>
     </div>
-    <div class="bottom-text-row">
-        <div class="bottom-text-col"></div>
-        <div class="bottom-text-col">
-            <a style="color: #FF2929" href="mailto:info@mizhvukhamy.com?subject=Application%20for%20joining%20the%20team">
+    <div class="email-col">
+        <div class="email-text-info-row">
+            @Language.GetMainKey("MainContactUs")
+        </div>
+        <div class="email-text-info-row mr-lg-2">
+            <a href="mailto:info@mizhvukhamy.com?subject=Application%20for%20joining%20the%20team">
                 info@mizhvukhamy.com
             </a>
         </div>
     </div>
 </div>
-
 
 @section Scripts{
 

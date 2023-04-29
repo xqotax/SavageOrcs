@@ -8,7 +8,7 @@
 @*<div class="row">
     <div class="col-md-4">
         <section>*@
-<form id="account" method="post">
+<form id="account" method="post" style="min-height: 600px;">
     <div class="row">
         <div class="col-md-7 offset-md-1 top-buffer">
             <h2>Вхід</h2>
@@ -16,8 +16,8 @@
     </div>
 
     <div class="row">
-        <div style="color: red">
-            <p>
+        <div class="col-md-9 offset-md-1 top-buffer">
+            <p style="color: red">
                 Увага, дана сторінка тільки для входу адмінів. Навіть якщо ви зареєструєтесь,
                 у вас не буде можливості користуватись адмінською системою, поки вам не нададуть відповідні права
             </p>
@@ -25,26 +25,26 @@
     </div>
     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
     <div class="row top-buffer">
-        <div class="col-md-7 offset-md-1">
+        <div class="col-md-9 offset-md-1">
         <label asp-for="Input.Email" class="form-label"></label>
         <input asp-for="Input.Email" class="form-control" autocomplete="username" aria-required="true" />
         <span asp-validation-for="Input.Email" class="text-danger"></span>
         </div>
     </div>
     <div class="row top-buffer">
-        <div class="col-md-7 offset-md-1">
+        <div class="col-md-9 offset-md-1">
         <label asp-for="Input.Password" class="form-label"></label>
         <input asp-for="Input.Password" class="form-control" autocomplete="current-password" aria-required="true" />
         <span asp-validation-for="Input.Password" class="text-danger"></span>
         </div>
     </div>
     <div class="row top-buffer">
-        <div class="col-md-7 offset-md-1">
+        <div class="col-md-9 offset-md-1">
             <div class="checkbox">
                 <label asp-for="Input.RememberMe" class="form-label">
-                <input type="checkbox" class="form-check-input" asp-for="Input.RememberMe" />
-                @Html.DisplayNameFor(m => m.Input.RememberMe)
-            </label>
+                    <input type="checkbox" class="form-check-input" asp-for="Input.RememberMe" />
+                    @Html.DisplayNameFor(m => m.Input.RememberMe)
+                </label>
             </div>
         </div>
     </div>

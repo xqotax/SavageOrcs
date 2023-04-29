@@ -13,7 +13,7 @@
             txtAll: self.MultiselectAll.value,
             txtRemove: "Видалити",
             txtSearch: self.SearchTextCurator.value,
-            height: "300px",
+            height: window.innerWidth > 950 ? "300px" : "150px",
             Id: "curatorsMultiselect"
         }
 
@@ -40,7 +40,7 @@
             data: JSON.stringify(curatorIds),
             contentType: 'application/json; charset=utf-8',
             success: function (data) {
-                $(".curator-data-row-container").html(data);
+                $(".curator-data-col-container").html(data);
             }
         });
     },
