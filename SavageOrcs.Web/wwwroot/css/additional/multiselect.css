@@ -66,6 +66,7 @@
 }
 
 .multiselect-dropdown-custom-list-wrapper .multiselect-dropdown-custom-search {
+    border-radius: 0px;
     margin-bottom: 5px;
     height: 60px;
     vertical-align: top;
