@@ -10,8 +10,11 @@
         font-size: 14px;
     }
     
+    
 }
-
+body {
+    background-color: #DEDCDC !important;
+}
 
 html {
     position: relative;
