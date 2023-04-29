@@ -157,13 +157,16 @@ function MultiselectDropdown(options) {
             searchWrap.style.zIndex = 4;
             search.focus();
             search.select();
-            if ($(event.target).parent().parent().parent().find("#namesMultiselect").length == 1) {
+            if ($(event.target).parent().parent().parent().find("#namesMultiselect").length == 1
+                || $(event.target).parent().parent().parent().find("#textNamesMultiselect").length == 1) {
                 //$(document).find(".map-container").find("#areasMultiselect").parent().find(".multiselect-dropdown-custom").css({ "display": "none" });
                 setTimeout(() => {
                     if ($(document).find(".map-container").length == 1)
                         $(document).find(".map-container").find("#areasMultiselect").parent().find(".multiselect-dropdown-custom").css({ "display": "none" });
                     if ($(document).find(".table-col").length == 1)
                         $(document).find(".table-col").find("#areasMultiselect").parent().find(".multiselect-dropdown-custom").css({ "display": "none" });
+                    if ($(document).find(".text-table-col").length == 1)
+                        $(document).find(".text-table-col").find("#curatorsMultiselect").parent().find(".multiselect-dropdown-custom").css({ "display": "none" });
 
                 }, 10);
             }
@@ -177,6 +180,9 @@ function MultiselectDropdown(options) {
                 }
                 if ($(document).find(".table-col").length == 1 && $(event.target).closest('.filter-multiselect-placeholder').find("#namesMultiselect").length != 1) {
                     $(document).find(".table-col").find("#areasMultiselect").parent().find(".multiselect-dropdown-custom").css({ "display": "block" });
+                }
+                if ($(document).find(".text-table-col").length == 1 && $(event.target).closest('.text-search-filter-multiselect-placeholder').find("#textNamesMultiselect").length != 1) {
+                    $(document).find(".text-table-col").find("#curatorsMultiselect").parent().find(".multiselect-dropdown-custom").css({ "display": "block" });
                 }
                 searchWrap.style.display = 'none';
                 searchWrap.style.zIndex = 2;

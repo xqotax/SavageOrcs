@@ -9,8 +9,13 @@ namespace SavageOrcs.DbContext.Migrations
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+
             migrationBuilder.DropForeignKey(
                 name: "FK_Areas_AreaTypes_AreaTypeId",
+                table: "Areas");
+
+            migrationBuilder.DropColumn(
+                name: "AreaTypeId",
                 table: "Areas");
 
             migrationBuilder.DropTable(
