@@ -76,13 +76,13 @@
     <div class="mark-revision-content-row">
         <div class="mark-revision-content-col">
             <div class="mark-revision-description">@Model.Description</div>
-            <div class="mark-revision-area">@Model.Area</div>
+            @*<div class="mark-revision-area">@Model.Area</div>
             @if (!string.IsNullOrEmpty(Model.CuratorName))
             {
                 <div class="mark-revision-curator">
                     @Language.GetMarkKey("RevisionCuratorLabel") <span>@Model.CuratorName</span>
                 </div>
-            }
+            }*@
             @if (!string.IsNullOrEmpty(Model.ResourceUrl) && !string.IsNullOrEmpty(Model.ResourceName))
             {
                 <div class="mark-revision-resources">
@@ -99,7 +99,7 @@
                 <a class="mark-revision-cluster" style="color:white; text-decoration: underline;" href="/Cluster/Revision?id=@Model.ClusterId.ToString()">@Model.ClusterName </a>
             }
             @if (Model.IsCluster){
-                <a class="mark-revision-cluster" style="color:white; text-decoration: underline;" href="/Mark/Catalogue?clusterId=@Model.Id.ToString()">Переглянути більше схожих фото</a>
+                <a class="mark-revision-cluster" style="color:white; text-decoration: underline;" href="/Mark/Catalogue?clusterId=@Model.Id.ToString()">@Language.GetMarkKey("RevisionShowMoreLabel")</a>
             }
         </div><div class="mark-revision-space-col"></div>
         <div class="mark-revision-image-col">

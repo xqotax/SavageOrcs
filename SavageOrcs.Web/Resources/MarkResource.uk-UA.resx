@@ -138,6 +138,9 @@
   <data name="RevisionResourceLabel" xml:space="preserve">
     <value>Власник фото:</value>
   </data>
+  <data name="RevisionShowMoreLabel" xml:space="preserve">
+    <value>Показати більше схожих фотографій</value>
+  </data>
   <data name="SearchAreYouHaveMaterials" xml:space="preserve">
     <value>Маєте матеріали для архіву?</value>
   </data>

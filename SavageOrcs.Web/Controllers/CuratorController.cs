@@ -153,7 +153,9 @@ namespace SavageOrcs.Web.Controllers
                         Area = y.Area is null ? new GuidIdAndNameViewModel() : new GuidIdAndNameViewModel
                         {
                             Id = y.Area.Id,
-                            Name = y.Area.Name + ", " + y.Area.Community + ", " + y.Area.Region,
+                            Name = _helperService.GetTranslation(y.Area.Name, y.Area.NameEng) + ", " 
+                                + _helperService.GetTranslation(y.Area.Community, y.Area.CommunityEng) + ", " 
+                                + _helperService.GetTranslation(y.Area.Region, y.Area.RegionEng),
                         }
                     }).OrderByDescending(x => x.Name).ToArray();
                 curatorViewModel.MarkCount = curatorViewModel.Marks.Length;

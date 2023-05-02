@@ -138,6 +138,9 @@
   <data name="RevisionResourceLabel" xml:space="preserve">
     <value>Photo owner:</value>
   </data>
+  <data name="RevisionShowMoreLabel" xml:space="preserve">
+    <value>Show more similar photos</value>
+  </data>
   <data name="SearchAreYouHaveMaterials" xml:space="preserve">
     <value>Do you have data for the archive?</value>
   </data>

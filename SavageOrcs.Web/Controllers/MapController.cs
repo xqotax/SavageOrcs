@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Mvc;
+using SavageOrcs.Services;
 using SavageOrcs.Services.Interfaces;
 using SavageOrcs.Web.ViewModels.Constants;
 using SavageOrcs.Web.ViewModels.Map;
@@ -15,15 +16,13 @@ namespace SavageOrcs.Web.Controllers
         private readonly IAreaService _areaService;
         private readonly IMarkService _markService;
         private readonly IClusterService _clusterService;
-        private readonly ICuratorService _curatorService;
         private readonly IHelperService _helperService;
 
-        public MapController(ILogger<MapController> logger, IMapService mapService, IHelperService helperService, ICuratorService curatorService, IClusterService clusterService, IMarkService markService, IAreaService areaService)
+        public MapController(ILogger<MapController> logger, IMapService mapService, IHelperService helperService, IClusterService clusterService, IMarkService markService, IAreaService areaService)
         {
             _logger = logger;
             _mapService = mapService;
             _helperService = helperService;
-            _curatorService = curatorService;
             _clusterService = clusterService;
             _markService = markService;
             _areaService = areaService;
@@ -96,7 +95,9 @@ namespace SavageOrcs.Web.Controllers
             mapCoordinatesViewModel.Areas = (await _areaService.GetUsedAreasAsync()).Select(x => new GuidIdAndNameViewModel
             {
                 Id = x.Id,
-                Name = x.Name + ", " + x.Community + ", " + x.Region,
+                Name = _helperService.GetTranslation(x.Name, x.NameEng) + ", " 
+                    + _helperService.GetTranslation(x.Community, x.CommunityEng) + ", " 
+                    + _helperService.GetTranslation(x.Region, x.RegionEng),
             }).ToArray();
             mapCoordinatesViewModel.MarkNames = markDtos.Select(x => new GuidIdAndNameViewModel
             {

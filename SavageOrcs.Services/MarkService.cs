@@ -143,13 +143,19 @@ namespace SavageOrcs.Services
                     Id = mark.Cluster.Area.Id,
                     Name = mark.Cluster.Area.Name,
                     Region = mark.Cluster.Area.Region,
-                    Community = mark.Cluster.Area.Community
+                    Community = mark.Cluster.Area.Community,
+                    NameEng = mark.Cluster.Area.NameEng,
+                    CommunityEng = mark.Cluster.Area.CommunityEng,
+                    RegionEng = mark.Cluster.Area.RegionEng,
                 }) : new AreaShortDto
                 {
                     Id = mark.Area.Id,
                     Name = mark.Area.Name,
                     Region = mark.Area.Region,
-                    Community = mark.Area.Community
+                    Community = mark.Area.Community,
+                    NameEng = mark.Area.NameEng,
+                    CommunityEng = mark.Area.CommunityEng,
+                    RegionEng = mark.Area.RegionEng,
                 },
             };
         }
