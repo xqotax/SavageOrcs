@@ -300,13 +300,13 @@ namespace SavageOrcs.Web.Controllers
             unitedCatalogueViewModel.ClusterNames = clusterDtos.Select(x => new GuidIdAndNameViewModel
             {
                 Id = x.Id,
-                Name = _helperService.GetTranslation(x.Name, x.NameEng)
+                Name = _helperService.GetSubstringForFilters(_helperService.GetTranslation(x.Name, x.NameEng))
             }).OrderBy(x => x.Name).ToArray();
 
             unitedCatalogueViewModel.MarkNames = markDtos.Select(x => new GuidIdAndNameViewModel
             {
                 Id = x.Id.Value,
-                Name = _helperService.GetTranslation(x.Name, x.NameEng)
+                Name = _helperService.GetSubstringForFilters(_helperService.GetTranslation(x.Name, x.NameEng))
             }).Where(x => !unitedCatalogueViewModel.KeyWords
                     .Any(y => x.Name is not null && y.Name is not null && x.Name.Contains(y.Name, StringComparison.OrdinalIgnoreCase)))
                 .GroupBy(x => x.Name)

@@ -153,6 +153,15 @@ namespace SavageOrcs.Services
             return Thread.CurrentThread.CurrentUICulture.TwoLetterISOLanguageName == "uk" ? urk : eng;
         }
 
+        public string GetSubstringForFilters(string? input)
+        {
+            if (string.IsNullOrEmpty(input))
+                return "";
+            if (input.Length > 50)
+                return input.Substring(0, 50).Trim() + "...";
+            return input;
+        }
+
         public GuidIdAndStringName GetEmptySelect()
         {
             return new GuidIdAndStringName

@@ -90,7 +90,7 @@ namespace SavageOrcs.Web.Controllers
             mapCoordinatesViewModel.ClusterNames = clusterDtos.Select(x => new GuidIdAndNameViewModel
             {
                 Id = x.Id,
-                Name = _helperService.GetTranslation(x.Name, x.NameEng)
+                Name = _helperService.GetSubstringForFilters(_helperService.GetTranslation(x.Name, x.NameEng))
             }).OrderBy(x => x.Name).ToArray();
             mapCoordinatesViewModel.Areas = (await _areaService.GetUsedAreasAsync()).Select(x => new GuidIdAndNameViewModel
             {
@@ -102,7 +102,7 @@ namespace SavageOrcs.Web.Controllers
             mapCoordinatesViewModel.MarkNames = markDtos.Select(x => new GuidIdAndNameViewModel
             {
                 Id = x.Id.Value,
-                Name = _helperService.GetTranslation(x.Name, x.NameEng)
+                Name = _helperService.GetSubstringForFilters(_helperService.GetTranslation(x.Name, x.NameEng))
             }).Where(x => !mapCoordinatesViewModel.KeyWords
                     .Any(y => x.Name is not null && y.Name is not null && x.Name.Contains(y.Name, StringComparison.OrdinalIgnoreCase)))
                 .GroupBy(x => x.Name)

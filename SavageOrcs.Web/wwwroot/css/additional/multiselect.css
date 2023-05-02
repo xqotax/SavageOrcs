@@ -203,8 +203,7 @@
 }
 
 
-@media( max-width: 700px){
-    
+@media( max-width: 700px) {
     .multiselect-dropdown-custom-list div {
         padding-left: 0px;
     }

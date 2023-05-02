@@ -28,6 +28,8 @@ namespace SavageOrcs.Services.Interfaces
 
         string? GetTranslation(string? urk, string? eng);
 
+        string GetSubstringForFilters(string? input);
+
         GuidIdAndStringName GetEmptySelect();
     }
 }
