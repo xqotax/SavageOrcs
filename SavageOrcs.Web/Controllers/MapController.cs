@@ -51,6 +51,8 @@ namespace SavageOrcs.Web.Controllers
         [AllowAnonymous]
         public async Task<IActionResult> Main(string lat = "48.5819022", string lng = "32.0356408", string zoom = "6")
         {
+            ViewBag.GoogleSiteVerificationContent = _configuration.GetSection("GoogleSiteVerificationContent").Value;
+
             var mapDto = await _mapService.GetMap(1);
 
             var mapCoordinatesViewModel = new MapCoordinatesViewModel

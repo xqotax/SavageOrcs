@@ -33,6 +33,11 @@
     <meta name="twitter:image" content="~/images/redCircle.png">
     <link rel="icon" href="~/images/icons/redCircle.ico">
     @await Html.PartialAsync("_Styles")
+
+    @if (ViewBag.GoogleSiteVerificationContent != null)
+    {
+        <meta name="google-site-verification" content="@ViewBag.GoogleSiteVerificationContent" />
+    }
 </head>
 <body>
     <div id="18PlusPopupPlaceholder"></div>
