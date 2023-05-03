@@ -15,7 +15,6 @@
 
         "Scripts/User/Catalogue.js",
         "Scripts/User/Revision.js",
-        "Scripts/User/AddCuratorImage.js",
 
         "Scripts/Cluster/Add.js",
         "Scripts/Cluster/Revision.js",

@@ -17,8 +17,9 @@ namespace SavageOrcs.Web.Controllers
         private readonly IMarkService _markService;
         private readonly IClusterService _clusterService;
         private readonly IHelperService _helperService;
+        private readonly IConfiguration _configuration;
 
-        public MapController(ILogger<MapController> logger, IMapService mapService, IHelperService helperService, IClusterService clusterService, IMarkService markService, IAreaService areaService)
+        public MapController(ILogger<MapController> logger, IMapService mapService, IHelperService helperService, IClusterService clusterService, IMarkService markService, IAreaService areaService, IConfiguration configuration)
         {
             _logger = logger;
             _mapService = mapService;
@@ -26,6 +27,7 @@ namespace SavageOrcs.Web.Controllers
             _clusterService = clusterService;
             _markService = markService;
             _areaService = areaService;
+            _configuration = configuration;
         }
 
         [AllowAnonymous]
@@ -57,6 +59,7 @@ namespace SavageOrcs.Web.Controllers
                 Lng = lng,
                 Zoom = zoom,
                 Name = mapDto.Name,
+                GoogleMapKey = _configuration.GetSection("GoogleMapApiKey").Value,
                 Id = 1,
                 MapMarkViewModels = mapDto.MapMarkDtos.Select(x => new MapMarkViewModel { 
                     Id = x.Id,
@@ -120,7 +123,7 @@ namespace SavageOrcs.Web.Controllers
             var markDtos = await _markService.GetMarksByFilters(filter.SelectedKeyWordIds, filter.SelectedMarkIds, filter.SelectedClusterIds, filter.SelectedAreaIds);
             var clusterDtos = await _clusterService.GetClustersByFilters(filter.SelectedKeyWordIds, filter.SelectedClusterIds, filter.SelectedAreaIds);
 
-            var markCatalogueViewModel = markDtos.Select(x => new MapMarkViewModel
+            var markCatalogueViewModels = markDtos.Select(x => new MapMarkViewModel
             {
                 Id = x.Id.Value,
                 Lat = x.Lat?.ToString().Replace(',', '.'),
@@ -128,23 +131,18 @@ namespace SavageOrcs.Web.Controllers
                 Name = _helperService.GetTranslation(x.Name, x.NameEng),
                 IsCluster = false
             }).ToArray();
-            try
-            {
-                markCatalogueViewModel = markCatalogueViewModel.Concat(clusterDtos.Select(x => new MapMarkViewModel
-                {
-                    Id = x.Id,
-                    Lat = x.Lat.ToString().Replace(',', '.'),
-                    Lng = x.Lng.ToString().Replace(',', '.'),
-                    Name = _helperService.GetTranslation(x.Name, x.NameEng),
-                    IsCluster = true
-                })).ToArray();
-            }
-            catch (Exception e)
-            {
-                var a = e.Message;
-            }
 
-            return Json(markCatalogueViewModel);
+            markCatalogueViewModels = markCatalogueViewModels.Concat(clusterDtos.Select(x => new MapMarkViewModel
+            {
+                Id = x.Id,
+                Lat = x.Lat.ToString().Replace(',', '.'),
+                Lng = x.Lng.ToString().Replace(',', '.'),
+                Name = _helperService.GetTranslation(x.Name, x.NameEng),
+                IsCluster = true
+            })).ToArray();
+           
+
+            return Json(markCatalogueViewModels);
         }
     }
 }

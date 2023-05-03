@@ -7,9 +7,9 @@
 
 <div class="wrapper-custom">
     @*<img class="main-image" src="~/images/main/yourHouse-OurHouse.jpg" />*@
-   @* <img class="main-image-mob" src="~/images/main/yourHouse-OurHouse-mob.png" />*@
+    @* <img class="main-image-mob" src="~/images/main/yourHouse-OurHouse-mob.png" />*@
     <div class="info-container">
-        <img class="uncertain-point" src="~/images/redCircle.png"/>
+        <img class="uncertain-point" src="~/images/redCircle.png" />
         <div class="main-photo-info">
             <p>@Language.GetMainKey("MainPhotoResourceName")</p>
             <p>@Language.GetMainKey("MainPhotoResourceDescription")</p>
@@ -118,5 +118,7 @@
             mapMainView.InitMap();
         }
     </script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDuw7bPRLxL2yVBd9YArtpb47myhmUePGY&callback=initMap"></script>
+
+    @*<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDuw7bPRLxL2yVBd9YArtpb47myhmUePGY&callback=initMap"></script>*@
+    <script src=@("https://maps.googleapis.com/maps/api/js?key=" + Model.GoogleMapKey + "&callback=initMap")></script>
 }

@@ -32,25 +32,26 @@ namespace SavageOrcs.Web.Areas.Identity.Pages.Account
         private readonly IUserStore<User> _userStore;
         private readonly IUserEmailStore<User> _emailStore;
         private readonly ILogger<RegisterModel> _logger;
-        private readonly IEmailSender _emailSender;
         private readonly IEmailService _emailService;
+        private readonly IConfiguration _configuration;
+
         public RegisterModel(
             UserManager<User> userManager,
             IUserStore<User> userStore,
             SignInManager<User> signInManager,
             ILogger<RegisterModel> logger,
-            IEmailSender emailSender,
             IEmailService emailService,
-            RoleManager<IdentityRole> roleManager)
+            RoleManager<IdentityRole> roleManager,
+            IConfiguration configuration)
         {
             _userManager = userManager;
             _userStore = userStore;
             _emailStore = GetEmailStore();
             _signInManager = signInManager;
             _logger = logger;
-            _emailSender = emailSender;
             _emailService = emailService;
             _roleManager = roleManager;
+            _configuration = configuration;
         }
 
         /// <summary>
@@ -156,14 +157,20 @@ namespace SavageOrcs.Web.Areas.Identity.Pages.Account
                     var userId = await _userManager.GetUserIdAsync(user);
                     var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
                     code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));
-                    var callbackUrl = Url.Page(
-                        "/Account/ConfirmEmail",
-                        pageHandler: null,
-                        values: new { area = "Identity", userId = userId, code = code, returnUrl = returnUrl },
-                        protocol: Request.Scheme);
+
+                    var domainName = _configuration.GetSection("DomainName").Value;
+
+                    var callbackUrl = $"{domainName}/Identity/Account/ConfirmEmail?area=Identity&userId={userId}&code={code}&returnUrl={returnUrl}";
+
+
+                    //var callbackUrl = Url.Page(
+                    //    "/Account/ConfirmEmail",
+                    //    pageHandler: null,
+                    //    values: new { area = "Identity", userId = userId, code = code, returnUrl = returnUrl },
+                    //    protocol: Request.Scheme);
 
                     await _emailService.SendEmailAsync(Input.Email, "Підтвердження email-адреси",
-                        $"Будь ласка підтвердіть свою електронну адресу, нажавши <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>тут</a>.");
+                        $"Будь ласка підтвердіть свою електронну адресу, натиснувши <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>тут</a>.");
 
                     if (_userManager.Options.SignIn.RequireConfirmedAccount)
                     {

@@ -4,7 +4,19 @@
     ViewData["Title"] = "Access denied";
 }
 
-<header>
+<style>
+    .access-denied-container {
+        position:fixed;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content:center;
+    }
+</style>
+
+<div class="access-denied-container">
     <h1 class="text-danger">@ViewData["Title"]</h1>
     <p class="text-danger">You do not have access to this resource.</p>
-</header>
+</div>

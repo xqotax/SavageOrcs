@@ -49,6 +49,7 @@ namespace SavageOrcs.Web.Controllers
         }
 
         [Authorize(Roles = "Global admin")]
+        [EmailConfirmed]
         public async Task<IActionResult> Revision(string id)
         {
             var userDto = await _userService.GetUserById(id);
@@ -113,11 +114,6 @@ namespace SavageOrcs.Web.Controllers
                 Url = "/Curator/Catalogue",
                 Text = "Статус користувача збережено"
             });
-        }
-        [Authorize(Roles = "Admin")]
-        public IActionResult AddCuratorImage()
-        {
-            return PartialView("_AddCuratorImage");
         }
     }
 }

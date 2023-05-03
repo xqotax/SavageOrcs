@@ -50,10 +50,10 @@
         <div class="col-item">
             <div class="col-content-item">
                 <div class="col-author-item">
-                    @if (!string.IsNullOrEmpty(Model[i - 1].CuratorName))
+                    @*@if (!string.IsNullOrEmpty(Model[i - 1].CuratorName))
                     {
                         <div style="padding-bottom: 5px">@Model[i - 1].CuratorName</div>
-                    }
+                    }*@
                     @if (!string.IsNullOrEmpty(Model[i - 1].ResourceName))
                     {
                         <div>@Language.GetMarkKey("SearchRowResourceName") @Model[i - 1].ResourceName</div>

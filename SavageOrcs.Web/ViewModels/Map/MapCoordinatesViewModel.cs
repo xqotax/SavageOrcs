@@ -17,5 +17,7 @@ namespace SavageOrcs.Web.ViewModels.Map
         public MapMarkViewModel[] MapMarkViewModels { get; set; }
 
         public MapClusterViewModel[] MapClusterViewModels { get; set; }
+
+        public string GoogleMapKey { get; set; } = string.Empty;
     }
 }

@@ -136,7 +136,7 @@
             }, 200);
             var url = window.location.href;
 
-            if (url.indexOf('Revision') !== -1) {
+            if (url.indexOf('Revision') !== -1 || url.indexOf('User') !== -1) {
                 var footer = document.querySelector('footer');
                 footer.style.display = 'none';
             }

@@ -29,10 +29,11 @@ namespace SavageOrcs.Web.Controllers
         private readonly IClusterService _clusterService;
         private readonly ICuratorService _curatorService;
         private readonly IHelperService _helperService;
+        private readonly IConfiguration _configuration;
 
         private readonly UserManager<User> _userManager;
 
-        public MarkController(UserManager<User> userManager, IAreaService areaService, IMarkService markService, IClusterService clusterService, IHelperService helperService, ICuratorService curatorService)
+        public MarkController(UserManager<User> userManager, IAreaService areaService, IMarkService markService, IClusterService clusterService, IHelperService helperService, ICuratorService curatorService, IConfiguration configuration)
         {
             _userManager = userManager;
             _areaService = areaService;
@@ -40,6 +41,7 @@ namespace SavageOrcs.Web.Controllers
             _clusterService = clusterService;
             _helperService = helperService;
             _curatorService = curatorService;
+            _configuration = configuration;
         }
 
         [AllowAnonymous]
@@ -99,7 +101,7 @@ namespace SavageOrcs.Web.Controllers
             }
         }
 
-
+        
         [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Add(Guid? id)
         {
@@ -172,7 +174,8 @@ namespace SavageOrcs.Web.Controllers
                 {
                     Id = x.Id,
                     Name = x.DisplayName
-                })).ToArray()
+                })).ToArray(),
+                GoogleMapKey = _configuration.GetSection("GoogleMapApiKey").Value
             };
 
             return View(addMarkViewModel);

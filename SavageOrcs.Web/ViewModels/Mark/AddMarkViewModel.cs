@@ -51,5 +51,7 @@ namespace SavageOrcs.Web.ViewModels.Mark
 
         public GuidIdAndNameViewModel[] Curators { get; set; } = new GuidIdAndNameViewModel[0];
 
+        public string GoogleMapKey { get; set; } = string.Empty;
+
     }
 }

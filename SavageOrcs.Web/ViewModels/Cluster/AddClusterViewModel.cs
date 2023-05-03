@@ -42,5 +42,7 @@ namespace SavageOrcs.Web.ViewModels.Cluster
         public GuidIdAndNameViewModel[] Curators { get; set; } = new GuidIdAndNameViewModel[0];
 
         public GuidIdAndNameViewModel[] Places { get; set; } = new GuidIdAndNameViewModel[0];
+
+        public string GoogleMapKey { get;  set; } = string.Empty;
     }
 }

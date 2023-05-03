@@ -18,13 +18,15 @@ namespace SavageOrcs.Web.Controllers
         private readonly IClusterService _clusterService;
         private readonly ICuratorService _curatorService;
         private readonly IHelperService _helperService;
+        private readonly IConfiguration _configuration;
 
-        public ClusterController(IAreaService areaService,  IClusterService clusterService, ICuratorService curatorService, IHelperService helperService)
+        public ClusterController(IAreaService areaService, IClusterService clusterService, ICuratorService curatorService, IHelperService helperService, IConfiguration configuration)
         {
             _clusterService = clusterService;
             _areaService = areaService;
             _curatorService = curatorService;
             _helperService = helperService;
+            _configuration = configuration;
         }
 
         [Authorize(Roles = "Admin")]
@@ -81,6 +83,7 @@ namespace SavageOrcs.Web.Controllers
                     Id = x.Id,
                     Name = x.DisplayName
                 })).ToArray(),
+                GoogleMapKey = _configuration.GetSection("GoogleMapApiKey").Value
             };
 
             return View(addClusterViewModel);
