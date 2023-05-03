@@ -87,6 +87,9 @@
         width: 100%;
         color: #0F0F0F;
     }
+    .clear-button-col{
+        padding-right: 10px;
+    }
 
     .map-filter-container {
         padding-top: 30px;

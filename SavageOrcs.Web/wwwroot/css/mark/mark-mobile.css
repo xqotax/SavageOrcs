@@ -5,7 +5,7 @@
     }
 
     .mark-info-text p {
-        width: 85%;
+        width: 89%;
     }
 }
 
@@ -16,16 +16,14 @@
     }
     .clear-button-container {
         height: 70px;
+        padding-right: 10px;
     }
     .mark-header-text {
         font-size: 36px;
         line-height: 44px;
     }
 
-    .clear-button-container {
-        left: 70.5%;
-        width: 24%;
-    }
+    
 
     .wrapper-search {
         padding-left: 16px;

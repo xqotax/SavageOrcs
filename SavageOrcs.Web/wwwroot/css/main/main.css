@@ -153,8 +153,8 @@
 
 .clear-button-col {
     cursor: pointer;
-    width: 100px;
-    justify-content: space-between;
+    width: 200px;
+    justify-content: flex-end;
     display: flex;
 }
 
@@ -164,6 +164,7 @@
     font-size: 14px;
     line-height: 17px;
     padding-top: 4px;
+    margin-right: 20px;
     border: none;
     background-color: #DEDCDC;
     color: #0F0F0F;

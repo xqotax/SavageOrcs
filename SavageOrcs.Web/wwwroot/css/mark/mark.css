@@ -33,12 +33,11 @@
 .clear-button-container {
     position: relative;
     cursor: pointer;
-    width: 20%;
-    left: 80%;
+    width: 100%;
     height: 107px;
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: flex-end;
 }
 
 .mark-table-row {
@@ -334,9 +333,7 @@
     .filter-item, .filter-item-search {
         width: 33%;
     }
-    .clear-button-container{
-        left: 76%;
-    }
+    
     .col-item-red-circle {
         display: none;
     }

@@ -24,7 +24,7 @@
     <meta property='og:description' content="@Language.GetMainKey("Description")">
     <meta property='og:image' content="~/images/redCircle.png">
     <meta property='og:type' content="website">
-   @* <meta name="robots" content="all">             TO ADD WHILE FINAL DEPLOY*@
+    <meta name="robots" content="all">
 
     <meta name="twitter:card" content="summary">
     <meta name="twitter:site" content="Культурна інституція «Міжвухами»">
@@ -67,7 +67,7 @@
         <nav class="cross">
             <img src="~/images/main/cross.svg" alt="cross" />
         </nav>
-        <a class="logo-text" asp-controller="Map" asp-action="Main">@Language.GetMainKey("WallEvidence")</a>
+        <h1><a class="logo-text" asp-controller="Map" asp-action="Main">@Language.GetMainKey("WallEvidence")</a></h1>
         <partial name="_SideMenu.cshtml" />
     </header>
     <main role="main" class="container-custom">
