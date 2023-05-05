@@ -144,8 +144,8 @@ namespace SavageOrcs.Web.Controllers
                 AreaName = markDto?.Area is null ? null : markDto.Area.Name + ", " + markDto.Area.Community + ", " + markDto.Area.Region,
                 ClusterId = markDto?.Cluster?.Id,
                 CuratorId = markDto?.Curator?.Id,
-                ClusterName = _helperService.GetTranslation(markDto?.Cluster?.Name, markDto?.Cluster?.NameEng),
-                CuratorName = _helperService.GetTranslation(markDto?.Curator?.Name, markDto?.Curator?.NameEng),
+                ClusterName = markDto?.Cluster?.Name,
+                CuratorName = markDto?.Curator?.Name,
                 Description = markDto?.Description,
                 DescriptionEng = markDto?.DescriptionEng,
                 ResourceUrl = markDto?.ResourceUrl,
@@ -168,7 +168,7 @@ namespace SavageOrcs.Web.Controllers
                 Clusters = emptySelectArr.Concat(clusterDtos.Select(x => new GuidIdAndNameViewModel
                 {
                     Id = x.Id,
-                    Name = _helperService.GetTranslation(x.Name, x.NameEng)
+                    Name = x.Name
                 })).ToArray(),
                 Curators = emptySelectArr.Concat(curatorDtos.Select(x => new GuidIdAndNameViewModel
                 {

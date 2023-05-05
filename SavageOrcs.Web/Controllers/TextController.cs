@@ -336,14 +336,14 @@ namespace SavageOrcs.Web.Controllers
                 .Select(x => new GuidIdAndNameViewModel
             {
                 Id = x.Id,
-                Name = x.DisplayName
+                Name =_helperService.GetTranslation(x.DisplayName, x.DisplayNameEng)
             }).ToArray();
 
             unitedTextViewModel.Texts = textDtos.Select(x => new TextRevisionViewModel
             {
                 Id = x.Id,
                 Name = x.Name,
-                CuratorName = x.Curator?.Name,
+                CuratorName = _helperService.GetTranslation(x.Curator?.Name,x.Curator?.NameEng),
                 CreatedDate = x.CreatedDate
             }).OrderByDescending(x => x.CreatedDate).ToArray();
 
@@ -389,7 +389,7 @@ namespace SavageOrcs.Web.Controllers
                 Subject = x.Subject,
                 Name = x.Name,
                 CuratorId = x.Curator?.Id,
-                CuratorName = x.Curator?.Name,
+                CuratorName = _helperService.GetTranslation(x.Curator?.Name,x.Curator?.NameEng),
                 CreatedDate = x.CreatedDate
             }).OrderByDescending(x => x.CreatedDate).ToArray();
 

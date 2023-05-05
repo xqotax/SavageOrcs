@@ -14,6 +14,6 @@ namespace SavageOrcs.DataTransferObjects.Texts
 
         public DateTime CreatedDate { get; set; }
 
-        public GuidIdAndStringName? Curator { get; set; }
+        public GuidIdAndStringNameWithEnglishName? Curator { get; set; }
     }
 }

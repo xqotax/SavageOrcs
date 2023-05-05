@@ -49,7 +49,13 @@ namespace SavageOrcs.Services
                 Subject = x.Subject,
                 CreatedDate = x.CreatedDate,
                 EnglisVersion = x.EnglishVersion,
-                Curator = x.CuratorId is not null ? new GuidIdAndStringName { Id = x.CuratorId.Value, Name = x.Curator?.Name } : null,
+                Curator = x.CuratorId is not null ? 
+                    new GuidIdAndStringNameWithEnglishName 
+                    { 
+                        Id = x.CuratorId.Value, 
+                        Name = x.Curator?.Name, 
+                        NameEng = x.Curator?.NameEng, 
+                    } : null,
             }).OrderByDescending(x => x.CreatedDate).ToArray();
         }
         public async Task<TextDto> GetTextById(Guid id)
@@ -86,7 +92,11 @@ namespace SavageOrcs.Services
                 EnglishVersion = text.EnglishVersion,
                 UkrTextId = text.UkrTextId,
                 CreatedDate = text.CreatedDate,
-                Curator = text.CuratorId is not null?  new GuidIdAndStringName { Id = text.CuratorId.Value, Name = text.Curator?.Name }:null,
+                Curator = text.CuratorId is not null?  new GuidIdAndStringNameWithEnglishName { 
+                    Id = text.CuratorId.Value, 
+                    Name = text.Curator?.Name, 
+                    NameEng = text.Curator?.NameEng
+                }:null,
                 BlockDtos = text.Blocks.Select(x => new BlockDto
                 {
                     Id = x.Id,
@@ -230,10 +240,11 @@ namespace SavageOrcs.Services
                 Subject = x.Subject,
                 CreatedDate = x.CreatedDate,
                 EnglisVersion = x.EnglishVersion,
-                Curator = x.Curator is null? null : new GuidIdAndStringName
+                Curator = x.Curator is null? null : new GuidIdAndStringNameWithEnglishName
                 {
                     Id = x.Curator.Id,
-                    Name = x.Curator.Name
+                    Name = x.Curator.Name,
+                    NameEng = x.Curator?.NameEng
                 } 
             }).OrderByDescending(x => x.CreatedDate).ToArray(); ;
 

@@ -283,7 +283,7 @@
         areaId = areaId === "" ? null : areaId;
         clusterId = clusterId === "" ? null : clusterId;
         curatorId = curatorId === "" ? null : curatorId;
-
+        debugger;
         var saveMarkViewModel = {
             Id: $("#Id").val() === "" ? null : $("#Id").val(),
             Lng: $("#Lng").val(),
