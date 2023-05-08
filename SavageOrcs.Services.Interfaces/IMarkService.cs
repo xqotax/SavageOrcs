@@ -1,11 +1,5 @@
 ﻿using SavageOrcs.DataTransferObjects.Marks;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using SavageOrcs.DataTransferObjects._Constants;
-using SavageOrcs.DataTransferObjects.Texts;
 
 namespace SavageOrcs.Services.Interfaces
 {

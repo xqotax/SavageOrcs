@@ -1,4 +1,11 @@
-﻿.multiselect-dropdown-custom {
+﻿/*BUNDLE_CONFIG 
+{
+    "outputFileName": "site.min.css"
+}
+*/
+
+/*BUNDLE_INCLUDE("~/css/additional/multiselect.css")*/
+.multiselect-dropdown-custom {
     display: inline-block;
     padding: 2px 5px 0px 0px;
     position: relative;

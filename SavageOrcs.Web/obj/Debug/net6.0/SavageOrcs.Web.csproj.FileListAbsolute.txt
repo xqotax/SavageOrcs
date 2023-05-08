@@ -611,3 +611,5 @@ D:\Study\Diploma\SavageOrcs.Web\obj\Debug\net6.0\refint\SavageOrcs.Web.dll
 D:\Study\Diploma\SavageOrcs.Web\obj\Debug\net6.0\SavageOrcs.Web.pdb
 D:\Study\Diploma\SavageOrcs.Web\obj\Debug\net6.0\SavageOrcs.Web.genruntimeconfig.cache
 D:\Study\Diploma\SavageOrcs.Web\obj\Debug\net6.0\ref\SavageOrcs.Web.dll
+D:\Study\Diploma\SavageOrcs.Web\bin\Debug\net6.0\dotnet-bundle.dll
+D:\Study\Diploma\SavageOrcs.Web\bin\Debug\net6.0\NUglify.dll

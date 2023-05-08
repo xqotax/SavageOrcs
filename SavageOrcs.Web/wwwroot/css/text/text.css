@@ -1,4 +1,11 @@
-﻿.wrapper-text-search {
+﻿/*BUNDLE_CONFIG 
+{
+    "outputFileName": "site.min.css"
+}
+*/
+
+/*BUNDLE_INCLUDE("~/css/user/text.css")*/
+.wrapper-text-search {
     padding-left: 64px;
     padding-right: 70px;
     display: flex;

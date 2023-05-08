@@ -73,12 +73,12 @@
       "PackagePath": "staticwebassets\\css\\mark\\markAdmin.css"
     },
     {
-      "Id": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\css\\site-mobile.css",
-      "PackagePath": "staticwebassets\\css\\site-mobile.css"
-    },
-    {
       "Id": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\css\\site.css",
       "PackagePath": "staticwebassets\\css\\site.css"
+    },
+    {
+      "Id": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\css\\site.min.css",
+      "PackagePath": "staticwebassets\\css\\site.min.css"
     },
     {
       "Id": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\css\\text\\text-mobile.css",
@@ -475,6 +475,14 @@
     {
       "Id": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\lib\\search-select\\search-select.js",
       "PackagePath": "staticwebassets\\lib\\search-select\\search-select.js"
+    },
+    {
+      "Id": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\robots.txt",
+      "PackagePath": "staticwebassets\\robots.txt"
+    },
+    {
+      "Id": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\siteMap.xml",
+      "PackagePath": "staticwebassets\\siteMap.xml"
     },
     {
       "Id": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\text\\Mizhvukhamy-Alternate.ttf",

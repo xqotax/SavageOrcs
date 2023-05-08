@@ -1,4 +1,11 @@
-﻿.auth-container {
+﻿/*BUNDLE_CONFIG 
+{
+    "outputFileName": "site.min.css"
+}
+*/
+
+/*BUNDLE_INCLUDE("~/css/admin/identity.css")*/
+.auth-container {
     margin-top: 25px;
     width: 100%;
 }

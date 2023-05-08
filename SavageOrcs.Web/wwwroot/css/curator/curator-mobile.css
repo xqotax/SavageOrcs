@@ -1,4 +1,11 @@
-﻿@media (max-width: 700px) {
+﻿/*BUNDLE_CONFIG 
+{
+    "outputFileName": "site.min.css"
+}
+*/
+
+/*BUNDLE_INCLUDE("~/css/curator/curator-mobile.css")*/
+@media (max-width: 700px) {
     .curator-header-row {
         height: 100px;
     }

@@ -1,4 +1,11 @@
-﻿body {
+﻿/*BUNDLE_CONFIG 
+{
+    "outputFileName": "site.min.css"
+}
+*/
+
+/*BUNDLE_INCLUDE("~/css/additional/font-face.css")*/
+body {
     font-family: 'Mizhvukhamy', 'Mizhvukhamy Alternative';
     font-weight: 400;
 }

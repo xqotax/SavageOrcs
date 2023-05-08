@@ -1,5 +1,10 @@
-﻿    color: white;
+﻿/*BUNDLE_CONFIG 
+{
+    "outputFileName": "site.min.css"
 }
+*/
+
+/*BUNDLE_INCLUDE("~/css/additional/styles.css")*/
 
 .font-weight-super-bold-custom {
     font-weight: 800;
@@ -90,7 +95,7 @@ input[type="checkbox"] {
 }
 
 input[type="checkbox"]:checked {
-    background: rgb(4 107 28);
+    background: rgb(4,107, 28);
 }
 
 

@@ -1,4 +1,12 @@
-﻿@media (max-width: 700px) {
+﻿/*BUNDLE_CONFIG 
+{
+    "outputFileName": "site.min.css"
+}
+*/
+
+/*BUNDLE_INCLUDE("~/css/main/main-mobile.css")*/
+
+@media (max-width: 700px) {
     .container-custom {
         position: relative;
         width: 100%;

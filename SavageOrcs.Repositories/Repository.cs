@@ -64,12 +64,12 @@ namespace SavageOrcs.Repositories
 
         public async Task<IEnumerable<T>> GetAllAsync(Expression<Func<T, bool>>? predicate = null)
         {
-            IQueryable<T> query = _context.Set<T>();
+            IQueryable<T> query = await Task.FromResult(_context.Set<T>());
             if (predicate != null)
             {
                 query = query.Where(predicate);
             }
-            return query;
+            return await Task.FromResult(query);
         }
 
         public T? GetT(Expression<Func<T, bool>>? predicate)

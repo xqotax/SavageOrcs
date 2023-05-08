@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "TL6VB4tGK/s5oAgArjrsQ6rFOMD4KfZvTox1hSq8lRI=",
+  "Hash": "hb4NR4wYyMex5SlqznUfIQOeJlhG5E0E1iLlzmjF1uQ=",
   "Source": "SavageOrcs.Web",
   "BasePath": "_content/SavageOrcs.Web",
   "Mode": "Default",
@@ -1377,12 +1377,12 @@
       "OriginalItemSpec": "wwwroot\\css\\site.css"
     },
     {
-      "Identity": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\css\\site-mobile.css",
+      "Identity": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\css\\site.min.css",
       "SourceId": "SavageOrcs.Web",
       "SourceType": "Discovered",
       "ContentRoot": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\",
       "BasePath": "_content/SavageOrcs.Web",
-      "RelativePath": "css/site-mobile.css",
+      "RelativePath": "css/site.min.css",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -1391,7 +1391,7 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\css\\site-mobile.css"
+      "OriginalItemSpec": "wwwroot\\css\\site.min.css"
     },
     {
       "Identity": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\css\\text\\text.css",
@@ -3075,6 +3075,40 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\lib\\search-select\\search-select.js"
+    },
+    {
+      "Identity": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\robots.txt",
+      "SourceId": "SavageOrcs.Web",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\",
+      "BasePath": "_content/SavageOrcs.Web",
+      "RelativePath": "robots.txt",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\robots.txt"
+    },
+    {
+      "Identity": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\siteMap.xml",
+      "SourceId": "SavageOrcs.Web",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\",
+      "BasePath": "_content/SavageOrcs.Web",
+      "RelativePath": "siteMap.xml",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\siteMap.xml"
     },
     {
       "Identity": "D:\\Study\\Diploma\\SavageOrcs.Web\\wwwroot\\text\\Mizhvukhamy-Alternate.ttf",

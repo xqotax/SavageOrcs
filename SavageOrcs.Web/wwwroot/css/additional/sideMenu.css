@@ -1,4 +1,12 @@
-﻿header {
+﻿
+/*BUNDLE_CONFIG 
+{
+    "outputFileName": "site.min.css"
+}
+*/
+
+/*BUNDLE_INCLUDE("~/css/additional/sideMenu.css")*/
+header {
     position: fixed;
     top: 0;
     bottom: 0;

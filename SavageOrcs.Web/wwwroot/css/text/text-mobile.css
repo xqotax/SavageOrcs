@@ -1,4 +1,11 @@
-﻿@media (max-width: 700px) {
+﻿/*BUNDLE_CONFIG 
+{
+    "outputFileName": "site.min.css"
+}
+*/
+
+/*BUNDLE_INCLUDE("~/css/text/text-mobile.css")*/
+@media (max-width: 700px) {
     .wrapper-text-search {
         padding-left: 16px;
         padding-right: 16px;

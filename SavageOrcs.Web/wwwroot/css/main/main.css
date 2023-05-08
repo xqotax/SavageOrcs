@@ -1,4 +1,12 @@
-﻿.container-custom {
+﻿/*BUNDLE_CONFIG 
+{
+    "outputFileName": "site.min.css"
+}
+*/
+
+/*BUNDLE_INCLUDE("~/css/main/main.css")*/
+
+.container-custom {
     position: relative;
     width: -webkit-calc(100% - 116px);
     width: -moz-calc(100% - 116px);

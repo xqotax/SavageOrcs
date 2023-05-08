@@ -1,4 +1,10 @@
-﻿
+﻿/*BUNDLE_CONFIG 
+{
+    "outputFileName": "site.min.css"
+}
+*/
+
+/*BUNDLE_INCLUDE("~/css/additional/rightScroll.css")*/
 ::-webkit-scrollbar {
     width: 10px;
 }

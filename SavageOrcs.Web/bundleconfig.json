@@ -1,45 +1,78 @@
 ﻿[
-    {
-        "outputFileName": "wwwroot/js/site.js",
-      "inputFiles": [
-        "Scripts/Proto/Proto.js",
+  {
+    "outputFileName": "wwwroot/css/site.min.css",
+    "inputFiles": [
+      "wwwroot/css/additional/styles.css",
+      "wwwroot/css/additional/font-face.css",
+      "wwwroot/css/additional/multiselect.css",
+      "wwwroot/css/additional/rightScroll.css",
+      "wwwroot/css/additional/sideMenu.css",
+      "wwwroot/css/additional/18plusPopup.css",
 
-        "Scripts/Map/Main.js",
+      "wwwroot/css/site.css",
 
-        "Scripts/Mark/Add.js",
-        "Scripts/Mark/AddImage.js",
-        "Scripts/Mark/Revision.js",
-        "Scripts/Mark/Catalogue.js",
-        "Scripts/Mark/Delete.js",
-        "Scripts/Mark/RevisionImage.js",
+      "wwwroot/css/main/main.css",
+      "wwwroot/css/main/main-mobile.css",
 
-        "Scripts/User/Catalogue.js",
-        "Scripts/User/Revision.js",
+      "wwwroot/css/curator/curator.css",
+      "wwwroot/css/curator/curatorAdmin.css",
+      "wwwroot/css/curator/curator-mobile.css",
 
-        "Scripts/Cluster/Add.js",
-        "Scripts/Cluster/Revision.js",
-        "Scripts/Cluster/Catalogue.js",
-        "Scripts/Cluster/Delete.js",
+      "wwwroot/css/text/text.css",
+      "wwwroot/css/text/textAdmin.css",
+      "wwwroot/css/text/text-mobile.css",
 
-        "Scripts/Text/Revision.js",
-        "Scripts/Text/Catalogue.js",
-        "Scripts/Text/Add.js",
-        "Scripts/Text/AddImage.js",
-        "Scripts/Text/AddVideo.js",
-        "Scripts/Text/Delete.js",
+      "wwwroot/css/mark/mark.css",
+      "wwwroot/css/mark/mark-mobile.css",
+      "wwwroot/css/mark/markAdmin.css",
 
-        "Scripts/Curator/Revision.js",
-        "Scripts/Curator/Catalogue.js",
-        "Scripts/Curator/Add.js",
-        "Scripts/Curator/AddImage.js",
-        "Scripts/Curator/Delete.js",
+      "wwwroot/css/admin/AdminMenu.css",
+      "wwwroot/css/admin/identity.css",
+      "wwwroot/css/admin/keyWordAndArea.css"
 
-        "Scripts/AdminHelper/KeyWord.js",
-        "Scripts/AdminHelper/Area.js"
-      ],
-      "minify": {
-        "enabled": true,
-        "renameLocals": false
-      }
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/js/site.js",
+    "inputFiles": [
+      "Scripts/Proto/Proto.js",
+
+      "Scripts/Map/Main.js",
+
+      "Scripts/Mark/Add.js",
+      "Scripts/Mark/AddImage.js",
+      "Scripts/Mark/Revision.js",
+      "Scripts/Mark/Catalogue.js",
+      "Scripts/Mark/Delete.js",
+      "Scripts/Mark/RevisionImage.js",
+
+      "Scripts/User/Catalogue.js",
+      "Scripts/User/Revision.js",
+
+      "Scripts/Cluster/Add.js",
+      "Scripts/Cluster/Revision.js",
+      "Scripts/Cluster/Catalogue.js",
+      "Scripts/Cluster/Delete.js",
+
+      "Scripts/Text/Revision.js",
+      "Scripts/Text/Catalogue.js",
+      "Scripts/Text/Add.js",
+      "Scripts/Text/AddImage.js",
+      "Scripts/Text/AddVideo.js",
+      "Scripts/Text/Delete.js",
+
+      "Scripts/Curator/Revision.js",
+      "Scripts/Curator/Catalogue.js",
+      "Scripts/Curator/Add.js",
+      "Scripts/Curator/AddImage.js",
+      "Scripts/Curator/Delete.js",
+
+      "Scripts/AdminHelper/KeyWord.js",
+      "Scripts/AdminHelper/Area.js"
+    ],
+    "minify": {
+      "enabled": true,
+      "renameLocals": false
     }
+  }
 ]

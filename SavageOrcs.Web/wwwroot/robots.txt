@@ -1,0 +1,6 @@
+﻿User-agent: *
+Disallow:
+Allow: /$
+Allow: /Mark/Catalogue
+Allow: /Text/Catalogue
+Allow: /Curator/Catalogue

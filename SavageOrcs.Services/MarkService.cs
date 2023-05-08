@@ -255,6 +255,7 @@ namespace SavageOrcs.Services
             mark.DescriptionEng = markSaveDto.DescriptionEng;
             mark.ResourceUrl = markSaveDto.ResourceUrl;
             mark.ResourceName = markSaveDto.ResourceName;
+            mark.ResourceNameEng = markSaveDto.ResourceNameEng;
             mark.MapId = markSaveDto.MapId;
             mark.Lat = markSaveDto.Lat;
             mark.Lng = markSaveDto.Lng;

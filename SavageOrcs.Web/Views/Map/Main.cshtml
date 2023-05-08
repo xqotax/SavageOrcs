@@ -112,13 +112,18 @@
         mapMainView.NameTextPlaceholder = @Json.Serialize(Language.GetMarkKey("MultiselectNameTextPlaceholder"));
 
         $(document).ready(function () {
-            mapMainView.InitializeControls();
+            var script = document.createElement("script");
+            script.src = "https://maps.googleapis.com/maps/api/js?key=" + "@Model.GoogleMapKey" + "&callback=initMap";
+            document.head.appendChild(script); 
+           
+            
         });
         function initMap() {
             mapMainView.InitMap();
+            mapMainView.InitializeControls();
         }
     </script>
 
-    @*<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDuw7bPRLxL2yVBd9YArtpb47myhmUePGY&callback=initMap"></script>*@
-    <script src=@("https://maps.googleapis.com/maps/api/js?key=" + Model.GoogleMapKey + "&callback=initMap")></script>
+    @*<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDuw7bPRLxL2yVBd9YArtpb47myhmUePGY&callback=initMap"></script>
+    <script src=@("https://maps.googleapis.com/maps/api/js?key=" + Model.GoogleMapKey + "&callback=initMap")></script>*@
 }

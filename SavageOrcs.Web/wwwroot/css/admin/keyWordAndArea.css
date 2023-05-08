@@ -139,6 +139,13 @@
     flex-direction: row;
     justify-content: start;
 }
+/*BUNDLE_CONFIG 
+{
+    "outputFileName": "site.min.css"
+}
+*/
+
+/*BUNDLE_INCLUDE("~/css/admin/keyWordAndArea.css")*/
 .area-row-first {
     margin-bottom: 10px;
 }

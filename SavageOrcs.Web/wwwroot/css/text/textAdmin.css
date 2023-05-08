@@ -1,4 +1,11 @@
-﻿.wrapper-text-add {
+﻿/*BUNDLE_CONFIG 
+{
+    "outputFileName": "site.min.css"
+}
+*/
+
+/*BUNDLE_INCLUDE("~/css/text/textAdmin.css")*/
+.wrapper-text-add {
     padding-bottom: 40px;
     padding-left: 64px;
     padding-right: 70px;

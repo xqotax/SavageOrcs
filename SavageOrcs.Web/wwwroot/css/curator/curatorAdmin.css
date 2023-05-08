@@ -1,4 +1,11 @@
-﻿.wrapper-curator-add {
+﻿/*BUNDLE_CONFIG 
+{
+    "outputFileName": "site.min.css"
+}
+*/
+
+/*BUNDLE_INCLUDE("~/css/curator/curatorAdmin.css")*/
+.wrapper-curator-add {
     padding-left: 64px;
     padding-right: 70px;
     padding-top: 15px;

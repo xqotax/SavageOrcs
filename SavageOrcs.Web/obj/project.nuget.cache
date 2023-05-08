@@ -1,10 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "l489XoxYtg98kjeOKn731PGeS/n0UOsdNjBD5SOnkasZb2+mWyizasGUKYoB/tCfokmqHquf0OU4VoBBhwRMpA==",
+  "dgSpecHash": "7HXP8IK7W0nbx1qHGqa9cnTFuJbuVD/XHjJERToCazRXxJvq+35m1j1T0hfyGJa2uD0MAXuaMqtxoHy5RcfCyQ==",
   "success": true,
   "projectFilePath": "D:\\Study\\Diploma\\SavageOrcs.Web\\SavageOrcs.Web.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Yurij Skripnik\\.nuget\\packages\\buildbundlerminifier\\3.2.449\\buildbundlerminifier.3.2.449.nupkg.sha512",
+    "C:\\Users\\Yurij Skripnik\\.nuget\\packages\\bundlerminifier.core\\3.2.449\\bundlerminifier.core.3.2.449.nupkg.sha512",
     "C:\\Users\\Yurij Skripnik\\.nuget\\packages\\castle.core\\4.4.1\\castle.core.4.4.1.nupkg.sha512",
     "C:\\Users\\Yurij Skripnik\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\Yurij Skripnik\\.nuget\\packages\\messagepack\\2.1.152\\messagepack.2.1.152.nupkg.sha512",
@@ -90,6 +91,7 @@
     "C:\\Users\\Yurij Skripnik\\.nuget\\packages\\nuget.projectmodel\\5.11.0\\nuget.projectmodel.5.11.0.nupkg.sha512",
     "C:\\Users\\Yurij Skripnik\\.nuget\\packages\\nuget.protocol\\5.11.0\\nuget.protocol.5.11.0.nupkg.sha512",
     "C:\\Users\\Yurij Skripnik\\.nuget\\packages\\nuget.versioning\\6.2.1\\nuget.versioning.6.2.1.nupkg.sha512",
+    "C:\\Users\\Yurij Skripnik\\.nuget\\packages\\nuglify\\1.5.14\\nuglify.1.5.14.nupkg.sha512",
     "C:\\Users\\Yurij Skripnik\\.nuget\\packages\\runtime.debian.8-x64.runtime.native.system.security.cryptography.openssl\\4.3.0\\runtime.debian.8-x64.runtime.native.system.security.cryptography.openssl.4.3.0.nupkg.sha512",
     "C:\\Users\\Yurij Skripnik\\.nuget\\packages\\runtime.fedora.23-x64.runtime.native.system.security.cryptography.openssl\\4.3.0\\runtime.fedora.23-x64.runtime.native.system.security.cryptography.openssl.4.3.0.nupkg.sha512",
     "C:\\Users\\Yurij Skripnik\\.nuget\\packages\\runtime.fedora.24-x64.runtime.native.system.security.cryptography.openssl\\4.3.0\\runtime.fedora.24-x64.runtime.native.system.security.cryptography.openssl.4.3.0.nupkg.sha512",

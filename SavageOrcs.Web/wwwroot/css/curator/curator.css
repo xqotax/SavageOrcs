@@ -1,4 +1,11 @@
-﻿.wrapper-search-curator {
+﻿/*BUNDLE_CONFIG 
+{
+    "outputFileName": "site.min.css"
+}
+*/
+
+/*BUNDLE_INCLUDE("~/css/curator/curator.css")*/
+.wrapper-search-curator {
     padding-left: 64px;
     padding-right: 70px;
     display: flex;
